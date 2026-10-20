@@ -8,59 +8,16 @@ export interface Props {
   year: Year;
 }
 
-const data = {
-  2020: {
-    year: 2020,
-    description: `In November 2020, <strong> 2287 developers </strong>  from Morocco 🇲🇦
-  told us about their jobs satisfaction, salaries, and community
-  contribution, how they learn and level up, which tools they're
-  using, and what they want to learn next.`,
-    episode_url: `https://www.youtube.com/embed/RDhE0RUbkJI`
-  },
+interface ReportIntro {
+  description: string;
+  episode_url?: string;
+}
 
-  2021: {
-    year: 2021,
-    description: `In November 2021, <strong>1098 developers </strong> from Morocco 🇲🇦
-  told us about their jobs satisfaction, salaries, and community
-  contribution, how they learn and level up, which tools they're
-  using, and what they want to learn next.`,
-    episode_url: `https://www.youtube.com/embed/bEkwDuGGD34`
-  },
-  2022: {
-    year: 2022,
-    description: `In December 2022, <strong>1617 developers </strong> from Morocco 🇲🇦
-  told us about their jobs satisfaction, salaries, and community
-  contribution, how they learn and level up, which tools they're
-  using, and what they want to learn next.`,
-    episode_url: `https://www.youtube.com/embed/bRi8IT5coHs`
-  },
-  2023: {
-    year: 2023,
-    description: `In December 2023, <strong>1764 developers </strong> from Morocco 🇲🇦
-  told us about their jobs satisfaction, salaries, and community
-  contribution, what they think about AI, which tools they're
-  using, and what they want to learn next.`,
-    episode_url: `https://www.youtube.com/embed/htXPDy4Esuo`
-  },
-  2024: {
-    year: 2024,
-    description: `In December 2024, <strong>1949 developers </strong> from Morocco 🇲🇦
-  told us about their jobs satisfaction, salaries, and community
-  contribution, what they think about AI, which tools they're
-  using, and what they want to learn next.`,
-    episode_url: `https://www.youtube.com/embed/vAl-Xou-CrU`
-  },
-  2025: {
-    year: 2025,
-    description: `In December 2025, <strong>1007 developers </strong> from Morocco 🇲🇦
-  told us about their jobs satisfaction, salaries, and community
-  contribution, what they think about AI, which tools they're
-  using, and what they want to learn next.`,
-    episode_url: `https://www.youtube.com/embed/iigsuJ4YP44`
-  }
-} as const;
+// One entry per published year
+const data: Partial<Record<Year, ReportIntro>> = {};
 
 const { year } = Astro.props;
+const intro = data[year];
 ---
 
 <div class="relative py-12 sm:py-16 lg:pt-20 lg:pb-24">
@@ -101,23 +58,29 @@ const { year } = Astro.props;
               fill="currentColor"
             ></path>
           </svg>
-          {data[year].year} Report 🇲🇦
+          {year} Report
         </span>
       </h1>
-      <p class="mx-auto mt-10 text-base leading-7 text-muted-foreground">
-        <Fragment set:html={data[year].description} />
-      </p>
+      {
+        intro && (
+          <p class="mx-auto mt-10 text-base leading-7 text-muted-foreground">
+            <Fragment set:html={intro.description} />
+          </p>
+        )
+      }
     </div>
   </div>
-  <div class="mx-4 md:mx-auto">
-    <div
-      class="relative w-full max-w-[1200px] m-auto aspect-video aspect-w-16 aspect-h-9 border-2 border-border mt-10 duration-300 hover:translate-y-3"
-    >
-      <YouTube
-        id={data[year].episode_url}
-        posterQuality="max"
-        class="w-full max-w-[1200px] aspect-video aspect-w-16 aspect-h-9"
-      />
-    </div>
-  </div>
+  {
+    intro?.episode_url && (
+      <div class="mx-4 md:mx-auto">
+        <div class="relative w-full max-w-[1200px] m-auto aspect-video aspect-w-16 aspect-h-9 border-2 border-border mt-10 duration-300 hover:translate-y-3">
+          <YouTube
+            id={intro.episode_url}
+            posterQuality="max"
+            class="w-full max-w-[1200px] aspect-video aspect-w-16 aspect-h-9"
+          />
+        </div>
+      </div>
+    )
+  }
 </div>

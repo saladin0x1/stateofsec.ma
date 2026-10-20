@@ -4,8 +4,6 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import yaml from "@rollup/plugin-yaml";
 
-import icon from "astro-icon";
-
 import { defineConfig } from "astro/config";
 
 const SURVEY_OPEN = true;
@@ -20,7 +18,7 @@ const redirects = !SURVEY_OPEN
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon(), mdx(), react()],
+  integrations: [tailwind(), mdx(), react()],
   trailingSlash: "never",
   output: "server",
   adapter: netlify(),

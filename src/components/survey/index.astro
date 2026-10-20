@@ -6,7 +6,6 @@ import workQuestionRaw from "@/survey/3-work.yml";
 import aiQuestionRaw from "@/survey/4-ai.yml";
 import techQuestionRaw from "@/survey/5-tech.yml";
 import communityQuestionRaw from "@/survey/6-community.yml";
-import ExitPopup from "./exit-popup.astro";
 import { SurveyApp } from "./survey-app";
 
 // Validate each YAML file to ensure data integrity
@@ -39,5 +38,3 @@ const questions = [
 <div id="survey-form" class="min-h-screen min-w-full">
   <SurveyApp questions={questions} client:only="react" />
 </div>
-
-<ExitPopup />

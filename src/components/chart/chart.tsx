@@ -1,4 +1,3 @@
-import type { Year } from "./data";
 import type { FinalResult } from "./utils";
 import React from "react";
 import { BarChart } from "./bar-chart";
@@ -9,9 +8,7 @@ interface ChartProps {
   results: FinalResult | null;
   sortByTotal?: boolean;
   title?: boolean;
-  isPlayground?: boolean;
   pie?: boolean;
-  year?: Year;
   showEmptyOptions?: boolean;
 }
 
@@ -19,9 +16,7 @@ export const Chart: React.FC<ChartProps> = ({
   results,
   sortByTotal = true,
   title = false,
-  isPlayground = false,
   pie = false,
-  year,
   showEmptyOptions = true
 }) => {
   if (!results)
@@ -69,7 +64,7 @@ export const Chart: React.FC<ChartProps> = ({
           </details>
         )}
       </div>
-      {!isPlayground && <ChartActions results={results} year={year} />}
+      <ChartActions results={results} />
     </div>
   );
 };

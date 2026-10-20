@@ -1,7 +1,10 @@
 ---
-import Report2025 from "./2025.astro";
+import * as HomePage from "../components/home/index.astro";
+import Layout from "../components/layout.astro";
 
 export const prerender = true;
 ---
 
-<Report2025 />
+<Layout title="Morocco Developer Survey 2025">
+  <HomePage.default />
+</Layout>

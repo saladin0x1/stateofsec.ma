@@ -124,9 +124,11 @@ export function getQuestion({
   condition,
   groupBy,
   dataSource,
-  year = "2020"
+  year
 }: GetQuestionParams): FinalResult | null {
-  const data = dataSource || getSurveyData(year);
+  const data = dataSource || (year ? getSurveyData(year) : undefined);
+  if (!data)
+    return null;
   const question = data.questions[id];
   if (!question)
     return null;

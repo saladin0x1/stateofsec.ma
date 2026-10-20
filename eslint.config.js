@@ -16,7 +16,7 @@ export default antfu({
       "error",
       {
         case: "kebabCase",
-        ignore: ["^SKILL\\.md$", "^CLAUDE\\.md$", "^docs/plans/.*\\.md$"]
+        ignore: ["^CLAUDE\\.md$"]
       }
 
     ],

@@ -1,20 +1,12 @@
 ---
 import { website } from "@/website";
-import Chart from "../assets/Chart.svg?raw";
-import Github from "../assets/github.svg?raw";
 import Logo from "../assets/logo.svg?raw";
 import HeaderLink from "./header-link.astro";
 import ThemeToggle from "./theme-toggle.astro";
 
 const navItems = [
-  { year: 2020, href: "/2020" },
-  { year: 2021, href: "/2021" },
-  { year: 2022, href: "/2022" },
-  { year: 2023, href: "/2023" },
-  { year: 2024, href: "/2024" },
-  { label: "Playground", href: "/playground", icon: Chart },
   { label: "FAQ", href: "/faq" },
-  { label: "Github", href: website.repoGithub, icon: Github, external: true }
+  { label: "Github", href: website.repoGithub, external: true }
 ];
 
 const currentPath = Astro.url.pathname;
@@ -79,7 +71,7 @@ const currentPath = Astro.url.pathname;
             navItems.map(item => (
               <li>
                 <HeaderLink
-                  label={item.year?.toString() || item.label || ""}
+                  label={item.label}
                   href={item.href}
                   external={item.external}
                   isActive={currentPath === item.href}
@@ -103,7 +95,7 @@ const currentPath = Astro.url.pathname;
           navItems.map(item => (
             <li>
               <HeaderLink
-                label={item.year?.toString() || item.label || ""}
+                label={item.label}
                 href={item.href}
                 external={item.external}
                 isActive={currentPath === item.href}

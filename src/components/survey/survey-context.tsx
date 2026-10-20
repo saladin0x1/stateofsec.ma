@@ -3,7 +3,6 @@ import type { SurveyContext } from "./survey-machine";
 import type { SurveyQuestionsYamlFile } from "@/lib/validators/survey-schema";
 import { createActorContext } from "@xstate/react";
 import { useEffect } from "react";
-import { createSurveyInspector } from "./survey-inspector";
 import { surveyMachine } from "./survey-machine";
 
 const STORAGE_KEY = "survey-state";
@@ -84,11 +83,7 @@ export function SurveyProvider({ sections, children }: SurveyProviderProps) {
         input: {
           sections,
           persisted: persisted || undefined
-        },
-        inspect:
-          import.meta.env.DEV && import.meta.env.MODE !== "test"
-            ? createSurveyInspector()
-            : undefined
+        }
       }}
     >
       <PersistenceHandler />

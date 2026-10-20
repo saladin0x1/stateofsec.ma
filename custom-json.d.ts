@@ -20,66 +20,12 @@ interface Results {
   }[];
 }
 
-// 2020
-declare module "@/results/2020/data/results.json" {
+declare module "@/results/*/results.json" {
   const value: Results;
   export default value;
 }
 
-declare module "@/results/2020/data/questions.json" {
-  const value: QuestionMap;
-  export default value;
-}
-
-// 2021
-declare module "@/results/2021/data/results.json" {
-  const value: Results;
-  export default value;
-}
-
-declare module "@/results/2021/data/questions.json" {
-  const value: QuestionMap;
-  export default value;
-}
-
-// 2022
-declare module "@/results/2022/data/results.json" {
-  const value: Results;
-  export default value;
-}
-
-declare module "@/results/2022/data/questions.json" {
-  const value: QuestionMap;
-  export default value;
-}
-
-// 2023
-declare module "@/results/2023/data/results.json" {
-  const value: Results;
-  export default value;
-}
-
-declare module "@/results/2023/data/questions.json" {
-  const value: QuestionMap;
-  export default value;
-}
-
-declare module "@/results/2024/data/results.json" {
-  const value: Results;
-  export default value;
-}
-declare module "@/results/2024/data/questions.json" {
-  const value: QuestionMap;
-  export default value;
-}
-
-// 2025
-declare module "@/results/2025/data/results.json" {
-  const value: Results;
-  export default value;
-}
-
-declare module "@/results/2025/data/questions.json" {
+declare module "@/results/*/questions.json" {
   const value: QuestionMap;
   export default value;
 }
