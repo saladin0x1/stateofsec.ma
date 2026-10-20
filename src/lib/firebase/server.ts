@@ -1,50 +1,75 @@
-import type { ServiceAccount } from "firebase-admin";
-import { cert, getApps, initializeApp } from "firebase-admin/app";
+import { createRemoteJWKSet, importPKCS8, jwtVerify, SignJWT } from "jose";
+import { requireSecret } from "@/lib/secrets";
 
-const activeApps = getApps();
-let serviceAccount = {};
+// firebase-admin does not run on Cloudflare Workers, so ID tokens are verified and
+// Google access tokens are minted directly with WebCrypto through jose
+const FIREBASE_JWKS = createRemoteJWKSet(
+  new URL("https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com")
+);
+const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
+const FIRESTORE_SCOPE = "https://www.googleapis.com/auth/datastore";
+const CLOCK_TOLERANCE_SECONDS = 5;
 
-// we are using multiple methods to load the service account
-// because import.meta.env is not available while running the export-results script
-// and process.env is not available with Vite on the server
-/* eslint-disable node/prefer-global/process */
-if (import.meta.env?.FIREBASE_PROJECT_ID) {
-  serviceAccount = {
-    type: "service_account",
-    project_id: import.meta.env.FIREBASE_PROJECT_ID,
-    private_key_id: import.meta.env.FIREBASE_PRIVATE_KEY_ID,
-    private_key: import.meta.env.FIREBASE_PRIVATE_KEY,
-    client_email: import.meta.env.FIREBASE_CLIENT_EMAIL,
-    client_id: import.meta.env.FIREBASE_CLIENT_ID,
-    auth_uri: import.meta.env.FIREBASE_AUTH_URI,
-    token_uri: import.meta.env.FIREBASE_TOKEN_URI,
-    auth_provider_x509_cert_url: import.meta.env.FIREBASE_AUTH_CERT_URL,
-    client_x509_cert_url: import.meta.env.FIREBASE_CLIENT_CERT_URL
-  };
-}
-else if (process.env?.FIREBASE_PROJECT_ID) {
-  serviceAccount = {
-    type: "service_account",
-    project_id: process.env.FIREBASE_PROJECT_ID,
-    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"), // not sure why, but the private key is not working correctly without this in github actions
-    client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    client_id: process.env.FIREBASE_CLIENT_ID,
-    auth_uri: process.env.FIREBASE_AUTH_URI,
-    token_uri: process.env.FIREBASE_TOKEN_URI,
-    auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_CERT_URL,
-    client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
-  };
-}
-else {
-  throw new Error("No Firebase project ID found");
+export function getProjectId() {
+  return requireSecret("FIREBASE_PROJECT_ID");
 }
 
-function initApp() {
-  return initializeApp({
-    credential: cert(serviceAccount as ServiceAccount)
+// Claim checks follow https://firebase.google.com/docs/auth/admin/verify-id-tokens
+export async function verifyIdToken(idToken: string): Promise<string> {
+  const projectId = getProjectId();
+  const { payload } = await jwtVerify(idToken, FIREBASE_JWKS, {
+    algorithms: ["RS256"],
+    issuer: `https://securetoken.google.com/${projectId}`,
+    audience: projectId,
+    clockTolerance: CLOCK_TOLERANCE_SECONDS
   });
+
+  const latestAllowed = Math.floor(Date.now() / 1000) + CLOCK_TOLERANCE_SECONDS;
+  if (typeof payload.iat !== "number" || payload.iat > latestAllowed)
+    throw new Error("Invalid iat claim");
+  if (typeof payload.auth_time !== "number" || payload.auth_time > latestAllowed)
+    throw new Error("Invalid auth_time claim");
+  if (!payload.sub)
+    throw new Error("Missing sub claim");
+
+  return payload.sub;
 }
 
-export const app = activeApps.length === 0 ? initApp() : activeApps[0];
-export const getActiveApp = () => app;
+let cachedAccessToken: { token: string; expiresAt: number } | undefined;
+
+export async function getAccessToken(): Promise<string> {
+  if (cachedAccessToken && cachedAccessToken.expiresAt > Date.now() + 60_000)
+    return cachedAccessToken.token;
+
+  const clientEmail = requireSecret("FIREBASE_CLIENT_EMAIL");
+  // keys stored in single-line env vars keep their newlines escaped
+  const privateKey = await importPKCS8(
+    requireSecret("FIREBASE_PRIVATE_KEY").replace(/\\n/g, "\n"),
+    "RS256"
+  );
+  const assertion = await new SignJWT({ scope: FIRESTORE_SCOPE })
+    .setProtectedHeader({ alg: "RS256", typ: "JWT" })
+    .setIssuer(clientEmail)
+    .setAudience(GOOGLE_TOKEN_URL)
+    .setIssuedAt()
+    .setExpirationTime("1h")
+    .sign(privateKey);
+
+  const response = await fetch(GOOGLE_TOKEN_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      assertion
+    })
+  });
+  if (!response.ok)
+    throw new Error(`Google token exchange failed with status ${response.status}`);
+
+  const data = await response.json() as { access_token: string; expires_in: number };
+  cachedAccessToken = {
+    token: data.access_token,
+    expiresAt: Date.now() + data.expires_in * 1000
+  };
+  return cachedAccessToken.token;
+}

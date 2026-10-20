@@ -24,5 +24,7 @@ pnpm-debug.log*
 .idea/
 coverage/
 .env*
-.netlify/
+!.env.example
+.dev.vars*
+.wrangler/
 scripts/*.json

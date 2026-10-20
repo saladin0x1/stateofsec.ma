@@ -1,7 +1,25 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { exportResults } from "@/lib/firebase/database";
+import { cert, initializeApp } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+
+// Runs on Node (locally or in CI), so firebase-admin is fine here, unlike on Workers
+const app = initializeApp({
+  credential: cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    // GitHub Actions secrets keep the key newlines escaped
+    privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n")
+  })
+});
+
+async function exportResults() {
+  const snapshot = await getFirestore(app).collection("results").get();
+  return {
+    results: snapshot.docs.map(doc => ({ ...doc.data(), userId: doc.id }))
+  };
+}
 
 function getFileName() {
   const now = new Date();

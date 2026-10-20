@@ -3,15 +3,15 @@ description: 'Setup  Node + PNPM + Install Dependencies'
 runs:
   using: 'composite'
   steps:
-    - uses: pnpm/action-setup@v4
+    - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
       with:
         run_install: false
-        version: 9
-    - uses: actions/setup-node@v4
+        version: 11
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: 20
+        node-version: 22
         cache: 'pnpm'
 
-    - name: 📦 Install Project Dependencies
+    - name: Install Project Dependencies
       run: pnpm install --frozen-lockfile
       shell: bash

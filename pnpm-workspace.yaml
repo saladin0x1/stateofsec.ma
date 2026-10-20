@@ -2,6 +2,7 @@ allowBuilds:
   esbuild: true
   protobufjs: false
   sharp: true
+  workerd: true
 
 # @astrojs/check -> @astrojs/language-server -> volar-service-emmet pulls
 # @emmetio/css-parser from a GitHub tarball pinned to a commit in the lockfile

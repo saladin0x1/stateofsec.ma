@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { getAuth } from "firebase-admin/auth";
 import { saveAnswers } from "@/lib/firebase/database";
-import { getActiveApp } from "@/lib/firebase/server";
+import { getSessionUserId } from "@/lib/session";
 
 export const submitAnswers = defineAction({
   accept: "json",
@@ -14,35 +13,25 @@ export const submitAnswers = defineAction({
     )
   }),
   handler: async ({ answers }, { cookies }) => {
-    const auth = getAuth(getActiveApp());
     /* Verify Session */
-    const sessionCookie = cookies.get("__session")?.value;
-    if (!sessionCookie) {
+    const userId = await getSessionUserId(cookies);
+    if (!userId) {
       throw new ActionError({
         code: "UNAUTHORIZED",
         message: "No session is active, please initialize a session first"
       });
     }
-    /* Get User */
+
+    /* Save answers to database */
     try {
-      const decodedCookie = await auth.verifySessionCookie(sessionCookie);
-      const user = await auth.getUser(decodedCookie.uid);
-      if (!user) {
-        throw new ActionError({
-          code: "UNAUTHORIZED",
-          message:
-            "Can't find user from session, please initialize a session first"
-        });
-      }
-      /* Save answers to database */
-      await saveAnswers(user.uid, answers);
+      await saveAnswers(userId, answers);
       console.log("answers saved");
     }
     catch (error) {
-      console.error("Error token or saving answers:", error);
+      console.error("Error saving answers:", error);
       throw new ActionError({
         code: "INTERNAL_SERVER_ERROR",
-        message: "Error token or saving answers"
+        message: "Error saving answers"
       });
     }
   }

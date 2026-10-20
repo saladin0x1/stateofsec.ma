@@ -1,8 +1,8 @@
 {
-  "name": "stateofdev-ma",
+  "name": "stateofsec-ma",
   "main": "./dist/_worker.js/index.js",
-  // Update to today's date
-  "compatibility_date": "2025-09-15",
+  // Must not be newer than the workerd bundled with @astrojs/cloudflare (1.20260114.0)
+  "compatibility_date": "2026-01-14",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "binding": "ASSETS",

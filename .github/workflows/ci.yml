@@ -16,9 +16,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - name: 📦 Setup Node + PNPM + install deps
+      - name: Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
       - name: "Astro Check"
@@ -30,9 +30,11 @@ jobs:
       - name: "Run Tests"
         run: pnpm run test:ci
 
+      - name: "Build"
+        run: pnpm run astro build
+
       - name: "Generate Coverage Report"
         # Set if: always() to also generate the report if tests are failing
         # Only works if you set `reportOnFailure: true` in your vite config as specified above
         if: always()
-        uses: davelosert/vitest-coverage-report-action@v2
-
+        uses: davelosert/vitest-coverage-report-action@8f86cfb56ed6d5613ea8cdc5259f207fbfd51ece # v2
