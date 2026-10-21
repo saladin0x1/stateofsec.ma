@@ -25,16 +25,19 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <div class="md:hidden">
-      <input type="checkbox" id="navbar-open" class="hidden peer" />
-      <label
-        for="navbar-open"
-        class="cursor-pointer relative z-20 group peer-checked:fixed peer-checked:right-4 peer-checked:top-4"
-        aria-label="Toggle Navigation"
+      <button
+        type="button"
+        id="nav-toggle"
+        class="relative z-20 cursor-pointer text-foreground"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
       >
-        <span class="sr-only">Toggle Navigation</span>
+        <span class="sr-only">Toggle navigation</span>
         <svg
+          data-icon="open"
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 group-[.peer:checked+&]:hidden"
+          class="h-6 w-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -47,8 +50,9 @@ const currentPath = Astro.url.pathname;
           ></path>
         </svg>
         <svg
+          data-icon="close"
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 hidden group-[.peer:checked+&]:block"
+          class="hidden h-6 w-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -60,11 +64,12 @@ const currentPath = Astro.url.pathname;
             d="M6 18L18 6M6 6l12 12"
           ></path>
         </svg>
-      </label>
+      </button>
 
       <nav
+        id="mobile-nav"
         aria-label="Header Navigation"
-        class="fixed z-10 inset-0 bg-background bg-opacity-95 flex items-center justify-center transform transition-transform duration-300 ease-in-out translate-x-full peer-checked:translate-x-0"
+        class="fixed inset-0 z-10 flex translate-x-full transform items-center justify-center bg-background transition-transform duration-300 ease-in-out"
       >
         <ul class="flex flex-col items-center space-y-6 text-lg">
           {
@@ -108,3 +113,38 @@ const currentPath = Astro.url.pathname;
     </nav>
   </div>
 </header>
+
+<script>
+const toggle = document.getElementById("nav-toggle");
+const nav = document.getElementById("mobile-nav");
+
+if (toggle && nav) {
+  const btn = toggle;
+  const panel = nav;
+  const iconOpen = btn.querySelector("[data-icon=\"open\"]");
+  const iconClose = btn.querySelector("[data-icon=\"close\"]");
+
+  const setOpen = (open: boolean) => {
+    btn.setAttribute("aria-expanded", String(open));
+    panel.classList.toggle("translate-x-0", open);
+    panel.classList.toggle("translate-x-full", !open);
+    iconOpen?.classList.toggle("hidden", open);
+    iconClose?.classList.toggle("hidden", !open);
+    // Stop the page scrolling behind the full-screen menu
+    document.body.classList.toggle("overflow-hidden", open);
+  };
+
+  btn.addEventListener("click", () => {
+    setOpen(btn.getAttribute("aria-expanded") !== "true");
+  });
+
+  // Close after navigating or on Escape
+  panel.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape")
+      setOpen(false);
+  });
+}
+</script>
