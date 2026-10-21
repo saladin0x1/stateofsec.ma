@@ -70,9 +70,31 @@ const authorLinks = website.authors
       <div
         id="credits-popover"
         popover="auto"
-        class="m-auto max-w-sm rounded-lg border border-border bg-background p-5 text-left text-sm text-muted-foreground shadow-xl"
+        class="relative m-auto max-w-sm rounded-lg border border-border bg-background p-5 text-left text-sm text-muted-foreground shadow-xl"
       >
-        <p class="mb-3 font-semibold text-foreground">Credits</p>
+        <button
+          type="button"
+          popovertarget="credits-popover"
+          popovertargetaction="hide"
+          class="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+        <p class="mb-3 pr-6 font-semibold text-foreground">Credits</p>
         <p class="mb-4">
           State of Sec Morocco is based on State of Dev, the open-source annual
           survey of Morocco's developer community built by <span
