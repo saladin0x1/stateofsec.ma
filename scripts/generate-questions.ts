@@ -25,12 +25,12 @@ async function generate() {
 
   if (!validationReport.success) {
     console.error(
-      "\n❌ Validation failed! Please fix the errors above before generating questions.json"
+      "\n[X] Validation failed! Please fix the errors above before generating questions.json"
     );
     process.exit(1);
   }
 
-  console.log("✓ All survey files validated successfully!\n");
+  console.log("[OK] All survey files validated successfully!\n");
 
   // Phase 2: Generate questions.json
   console.log("Phase 2: Generating questions.json...");
@@ -59,7 +59,7 @@ async function generate() {
         QS[id] = {
           ...element,
           multiple: element.multiple ?? false, // default to false
-          required: element.required ?? true // default to true
+          required: element.required ?? false // same default as the survey schema
         };
       });
     });
@@ -73,11 +73,11 @@ async function generate() {
     writeToFile(outputPath, QS);
 
     console.log(
-      `\n✓ Successfully generated ${Object.keys(QS).length} questions`
+      `\n[OK] Successfully generated ${Object.keys(QS).length} questions`
     );
   }
   catch (e) {
-    console.error("\n❌ Error generating questions:", e);
+    console.error("\n[X] Error generating questions:", e);
     process.exit(1);
   }
 }

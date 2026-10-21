@@ -1,5 +1,5 @@
 {
-  "name": "state-of-dev-ma",
+  "name": "state-of-sec-ma",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -30,6 +30,8 @@
     "@astrojs/react": "^4.4.0",
     "@astrojs/tailwind": "^6.0.2",
     "@astrolib/seo": "1.0.0-beta.5",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
     "@lion/ui": "^0.7.6",
     "@types/js-yaml": "^4.0.9",
     "@types/react": "^18.3.4",
@@ -39,6 +41,7 @@
     "firebase": "^10.12.2",
     "jose": "^6.2.12",
     "js-yaml": "^4.1.0",
+    "posthog-js": "^1.438.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.4",

@@ -3,6 +3,7 @@ import type { SurveyQuestionsYamlFile } from "./survey-schema";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as yaml from "js-yaml";
+import { isOtherChoice } from "../other-choice";
 import {
   VALIDATION_THRESHOLDS,
 
@@ -85,9 +86,7 @@ export function validateAllSurveyFiles(surveyDir: string): ValidationReport {
       // Check for multiple "Other" options in questions (warning only)
       const otherWarnings: ValidationError[] = [];
       validatedData.questions.forEach((question, index) => {
-        const otherChoices = question.choices.filter(c =>
-          /^other$/i.test(c.trim())
-        );
+        const otherChoices = question.choices.filter(isOtherChoice);
         if (otherChoices.length > 1) {
           otherWarnings.push({
             severity: ValidationSeverity.WARNING,
@@ -494,7 +493,7 @@ export function formatErrorsOnly(report: ValidationReport): string {
   );
 
   if (fileErrors.length > 0) {
-    lines.push(`${colors.red}✗ Validation errors found:${colors.reset}`);
+    lines.push(`${colors.red}[X] Validation errors found:${colors.reset}`);
     lines.push("");
 
     for (const result of fileErrors) {
@@ -506,7 +505,7 @@ export function formatErrorsOnly(report: ValidationReport): string {
         lines.push(`${colors.bright}File: ${result.filename}${colors.reset}`);
         errors.forEach((error) => {
           const pathInfo = error.path ? ` [${error.path}]` : "";
-          lines.push(`  ${colors.red}✗${colors.reset} ${error.message}${pathInfo}`);
+          lines.push(`  ${colors.red}[X]${colors.reset} ${error.message}${pathInfo}`);
         });
         lines.push("");
       }
@@ -522,7 +521,7 @@ export function formatErrorsOnly(report: ValidationReport): string {
     lines.push(`${colors.bright}Cross-file errors:${colors.reset}`);
     crossFileErrors.forEach((error) => {
       const pathInfo = error.path ? ` [${error.path}]` : "";
-      lines.push(`  ${colors.red}✗${colors.reset} ${error.message}${pathInfo}`);
+      lines.push(`  ${colors.red}[X]${colors.reset} ${error.message}${pathInfo}`);
     });
     lines.push("");
   }
@@ -560,7 +559,7 @@ export function formatValidationReport(report: ValidationReport): string {
     `  Total questions: ${colors.cyan}${report.totalQuestions}${colors.reset}`
   );
   const statusColor = report.success ? colors.green : colors.red;
-  const statusText = report.success ? "✓ PASSED" : "✗ FAILED";
+  const statusText = report.success ? "[OK] PASSED" : "[X] FAILED";
   lines.push(`  Status: ${statusColor}${statusText}${colors.reset}`);
   lines.push("");
 
@@ -571,7 +570,7 @@ export function formatValidationReport(report: ValidationReport): string {
 
     for (const result of report.fileResults) {
       const statusColor = result.valid ? colors.green : colors.red;
-      const status = result.valid ? "✓" : "✗";
+      const status = result.valid ? "[OK]" : "[X]";
       lines.push(
         `${statusColor}${status}${colors.reset} ${colors.bright}${result.filename}${colors.reset}`
       );
@@ -593,7 +592,7 @@ export function formatValidationReport(report: ValidationReport): string {
               ? colors.red
               : colors.yellow;
           const prefix
-            = error.severity === ValidationSeverity.ERROR ? "✗" : "⚠";
+            = error.severity === ValidationSeverity.ERROR ? "[X]" : "[!]";
           const pathInfo = error.path ? ` [${error.path}]` : "";
           lines.push(
             `      ${errorColor}${prefix}${colors.reset} ${error.message}${pathInfo}`
@@ -614,7 +613,7 @@ export function formatValidationReport(report: ValidationReport): string {
         = error.severity === ValidationSeverity.ERROR
           ? colors.red
           : colors.yellow;
-      const prefix = error.severity === ValidationSeverity.ERROR ? "✗" : "⚠";
+      const prefix = error.severity === ValidationSeverity.ERROR ? "[X]" : "[!]";
       const pathInfo = error.path ? ` [${error.path}]` : "";
       lines.push(
         `${errorColor}${prefix}${colors.reset} ${error.message}${pathInfo}`

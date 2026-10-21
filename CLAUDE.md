@@ -1,69 +1,40 @@
 ## Project Overview
 
-StateOfDev.ma is an annual survey website for developers in Morocco by GeeksBlaBla Community. Built with Astro 4, React, and Firebase. Collects anonymous survey responses and displays interactive results with charts.
-
-## Rules
-
-- Extremely concise in all interactions and commit messages. Sacrifice grammar for concision.
-- At end of each plan, list unresolved questions (extremely concise).
-- DO NOT write tests unless explicitly requested
-- DO NOT run dev server - assume already running
-- Add code comments sparingly - focus on "why", not "what"
-- Use GitHub CLI for all GitHub interactions
+State of Sec Morocco (stateofsec.ma) is an annual community survey of Morocco's cybersecurity people, by saladin0x1 and mchklt. It is a fork of geeksblabla/stateofdev.ma: keep visible credit to stateofdev.ma, GeeksBlaBla and its contributors (README, footer, FAQ, LICENSE) when changing branding.
 
 ## Tech Stack
 
-- **Framework**: Astro 4 (hybrid SSR/SSG, Netlify adapter)
-- **UI**: React 18 + Tailwind CSS + Radix UI
-- **Backend**: Firebase (Auth, Firestore) + Firebase Admin SDK
-- **Forms**: React Hook Form
-- **Testing**: Vitest + Testing Library
-- **Build**: Vite + YAML plugin for survey questions
+- **Framework**: Astro 5 (server output, Cloudflare Workers via `@astrojs/cloudflare` 12)
+- **UI**: React 18 + Tailwind CSS 3, theme tokens in `src/globals.css`
+- **Auth/data**: Firebase anonymous sign-in in the browser; on the server, `jose` verifies ID tokens and signs the session cookie, and Firestore is written through its REST API. `firebase-admin` does not run on Workers and is only used by `scripts/export-results.ts`
+- **Survey state**: XState machine (`src/components/survey/survey-machine.ts`)
+- **Validation**: Zod schema for survey YAML, `src/lib/answers.ts` validates submitted answers server-side
+- **Analytics**: PostHog (EU), loaded only after cookie consent (`src/components/analytics-consent.astro`)
+- **Testing**: Vitest (schema and conditions tests)
 
-## Development Commands
+## Commands
 
-### Essential
+- `pnpm dev` - Dev server (http://localhost:4321)
+- `pnpm build` - Validate survey, type-check, build
+- `pnpm check` - Validate survey and type-check
+- `pnpm lint` / `pnpm lint:ci` - ESLint with fix / check only
+- `pnpm test` / `pnpm test:ci` - Vitest / with coverage
+- `pnpm export-results` / `pnpm generate-questions` - Results export (see README)
 
-- `pnpm dev` - Start dev server (http://localhost:4321)
-- `pnpm build` - Type-check and build for production
-- `pnpm check` - Clean dist folder and run Astro type checking
-- `pnpm preview` - Preview production build
+## Key Files
 
-### Testing
+- `survey/*.yml` - Questions. Ids are positional (`<section label>-q-<index>`): reordering breaks stored answers
+- `src/lib/survey.ts` - The survey sections shared by the page and the server
+- `src/site-config.mjs` - `SURVEY_OPEN` switch (pages and server actions)
+- `src/actions/` - `initSession` (captcha + ID token -> session cookie), `submitAnswers`
+- `src/lib/firebase/server.ts`, `database.ts`, `src/lib/session.ts`, `src/lib/captcha.ts` - Server layer
+- `src/website.ts` - Name, URL, authors and upstream credit used across the site
+- `astro.config.mjs` - Adapter and `env.schema` (server secrets are optional there on purpose: a missing secret must only break the survey flow, not every page)
 
-- `pnpm test` - Run tests with Vitest
-- `pnpm test:ui` - Tests with UI interface
-- `pnpm test:ci` - Tests with coverage
-- Config: `vitest.config.ts`, setup: `vitest-setup.js`
+## Conventions
 
-### Linting
+- pnpm 11 with supply-chain policies in `pnpm-workspace.yaml`: approve install scripts explicitly, and prefer an older patch release over excluding a just-published version from `minimumReleaseAge`
+- Read secrets at request time with `getSecret`/`requireSecret`, never at module load
+- Use theme tokens (`bg-primary`, `text-muted-foreground`), not hard-coded colors; keep text contrast at WCAG AA
 
-- `pnpm lint` - Format and fix (Prettier + ESLint)
-- `pnpm lint:ci` - Check only (for CI)
-- Husky pre-commit hooks configured
-
-### Data Export
-
-- `pnpm export-results` - Export survey results from Firestore (requires `.env.local`)
-- `pnpm export-results:ci` - Export in CI (uses env vars)
-
-## Key Directories
-
-- `/survey/` - YAML question definitions (format: `{position}-{section-name}.yml`)
-- `/results/{year}/` - Exported results + metadata (results.json, questions.json)
-- `/src/actions/` - Astro server actions (init-session, submit-answers, remove-session)
-- `/src/lib/firebase/` - Firebase client/server/database operations
-- `/src/components/survey/` - Survey form components
-- `/src/components/chart/` - Results visualization
-- `/src/pages/` - Astro pages (hybrid rendering)
-- `/scripts/` - Utility scripts (export-results, generate-questions)
-
-## Progressive Disclosure
-
-For detailed guidance on specific tasks, see:
-
-- **docs/architecture.md** - Directory structure, file purposes, code organization
-- **docs/survey-system.md** - Survey flow, answer structures, session management
-- **docs/theme-system.md** - CSS variables, theme toggle, styling
-
-Read relevant docs when working on related features.
+More detail: `docs/architecture.md`, `docs/survey-system.md`, `docs/theme-system.md`, `docs/query-results.md`.

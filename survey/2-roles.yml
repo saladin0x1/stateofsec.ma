@@ -1,0 +1,107 @@
+title: Role & specialization
+label: roles
+position: 2
+questions:
+  - label: Which cybersecurity domain best describes your primary role?
+    required: true
+    multiple: false
+    choices:
+      - Offensive security / penetration testing
+      - Red teaming
+      - Security operations (SOC) / blue team
+      - Incident response / DFIR
+      - Threat intelligence
+      - Application security (AppSec)
+      - Cloud security
+      - Network security
+      - Governance, risk & compliance (GRC)
+      - Security architecture
+      - Identity & access management (IAM)
+      - Cryptography
+      - Malware analysis / reverse engineering
+      - Vulnerability management
+      - Security research
+      - Security engineering / DevSecOps
+      - OT/ICS security
+      - Security awareness & training
+      - Management / CISO
+      - Not specialized yet
+      - Other
+
+  - label: Which other domains do you also work in or are interested in?
+    required: false
+    multiple: true
+    choices:
+      - Offensive security / penetration testing
+      - Red teaming
+      - Security operations (SOC) / blue team
+      - Incident response / DFIR
+      - Threat intelligence
+      - Application security (AppSec)
+      - Cloud security
+      - Network security
+      - Governance, risk & compliance (GRC)
+      - Security architecture
+      - Identity & access management (IAM)
+      - Cryptography
+      - Malware analysis / reverse engineering
+      - Vulnerability management
+      - Security research
+      - Security engineering / DevSecOps
+      - OT/ICS security
+      - Security awareness & training
+      - Management / CISO
+      - None
+      - Other
+
+  - label: What is your current job title?
+    required: true
+    choices:
+      - Security analyst (SOC)
+      - Penetration tester / ethical hacker
+      - Red teamer
+      - Incident responder
+      - Security engineer
+      - DevSecOps engineer
+      - Security consultant
+      - GRC / compliance officer
+      - Security auditor
+      - Security architect
+      - Malware analyst / reverse engineer
+      - Threat intelligence analyst
+      - CISO / security manager
+      - Researcher
+      - Student
+      - IT generalist with security duties
+      - Other
+
+  - label: Which activities make up most of your day-to-day work?
+    required: true
+    multiple: true
+    choices:
+      - Penetration testing / exploitation
+      - Log analysis & monitoring
+      - Incident handling
+      - Writing detections / rules
+      - Secure code review
+      - Threat hunting
+      - Audits & compliance
+      - Risk assessments
+      - Security architecture & design
+      - Vulnerability scanning & management
+      - Reverse engineering / malware analysis
+      - Research & tooling
+      - Awareness training
+      - Managing a team
+      - Client / consulting work
+      - Other
+
+  - label: Which side of security do you identify with most?
+    required: true
+    choices:
+      - Offensive (red team)
+      - Defensive (blue team)
+      - Both (purple team)
+      - GRC / governance
+      - Research / academic
+      - Not sure yet

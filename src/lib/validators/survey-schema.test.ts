@@ -592,7 +592,7 @@ describe("edge case tests", () => {
   describe("unicode and special characters", () => {
     it("accepts Unicode characters in labels", () => {
       const question = {
-        label: "What programming languages do you use 🚀?",
+        label: "What programming languages do you use \u{1F680}?",
         choices: ["JavaScript", "Python", "Go"]
       };
 
@@ -603,7 +603,7 @@ describe("edge case tests", () => {
     it("accepts emoji in choice text", () => {
       const question = {
         label: "What is your favorite beverage?",
-        choices: ["Coffee ☕", "Tea 🍵", "Water 💧"]
+        choices: ["Coffee \u2615", "Tea \u{1F375}", "Water \u{1F4A7}"]
       };
 
       const result = SurveyQuestionSchema.safeParse(question);

@@ -1,0 +1,219 @@
+---
+// Decorative, security-themed line art for the hero sections. Pure inline SVG using theme
+// colors, so it follows light/dark mode. Each piece hides an easter egg:
+//   0x212 / 212  -> Morocco's international dialing code
+//   1337         -> "leet"
+//   73 74 61...  -> "stateofsec" in ASCII hex
+//   secp256k1    -> the curve y^2 = x^3 + 7
+// Variants: re-hex, re-cfg, pwn-stack, pwn-rop, net-tcp, net-tls, crypto-sbox, crypto-ec
+interface Props {
+  variant:
+    | "re-hex"
+    | "re-cfg"
+    | "pwn-stack"
+    | "pwn-rop"
+    | "net-tcp"
+    | "net-tls"
+    | "crypto-sbox"
+    | "crypto-ec";
+  class?: string;
+}
+
+const { variant, class: className = "" } = Astro.props;
+
+const viewBoxes: Record<Props["variant"], string> = {
+  "re-hex": "0 0 264 98",
+  "re-cfg": "0 0 210 150",
+  "pwn-stack": "0 0 168 150",
+  "pwn-rop": "0 0 224 112",
+  "net-tcp": "0 0 252 112",
+  "net-tls": "0 0 180 140",
+  "crypto-sbox": "0 0 176 124",
+  "crypto-ec": "0 0 190 162"
+};
+---
+
+<svg
+  viewBox={viewBoxes[variant]}
+  class={`font-mono ${className}`}
+  style="white-space: pre"
+  aria-hidden="true"
+  role="presentation"
+>
+  {/* window chrome shared by the panel-style pieces */}
+  {
+    ["re-hex", "pwn-rop", "net-tcp", "crypto-sbox"].includes(variant) && (
+      <>
+        <rect
+          x="1"
+          y="1"
+          width="100%"
+          height="100%"
+          rx="2"
+          class="fill-background stroke-border"
+          stroke-width="1.5"
+          style="width: calc(100% - 2px); height: calc(100% - 2px)"
+        />
+        <circle cx="10" cy="9" r="2.3" class="fill-destructive" />
+        <circle cx="18" cy="9" r="2.3" class="fill-secondary" />
+        <circle cx="26" cy="9" r="2.3" class="fill-primary" />
+        <line x1="1" y1="16" x2="99%" y2="16" class="stroke-border" stroke-width="1" />
+      </>
+    )
+  }
+
+  {
+    variant === "re-hex" && (
+      <g font-size="10">
+        <text x="32" y="12" class="fill-muted-foreground">~/stateofsec</text>
+        <text x="8" y="36"><tspan class="fill-muted-foreground">0212  </tspan><tspan class="fill-foreground">73 74 61 74 65 6f 66 73</tspan><tspan x="190" class="fill-muted-foreground">|</tspan><tspan class="fill-primary">stateofs</tspan><tspan class="fill-muted-foreground">|</tspan></text>
+        <text x="8" y="55"><tspan class="fill-muted-foreground">021a  </tspan><tspan class="fill-foreground">65 63 20 6d 6f 72 6f 63</tspan><tspan x="190" class="fill-muted-foreground">|</tspan><tspan class="fill-primary">ec moroc</tspan><tspan class="fill-muted-foreground">|</tspan></text>
+        <text x="8" y="74"><tspan class="fill-muted-foreground">0222  </tspan><tspan class="fill-foreground">63 6f de ad be ef 00 00</tspan><tspan x="190" class="fill-muted-foreground">|</tspan><tspan class="fill-primary">co</tspan><tspan class="fill-muted-foreground">......|</tspan></text>
+        <text x="8" y="93"><tspan class="fill-muted-foreground"># </tspan><tspan class="fill-foreground">strings core | grep </tspan><tspan class="fill-primary">1337</tspan><tspan class="fill-primary cursor-blink">_</tspan></text>
+      </g>
+    )
+  }
+
+  {
+    variant === "re-cfg" && (
+      <g font-size="8">
+        <rect x="52" y="6" width="104" height="30" rx="2" class="fill-background stroke-primary" stroke-width="1.5" />
+        <text x="60" y="19" class="fill-foreground">cmp eax, 0x212</text>
+        <text x="60" y="31" class="fill-muted-foreground">jz  loc_401337</text>
+
+        <path d="M80 36 L40 66" class="stroke-primary" stroke-width="1.5" fill="none" marker-end="url(#ha-ok)" />
+        <path d="M128 36 L168 66" class="stroke-destructive" stroke-width="1.5" fill="none" marker-end="url(#ha-no)" />
+        <text x="44" y="54" class="fill-primary">jz</text>
+        <text x="150" y="54" class="fill-destructive">nz</text>
+
+        <rect x="6" y="70" width="86" height="34" rx="2" class="fill-background stroke-border" stroke-width="1.5" />
+        <text x="14" y="84" class="fill-foreground">call survey</text>
+        <text x="14" y="96" class="fill-muted-foreground">mov [ok], 1</text>
+
+        <rect x="116" y="70" width="86" height="34" rx="2" class="fill-background stroke-border" stroke-width="1.5" />
+        <text x="124" y="84" class="fill-foreground">xor eax, eax</text>
+        <text x="124" y="96" class="fill-muted-foreground">leave ; ret</text>
+
+        <path d="M49 104 L49 122 L153 122 L153 108" class="stroke-border" stroke-width="1.2" fill="none" marker-end="url(#ha-br)" />
+        <text x="66" y="134" class="fill-muted-foreground">loc_401337:  ret</text>
+        <defs>
+          <marker id="ha-ok" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" class="fill-primary" /></marker>
+          <marker id="ha-no" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" class="fill-destructive" /></marker>
+          <marker id="ha-br" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" class="fill-border" /></marker>
+        </defs>
+      </g>
+    )
+  }
+
+  {
+    variant === "pwn-stack" && (
+      <g font-size="11">
+        <text x="6" y="13" class="fill-muted-foreground">stack (grows down)</text>
+        <g class="fill-background stroke-border" stroke-width="1.3">
+          <rect x="8" y="22" width="152" height="24" />
+          <rect x="8" y="46" width="152" height="24" />
+          <rect x="8" y="70" width="152" height="24" />
+          <rect x="8" y="94" width="152" height="24" />
+        </g>
+        <text x="16" y="38"><tspan class="fill-muted-foreground">buf  </tspan><tspan class="fill-destructive">41 41 41 41</tspan></text>
+        <text x="16" y="62"><tspan class="fill-muted-foreground">buf  </tspan><tspan class="fill-destructive">41 41 41 41</tspan></text>
+        <text x="16" y="86"><tspan class="fill-foreground">rbp  </tspan><tspan class="fill-destructive">41 41 41 41</tspan></text>
+        <text x="16" y="110"><tspan class="fill-foreground">rip  </tspan><tspan class="fill-primary">00 00 0212</tspan></text>
+        <text x="6" y="134" class="fill-destructive">[!] overflow @ 72</text>
+      </g>
+    )
+  }
+
+  {
+    variant === "pwn-rop" && (
+      <g font-size="8">
+        <text x="36" y="11.5" class="fill-muted-foreground">ropchain.py  --target 0x212</text>
+        <text x="8" y="32"><tspan class="fill-muted-foreground">0x401203  </tspan><tspan class="fill-foreground">pop rdi ; ret</tspan></text>
+        <text x="8" y="46"><tspan class="fill-primary">0x000212  </tspan><tspan class="fill-foreground">"/bin/sh\0"</tspan></text>
+        <text x="8" y="60"><tspan class="fill-muted-foreground">0x40101a  </tspan><tspan class="fill-foreground">ret        </tspan><tspan class="fill-muted-foreground"># align</tspan></text>
+        <text x="8" y="74"><tspan class="fill-muted-foreground">0x401060  </tspan><tspan class="fill-foreground">system@plt</tspan></text>
+        <text x="8" y="92"><tspan class="fill-primary">[+] shell @ 0x1337</tspan><tspan class="fill-primary cursor-blink"> _</tspan></text>
+      </g>
+    )
+  }
+
+  {
+    variant === "net-tcp" && (
+      <g font-size="7.5">
+        <text x="36" y="11.5" class="fill-muted-foreground">TCP header  (RFC 793)</text>
+        <text x="12" y="30" class="fill-muted-foreground"> 0                   1</text>
+        <text x="12" y="40" class="fill-muted-foreground"> 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5</text>
+        <text x="12" y="50" class="fill-border">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</text>
+        <text x="12" y="60"><tspan class="fill-muted-foreground">|       Source Port = </tspan><tspan class="fill-primary">0x212</tspan><tspan class="fill-muted-foreground">    |</tspan></text>
+        <text x="12" y="70" class="fill-border">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</text>
+        <text x="12" y="80"><tspan class="fill-muted-foreground">|   Dest Port = </tspan><tspan class="fill-primary">1337</tspan><tspan class="fill-muted-foreground">          |</tspan></text>
+        <text x="12" y="90" class="fill-border">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</text>
+        <text x="12" y="100"><tspan class="fill-muted-foreground">|        Sequence Number        |</tspan></text>
+        <text x="12" y="110" class="fill-border">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</text>
+      </g>
+    )
+  }
+
+  {
+    variant === "net-tls" && (
+      <g font-size="11">
+        <text x="6" y="13" class="fill-muted-foreground">TLS 1.3 handshake</text>
+        <text x="12" y="34" class="fill-foreground">client</text>
+        <text x="128" y="34" class="fill-foreground">server</text>
+        <line x1="26" y1="40" x2="26" y2="132" class="stroke-border" stroke-width="1" stroke-dasharray="2 2" />
+        <line x1="154" y1="40" x2="154" y2="132" class="stroke-border" stroke-width="1" stroke-dasharray="2 2" />
+
+        <path d="M26 56 L154 56" class="stroke-primary" stroke-width="1.4" fill="none" marker-end="url(#tls-r)" />
+        <text x="34" y="53" class="fill-muted-foreground">ClientHello</text>
+        <path d="M154 82 L26 82" class="stroke-primary" stroke-width="1.4" fill="none" marker-end="url(#tls-l)" />
+        <text x="40" y="79" class="fill-muted-foreground">ServerHello</text>
+        <path d="M154 108 L26 108" class="stroke-accent" stroke-width="1.4" fill="none" marker-end="url(#tls-l)" />
+        <text x="40" y="105" class="fill-muted-foreground">{"{Certificate}"}</text>
+        <text x="6" y="130" class="fill-primary">[+] session @ 0x212</text>
+        <defs>
+          <marker id="tls-r" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" class="fill-primary" /></marker>
+          <marker id="tls-l" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" class="fill-primary" /></marker>
+        </defs>
+      </g>
+    )
+  }
+
+  {
+    variant === "crypto-sbox" && (
+      <g font-size="8">
+        <text x="36" y="11.5" class="fill-muted-foreground">AES S-box</text>
+        <text x="10" y="30" class="fill-muted-foreground">     0  1  2  3  4  5</text>
+        <text x="10" y="44"><tspan class="fill-muted-foreground">00 | </tspan><tspan class="fill-foreground">63 7c 77 7b f2 6b</tspan></text>
+        <text x="10" y="58"><tspan class="fill-muted-foreground">10 | </tspan><tspan class="fill-foreground">ca 82 c9 7d fa 59</tspan></text>
+        <text x="10" y="72"><tspan class="fill-muted-foreground">20 | </tspan><tspan class="fill-foreground">b7 fd 93 26 36 3f</tspan></text>
+        <text x="10" y="86"><tspan class="fill-muted-foreground">30 | </tspan><tspan class="fill-foreground">04 c7 23 c3 </tspan><tspan class="fill-primary">13 37</tspan></text>
+        <text x="10" y="100"><tspan class="fill-muted-foreground">40 | </tspan><tspan class="fill-foreground">09 83 2c 1a 1b 6e</tspan></text>
+        <text x="10" y="116" class="fill-muted-foreground">sub_bytes(state)</text>
+      </g>
+    )
+  }
+
+  {
+    variant === "crypto-ec" && (
+      <g font-size="10">
+        <text x="6" y="14"><tspan class="fill-primary">secp256k1</tspan><tspan class="fill-muted-foreground"> y²=x³+7</tspan></text>
+        {/* axes */}
+        <line x1="14" y1="82" x2="186" y2="82" class="stroke-border" stroke-width="1" />
+        <line x1="34" y1="26" x2="34" y2="142" class="stroke-border" stroke-width="1" />
+        {/* upper branch + its mirror about the x-axis (y=82) */}
+        <path d="M52 82 Q80 50 116 44 Q152 38 184 30" class="stroke-primary" stroke-width="2" fill="none" />
+        <path d="M52 82 Q80 114 116 120 Q152 126 184 134" class="stroke-primary" stroke-width="2" fill="none" />
+        {/* scalar multiplication G -> 2G along the curve */}
+        <path d="M124 42 Q152 34 176 30" class="stroke-accent" stroke-width="1.3" stroke-dasharray="3 2" fill="none" marker-end="url(#ec-a)" />
+        <circle cx="116" cy="44" r="3.4" class="fill-foreground" />
+        <circle cx="184" cy="30" r="3.4" class="fill-accent" />
+        <text x="104" y="40" class="fill-foreground">G</text>
+        <text x="168" y="26" class="fill-accent">2G</text>
+        <text x="40" y="154" class="fill-muted-foreground">k = 0x212</text>
+        <defs>
+          <marker id="ec-a" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" class="fill-accent" /></marker>
+        </defs>
+      </g>
+    )
+  }
+</svg>

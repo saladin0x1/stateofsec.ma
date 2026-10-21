@@ -4,6 +4,7 @@ import {
   useCallback,
   useMemo
 } from "react";
+import { isOtherChoice } from "@/lib/other-choice";
 import { Choice } from "./choice";
 
 const GRID_LAYOUT_THRESHOLD = 10;
@@ -39,7 +40,7 @@ export function Question({
     () =>
       choices
         .map((c, i) => ({ text: c, index: i }))
-        .filter(({ text }) => text.toLowerCase().includes("other"))
+        .filter(({ text }) => isOtherChoice(text))
         .map(({ index }) => index),
     [choices]
   );

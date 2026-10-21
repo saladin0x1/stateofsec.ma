@@ -5,8 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import yaml from "@rollup/plugin-yaml";
 
 import { defineConfig, envField } from "astro/config";
-
-const SURVEY_OPEN = true;
+import { SURVEY_OPEN } from "./src/site-config.mjs";
 
 const redirects = !SURVEY_OPEN
   ? {
@@ -30,7 +29,8 @@ export default defineConfig({
       FIREBASE_PROJECT_ID: envField.string({ context: "server", access: "secret", optional: true }),
       FIREBASE_CLIENT_EMAIL: envField.string({ context: "server", access: "secret", optional: true }),
       FIREBASE_PRIVATE_KEY: envField.string({ context: "server", access: "secret", optional: true }),
-      SESSION_SECRET: envField.string({ context: "server", access: "secret", optional: true })
+      SESSION_SECRET: envField.string({ context: "server", access: "secret", optional: true }),
+      TURNSTILE_SECRET_KEY: envField.string({ context: "server", access: "secret", optional: true })
     }
   },
   redirects: {

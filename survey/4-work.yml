@@ -1,0 +1,110 @@
+title: Work & market
+label: work
+position: 4
+questions:
+  - label: What type of organization do you work for?
+    required: true
+    choices:
+      - Cybersecurity vendor / product company
+      - Managed security service provider (MSSP / SOC)
+      - IT services / consulting firm
+      - Bank / financial services
+      - Telecom / ISP
+      - Government / public sector
+      - E-commerce / tech startup
+      - Large enterprise (in-house security)
+      - Freelance / independent
+      - Not currently working / student
+      - Other
+
+  - label: How big is your company?
+    required: true
+    choices:
+      - Self-employed
+      - Under 10 employees
+      - 10 to 50
+      - 51 to 200
+      - 201 to 1000
+      - Over 1000
+      - Not applicable
+
+  - label: If you work in Morocco, your NET monthly salary in MAD is
+    required: false
+    showIf:
+      question: profile-q-6
+      in: [0, 2, 3, 4]
+    choices:
+      - < 5 000
+      - 5 000 - 8 000
+      - 8 000 - 12 000
+      - 12 000 - 16 000
+      - 16 000 - 20 000
+      - 20 000 - 25 000
+      - 25 000 - 30 000
+      - 30 000 - 40 000
+      - 40 000 - 50 000
+      - "> 50 000"
+      - Prefer not to say
+
+  - label: If you work abroad, your NET monthly salary in EUR or USD is
+    required: false
+    showIf:
+      question: profile-q-6
+      equals: 1
+    choices:
+      - < 2 000
+      - 2 000 - 3 000
+      - 3 000 - 4 000
+      - 4 000 - 5 000
+      - 5 000 - 7 000
+      - 7 000 - 10 000
+      - "> 10 000"
+      - Prefer not to say
+
+  - label: How satisfied are you with your job?
+    required: true
+    choices:
+      - Very unsatisfied
+      - Slightly unsatisfied
+      - Neither satisfied nor unsatisfied
+      - Slightly satisfied
+      - Very satisfied
+
+  - label: What remote work arrangement does your employer offer?
+    required: true
+    choices:
+      - On-site
+      - Hybrid
+      - Fully remote
+      - Not applicable
+
+  - label: What matters most to you when choosing a security job?
+    required: true
+    multiple: true
+    choices:
+      - Salary
+      - Learning & growth
+      - Interesting technical work
+      - Work-life balance
+      - Remote flexibility
+      - Job security
+      - Company reputation
+      - Mission / impact
+      - Visa / relocation support
+      - Team & mentorship
+      - Other
+
+  - label: What is the biggest challenge in the Moroccan security job market?
+    required: true
+    multiple: true
+    choices:
+      - Few senior roles
+      - Low salaries compared to abroad
+      - Skills / experience gap
+      - Few entry-level roles
+      - Lack of local training
+      - Brain drain (talent leaving)
+      - Companies don't value security
+      - Certifications required but costly
+      - Weak legal protection for researchers
+      - Other

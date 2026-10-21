@@ -1,0 +1,110 @@
+<div
+  id="consent-banner"
+  class="hidden fixed inset-x-0 bottom-0 z-[100] p-4"
+  role="dialog"
+  aria-labelledby="consent-title"
+>
+  <div
+    class="mx-auto max-w-screen-md bg-card text-card-foreground border-2 border-border p-4 shadow-lg"
+  >
+    <p id="consent-title" class="font-semibold mb-2">Analytics cookies</p>
+    <p class="text-sm text-muted-foreground mb-4">
+      We would like to use PostHog analytics, which sets cookies and records how
+      you use the site, including the survey pages. Nothing is tracked unless you
+      accept. You can change your choice any time from the footer.
+    </p>
+    <div class="flex gap-3 justify-end">
+      <button
+        type="button"
+        data-consent="denied"
+        class="px-4 py-2 border-2 border-border bg-muted text-foreground hover:opacity-90"
+      >
+        Decline
+      </button>
+      <button
+        type="button"
+        data-consent="granted"
+        class="px-4 py-2 border-2 border-primary bg-primary text-primary-foreground hover:opacity-90"
+      >
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+import type { PostHog } from "posthog-js";
+
+type Consent = "granted" | "denied";
+
+const CONSENT_KEY = "analytics-consent";
+const POSTHOG_KEY = import.meta.env.PUBLIC_POSTHOG_KEY;
+const POSTHOG_HOST = import.meta.env.PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
+
+const banner = document.querySelector("#consent-banner") as HTMLDivElement;
+let posthog: PostHog | undefined;
+
+function readConsent(): Consent | null {
+  try {
+    const value = localStorage.getItem(CONSENT_KEY);
+    return value === "granted" || value === "denied" ? value : null;
+  }
+  catch {
+    return null;
+  }
+}
+
+function writeConsent(value: Consent) {
+  try {
+    localStorage.setItem(CONSENT_KEY, value);
+  }
+  catch {}
+}
+
+// posthog-js is only downloaded after consent, so visitors who decline never contact PostHog
+async function startAnalytics() {
+  if (!POSTHOG_KEY || posthog)
+    return;
+  const { default: client } = await import("posthog-js");
+  client.init(POSTHOG_KEY, {
+    api_host: POSTHOG_HOST,
+    defaults: "2026-05-30"
+  });
+  // A previous withdrawal leaves an opt-out flag behind
+  if (client.has_opted_out_capturing())
+    client.opt_in_capturing();
+  posthog = client;
+}
+
+function stopAnalytics() {
+  if (!posthog)
+    return;
+  posthog.opt_out_capturing();
+  posthog.reset();
+}
+
+function choose(value: Consent) {
+  writeConsent(value);
+  banner.classList.add("hidden");
+  if (value === "granted")
+    void startAnalytics();
+  else
+    stopAnalytics();
+}
+
+banner.querySelectorAll<HTMLButtonElement>("[data-consent]").forEach((button) => {
+  button.addEventListener("click", () => choose(button.dataset.consent as Consent));
+});
+
+document.querySelectorAll("[data-consent-settings]").forEach((button) => {
+  button.addEventListener("click", () => banner.classList.remove("hidden"));
+});
+
+if (POSTHOG_KEY) {
+  const consent = readConsent();
+  if (consent === "granted")
+    void startAnalytics();
+  else if (consent === null)
+    banner.classList.remove("hidden");
+}
+</script>

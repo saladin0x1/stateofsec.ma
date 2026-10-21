@@ -1,236 +1,137 @@
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align="center">
-  <a href="https://stateofdev.ma">
-  <img width="477" alt="logo" src="https://user-images.githubusercontent.com/11137944/101990595-01f5f280-3ca8-11eb-8873-95a6234fb096.png">
+  <a href="https://stateofsec.ma">
+    <img src="public/images/cover.png" alt="State of Sec Morocco" width="600">
   </a>
 </p>
-<h2 align="center">
-  State Of Dev in Morocco Website
-</h2>
-<hr />
 
-StateOfDev.ma is a survey centered around software developers in Morocco by GeeksBlaBla Morocco Community.
+# State of Sec Morocco
 
-We wanted to know how we can help and support each other, and overall be able to better respond to developers evolving needs.
+[stateofsec.ma](https://stateofsec.ma) is a community survey of the people who secure, test and audit Morocco's systems: how they got into security, how they work, how they learn, and what they need. The results are published as an open report, and the answers are released as open data.
 
-The website is built using [AstroJs](https://astro.build/)
+Made by [saladin0x1](https://github.com/saladin0x1) and [mchklt](https://github.com/mchklt), built on [stateofdev.ma](https://stateofdev.ma) by the [GeeksBlaBla](https://geeksblabla.community) community (see [Credits](#credits)).
 
-## 🚀 Quick start
+## Stack
 
-1.  **Fork and clone the project**
+- [Astro](https://astro.build/) 5, React 18 and Tailwind CSS 3
+- Hosted on Cloudflare Workers through `@astrojs/cloudflare`
+- Firebase anonymous sign-in in the browser; on the server, ID tokens are verified with [jose](https://github.com/panva/jose) and answers are written to Firestore through its REST API (`firebase-admin` does not run on Workers)
+- Cloudflare Turnstile captcha before a survey session starts
+- PostHog analytics (EU), loaded only after a visitor accepts the cookie banner
 
-```sh
-git clone git@github.com:your-username/stateofdev.ma.git
-```
+## Quick Start
 
-2.  **Configure Project and Start developing.**
-
-- Go to [Firebase Console](https://console.firebase.google.com/) and Create a firebase application, activate anonymous authentication and enable Firestore database on production mode to set data to private by default as we are going to user firebase admin sdk to write data to firestore database.
-
-- Go to Project settings > service accounts > generate new private key and add missed vars to your .env file.
-
-- Go to [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) and create a new site and get your keys.(optional)
-
-- Copy your keys to `.env.local`:
-
-```env
-# Client-side Firebase configuration
-PUBLIC_FIREBASE_API_KEY=
-PUBLIC_FIREBASE_AUTH_DOMAIN=
-PUBLIC_FIREBASE_STORAGE_BUCKET=
-PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-PUBLIC_FIREBASE_APP_ID=
-
-# Server-side Firebase configuration
-FIREBASE_PRIVATE_KEY_ID=
-FIREBASE_PRIVATE_KEY=
-FIREBASE_PROJECT_ID=
-FIREBASE_CLIENT_EMAIL=
-FIREBASE_CLIENT_ID=
-FIREBASE_AUTH_URI=
-FIREBASE_TOKEN_URI=
-FIREBASE_AUTH_CERT_URL=
-FIREBASE_CLIENT_CERT_URL=
-
-# captcha keys (optional) make sure to set it to false in dev mode
-CAPTCHA_ENABLED=false
-CAPTCHA_SITE_KEY=
-CAPTCHA_SECRET_KEY=
-
-```
-
-- Navigate into your new website's directory and start it up.
+Requirements: Node 22 and pnpm 11.
 
 ```sh
-cd stateofdev.ma/
+git clone https://github.com/saladin0x1/stateofsec.ma.git
+cd stateofsec.ma
 pnpm install
+cp .env.example .env.local
 pnpm dev
 ```
 
-3.  **Open the source code and start editing!**
+The site runs at `http://localhost:4321`. Static pages work without any configuration. To take the survey locally, fill in `.env.local`:
 
-Your website is now running at `http://localhost:4321`
+1. **Firebase**: create a project, enable **Anonymous** sign-in, and create a Firestore database in production mode. Deploy `firestore.rules` (deny all: only the server, through the service account, touches the data).
+   - Web app config goes in the `PUBLIC_FIREBASE_*` variables.
+   - From a service account key, copy `project_id`, `client_email` and `private_key` into `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL` and `FIREBASE_PRIVATE_KEY`.
+2. **Session secret**: `SESSION_SECRET` signs the session cookie, at least 32 random characters (`openssl rand -base64 48`).
+3. **Captcha**: optional in development. Cloudflare's test keys always pass: site key `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`. In production the captcha is required.
+4. **Analytics**: optional. Leave `PUBLIC_POSTHOG_KEY` empty to disable PostHog and the cookie banner.
 
-## How the survey works
+## Deploying to Cloudflare
 
-The survey form submission process is designed to be secure, anonymous, and user-friendly. Here's an overview of how it works:
+Configuration lives in `wrangler.jsonc`. `PUBLIC_*` variables are embedded at build time, so they must be set where the build runs. Server secrets are set on the Worker:
 
-1. **Session Initialization (Before Start Page)**
-
-   - When the user clicks the `Take part in the survey` button from the home page, they are redirected to the `/before-start` page where they find important information about the survey.
-   - A CAPTCHA is displayed to prevent spam submissions(using Cloudflare Turnstile).
-   - When the user clicks "Start":
-     - An anonymous Firebase authentication session is created.
-     - The session token and CAPTCHA token are sent to the server (actions/initialize-session.ts).
-     - The server (actions/initialize-session.ts) validates the Firebase session and the CAPTCHA, initializes the session, and sets a session cookie.
-     - Upon successful initialization, the user is redirected to the `/survey` page.
-
-2. **Survey Page**
-
-   - The page checks for an active session before displaying the survey form.
-   - If no valid session is found, the user is redirected back to the `/before-start` page.
-   - With a valid session, the SurveyForm component is rendered.
-
-3. **Survey Form Component**
-
-   - Questions are loaded from YAML files and presented to the user in sections.
-   - Based on the question type, the form changes (radio, checkbox, etc.) and shows a text area if the user selects an option that contains "other".
-   - At the end of each section, answers are validated and sent to the server (actions/submit-answers.ts).
-
-   ```js
-   // example of the data sent to the server
-   const answers = {
-     "profile-q-0": 1,
-     "profile-q-1": 2,
-     "profile-q-2": [3, 2], // multiple choice question
-     "profile-q-3": 6, // single choice question
-     "profile-q-3-other": "text", // other text
-     "profile-q-4": null // null if the question is not answered (skip button)
-   };
-   ```
-
-   For every question, we send the index of choices selected by the user. It should be a number if the question is single choice, and an array of numbers if the question is multiple choice. We also send "other" text if the user selects an option that contains "other" and adds custom text to the text area.
-
-   - The server (actions/submit-answers.ts) verifies the session, processes the answers, and saves them to the Firestore database with the user ID as the document ID. This way, we can avoid duplicate submissions, and in case of a repeat submission, we will only update the existing document.
-
-4. **Completion and Thanks Page**
-
-   - After completing all sections, the user is redirected to the "Thanks" page.
-   - A thank you message is displayed along with social sharing options.
-
-## How the results works
-
-Every day at 12:00 AM UTC we run a github action that export data from firestore and the file should look like this:
-
-```json
-{
-  "results": [
-    {
-      "profile-q-0": 1,
-      "profile-q-1": 2,
-      "profile-q-2": [3, 2],
-      "profile-q-3": 6,
-      "profile-q-3-other": "text",
-      "lastSignInTime": "Tue, 17 Sep 2024 11:57:46 GMT",
-      "creationTime": "Tue, 17 Sep 2024 11:57:46 GMT",
-      "userId": "..."
-    },
-    ...
-  ]
-}
+```sh
+wrangler secret put FIREBASE_PROJECT_ID
+wrangler secret put FIREBASE_CLIENT_EMAIL
+wrangler secret put FIREBASE_PRIVATE_KEY
+wrangler secret put SESSION_SECRET
+wrangler secret put TURNSTILE_SECRET_KEY
+pnpm build
+wrangler deploy
 ```
 
-Then we generate a json file for survey questions with their choices and ids.
+## How the Survey Works
 
-```json
-{
-  "profile-q-0": {
-    "label": "What is your gender?",
-    "required": true,
-    "multiple": false,
-    "choices": ["Male", "Female"]
-  },
-  "profile-q-1": {
-    "label": "What is your age?",
-    "required": true,
-    "choices": [
-      "Younger than 18 years",
-      "18 to 24 years",
-      "25 to 34 years",
-      "35 to 44 years",
-      "45 or older"
-    ],
-    "multiple": false
-  },
-  ...
-}
+1. `/before-start` shows the rules and the Turnstile captcha. On start, the browser signs in anonymously with Firebase and calls the `initSession` action with its ID token and the captcha token.
+2. The server checks the captcha and the ID token, then sets a signed, `httpOnly` session cookie.
+3. `/survey` renders the questions from `survey/*.yml`. Answers are submitted at the end of each section through the `submitAnswers` action.
+4. The server validates every answer against the survey definition (known question ids, valid choice indexes, required questions) and drops answers to questions hidden by `showIf` conditions before writing to Firestore.
+
+Question ids are positional: `<section label>-q-<index>`. Inserting, removing or reordering questions in a YAML file changes the ids of every later question in that section, so freeze the survey once it is open.
+
+To close the survey, set `SURVEY_OPEN = false` in `src/site-config.mjs`: the survey pages redirect home and the server rejects new sessions and answers.
+
+## Results
+
+```sh
+pnpm export-results --output=results/<year>/data      # dump Firestore responses to results.json
+pnpm generate-questions --output=results/<year>/data  # questions.json from the current survey YAML
+pnpm query-results                                    # query results from the CLI, see docs/query-results.md
 ```
 
-Now that we have the results and the questions. we use `getQuestion` in `components/chart/utils.ts` file to get data for any question id then render it using `Chart` component.
+Run `generate-questions` before editing the survey for the next edition, or the questions will no longer match that year's answers. The export is a raw dump of Firestore documents, including their anonymous ids and timestamps; review free-text answers before publishing.
 
-## 🧐 Want to contribute ?
+## Scripts
 
-If you want to contribute check out the [help wanted](https://github.com/geeksblabla/stateofdev.ma/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22+sort%3Aupdated-desc) issues for things that need fixing, or suggest some new features by opening new issues.
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Start the dev server |
+| `pnpm build` | Validate the survey, type-check and build |
+| `pnpm check` | Validate the survey and type-check |
+| `pnpm lint` / `pnpm lint:ci` | Lint with fixes / check only |
+| `pnpm test` / `pnpm test:ci` | Run tests / run with coverage |
+| `pnpm validate-survey` | Validate `survey/*.yml` |
+
+More detail in [`docs/`](./docs).
+
+## Contributing
+
+Suggestions for questions, bug reports and pull requests are welcome in the [issues](https://github.com/saladin0x1/stateofsec.ma/issues).
 
 ## Licensing
 
-The code in this project is licensed under [MIT license](https://mit-license.org/).
+- Code: [MIT](./LICENSE), keeping the original copyright of the stateofdev.ma authors.
+- Data in `./results`: [ODC-ODbL](https://opendatacommons.org/licenses/odbl/).
 
-The Data in `./results` is licensed under [ODC-ODbL License](https://opendatacommons.org/licenses/odbl/).
+## Credits
 
-## Contributors ✨
+State of Sec Morocco is built on [stateofdev.ma](https://stateofdev.ma), the annual survey of Morocco's developers run by the [GeeksBlaBla](https://geeksblabla.community) community since 2020. Their open source code and survey format made this project possible. Original repository: [geeksblabla/stateofdev.ma](https://github.com/geeksblabla/stateofdev.ma).
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks to the stateofdev.ma contributors:
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="16.66%"><a href="https://elazizi.com/"><img src="https://avatars0.githubusercontent.com/u/11137944?v=4?s=120" width="120px;" alt="Youssouf EL AZIZI"/><br /><sub><b>Youssouf EL AZIZI</b></sub></a><br /><a href="https://github.com/geeksblabla/stateofdev.ma/commits?author=yjose" title="Code">💻</a> <a href="https://github.com/geeksblabla/stateofdev.ma/commits?author=yjose" title="Documentation">📖</a> <a href="#content-yjose" title="Content">🖋</a> <a href="#ideas-yjose" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="http://aboullaite.me/"><img src="https://avatars0.githubusercontent.com/u/2836850?v=4?s=120" width="120px;" alt="Mohammed Aboullaite"/><br /><sub><b>Mohammed Aboullaite</b></sub></a><br /><a href="https://github.com/geeksblabla/stateofdev.ma/commits?author=aboullaite" title="Code">💻</a> <a href="#content-aboullaite" title="Content">🖋</a> <a href="#ideas-aboullaite" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/ismailElazizi"><img src="https://avatars1.githubusercontent.com/u/22155037?v=4?s=120" width="120px;" alt="Ismail El Azizi"/><br /><sub><b>Ismail El Azizi</b></sub></a><br /><a href="#design-ismailElazizi" title="Design">🎨</a> <a href="#content-ismailElazizi" title="Content">🖋</a> <a href="#ideas-ismailElazizi" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://twitter.com/enlamp"><img src="https://avatars2.githubusercontent.com/u/4036528?v=4?s=120" width="120px;" alt="djalal"/><br /><sub><b>djalal</b></sub></a><br /><a href="#content-djalal" title="Content">🖋</a> <a href="#ideas-djalal" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/iMeriem"><img src="https://avatars1.githubusercontent.com/u/11720929?v=4?s=120" width="120px;" alt="Meriem Zaid"/><br /><sub><b>Meriem Zaid</b></sub></a><br /><a href="#content-iMeriem" title="Content">🖋</a> <a href="#ideas-iMeriem" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/ezzarghili"><img src="https://avatars2.githubusercontent.com/u/8616968?v=4?s=120" width="120px;" alt="Mohamed Ez-zarghili"/><br /><sub><b>Mohamed Ez-zarghili</b></sub></a><br /><a href="#content-ezzarghili" title="Content">🖋</a> <a href="#ideas-ezzarghili" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://elazizi.com/"><img src="https://avatars0.githubusercontent.com/u/11137944?v=4?s=120" width="100px;" alt="Youssouf EL AZIZI"/><br /><sub><b>Youssouf EL AZIZI</b></sub></a><br /><sub>Code, Docs, Content, Ideas</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="http://aboullaite.me/"><img src="https://avatars0.githubusercontent.com/u/2836850?v=4?s=120" width="100px;" alt="Mohammed Aboullaite"/><br /><sub><b>Mohammed Aboullaite</b></sub></a><br /><sub>Code, Content, Ideas</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/ismailElazizi"><img src="https://avatars1.githubusercontent.com/u/22155037?v=4?s=120" width="100px;" alt="Ismail El Azizi"/><br /><sub><b>Ismail El Azizi</b></sub></a><br /><sub>Content, Ideas, Design</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://twitter.com/enlamp"><img src="https://avatars2.githubusercontent.com/u/4036528?v=4?s=120" width="100px;" alt="djalal"/><br /><sub><b>djalal</b></sub></a><br /><sub>Content, Ideas</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/iMeriem"><img src="https://avatars1.githubusercontent.com/u/11720929?v=4?s=120" width="100px;" alt="Meriem Zaid"/><br /><sub><b>Meriem Zaid</b></sub></a><br /><sub>Content, Ideas</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/ezzarghili"><img src="https://avatars2.githubusercontent.com/u/8616968?v=4?s=120" width="100px;" alt="Mohamed Ez-zarghili"/><br /><sub><b>Mohamed Ez-zarghili</b></sub></a><br /><sub>Content, Ideas</sub></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/Aymane11"><img src="https://avatars2.githubusercontent.com/u/24499930?v=4?s=120" width="120px;" alt="Aymane Boumaaza"/><br /><sub><b>Aymane Boumaaza</b></sub></a><br /><a href="#content-Aymane11" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://blog.zhaytam.com/"><img src="https://avatars3.githubusercontent.com/u/34218324?v=4?s=120" width="120px;" alt="Haytam Zanid"/><br /><sub><b>Haytam Zanid</b></sub></a><br /><a href="#content-zHaytam" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/boredabdel"><img src="https://avatars1.githubusercontent.com/u/1208914?v=4?s=120" width="120px;" alt="Abdelfettah SGHIOUAR"/><br /><sub><b>Abdelfettah SGHIOUAR</b></sub></a><br /><a href="#content-boredabdel" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="http://stackoverflow.com/users/4689497/"><img src="https://avatars0.githubusercontent.com/u/5012992?v=4?s=120" width="120px;" alt="Youness IABITEN"/><br /><sub><b>Youness IABITEN</b></sub></a><br /><a href="#content-Yiabiten" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/Ismailtlem"><img src="https://avatars1.githubusercontent.com/u/34961373?v=4?s=120" width="120px;" alt="Ismail Tlemçani"/><br /><sub><b>Ismail Tlemçani</b></sub></a><br /><a href="#content-Ismailtlem" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://soubai.me/"><img src="https://avatars0.githubusercontent.com/u/11523791?v=4?s=120" width="120px;" alt="Abderrahim SOUBAI"/><br /><sub><b>Abderrahim SOUBAI</b></sub></a><br /><a href="#content-AbderrahimSoubaiElidrissi" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/Aymane11"><img src="https://avatars2.githubusercontent.com/u/24499930?v=4?s=120" width="100px;" alt="Aymane Boumaaza"/><br /><sub><b>Aymane Boumaaza</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://blog.zhaytam.com/"><img src="https://avatars3.githubusercontent.com/u/34218324?v=4?s=120" width="100px;" alt="Haytam Zanid"/><br /><sub><b>Haytam Zanid</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/boredabdel"><img src="https://avatars1.githubusercontent.com/u/1208914?v=4?s=120" width="100px;" alt="Abdelfettah SGHIOUAR"/><br /><sub><b>Abdelfettah SGHIOUAR</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="http://stackoverflow.com/users/4689497/"><img src="https://avatars0.githubusercontent.com/u/5012992?v=4?s=120" width="100px;" alt="Youness IABITEN"/><br /><sub><b>Youness IABITEN</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/Ismailtlem"><img src="https://avatars1.githubusercontent.com/u/34961373?v=4?s=120" width="100px;" alt="Ismail Tlemçani"/><br /><sub><b>Ismail Tlemçani</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://soubai.me/"><img src="https://avatars0.githubusercontent.com/u/11523791?v=4?s=120" width="100px;" alt="Abderrahim SOUBAI"/><br /><sub><b>Abderrahim SOUBAI</b></sub></a><br /><sub>Content</sub></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/moutout"><img src="https://avatars.githubusercontent.com/u/3751894?v=4?s=120" width="120px;" alt="Mustapha"/><br /><sub><b>Mustapha</b></sub></a><br /><a href="#content-moutout" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://www.linkedin.com/in/sohayb-elamraoui/"><img src="https://avatars.githubusercontent.com/u/32344494?v=4?s=120" width="120px;" alt="el amraoui Sohayb"/><br /><sub><b>el amraoui Sohayb</b></sub></a><br /><a href="#content-Elamraoui-Sohayb" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="http://yezz.me"><img src="https://avatars.githubusercontent.com/u/52716203?v=4?s=120" width="120px;" alt="Yasser Tahiri"/><br /><sub><b>Yasser Tahiri</b></sub></a><br /><a href="#content-yezz123" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://www.iduoad.com"><img src="https://avatars.githubusercontent.com/u/25715906?v=4?s=120" width="120px;" alt="Mohammed Daoudi"/><br /><sub><b>Mohammed Daoudi</b></sub></a><br /><a href="#content-Iduoad" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/bilalix"><img src="https://avatars.githubusercontent.com/u/2496324?v=4?s=120" width="120px;" alt="Bilal"/><br /><sub><b>Bilal</b></sub></a><br /><a href="#content-bilalix" title="Content">🖋</a> <a href="https://github.com/geeksblabla/stateofdev.ma/commits?author=bilalix" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/moutout"><img src="https://avatars.githubusercontent.com/u/3751894?v=4?s=120" width="100px;" alt="Mustapha"/><br /><sub><b>Mustapha</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://www.linkedin.com/in/sohayb-elamraoui/"><img src="https://avatars.githubusercontent.com/u/32344494?v=4?s=120" width="100px;" alt="el amraoui Sohayb"/><br /><sub><b>el amraoui Sohayb</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="http://yezz.me"><img src="https://avatars.githubusercontent.com/u/52716203?v=4?s=120" width="100px;" alt="Yasser Tahiri"/><br /><sub><b>Yasser Tahiri</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://www.iduoad.com"><img src="https://avatars.githubusercontent.com/u/25715906?v=4?s=120" width="100px;" alt="Mohammed Daoudi"/><br /><sub><b>Mohammed Daoudi</b></sub></a><br /><sub>Content</sub></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/bilalix"><img src="https://avatars.githubusercontent.com/u/2496324?v=4?s=120" width="100px;" alt="Bilal"/><br /><sub><b>Bilal</b></sub></a><br /><sub>Code, Content</sub></td>
     </tr>
   </tbody>
 </table>
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## Credit
-
-This project is inspired by :
-
-- [Stack Overflow Survey ](https://insights.stackoverflow.com/survey/2020)
-- [State of Front-end Survey](https://tsh.io/state-of-frontend/)
-
-```
-
-```
+stateofdev.ma was itself inspired by the [Stack Overflow Developer Survey](https://insights.stackoverflow.com/survey) and the [State of Frontend](https://tsh.io/state-of-frontend/) survey.

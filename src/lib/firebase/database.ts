@@ -33,8 +33,9 @@ function toFieldPath(name: string) {
 }
 
 // PATCH with an update mask behaves like set(..., { merge: true }): fields outside
-// the mask are left untouched and the document is created if it does not exist
-export async function saveAnswers(userId: string, answers: Answers) {
+// the mask are left untouched and the document is created if it does not exist.
+// Fields listed in the mask but absent from the body are deleted.
+export async function saveAnswers(userId: string, answers: Answers, fieldsToDelete: string[] = []) {
   const data: Answers = {
     ...answers,
     lastUpdated: new Date().toISOString()
@@ -43,7 +44,7 @@ export async function saveAnswers(userId: string, answers: Answers) {
   const url = new URL(
     `https://firestore.googleapis.com/v1/projects/${getProjectId()}/databases/(default)/documents/results/${encodeURIComponent(userId)}`
   );
-  for (const name of Object.keys(data))
+  for (const name of [...Object.keys(data), ...fieldsToDelete])
     url.searchParams.append("updateMask.fieldPaths", toFieldPath(name));
 
   const fields = Object.fromEntries(

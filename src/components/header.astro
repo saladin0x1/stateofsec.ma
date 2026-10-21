@@ -1,12 +1,12 @@
 ---
 import { website } from "@/website";
-import Logo from "../assets/logo.svg?raw";
 import HeaderLink from "./header-link.astro";
+import Logo from "./logo.astro";
 import ThemeToggle from "./theme-toggle.astro";
 
 const navItems = [
   { label: "FAQ", href: "/faq" },
-  { label: "Github", href: website.repoGithub, external: true }
+  { label: "GitHub", href: website.repoGithub, external: true }
 ];
 
 const currentPath = Astro.url.pathname;
@@ -16,11 +16,11 @@ const currentPath = Astro.url.pathname;
   class="z-[99] relative bg-transparent max-w-screen-xl w-full px-4 py-4 text-foreground md:mx-auto border-b border-border"
 >
   <div class="flex justify-between items-center">
-    <a href="/" class="z-10" aria-label="state of dev logo">
+    <a href="/" class="z-10" aria-label={`${website.name} home`}>
       <div
-        class="flex cursor-pointer items-center whitespace-nowrap text-2xl font-sans font-black"
+        class="flex cursor-pointer items-center whitespace-nowrap text-xl md:text-2xl"
       >
-        <Fragment set:html={Logo} />
+        <Logo />
       </div>
     </a>
 

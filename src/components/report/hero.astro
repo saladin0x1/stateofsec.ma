@@ -1,8 +1,8 @@
 ---
 import type { Year } from "../chart/data";
 import { YouTube } from "@astro-community/astro-embed-youtube";
-import Crea4 from "../../assets/data_image.svg";
-import Crea2 from "../../assets/undraw_visual_data.svg";
+import { website } from "@/website";
+import HeroArt from "../hero-art.astro";
 
 export interface Props {
   year: Year;
@@ -31,16 +31,27 @@ const intro = data[year];
     >
     </div>
   </div>
-  <div class="relative mx-auto hidden max-w-screen-lg md:block text-primary">
-    <img src={Crea4.src} class="absolute w-32 right-0 -scale-x-100 top-24" />
-    <img src={Crea2.src} class="absolute w-32 h-32 top-24" />
+  <div
+    class="pointer-events-none absolute inset-0 z-0 hidden xl:block"
+    aria-hidden="true"
+  >
+    <div class="relative mx-auto h-full max-w-7xl text-primary">
+      <HeroArt
+        variant="pwn-stack"
+        class="absolute left-2 top-1/2 w-48 -translate-y-1/2 2xl:w-56"
+      />
+      <HeroArt
+        variant="net-tls"
+        class="absolute right-2 top-1/2 w-52 -translate-y-1/2 2xl:w-64"
+      />
+    </div>
   </div>
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
       <h1
         class="mt-5 text-3xl font-sans font-extrabold leading-snug text-foreground sm:text-5xl sm:leading-snug lg:text-6xl lg:leading-snug"
       >
-        State Of Dev In Morocco
+        {website.name}
         <span
           class="relative inline-flex justify-center whitespace-nowrap font-extrabold"
         >

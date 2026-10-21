@@ -1,7 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import tarbouch from "@/assets/tarbouch.png"; // Image is 1600x900
-
 import BaseLayout from "@/components/layout.astro";
 import SocialMediaCard from "@/components/social-media-card.astro";
 import { getSessionUserId } from "@/lib/session";
@@ -13,116 +10,32 @@ if (!(await getSessionUserId(Astro.cookies))) {
   return Astro.redirect("/before-start");
 }
 
-type Post = {
-  user: { name: string; handle: string };
-  content: string;
-  rtl: boolean;
-};
-
-const posts: Post[] = [
-  {
-    user: { name: "Mohammed", handle: "@med" },
-    content:
-      "I just participated in an eye-opening survey about the state of development in Morocco! 🇲🇦💻 Your insights are crucial. Take 5 minutes to share your experience ",
-    rtl: false
-  },
-  {
-    user: { name: "Youssouf", handle: "@youssouf" },
-    content:
-      "Calling all developers in Morocco! 🚀 Help shape the future of our tech industry. I just completed a survey on the state of development, and your voice matters too. Join in ",
-    rtl: false
-  },
-  {
-    user: { name: "Sarah", handle: "@sara" },
-    content:
-      "Want to contribute to the growth of Morocco's tech scene? 🌟 I just took part in an important survey about development in our country. It's quick, easy, and impactful. Have your say",
-    rtl: false
-  },
-  {
-    user: { name: "Mariem", handle: "@mariem" },
-    content:
-      "Attention Moroccan tech enthusiasts! 🖥️🇲🇦 Be part of a nationwide tech survey. Your experiences and opinions will help drive our industry forward. I've done my part, now it's your turn",
-    rtl: false
-  },
-  {
-    user: { name: "محمد ", handle: "@mohame" },
-    content:
-      "شاركت فهاد الاستطلاع المهم على وضعية البرمجة فالمغرب!  رأيك مهم بزاف. خود 5 دقايق وشارك تجربتك",
-    rtl: true
-  },
-  {
-    user: { name: "فاطمة الزهراء", handle: "@fatimazahra" },
-    content:
-      "نداء لجميع المبرمجين فالمغرب! ساعدونا نشكلو مستقبل الصناعة التكنولوجية ديالنا. أنا درت الاستطلاع، وصوتك مهم حتى نتا. شارك معانا",
-    rtl: true
-  },
-  {
-    user: { name: "ياسين ", handle: "@yassine" },
-    content:
-      "باغي تساهم فنمو المجال التقني فالمغرب؟ أنا شاركت فواحد الاستطلاع مهم على البرمجة فبلادنا. ماغاديش ياخد منك بزاف ديال الوقت، وغادي يكون عندو تأثير كبير. قول رأيك",
-    rtl: true
-  },
-  {
-    user: { name: "أمينة ", handle: "@amina" },
-    content:
-      "انتباه للمهتمين بالتكنولوجيا فالمغرب! كونو جزء من استطلاع وطني للتقنية. التجارب والآراء ديالكم غادي يساعدو فتطوير الصناعة ديالنا. أنا درت اللي عليا، دابا دوركم",
-    rtl: true
-  },
-  {
-    user: { name: "Chaimae", handle: "@chaimae" },
-    content:
-      "Je viens de participer à une enquête révélatrice sur l'état du développement au Maroc ! 🇲🇦💻 Vos idées sont cruciales. Prenez 5 minutes pour partager votre expérience",
-    rtl: false
-  },
-  {
-    user: { name: "Karim", handle: "@karim" },
-    content:
-      "Appel à tous les développeurs au Maroc ! 🚀 Aidez à façonner l'avenir de notre industrie technologique. Je viens de répondre à une enquête sur l'état du développement, et votre voix compte aussi. Rejoignez-nous",
-    rtl: false
-  },
-  {
-    user: { name: "Souad", handle: "@souad" },
-    content:
-      "Vous voulez contribuer à la croissance de la scène tech marocaine ? 🌟 Je viens de participer à une importante enquête sur le développement dans notre pays. C'est rapide, facile et impactant. Donnez votre avis",
-    rtl: false
-  },
-  {
-    user: { name: "Hamza", handle: "@hamza" },
-    content:
-      "Attention aux passionnés de technologie au Maroc ! 🖥️🇲🇦 Faites partie d'une enquête technologique nationale. Vos expériences et opinions aideront à faire avancer notre industrie. J'ai fait ma part, c'est maintenant à votre tour",
-    rtl: false
-  }
+const posts = [
+  "I just took the State of Sec Morocco survey, a community survey about cybersecurity work in Morocco. It takes about 10 minutes and the results will be released as open data. Add your voice:",
+  "Pentester, SOC analyst, GRC, AppSec or student? Help map Morocco's cybersecurity community. I answered the State of Sec Morocco survey, now it's your turn:",
+  "How do people get into security in Morocco, what do they work with, and what is missing? The State of Sec Morocco survey wants to find out. Take part:",
+  "Open data about Morocco's security community starts with your answers. I took the State of Sec Morocco survey and it only takes a few minutes:"
 ];
 ---
 
-<BaseLayout>
+<BaseLayout title="Thank you">
   <div class="max-w-screen-xl w-full mx-auto p-6 text-center">
-    <Image
-      src={tarbouch}
-      class="lg:w-[300px] my-10 sm:w-[200px] mx-auto"
-      alt="tarbouch"
-    />
-    <p class="mb-8 text-xl font-semibold">
-      الله يعطيك الصحة <br /> كنشكروك حيت كملتي الاستطلاع{" "}
-    </p>
+    <h1 class="mt-10 mb-6 text-3xl font-sans font-bold">
+      Thank you for taking part
+    </h1>
 
     <div class="mb-8">
-      <div>
-        <div class="mb-4 max-w-lg mx-auto font-semibold">
-          <p class="mb-4">
-            الخدمة صعيبة درتيها دبا بقات السهلة، باش الاستطلاع يكون مفيد خاص
-            يشارك فيه اكبر عدد ديال الناس دكشي علاش خصك تعونا وتبارتجي الاستطلاع
-            مع صحابك
-          </p>
-          <p>
-            وجدنا ليك شي بركة ديال البوستات باش متعدب(ي)ش في الكتابة، ختار(ي)
-            وحدة منهم وبارتاجي
-          </p>
-        </div>
+      <div class="mb-8 max-w-lg mx-auto text-muted-foreground">
+        <p class="mb-4">
+          The results are only as good as the number of people who answer. The
+          most useful thing you can do now is share the survey with your
+          colleagues, your team or your CTF crew.
+        </p>
+        <p>Here are a few ready-made posts. Pick one and share it.</p>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-          {posts.map(post => <SocialMediaCard post={post} />)}
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+        {posts.map(content => <SocialMediaCard content={content} />)}
       </div>
     </div>
   </div>

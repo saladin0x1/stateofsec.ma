@@ -1,8 +1,20 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
-import GoogleAnalytics from "@/components/google-analytics.astro";
+import AnalyticsConsent from "@/components/analytics-consent.astro";
+import { website } from "@/website";
 import Footer from "./footer.astro";
 import Header from "./header.astro";
+// Self-hosted fonts: no request to Google Fonts
+import "@fontsource/space-grotesk/300.css";
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/700.css";
+import "@fontsource/jetbrains-mono/300.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/600.css";
+import "@fontsource/jetbrains-mono/700.css";
+import "@fontsource/jetbrains-mono/800.css";
 import "../globals.css";
 
 interface Props {
@@ -12,10 +24,17 @@ interface Props {
 }
 
 const { title: titleProp, year, description: descriptionProp } = Astro.props;
-const title = titleProp || "State Of Dev In Morocco 🇲🇦";
-const description
-  = descriptionProp
-    || "Participate and let us know what working in tech really looks like in Morocco 🇲🇦";
+const title = year
+  ? `${website.name} ${year} Report`
+  : titleProp
+    ? `${titleProp} | ${website.name}`
+    : website.name;
+const description = descriptionProp
+  || (year
+    ? `Results of the ${website.name} ${year} survey: how Morocco's cybersecurity community works, learns and what it needs.`
+    : website.description);
+const canonical = new URL(Astro.url.pathname, website.url).href;
+const coverImage = `${website.url}/images/cover.png`;
 ---
 
 <!doctype html>
@@ -23,7 +42,7 @@ const description
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | State of Dev Morocco</title>
+    <title>{title}</title>
 
     <!-- Theme Script - Must run before page renders to prevent FOUC -->
     <script is:inline>
@@ -54,101 +73,26 @@ const description
 })();
 </script>
 
-    <!-- Add other meta tags, stylesheets, etc. -->
-    <>
-      {
-        year === undefined
-          ? (
-              <AstroSeo
-                title={title}
-                description={description}
-                canonical="https://stateofdev.ma"
-                openGraph={{
-                  url: "https://stateofdev.ma",
-                  title: "State Of Dev In Morocco",
-                  description:
-                    "Participate and let  us know what working in tech really looks like in Morocco 🇲🇦",
-                  images: [
-                    {
-                      url: `https://www.stateofdev.ma/images/state-of-dev-cover.png`
-                    }
-                  ],
-                  site_name: "StateOfDevMa"
-                }}
-              />
-            )
-          : (
-              <AstroSeo
-                title="State Of Dev In Morocco  🇲🇦"
-                description={`State Of Dev In Morocco  🇲🇦 | Moroccan developers jobs satisfaction, salaries, and community contribution, how they learn and level up, which tools they're using, and what they want to learn next. `}
-                canonical="https://stateofdev.ma"
-                openGraph={{
-                  url: `https://stateofdev.ma/${year}`,
-                  title: `State Of Dev In Morocco ${year} 🇲🇦`,
-                  description: `State Of Dev In Morocco ${year} 🇲🇦 | Moroccan developers jobs satisfaction, salaries, and community contribution, how they learn and level up, which tools they're using, and what they want to learn next. `,
-                  images: [
-                    // TODO: refactor image as props
-                    {
-                      url: `https://www.stateofdev.ma/images/cover-${year}.png`
-                    }
-                  ],
-                  site_name: "StateOfDevMa"
-                }}
-              />
-            )
-      }
-    </>
-    <!-- icons -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="114x114"
-      href="/apple-icon-114x114.png"
+    <AstroSeo
+      title={title}
+      description={description}
+      canonical={canonical}
+      openGraph={{
+        url: canonical,
+        title,
+        description,
+        images: [{ url: coverImage, width: 1200, height: 630, alt: website.name }],
+        site_name: website.name
+      }}
+      twitter={{ cardType: "summary_large_image" }}
     />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="/apple-icon-120x120.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="144x144"
-      href="/apple-icon-144x144.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="/apple-icon-152x152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-icon-180x180.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/android-icon-192x192.png"
-    />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0c110e" />
   </head>
 
   <body>
@@ -157,6 +101,6 @@ const description
       <slot />
     </main>
     <Footer />
-    <GoogleAnalytics id="UA-127901499-5" />
+    <AnalyticsConsent />
   </body>
 </html>

@@ -1,28 +1,46 @@
-const CLOUDFLARE_CAPTCHA_URL
+import { getSecret } from "astro:env/server";
+import { requireSecret } from "@/lib/secrets";
+
+const SITEVERIFY_URL
   = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
-interface CaptchaResponse {
+interface SiteverifyResponse {
   "success": boolean;
-  "error-codes"?: string[];
-  "challenge_ts"?: string;
   "hostname"?: string;
+  "error-codes"?: string[];
 }
 
-export async function isCaptchaValid(token: string): Promise<boolean> {
-  try {
-    const response = await fetch(CLOUDFLARE_CAPTCHA_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: JSON.stringify({
-        secret: String(import.meta.env.PUBLIC_TURNSTILE_SECRET_KEY ?? ""),
-        response: token
-      })
-    });
+// Required in production; in dev only enforced when a (test) secret is configured
+export function getCaptchaSecret(): string | undefined {
+  return import.meta.env.PROD
+    ? requireSecret("TURNSTILE_SECRET_KEY")
+    : getSecret("TURNSTILE_SECRET_KEY");
+}
 
-    const data = await response.json() as CaptchaResponse;
-    return data.success ?? false;
+export async function isCaptchaValid({
+  token,
+  secret,
+  hostname,
+  remoteIp
+}: {
+  token: string;
+  secret: string;
+  hostname: string;
+  remoteIp?: string;
+}): Promise<boolean> {
+  const body = new URLSearchParams({ secret, response: token });
+  if (remoteIp)
+    body.set("remoteip", remoteIp);
+
+  try {
+    const response = await fetch(SITEVERIFY_URL, { method: "POST", body });
+    const data = await response.json() as SiteverifyResponse;
+    if (!data.success) {
+      console.error("Captcha rejected:", data["error-codes"]);
+      return false;
+    }
+    // Test keys report a placeholder hostname, so the check only applies in production
+    return !import.meta.env.PROD || data.hostname === hostname;
   }
   catch (error) {
     console.error("Error validating captcha:", error);

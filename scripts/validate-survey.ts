@@ -15,7 +15,7 @@ async function main() {
   // Check for --verbose flag
   const isVerbose = process.argv.includes("--verbose");
 
-  console.log("🔍 Validating survey YAML files...\n");
+  console.log("Validating survey YAML files...\n");
 
   const validationReport = validateAllSurveyFiles(SURVEY_DIR);
 
@@ -27,7 +27,7 @@ async function main() {
     // Default mode: show only errors or success message
     if (validationReport.success) {
       // No errors, just show success
-      console.log("✓ All validations passed!");
+      console.log("[OK] All validations passed!");
       process.exit(0);
     }
     else {
@@ -41,12 +41,12 @@ async function main() {
 
   if (validationReport.success) {
     if (isVerbose) {
-      console.log("\n✓ All validations passed!");
+      console.log("\n[OK] All validations passed!");
     }
     process.exit(0);
   }
   else {
-    console.error("\n❌ Validation failed! Please fix the errors above.");
+    console.error("\n[X] Validation failed! Please fix the errors above.");
     process.exit(1);
   }
 }

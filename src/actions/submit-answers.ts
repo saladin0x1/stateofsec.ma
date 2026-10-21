@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
+import { InvalidAnswersError, sanitizeAnswers } from "@/lib/answers";
 import { saveAnswers } from "@/lib/firebase/database";
 import { getSessionUserId } from "@/lib/session";
+import { SURVEY_OPEN } from "@/site-config.mjs";
 
 export const submitAnswers = defineAction({
   accept: "json",
@@ -13,6 +15,13 @@ export const submitAnswers = defineAction({
     )
   }),
   handler: async ({ answers }, { cookies }) => {
+    if (!SURVEY_OPEN) {
+      throw new ActionError({
+        code: "FORBIDDEN",
+        message: "The survey is closed"
+      });
+    }
+
     /* Verify Session */
     const userId = await getSessionUserId(cookies);
     if (!userId) {
@@ -22,9 +31,21 @@ export const submitAnswers = defineAction({
       });
     }
 
+    /* Validate answers against the survey definition */
+    let sanitized: ReturnType<typeof sanitizeAnswers>;
+    try {
+      sanitized = sanitizeAnswers(answers);
+    }
+    catch (error) {
+      if (error instanceof InvalidAnswersError) {
+        throw new ActionError({ code: "BAD_REQUEST", message: error.message });
+      }
+      throw error;
+    }
+
     /* Save answers to database */
     try {
-      await saveAnswers(userId, answers);
+      await saveAnswers(userId, sanitized.toSave, sanitized.toDelete);
       console.log("answers saved");
     }
     catch (error) {

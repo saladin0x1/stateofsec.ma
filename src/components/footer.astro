@@ -1,25 +1,18 @@
 ---
 import { website } from "@/website";
-import Logo from "../assets/logo.svg?raw";
+import Logo from "./logo.astro";
 
-const communityLinks = [
-  { label: "geeksblabla.community", href: "https://geeksblabla.community" },
-  { label: "stateofdev.ma", href: "https://stateofdev.ma" },
-  {
-    label: "awesome-morocco.dev",
-    href: "https://github.com/geeksblabla/awesome-morocco"
-  },
-  { label: "Join the team", href: "https://tally.so/r/meqj6E" }
-];
-
-const socialLinks = [
-  { label: "Youtube", href: website.youtube },
-  { label: "Linkedin", href: website.linkedin },
-  { label: "Facebook", href: website.facebook },
-  { label: "X (Previously Twitter)", href: website.twitter },
+const projectLinks = [
+  { label: "GitHub repository", href: website.repoGithub },
   { label: "Instagram", href: website.instagram },
-  { label: "Github", href: website.github }
+  { label: "Report an issue", href: `${website.repoGithub}/issues` },
+  { label: "FAQ", href: "/faq" }
 ];
+
+// One string so template whitespace cannot end up inside the link text
+const authorLinks = website.authors
+  .map(author => `<a href="${author.url}" target="_blank" rel="noopener noreferrer" class="hover:text-foreground">${author.handle}</a>`)
+  .join(" &amp; ");
 ---
 
 <footer class="mt-24 border-t border-border bg-background">
@@ -28,12 +21,11 @@ const socialLinks = [
   >
     <div class="md:col-span-2 flex flex-col justify-between">
       <div>
-        <div class="mb-6 flex h-10 items-center space-x-2">
-          <Fragment set:html={Logo} />
+        <div class="mb-6 flex h-10 items-center text-xl">
+          <Logo />
         </div>
         <div class="text-muted-foreground max-w-sm mb-6">
-          Participate and let us know what working in tech really looks like in
-          Morocco 🇲🇦
+          {website.description}
         </div>
       </div>
     </div>
@@ -42,16 +34,16 @@ const socialLinks = [
       <h3
         class="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground"
       >
-        Community
+        Project
       </h3>
       <ul class="space-y-2 font-mono">
         {
-          communityLinks.map(link => (
+          projectLinks.map(link => (
             <li>
               <a
                 class="inline-block cursor-pointer transition-all duration-200 px-2 py-1 rounded -ml-2 text-muted-foreground hover:text-primary hover:bg-primary/5"
                 href={link.href}
-                target="_blank"
+                target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
               >
                 <span>[{link.label}]</span>
@@ -66,24 +58,38 @@ const socialLinks = [
       <h3
         class="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground"
       >
-        Links
+        Credits
       </h3>
-      <ul class="space-y-2 font-mono">
-        {
-          socialLinks.map(link => (
-            <li>
-              <a
-                class="inline-block cursor-pointer transition-all duration-200 px-2 py-1 rounded -ml-2 text-muted-foreground hover:text-primary hover:bg-primary/5"
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>[{link.label}]</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <button
+        type="button"
+        popovertarget="credits-popover"
+        class="inline-block cursor-pointer transition-all duration-200 px-2 py-1 rounded -ml-2 font-mono text-muted-foreground hover:text-primary hover:bg-primary/5"
+      >
+        [GeeksBlaBla]
+      </button>
+      <div
+        id="credits-popover"
+        popover="auto"
+        class="m-auto max-w-sm rounded-lg border border-border bg-background p-5 text-left text-sm text-muted-foreground shadow-xl"
+      >
+        <p class="mb-3 font-semibold text-foreground">Credits</p>
+        <p class="mb-4">
+          State of Sec Morocco is based on State of Dev, the open-source annual
+          survey of Morocco's developer community built by <span
+            class="text-foreground"
+                                                           >GeeksBlaBla</span
+          >. Big thanks to GeeksBlaBla and its contributors for the original
+          project.
+        </p>
+        <a
+          href={website.basedOn.byUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono text-primary hover:underline"
+        >
+          Visit GeeksBlaBla
+        </a>
+      </div>
     </div>
   </div>
 
@@ -91,10 +97,18 @@ const socialLinks = [
     <div
       class="mx-auto flex max-w-screen-xl flex-col gap-y-4 px-4 py-6 text-center text-sm text-muted-foreground sm:px-6 lg:flex-row lg:justify-between lg:text-left xl:px-8"
     >
-      <p>Made with ❤️ by Geeksblabla Team</p>
       <p>
-        © {new Date().getFullYear()} Geeksblabla | All Rights Reserved
+        © {new Date().getFullYear()} stateofsec.ma · <Fragment
+          set:html={authorLinks}
+                                                     />
       </p>
+      <button
+        type="button"
+        data-consent-settings
+        class="hover:text-foreground"
+      >
+        [Cookie settings]
+      </button>
     </div>
   </div>
 </footer>

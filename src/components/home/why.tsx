@@ -79,28 +79,28 @@ function ChartIcon() {
 
 export function Why() {
   return (
-    <div className="relative w-screen z-0">
+    <div className="relative w-full z-0">
       <div className="mx-auto py-24 w-full max-w-screen-xl px-4 relative z-[99]">
         <div className="w-20 mb-10 mx-auto border-b-4 border-primary"></div>
         <h2 className="text-2xl md:text-3xl font-sans font-bold mb-12 text-center">
-          Why Join Our Awesome Survey?
+          Why Take Part?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card title="Share Knowledge" icon={<BrainIcon />}>
-            Be part of creating a global report that sheds light on Morocco's
-            development scene. Your insights matter!
+          <Card title="Map the Field" icon={<BrainIcon />}>
+            Help build an honest picture of Morocco's security workforce: roles,
+            skills, paths into the field and working conditions.
           </Card>
-          <Card title="Boost Community Impact" icon={<UsersIcon />}>
-            Help local communities make informed decisions about learning paths
-            and create a bigger impact together.
+          <Card title="Close the Gaps" icon={<UsersIcon />}>
+            Show where training, hiring and community support fall short, so
+            schools, employers and meetups can respond with real numbers.
           </Card>
-          <Card title="Get Inspired" icon={<LightbulbIcon />}>
-            Discover what others are thinking and find exciting new tools and
-            solutions to level up your work.
+          <Card title="Learn From Peers" icon={<LightbulbIcon />}>
+            See which tools, practices and certifications other practitioners
+            actually rely on.
           </Card>
-          <Card title="Spot Market Trends" icon={<ChartIcon />}>
-            Stay ahead of the curve with insights on hot technologies and see how
-            you stack up against other developers.
+          <Card title="Benchmark Yourself" icon={<ChartIcon />}>
+            Compare your role, experience and setup with the rest of the
+            community once the results are out.
           </Card>
         </div>
       </div>

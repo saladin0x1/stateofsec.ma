@@ -1,0 +1,17 @@
+---
+import { website } from "@/website";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+// A root shell prompt. One string so template formatting cannot add visible spaces inside it
+const wordmark = `<span class="text-primary">root@stateofsec.ma</span>:<span class="text-accent">~</span># <span class="text-primary cursor-blink">_</span>`;
+---
+
+<span class={`font-mono font-bold tracking-tight whitespace-nowrap ${className}`}>
+  <span aria-hidden="true" set:html={wordmark} />
+  <span class="sr-only">{website.name}</span>
+</span>

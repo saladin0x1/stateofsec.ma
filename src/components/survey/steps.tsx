@@ -78,7 +78,7 @@ function Step({
             index === selectedIndex ? "inline " : "hidden md:inline "
           }   font-semibold ${color} capitalize ml-2`}
         >
-          {label.replaceAll("ai", "AI")}
+          {label}
         </span>
       </div>
       {index < totalSections - 1
@@ -104,7 +104,7 @@ export function Steps() {
   const visibleSections = useMemo(
     () =>
       context.visibleSectionIndices.map(idx => ({
-        label: context.sections[idx].label,
+        label: context.sections[idx].title,
         originalIdx: idx
       })),
     [context.sections, context.visibleSectionIndices]

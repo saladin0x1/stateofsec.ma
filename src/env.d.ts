@@ -14,8 +14,11 @@ interface ImportMetaEnv {
   readonly PUBLIC_FIREBASE_APP_ID: string;
 
   // captcha
-  readonly CAPTCHA_ENABLED: string;
-  readonly PUBLIC_TURNSTILE_SECRET_KEY: string;
+  readonly PUBLIC_TURNSTILE_SITE_KEY?: string;
+
+  // analytics, loaded only after cookie consent
+  readonly PUBLIC_POSTHOG_KEY?: string;
+  readonly PUBLIC_POSTHOG_HOST?: string;
 }
 
 interface ImportMeta {

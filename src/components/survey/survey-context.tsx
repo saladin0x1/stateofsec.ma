@@ -2,20 +2,29 @@ import type { ReactNode } from "react";
 import type { SurveyContext } from "./survey-machine";
 import type { SurveyQuestionsYamlFile } from "@/lib/validators/survey-schema";
 import { createActorContext } from "@xstate/react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { surveyMachine } from "./survey-machine";
 
 const STORAGE_KEY = "survey-state";
-const STORAGE_VERSION = 1;
 
 interface PersistedState {
-  version: number;
+  version: string;
   currentSectionIdx: number;
   currentQuestionIdx: number;
   answers: Record<string, number | number[] | null | string>;
 }
 
-function loadPersistedState(): Partial<SurveyContext> | null {
+// Saved progress is only restored for the exact same questions: any survey edit changes
+// question ids and positions, and resuming at a stale position can crash the form
+function getStorageVersion(sections: SurveyQuestionsYamlFile[]) {
+  const text = JSON.stringify(sections);
+  let hash = 0;
+  for (let i = 0; i < text.length; i++)
+    hash = (Math.imul(31, hash) + text.charCodeAt(i)) | 0;
+  return hash.toString(36);
+}
+
+function loadPersistedState(version: string): Partial<SurveyContext> | null {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored)
@@ -24,7 +33,7 @@ function loadPersistedState(): Partial<SurveyContext> | null {
     const parsed = JSON.parse(stored) as PersistedState;
 
     // Version check - clear if outdated
-    if (parsed.version !== STORAGE_VERSION) {
+    if (parsed.version !== version) {
       localStorage.removeItem(STORAGE_KEY);
       return null;
     }
@@ -42,10 +51,10 @@ function loadPersistedState(): Partial<SurveyContext> | null {
   }
 }
 
-function persistState(context: SurveyContext) {
+function persistState(context: SurveyContext, version: string) {
   try {
     const toPersist: PersistedState = {
-      version: STORAGE_VERSION,
+      version,
       currentSectionIdx: context.currentSectionIdx,
       currentQuestionIdx: context.currentQuestionIdx,
       answers: context.answers
@@ -75,7 +84,7 @@ interface SurveyProviderProps {
 }
 
 export function SurveyProvider({ sections, children }: SurveyProviderProps) {
-  const persisted = loadPersistedState();
+  const persisted = loadPersistedState(getStorageVersion(sections));
 
   return (
     <SurveyMachineContext.Provider
@@ -96,15 +105,16 @@ export function SurveyProvider({ sections, children }: SurveyProviderProps) {
 function PersistenceHandler() {
   const context = SurveyMachineContext.useSelector(state => state.context);
   const value = SurveyMachineContext.useSelector(state => state.value);
+  const version = useMemo(() => getStorageVersion(context.sections), [context.sections]);
 
   useEffect(() => {
     if (value === "complete") {
       clearPersistedState();
     }
     else {
-      persistState(context);
+      persistState(context, version);
     }
-  }, [context, value]);
+  }, [context, value, version]);
 
   return null;
 }

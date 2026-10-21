@@ -1,0 +1,12 @@
+rules_version = '2';
+
+// Only the server (service account) reads and writes survey data, and service accounts
+// bypass these rules. Browsers get no direct access to Firestore at all.
+// Deploy from the Firebase console (Firestore > Rules) or with `firebase deploy --only firestore:rules`.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

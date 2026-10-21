@@ -1,6 +1,6 @@
 # Architecture
 
-Detailed codebase structure and file organization for StateOfDev.ma.
+Codebase structure and file organization for stateofsec.ma.
 
 ## Directory Structure
 
@@ -8,62 +8,59 @@ Detailed codebase structure and file organization for StateOfDev.ma.
 YAML files defining survey questions organized by sections.
 
 - Format: `{position}-{section-name}.yml`
-- Structure: `{ title, label, position, questions: [{ label, required, multiple, choices }] }`
-- Questions referenced by ID: `{section-label}-q-{index}` (e.g., `profile-q-0`)
+- Structure: `{ title, label, position, showIf?, questions: [{ label, required, multiple, choices, showIf? }] }`
+- Questions referenced by ID: `{section-label}-q-{index}` (e.g., `profile-q-0`); ids are positional
+- Loaded once in `src/lib/survey.ts` and shared by the survey page and the server
 
 ### `/results/{year}/`
-Exported survey results and metadata.
+Exported survey results and metadata (none published yet).
 
-- `results.json` - Raw response data (user answers indexed by question IDs)
-- `questions.json` - Generated questions map with choices for visualization
-- Licensed under ODC-ODbL License
+- `data/results.json` - Raw response data (answers indexed by question ids)
+- `data/questions.json` - Questions map with choices, generated from the survey YAML
+- `sections/*.mdx` - Report sections using `<Chart id="..." />`
+- Licensed under ODC-ODbL
 
 ### `/src/actions/`
-Astro server actions (API endpoints).
+Astro server actions.
 
-- `init-session.ts` - Initialize anonymous Firebase session with CAPTCHA validation
-- `submit-answers.ts` - Validate session and save answers to Firestore
-- `remove-session.ts` - Clean up session data
-- `index.ts` - Exports all actions as `server` object
+- `init-session.ts` - Checks the Turnstile captcha and the Firebase ID token, then sets the signed session cookie
+- `submit-answers.ts` - Checks the session, validates answers against the survey (`src/lib/answers.ts`) and saves them
+- Both reject requests when `SURVEY_OPEN` is false (`src/site-config.mjs`)
 
-### `/src/lib/firebase/`
-Firebase integration.
-
-- `server.ts` - Firebase Admin SDK initialization (supports both `import.meta.env` and `process.env`)
-- `client.ts` - Client-side Firebase SDK initialization
-- `database.ts` - Firestore operations (save/export results)
+### `/src/lib/`
+- `firebase/client.ts` - Browser Firebase SDK (anonymous sign-in)
+- `firebase/server.ts` - ID token verification and Google access tokens with `jose` (Workers-compatible)
+- `firebase/database.ts` - Firestore REST writes (merge via update mask; masked fields absent from the body are deleted)
+- `session.ts` - HS256-signed session cookie (`httpOnly`, `secure` in production, `sameSite=lax`, 5 days)
+- `captcha.ts` - Turnstile siteverify, required in production
+- `answers.ts` - Server-side answer validation and hidden-question cleanup
+- `conditions.ts` - `showIf` evaluation shared by client and server
+- `secrets.ts` - Request-time secret access (`getSecret`)
 
 ### `/src/components/survey/`
 Survey form components.
 
-- `survey-form.tsx` - Main form orchestrator with progress tracking
-- `section.tsx` - Section-level form with validation
-- `question.tsx` - Individual question renderer (radio, checkbox, textarea for "other" options)
-- Form state: answers stored as `{ "question-id": choiceIndex }` where `choiceIndex` is number (single) or array (multiple)
+- `survey-machine.ts` - XState machine driving navigation, validation and submission
+- `survey-context.tsx` - Actor context and progress persisted in localStorage (keyed by a hash of the questions)
+- `survey-form.tsx`, `question.tsx`, `steps.tsx`, `survey-controls.tsx` - UI
+- Answers are stored as `{ "question-id": choiceIndex }`, a number (single) or an array (multiple)
 
-### `/src/components/chart/`
-Results visualization.
+### `/src/components/chart/` and `/src/components/report/`
+Results visualization, used once a year's results are published.
 
-- `utils.ts` - Core data processing logic (`getQuestion()` function)
-- `chart.tsx` - Main chart component wrapper
-- `bar-chart.tsx` / `pie-chart.tsx` - Chart implementations
-- Data flow: Load results.json + questions.json → `getQuestion(id)` → render charts
+- `chart/data.ts` - Registry of published years (empty until the first report)
+- `chart/utils.ts` - `getQuestion()` aggregation
+- `report/index.astro` - Renders a year's MDX sections
 
 ### `/src/pages/`
-Astro pages (hybrid rendering).
-
-- `index.astro` - Redirects to `/home`
-- `home.astro` - Landing page
-- `before-start.astro` - Pre-survey CAPTCHA and session initialization
-- `survey.astro` - Survey form (protected by session check)
-- `thanks.astro` - Post-survey thank you page with social sharing
-- `{year}.astro` - Results pages for each survey year
-- `playground.astro` - Interactive data exploration with filters
-- `/api/` - API endpoints
+- `index.astro` - Landing page
+- `faq.astro` - FAQ
+- `before-start.astro` - Rules, captcha and session start
+- `survey.astro` - Survey form (requires a session)
+- `thanks.astro` - Thank-you page with share posts (requires a session)
 
 ### `/scripts/`
-Utility scripts.
-
-- `export-results.ts` - Fetch all Firestore responses and generate results.json
-- `generate-questions.ts` - Parse YAML files and create questions.json
-- `query-results.ts` - CLI to query and filter survey results (see [docs/query-results.md](./query-results.md))
+- `export-results.ts` - Dump Firestore responses to results.json (Node, `firebase-admin`)
+- `generate-questions.ts` - Create questions.json from the survey YAML
+- `query-results.ts` - Query results from the CLI (see [query-results.md](./query-results.md))
+- `validate-survey.ts` - Validate the survey YAML

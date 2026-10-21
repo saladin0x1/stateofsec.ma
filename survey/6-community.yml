@@ -1,89 +1,128 @@
-title: Community
+title: Community & reality
 label: community
 position: 6
 questions:
-  - label: What prevents you from participating more in the Moroccan tech community?
+  - label: How do you engage with the Moroccan security community?
     required: true
     multiple: true
     choices:
-      - Lack of time due to work commitments
-      - Don't know where to find communities/events
-      - Events are too far from my location
-      - Language barriers (prefer Arabic/Darija content)
-      - Content level doesn't match my experience (too basic/too advanced)
-      - Financial constraints (event costs, travel)
-      - I'm already active on the community
+      - Attend meetups / conferences
+      - Member of online groups (Discord / Telegram / WhatsApp)
+      - Play on a CTF team
+      - Contribute to open source
+      - Write / blog / create content
+      - Speak at events
+      - Mentor others
+      - I don't engage yet
       - Other
 
-  - label: What would make you more likely to attend tech events in Morocco?
+  - label: Which events or communities do you follow or take part in?
+    required: false
+    multiple: true
+    choices:
+      - Local CTF teams
+      - University cybersecurity clubs
+      - OWASP chapter
+      - ISACA / professional associations
+      - Online Moroccan security groups
+      - International conferences / communities
+      - GeeksBlaBla
+      - I don't follow any
+      - Other
+
+  - label: What prevents you from engaging more with the community?
     required: true
     multiple: true
     choices:
-      - More events in my city/region
-      - Better quality speakers/content
-      - Workshops with hands-on practice
-      - Better networking opportunities
-      - Lower or no cost
-      - Better timing (weekends, evenings)
+      - Lack of time
+      - Few local events
+      - Events too far from my city
+      - Language barriers
+      - Content too basic or too advanced
+      - Cost
+      - Don't know where to find them
+      - I'm already very active
       - Other
 
-  - label: How has the Moroccan tech community helped your career?
+  - label: How familiar are you with Morocco's cyber regulations (DGSSI directives, Law 09-08 on data protection)?
     required: true
-    multiple: true
     choices:
-      - Learned skills that advanced my career
-      - Got mentorship from community members
-      - Built professional network
-      - Gained confidence through speaking/contributing
-      - Discovered new opportunities (jobs, projects, partnerships)
-      - It hasn't helped my career yet
-      - Other
+      - Very familiar, I work with them
+      - Somewhat familiar
+      - Heard of them, but don't know the details
+      - Not familiar at all
 
-  - label: What do you MOST need from the Moroccan tech community right now (pick 3 max)?
+  - label: How would you rate Morocco's overall cybersecurity maturity as a country?
     required: true
-    multiple: true
     choices:
-      - Job opportunities and career guidance
-      - Mentorship from experienced developers
-      - Learning resources in Arabic/Darija
-      - Networking with other developers
-      - Access to advanced technical content
-      - Collaboration opportunities on projects
-      - Other
+      - Very weak
+      - Weak
+      - Average
+      - Strong
+      - Very strong
+      - Not sure
 
-  - label: What type of community content would be MOST valuable to you (pick 3 max)?
-    required: true
-    multiple: true
+  - label: You find a critical vulnerability in a Moroccan bank or government system tomorrow. What would you actually do?
+    required: false
     choices:
-      - Technical workshops (hands-on coding)
-      - Case studies from Moroccan companies
-      - Career development sessions (interviews, negotiations, CV)
-      - Open source contribution guides
-      - Architecture and system design discussions
-      - Soft skills (communication, leadership, teamwork)
-      - Freelancing and entrepreneurship guidance
-      - Other
+      - Report it through an official channel
+      - Report it anonymously or under a pseudonym
+      - Quietly tell someone I know there, off the record
+      - Nothing, it's too risky legally
+      - Post it publicly to force a fix
+      - Keep it or sell it
+      - Prefer not to say
 
-  - label: What prevents you from contributing to open source?
-    required: true
-    multiple: true
+  - label: Have you ever found a vulnerability in a Moroccan organization's system and chosen NOT to report it?
+    required: false
     choices:
-      - Don't know how to get started
-      - Afraid my code isn't good enough
-      - Don't have time
-      - Don't understand how to find projects to contribute to
-      - Language barriers (most projects in English)
-      - I already contribute
-      - Other
+      - Yes, I feared legal trouble
+      - Yes, there was no clear or safe way to report it
+      - Yes, they wouldn't have fixed it anyway
+      - No, I reported it
+      - I've never found one
+      - Prefer not to say
 
-  - label: "When it comes to IT, what is your primary social network?"
-    required: true
-    multiple: false
+  - label: When you reported a vulnerability to a Moroccan organization, what did you get back?
+    required: false
     choices:
-      - LinkedIn
-      - X (Twitter)
-      - Discord
-      - Reddit
-      - Instagram
-      - YouTube
-      - Other
+      - Thanked or rewarded
+      - Fixed silently, no credit
+      - Ignored, no response
+      - Told to stay quiet
+      - A threat or legal warning
+      - I've never reported one
+      - Prefer not to say
+
+  - label: Do you believe Moroccan law protects good-faith security researchers?
+    required: false
+    choices:
+      - Yes
+      - No, the law treats us like criminals
+      - There is no clear law
+      - No idea
+
+  - label: Do you work under a pseudonym or handle to protect your real identity?
+    required: false
+    choices:
+      - Yes, always
+      - Sometimes
+      - No
+
+  - label: Does your employer actually fix the vulnerabilities you report internally?
+    required: false
+    choices:
+      - Always or usually
+      - Rarely
+      - They ignore them
+      - I've been told to keep quiet about them
+      - Not applicable
+      - Prefer not to say
+
+  - label: Have you ever been pressured to hide or downplay a security incident or breach?
+    required: false
+    choices:
+      - Yes
+      - No
+      - I've seen it happen to others
+      - Prefer not to say

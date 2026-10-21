@@ -7,6 +7,7 @@ CSS variable-based theme system supporting light/dark modes with full Tailwind i
 ### CSS Variables (`src/globals.css`)
 
 - Light and dark theme color definitions in `:root` and `.dark` selectors
+- Palette: terminal green primary, amber secondary, cyan accent on a near-black (dark) or pale green-gray (light) background. Text pairs are checked at WCAG AA (>= 4.5:1) and borders at >= 3:1
 - Semantic color variables: `--primary`, `--secondary`, `--background`, `--foreground`, `--muted`, `--accent`, `--destructive`, `--border`, `--input`, `--ring`
 - Extended chart palette: `--chart-1` through `--chart-10` for data visualization
 - Utility variables: `--border-width`, `--focus-ring-width`, `--radius`, `--spacing`
@@ -23,7 +24,7 @@ CSS variable-based theme system supporting light/dark modes with full Tailwind i
 ### Theme Script (`src/components/layout.astro`)
 
 - Inline script runs before page render to prevent FOUC
-- Checks localStorage first, falls back to system preference
+- Checks localStorage first, falls back to dark
 - Listens for system theme changes
 - Automatically applies `.dark` class to `<html>`
 
@@ -31,8 +32,8 @@ CSS variable-based theme system supporting light/dark modes with full Tailwind i
 
 ### Always use semantic theme colors instead of hardcoded values
 
-- ✅ `bg-primary text-primary-foreground` (adapts to theme)
-- ❌ `bg-emerald-600 text-white` (hardcoded, breaks theme)
+- Do: `bg-primary text-primary-foreground` (adapts to theme)
+- Don't: `bg-emerald-600 text-white` (hardcoded, breaks theme)
 
 ### Common Patterns
 
@@ -65,10 +66,10 @@ CSS variable-based theme system supporting light/dark modes with full Tailwind i
 - `src/globals.css` - CSS variables and theme definitions
 - `tailwind.config.mjs` - Tailwind theme configuration
 - `src/components/layout.astro` - Theme script
-- `src/components/theme-toggle.tsx` - Toggle component
+- `src/components/theme-toggle.astro` - Toggle component
 
 ### Components
 
 - Chart components: `bar-chart.tsx`, `pie-chart.tsx`, `chart.tsx`, `share-buttons.tsx`, `chart-actions.tsx`
-- Survey components: `survey-form.tsx`, `section.tsx`, `question.tsx`, `steps.tsx`
+- Survey components: `survey-form.tsx`, `question.tsx`, `choice.tsx`, `steps.tsx`, `survey-controls.tsx`
 - Navigation: `header.astro`, `header-link.astro`, `footer.astro`

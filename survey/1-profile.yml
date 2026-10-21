@@ -36,94 +36,61 @@ questions:
       - Europe
       - "US & Canada"
       - Middle East
-      - Others
-
-  - label: What is your occupation?
-    required: true
-    choices:
-      - Back-end developer
-      - Full-stack developer
-      - Front-end developer
-      - Desktop applications developer
-      - Mobile developer
-      - Embedded applications/devices developer
-      - QA/test Developer
-      - Game/graphics Developer
-      - DevOps specialist
-      - Database administrator
-      - Designer
-      - System administrator
-      - Data/business analyst
-      - Data scientist or machine learning specialist
-      - Data engineer
-      - Academic researcher
-      - Educator
-      - Engineering manager
-      - Product manager
-      - Scientist
-      - Site reliability engineer
-      - Senior executive/VP
-      - Marketing/sales professional
-      - Network engineer
-      - Security specialist
-      - IT specialist
-      - ERP Consultant
-      - Blockchain developer
-      - AI engineer
-      - Cloud architect
-      - Student (coding professionally)
-
-  - label: What is/was your coding education background?
-    required: true
-    choices:
-      - Self-taught (no formal CS education)
-      - University/Public school - Bac +2/+3 (Bachelor's)
-      - University/Public school - Bac +5 (Master's)
-      - University/Public school - Bac +8 (Doctoral)
-      - Private engineering/tech school
-      - Coding school (1337, YouCode, Solicode, etc.)
-      - Vocational/Technical training
-      - Other field's diploma (career transition)
+      - Other African country
       - Other
 
-  - label: How many years have you been coding professionally?
+  - label: Which best describes you?
     required: true
     choices:
-      - "I don't have any professional coding experience"
+      - Working professional in cybersecurity
+      - IT or developer moving into security
+      - Student learning cybersecurity
+      - Researcher or academic
+      - Hobbyist or enthusiast
+      - Looking for my first security role
+
+  - label: How many years of experience do you have in cybersecurity?
+    required: true
+    choices:
+      - No professional experience yet
       - Less than a year
       - 1-2 years
       - 3-4 years
       - 5-6 years
       - 7-10 years
-      - 11-16 years
+      - 11-15 years
       - 16+ years
 
-  - label: Do you code outside of work or studies?
+  - label: What is your educational background?
     required: true
-    multiple: true
     choices:
-      - No
-      - Yes, occasionally for fun or learning
-      - Yes, for open source contributions
-      - Yes, for profit (freelance, products, services)
-      - Yes, for portfolio/career building
+      - Self-taught (no formal degree in the field)
+      - University/public school - Bac +2/+3
+      - University/public school - Bac +5 (engineering/Master's)
+      - University/public school - Bac +8 (Doctoral)
+      - Private engineering or tech school
+      - Coding school (1337, YouCode, Solicode, etc.)
+      - Dedicated cybersecurity program or academy
+      - Diploma in another field (career switch)
+      - Other
 
-  - label: Do you have any plans to work outside Morocco?
+  - label: What is your current employment situation?
+    required: true
+    choices:
+      - Full-time employee in Morocco
+      - Full-time employee abroad
+      - Freelancer or consultant
+      - Founder or running my own company
+      - Internship or apprenticeship
+      - Student (not working)
+      - Looking for work
+      - Other
+
+  - label: Do you have plans to work outside Morocco?
     required: true
     choices:
       - Yes, in the next 12 months
       - Yes, in the next 24 months
       - Still hesitating
-      - Currently working outside Morocco
+      - Already working abroad
       - No
-
-  - label: If you are working abroad, do you have any plans to come back to Morocco?
-    showIf:
-      question: profile-q-7
-      equals: 3
-    choices:
-      - Yes, within the next 12 months
-      - Yes, within the next 24 months
-      - Yes, but not in the near future
-      - Still hesitating
-      - No, I plan to stay abroad

@@ -1,26 +1,42 @@
 ---
+import { website } from "@/website";
 import FaqItem from "./faq-item.astro";
+
+function link(href: string, label: string) {
+  return `<a href='${href}' target='_blank' rel='noopener noreferrer' class='text-primary hover:opacity-90'>${label}</a>`;
+}
+
+const authors = website.authors
+  .map(author => link(author.url, author.handle))
+  .join(" and ");
 
 const faqs = [
   {
     question: "Who runs this survey?",
-    answer:
-      "StateOfDev.ma is one of Geeksblabla community projects. We are a group of Moroccan developers who are passionate about technology and open source."
+    answer: `${website.name} is an independent, open source project by ${authors}. It is built on ${link(website.basedOn.url, website.basedOn.name)}, the developer survey run by the ${link(website.basedOn.byUrl, website.basedOn.by)} community. Their open source code and survey format made this project possible.`
   },
   {
-    question: "How will this data be used?",
+    question: "Who should take part?",
     answer:
-      "All data collected will be released publicly. It will then become a resources for developers to check the last trends in Morocco as well as companies to check the current state of the Moroccan developer community."
+      "Anyone working or studying in cybersecurity in Morocco, and Moroccans doing security work abroad: pentesters, SOC and incident response, GRC and compliance, AppSec, cloud and infrastructure security, researchers and students. Developers and sysadmins who carry security duties are welcome too."
+  },
+  {
+    question: "Is it anonymous?",
+    answer:
+      "We never ask for your name or email. Answers are stored against a random anonymous session, which we only use to avoid spam and duplicate submissions. Please keep personal or identifying details out of free-text answers. Analytics (PostHog) only runs if you accept it in the cookie banner."
+  },
+  {
+    question: "How will the data be used?",
+    answer:
+      "The results are published as an open report, and the answers are released as open data in the GitHub repository, so anyone can check the numbers or run their own analysis."
   },
   {
     question: "When will the results be released?",
-    answer:
-      "We will release the results after 2 weeks of the survey ending. We will also host a special Geeksblabla episode to discuss the results. You can watch it on our <a href='https://www.youtube.com/c/GeeksBlaBla01' target='_blank' rel='noopener noreferrer' class='text-primary hover:opacity-90'>YouTube channel</a>. Meanwhile, you can read last year's reports."
+    answer: `After the survey closes and the data has been checked. ${link(website.repoGithub, "Watch the GitHub repository")} to get notified.`
   },
   {
-    question: "How can i contribute?",
-    answer:
-      "The project is open source and hosted on Github. You can contribute by opening issues or pull requests on our <a href='https://github.com/geeksblabla/stateofdev.ma' target='_blank' rel='noopener noreferrer' class='text-primary hover:opacity-90'>GitHub repository</a>. You can also help us by sharing the survey with your friends or write about the results on social media to help us understand the Moroccan developer community better."
+    question: "How can I contribute?",
+    answer: `The project is open source. Suggest questions, report problems or send improvements through ${link(website.repoGithub, "GitHub")}, and share the survey with your colleagues, your team and your CTF crew.`
   }
 ];
 ---
@@ -30,13 +46,13 @@ const faqs = [
     Frequently Asked Questions
   </h2>
   <p class="text-center max-w-2xl mx-auto">
-    Here are some frequently asked questions about the State of Dev Morocco
-    survey. If you have any other questions, please <a
-      href="https://github.com/geeksblabla/stateofdev.ma"
+    Answers to common questions about the {website.name} survey. Something
+    missing? <a
+      href={`${website.repoGithub}/issues`}
       target="_blank"
       class="text-primary hover:opacity-90"
       rel="noopener noreferrer"
-                                                    >open an issue</a
+             >Open an issue</a
     >.
   </p>
   <div class="space-y-4 pt-8">

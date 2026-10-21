@@ -1,460 +1,107 @@
-title: Tech
+title: Tools & tech
 label: tech
 position: 5
 questions:
-  - label: What are the programming languages you like the most?
-    required: true
-    multiple: true
-    choices:
-      - JavaScript
-      - HTML/CSS 😉
-      - SQL
-      - Python
-      - Java
-      - Bash/Shell/PowerShell
-      - C#
-      - PHP
-      - TypeScript
-      - C++
-      - C
-      - Go
-      - Kotlin
-      - Ruby
-      - Assembly
-      - VBA
-      - Swift
-      - R
-      - Rust
-      - Objective-C
-      - Dart
-      - Scala
-      - Perl
-      - Haskell
-      - Julia
-      - Elixir
-      - Zig
-      - Solidity
-      - Lua
-      - V
-      - F#
-      - Other
-
-  - label: What are the programming languages you want to learn next?
-    required: false
-    multiple: true
-    choices:
-      - JavaScript
-      - HTML/CSS 😉
-      - SQL
-      - Python
-      - Java
-      - Bash/Shell/PowerShell
-      - C#
-      - PHP
-      - TypeScript
-      - C++
-      - C
-      - Go
-      - Kotlin
-      - Ruby
-      - Assembly
-      - VBA
-      - Swift
-      - R
-      - Rust
-      - Objective-C
-      - Dart
-      - Scala
-      - Perl
-      - Haskell
-      - Julia
-      - Elixir
-      - Zig
-      - Solidity
-      - Lua
-      - V
-      - F#
-      - Other
-
-  - label: What are the programming languages you are using on a daily basis?
-    required: true
-    multiple: true
-    choices:
-      - JavaScript
-      - HTML/CSS 😉
-      - SQL
-      - Python
-      - Java
-      - Bash/Shell/PowerShell
-      - C#
-      - PHP
-      - TypeScript
-      - C++
-      - C
-      - Go
-      - Kotlin
-      - Ruby
-      - Assembly
-      - VBA
-      - Swift
-      - R
-      - Rust
-      - Objective-C
-      - Dart
-      - Scala
-      - Perl
-      - Haskell
-      - Julia
-      - Elixir
-      - Zig
-      - Solidity
-      - Lua
-      - V
-      - F#
-      - Other
-
-  - label: What are the front-end frameworks/libraries you are using on a daily basis?
-    required: false
-    multiple: true
-    choices:
-      - jQuery
-      - React.js
-      - Angular
-      - Vue.js
-      - Angular.js
-      - Gatsby
-      - Ember.js
-      - Backbone.js
-      - Preact
-      - Next.js
-      - Svelte
-      - Foundation
-      - Alpine.js
-      - Remix
-      - Solid.js
-      - Astro
-      - Qwik
-      - Htmx
-      - Nuxt.js
-      - SvelteKit
-      - Lit
-      - Fresh
-      - Stencil
-      - Other
-
-  - label: What are the front-end frameworks/libraries you want to learn next?
-    required: false
-    multiple: true
-    choices:
-      - jQuery
-      - React.js
-      - Angular
-      - Vue.js
-      - Angular.js
-      - Gatsby
-      - Ember.js
-      - Backbone.js
-      - Preact
-      - Next.js
-      - Svelte
-      - Foundation
-      - Alpine.js
-      - Remix
-      - Solid.js
-      - Astro
-      - Qwik
-      - Htmx
-      - Nuxt.js
-      - SvelteKit
-      - Lit
-      - Fresh
-      - Stencil
-      - Other
-
-  - label: What approach do you use for styling your web apps?
-    required: false
-    multiple: true
-    choices:
-      - CSS
-      - CSS Frameworks (Bootstrap, Material UI ...)
-      - CSS in JS (Styled Components, Emotion ...)
-      - CSS Preprocessor (Sass, Less ...)
-      - CSS Modules
-      - Tailwind CSS
-      - Shadcn UI
-      - UnoCSS
-      - Panda CSS
-      - Vanilla Extract
-      - Other
-
-  - label: What are the backend frameworks you are using on a daily basis?
-    required: false
-    multiple: true
-    choices:
-      - .NET
-      - Spring Ecosystem
-      - Micronaut
-      - Quarkus
-      - Jakarta EE / Java EE
-      - Django
-      - Flask
-      - Laravel
-      - Symfony
-      - Ruby on Rails
-      - Sinatra
-      - FastAPI
-      - Express.js
-      - Nest.js
-      - Sails.js
-      - Serverless framework
-      - Serverless technology (Vercel,Netlify...)
-      - Headless CMS (Strapi,KeystoneJS,Ghost ...)
-      - Fastify
-      - AdonisJs
-      - Hono
-      - Elysia
-      - tRPC
-      - Gin
-      - Fiber
-      - Echo
-      - Phoenix
-      - Ktor
-      - Actix
-      - Axum
-      - Other
-
-  - label: What are the backend frameworks you want to learn next?
-    required: false
-    multiple: true
-    choices:
-      - .NET
-      - Spring Ecosystem
-      - Micronaut
-      - Quarkus
-      - Jakarta EE / Java EE
-      - Django
-      - Flask
-      - Laravel
-      - Symfony
-      - Ruby on Rails
-      - Sinatra
-      - FastAPI
-      - Express.js
-      - Nest.js
-      - Sails.js
-      - Serverless framework
-      - Serverless technology (Vercel,Netlify...)
-      - Headless CMS (Strapi,KeystoneJS,Ghost ...)
-      - Fastify
-      - AdonisJs
-      - Hono
-      - Elysia
-      - tRPC
-      - Gin
-      - Fiber
-      - Echo
-      - Phoenix
-      - Ktor
-      - Actix
-      - Axum
-      - Other
-
-  - label: What are the platforms and tools you are using on a daily basis?
-    required: true
-    multiple: true
-    choices:
-      - Node.js
-      - .NET
-      - JVM
-      - PHP
-      - GraalVM
-      - Pandas
-      - TensorFlow
-      - Docker
-      - Kubernetes
-      - React Native
-      - Unity 3D
-      - Configuration Management(Ansible, Puppet...)
-      - Flutter
-      - Terraform
-      - Apache Spark
-      - Bun Js
-      - Deno Js
-      - No-code Platforms (e.g., Appgyver, Glide)
-      - Low-code Platforms (e.g., PowerApps, Zoho Creator)
-      - Website Builders (e.g., Webflow, Wix)
-      - Vite
-      - Android Studio
-      - Xcode
-      - Pytorch
-      - Langchain
-      - Turborepo
-      - Nx
-      - Prisma
-      - Drizzle
-      - GraphQL
-      - Apollo
-      - Tauri
-      - Electron
-      - Cloudflare Workers
-      - Other
-
-  - label: What are the platforms and tools you want to learn next?
-    required: true
-    multiple: true
-    choices:
-      - Node.js
-      - .NET
-      - JVM
-      - PHP
-      - GraalVM
-      - Pandas
-      - TensorFlow
-      - Docker
-      - Kubernetes
-      - React Native
-      - Unity 3D
-      - Configuration Management(Ansible, Puppet...)
-      - Flutter
-      - Terraform
-      - Apache Spark
-      - Bun Js
-      - Deno Js
-      - No-code Platforms (e.g., Appgyver, Glide)
-      - Low-code Platforms (e.g., PowerApps, Zoho Creator)
-      - Website Builders (e.g., Webflow, Wix)
-      - Vite
-      - Android Studio
-      - Xcode
-      - Pytorch
-      - Langchain
-      - Turborepo
-      - Nx
-      - Prisma
-      - Drizzle
-      - GraphQL
-      - Apollo
-      - Tauri
-      - Electron
-      - Cloudflare Workers
-      - Other
-
-  - label: "Your primary Operating System is:"
+  - label: What is your primary operating system for work?
     required: true
     choices:
       - Windows
-      - MacOS
+      - macOS
       - Linux-based
       - Windows + WSL2
+      - Security-focused distro (Qubes, Tails, etc.)
 
-  - label: What is you current IDE or code editor for daily work?
-    required: true
-    multiple: true
-    choices:
-      - Jetbrains (IntelliJ, PhpStorm, Resharper ...)
-      - VS Code
-      - Cursor
-      - Eclipse
-      - Netbeans
-      - Vim
-      - Nvim
-      - Emacs
-      - Sublime
-      - Atom
-      - Notepad++
-      - Cloud based IDE
-      - Zed
-      - Fleet
-      - Visual Studio
-      - Android Studio
-      - Xcode
-      - Other
-
-  - label: What do you do when you get stuck on a problem?
-    required: true
-    multiple: true
-    choices:
-      - Google it
-      - Ask AI assistants (ChatGPT, Cursor, etc.)
-      - Dig in StackOverflow
-      - Do other work and come back later
-      - Watch help/tutorial videos
-      - Call a coworker or friend
-      - Read official documentation
-      - Ask in Discord/Slack communities
-      - Take a break/sleep on it
-      - Create minimal reproduction
-
-  - label: "The production environment you or your team are using is:"
-    multiple: true
-    choices:
-      - Public cloud (AWS/Azure/GCP/Oracle/IBM/etc.)
-      - On-premise
-      - Hybrid Cloud
-      - Shared hosting
-      - Managed PaaS (heroku, app platform, Salesforce, AWS Beanstalk ...)
-
-  - label: What cloud platforms you or your team are using?
+  - label: Which offensive / pentest tools do you use regularly?
     required: false
     multiple: true
     choices:
-      - GCP
+      - Burp Suite
+      - Nmap
+      - Metasploit
+      - Cobalt Strike
+      - Sliver / Mythic (C2)
+      - BloodHound
+      - Impacket
+      - Ghidra
+      - IDA Pro
+      - radare2 / Cutter
+      - x64dbg
+      - Wireshark
+      - sqlmap
+      - ffuf / gobuster
+      - Nuclei
+      - Kali / Parrot toolset
+      - Frida
+      - mimikatz
+      - None
+      - Other
+
+  - label: Which defensive / blue-team tools do you use?
+    required: false
+    multiple: true
+    choices:
+      - Splunk
+      - Elastic / ELK
+      - Microsoft Sentinel
+      - Wazuh
+      - IBM QRadar
+      - CrowdStrike
+      - Microsoft Defender
+      - SentinelOne
+      - Suricata / Snort
+      - Zeek
+      - TheHive / Cortex
+      - MISP
+      - Velociraptor
+      - Sysmon
+      - OSQuery
+      - Nessus / OpenVAS
+      - None
+      - Other
+
+  - label: Which cloud platforms do you secure or work with?
+    required: false
+    multiple: true
+    choices:
       - AWS
       - Azure
-      - Oracle Cloud
-      - IBM Cloud
-      - DigitalOcean
-      - Other Moroccan Cloud providers
-      - Other cloud providers
+      - GCP
+      - Oracle Cloud (OCI)
       - Cloudflare
-      - Vercel
-      - Netlify
-      - Fly.io
-      - Railway
-      - Render
-      - Hetzner
-      - OVH
-      - Linode (Akamai)
+      - On-premise only
+      - Moroccan cloud providers
       - None
-
-  - label: "The production database you or your team are using is:"
-    required: false
-    multiple: true
-    choices:
-      - Oracle Database
-      - Mysql/MariaDB
-      - PostgreSQL
-      - SQL Server
-      - CosmosDB
-      - MongoDB
-      - Redis
-      - DynamoDB
-      - Neo4j
-      - Apache Cassandra
-      - BigTable
-      - SQLite/LibSQL
-      - Vector DBs
-      - Supabase
-      - PlanetScale
-      - Turso
-      - Firestore
-      - CockroachDB
-      - ClickHouse
-      - Elasticsearch
-      - FaunaDB
-      - TimescaleDB
       - Other
 
-  - label: What type of tests do you write?
+  - label: Which scripting / programming languages do you use for security work?
     required: true
     multiple: true
     choices:
-      - Unit tests
-      - Integration tests
-      - End-to-end tests
-      - Acceptance tests
-      - I don't write tests for my code.
-      - Performance/Load testing
-      - Visual regression testing
-      - Security testing
+      - Python
+      - Bash / Shell
+      - PowerShell
+      - Go
+      - C / C++
+      - JavaScript / TypeScript
+      - Rust
+      - Ruby
+      - PHP
+      - Assembly
+      - SQL
+      - None
+      - Other
+
+  - label: How do you use AI tools in your security work?
+    required: true
+    multiple: true
+    choices:
+      - I don't use AI for security work
+      - Research & learning
+      - Writing scripts / tooling
+      - Report writing
+      - Log / alert triage
+      - Phishing / detection analysis
+      - Code review
+      - Threat intel summarization
+      - I'm concerned about the risks
       - Other
