@@ -61,14 +61,34 @@ function writeConsent(value: Consent) {
   catch {}
 }
 
+// The survey flow carries sensitive, potentially identifying answers (region,
+// disclosure history, salary). On those pages we send crash reports only: no
+// pageview, no click autocapture, no session replay, so answer content, location
+// and referrer never reach PostHog. Everywhere else, normal product analytics.
+function isSurveyFlow() {
+  const path = window.location.pathname;
+  return (
+    path.startsWith("/survey")
+    || path.startsWith("/before-start")
+    || path.startsWith("/thanks")
+  );
+}
+
 // posthog-js is only downloaded after consent, so visitors who decline never contact PostHog
 async function startAnalytics() {
   if (!POSTHOG_KEY || posthog)
     return;
+  const surveyFlow = isSurveyFlow();
   const { default: client } = await import("posthog-js");
   client.init(POSTHOG_KEY, {
     api_host: POSTHOG_HOST,
-    defaults: "2026-05-30"
+    // Explicit so the initial pageview always fires
+    capture_pageview: !surveyFlow,
+    // Error tracking: capture unhandled exceptions and promise rejections (kept everywhere)
+    capture_exceptions: true,
+    // Privacy: no click capture or replay on the survey pages
+    autocapture: !surveyFlow,
+    disable_session_recording: surveyFlow
   });
   // A previous withdrawal leaves an opt-out flag behind
   if (client.has_opted_out_capturing())
