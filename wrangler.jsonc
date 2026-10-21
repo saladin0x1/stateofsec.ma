@@ -8,6 +8,10 @@
     "binding": "ASSETS",
     "directory": "./dist"
   },
+  // Dev deployment served at this custom domain (zone stateofsec.ma must be on Cloudflare)
+  "routes": [
+    { "pattern": "dev.stateofsec.ma", "custom_domain": true }
+  ],
   "observability": {
     "enabled": true
   }
