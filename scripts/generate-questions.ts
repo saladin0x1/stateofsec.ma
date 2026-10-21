@@ -83,6 +83,8 @@ async function generate() {
 }
 
 function writeToFile(filename: string, data: Record<string, SurveyQuestion>) {
+  // Create the output directory if it does not exist yet (e.g. results/<year>/data)
+  fs.mkdirSync(path.dirname(filename), { recursive: true });
   fs.writeFile(filename, JSON.stringify(data, null, 2), (err: any) => {
     if (err) {
       console.log(err);
