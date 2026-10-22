@@ -8,7 +8,6 @@ questions:
     choices:
       - Male
       - Female
-      - Prefer not to say
 
   - label: What is your age?
     required: true
