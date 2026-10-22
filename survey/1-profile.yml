@@ -43,7 +43,8 @@ questions:
   - label: What is your highest level of education (completed or in progress)?
     required: true
     choices:
-      - Bac or lower (incl. still at lycée)
+      - Still at lycée / high school
+      - Bac or lower (finished studies)
       - Bac+2 / Bac+3 (BTS, DUT, OFPPT / ISTA, Licence)
       - Bac+5 or higher (engineering, Master's, business school, PhD)
       - Coding school, bootcamp or academy only (1337, YouCode, etc.)
@@ -52,6 +53,9 @@ questions:
   - label: What is your current employment situation?
     required: true
     multiple: false
+    showIf:
+      question: profile-q-4
+      notEquals: 0
     choices:
       - Employee of an organization in Morocco (public or private, incl. nearshore)
       - Employee of a foreign organization (abroad, or remote from Morocco)
