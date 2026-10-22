@@ -32,6 +32,9 @@ questions:
 
   - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty not counted)
     required: true
+    showIf:
+      question: profile-q-1
+      notEquals: 0
     choices:
       - No professional experience yet
       - Less than 2 years
@@ -42,6 +45,9 @@ questions:
 
   - label: What is your highest level of education (completed or in progress)?
     required: true
+    showIf:
+      question: profile-q-1
+      notEquals: 0
     choices:
       - Still at lycée / high school
       - Bac or lower (finished studies)

@@ -122,6 +122,9 @@ questions:
   - label: What are the biggest challenges in the Moroccan security job market? (pick up to 3)
     required: true
     multiple: true
+    showIf:
+      question: profile-q-1
+      notEquals: 0
     choices:
       - Low salaries / talent leaving for abroad
       - Few senior roles
