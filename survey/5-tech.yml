@@ -22,12 +22,12 @@ questions:
       - None of these
       - Other
 
-  - label: Which defensive / blue-team tools do you use?
+  - label: Which defensive / blue-team / GRC tools do you use or practice with?
     required: false
     multiple: true
     showIf:
       question: roles-q-0
-      in: [1, 2, 3, 5, 7, 8]
+      in: [1, 2, 3, 5, 6, 7, 8, 9]
     choices:
       - Splunk
       - Elastic / ELK
@@ -37,26 +37,11 @@ questions:
       - Fortinet (FortiGate, FortiSIEM, FortiEDR)
       - Palo Alto (firewalls, Cortex XDR / XSOAR)
       - EDR (CrowdStrike, SentinelOne, Kaspersky, Trellix)
-      - Suricata / Snort / Zeek
+      - Network analysis (Wireshark, Suricata, Snort, Zeek)
       - TheHive / MISP
       - Nessus / OpenVAS / Qualys
+      - GRC / risk platform (Archer, ServiceNow, Egerie, etc.)
       - None of these
-      - Other
-
-  - label: Which scripting / programming languages do you use for security work?
-    required: true
-    multiple: true
-    choices:
-      - Python
-      - Bash / Shell
-      - PowerShell
-      - Go
-      - C / C++
-      - JavaScript / TypeScript
-      - Rust
-      - SQL
-      - KQL / SPL (SIEM query languages)
-      - None
       - Other
 
   - label: How do you use AI tools for security work or study?
@@ -64,7 +49,7 @@ questions:
     multiple: true
     choices:
       - I don't use AI for security work
-      - Not allowed by my employer
+      - Not allowed by my employer or clients
       - Research & learning
       - Writing or reviewing code / scripts
       - Report writing

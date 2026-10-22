@@ -175,4 +175,31 @@ Model-check (real `evaluateCondition`, all 17,280 fork combinations): 29
 questions, median 21 per person (range 16-27; 24+ only for people who found a
 flaw and withheld some), no dead nodes, no structural or semantic violations.
 
+### Architecture council + synthetic respondents
+
+A five-seat council (tree architect, bug bounty hunter, hiring manager, Moroccan
+sociologist, cyber lawyer) redesigned the tree in two rounds (proposals, then a
+ballot), within Moroccan law and norms:
+
+- Bug bounty fork for everyone, teens included (`roles-q-2`, authorized programs
+  only), unlocking yearly earnings (USD) and "what makes it harder from Morocco"
+  (payouts, KYC, age limits, Office des Changes...).
+- The vuln block only asks about flaws noticed while using a service; the
+  hypothetical "what would you do" is gone; "asked to hide" no longer names
+  authorities.
+- Client location for freelancers and founders; a two-year outlook question;
+  languages cut; certifications merged into one question with "None yet".
+
+Nine synthetic respondents then took the survey (student, teen hunter, junior
+SOC, senior lead, Bac-only public-sector head, OFPPT sysadmin doing security,
+career switcher on regie, auto-entrepreneur freelancer, non-technical GRC).
+Their gaps were fixed inside existing questions: experience counts security as
+part of any job, education asks level only, IT/sysadmin staff fit the network
+domain, income rules for allowances / bounty / freelancers, more Moroccan market
+blockers, GRC and CISOs see a tools list, sector regulators beyond Bank
+Al-Maghrib.
+
+Model-check: 31 questions, median 22 per person (range 17-28), no dead nodes,
+no structural or semantic violations.
+
 Pending: human review (Ashraf + mchklt) before merging to `main`.

@@ -15,11 +15,14 @@ questions:
   - label: Which of these rules have you dealt with in your work?
     required: false
     multiple: true
+    showIf:
+      question: profile-q-5
+      notIn: [5, 6]
     choices:
       - Law 05-20 on cybersecurity / DGSSI directives (DNSSI)
       - maCERT (national CERT)
       - Law 09-08 / CNDP (personal data)
-      - Bank Al-Maghrib security directives
+      - Sector regulator directives (Bank Al-Maghrib, ACAPS, AMMC, ANRT)
       - EU rules through clients (GDPR, NIS2, DORA)
       - None of these
       - Other
@@ -33,65 +36,55 @@ questions:
       - Well
       - Don't know
 
-  - label: You find a critical vulnerability in a Moroccan organization's system (bank, ministry, telecom...) tomorrow. What would you actually do?
-    required: false
-    choices:
-      - Report it to the organization
-      - Report it to maCERT (DGSSI)
-      - Report it anonymously or under a pseudonym
-      - Quietly tell someone I know there, off the record
-      - Do nothing
-      - Post it publicly to force a fix
-      - Prefer not to say
-
-  - label: Outside paid work or an official bug bounty, have you ever come across a security flaw in a Moroccan organization's system?
+  - label: Apart from bug bounty or paid work, have you ever noticed a security flaw in a Moroccan organization's website, app or service while simply using it (as a customer, student or user)?
     required: false
     choices:
       - "Yes"
       - "No"
       - Prefer not to say
 
-  - label: Did you report what you found?
+  - label: Did you report what you noticed?
     required: false
     showIf:
-      question: community-q-4
+      question: community-q-3
       equals: 0
     choices:
-      - Yes, every time
+      - "Yes"
       - Some, not all
-      - No, never
+      - "No"
       - Prefer not to say
 
   - label: Why did you not report (some of) them?
     required: false
     multiple: true
     showIf:
-      question: community-q-5
+      question: community-q-4
       in: [1, 2]
     choices:
+      - Didn't know how or where to report
       - Feared legal trouble
       - No clear or safe way to report
       - They wouldn't have fixed it anyway
       - Not worth the effort
-      - Other
       - Prefer not to say
 
   - label: When you reported, what did you get back?
     required: false
     multiple: true
     showIf:
-      question: community-q-5
+      question: community-q-4
       in: [0, 1]
     choices:
       - Thanked or credited
       - Rewarded (bounty, gift, job offer)
       - Fixed silently, no credit
       - Ignored, no response
+      - Reported to maCERT, no follow-up
       - Told to stay quiet
       - A threat or legal warning
       - Prefer not to say
 
-  - label: Have you ever been pressured (by management, clients or authorities) to hide or downplay a security incident?
+  - label: Have you ever been asked at work to hide or play down a security incident, or to soften a finding in an audit or pentest report? (a bug bounty program's normal disclosure rules don't count)
     required: false
     showIf:
       question: profile-q-5

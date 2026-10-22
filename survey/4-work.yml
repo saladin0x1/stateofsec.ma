@@ -2,7 +2,7 @@ title: Work & market
 label: work
 position: 4
 questions:
-  - label: "Your NET monthly income in MAD (excluding bonuses; freelancers: after business costs; convert if paid in another currency)"
+  - label: "Your usual NET monthly income in MAD (incl. fixed allowances; excl. one-off bonuses and bug bounty; freelancers: average month)"
     required: false
     showIf:
       question: profile-q-5
@@ -20,7 +20,7 @@ questions:
       - "60,000 or more"
       - Prefer not to say
 
-  - label: "Your NET monthly income in EUR (after income tax, excluding bonuses; convert if paid in another currency)"
+  - label: "Your NET monthly income in EUR (after income tax; excl. one-off bonuses and bug bounty; convert if paid in another currency)"
     required: false
     showIf:
       question: profile-q-5
@@ -35,13 +35,12 @@ questions:
       - "10,000 or more"
       - Prefer not to say
 
-  - label: What type of organization do you work for or with?
+  - label: What type of organization do you work for?
     required: false
     showIf:
       question: profile-q-5
-      in: [0, 1, 2, 3, 4, 7]
+      in: [0, 1, 4, 7]
     choices:
-      - Self-employed / independent (various clients)
       - Security firm (MSSP / SOC, integrator, vendor)
       - Big Four / audit & advisory
       - IT services / ESN / nearshore (incl. regie placements)
@@ -53,7 +52,57 @@ questions:
       - Other company (in-house team)
       - Other
 
-  - label: What is holding you back from a security job right now?
+  - label: Where are most of your clients?
+    required: false
+    showIf:
+      question: profile-q-5
+      in: [2, 3]
+    choices:
+      - Morocco
+      - France
+      - Other Europe
+      - Gulf
+      - North America
+      - Rest of Africa
+      - Mostly bug bounty platforms
+      - Mixed
+
+  - label: About how much did you earn from bug bounty in the last 12 months? (USD, before tax)
+    required: false
+    showIf:
+      question: roles-q-2
+      in: [0, 1]
+    choices:
+      - Nothing yet
+      - "Less than $500"
+      - "$500 - $1,999"
+      - "$2,000 - $4,999"
+      - "$5,000 - $19,999"
+      - "$20,000 - $49,999"
+      - "$50,000 or more"
+      - Prefer not to say
+
+  - label: What has made bug bounty harder for you from Morocco?
+    required: false
+    multiple: true
+    showIf:
+      question: roles-q-2
+      in: [0, 1, 2]
+    choices:
+      - Nothing so far
+      - Found no valid bugs / too competitive
+      - No time alongside work or studies
+      - Platform age limit or parental consent
+      - ID (KYC) or tax-form checks
+      - Usual payout (PayPal) unavailable, needed a workaround
+      - Bank blocked, delayed or questioned a transfer
+      - Unclear Office des Changes or tax rules
+      - Fees and exchange-rate losses
+      - No bank account in my own name
+      - Few or no Moroccan programs
+      - Something else
+
+  - label: What makes it hard to start a security career?
     required: false
     multiple: true
     showIf:
@@ -64,6 +113,7 @@ questions:
       - Need experience to get experience
       - Certifications too expensive
       - Few local opportunities
+      - Hard to find an internship / PFE
       - Not enough practical skills yet
       - Don't know where to look
       - Still studying, not looking yet
@@ -76,9 +126,22 @@ questions:
       - Low salaries / talent leaving for abroad
       - Few senior roles
       - Few entry-level roles
-      - Companies don't value security
+      - Companies don't value security (no budget, left to IT staff)
       - Skills / experience gap
       - Costly certifications
       - Staffing / regie contracts instead of direct hiring
+      - Recruiters filter on diploma (Bac+5) or age
+      - Jobs concentrated in Casablanca / Rabat
       - Not sure
       - Other
+
+  - label: In two years, where do you expect to be working?
+    required: false
+    choices:
+      - In Morocco
+      - In Morocco, remote for a foreign organization
+      - Abroad for a few years, then back to Morocco
+      - Abroad, long term
+      - Abroad, not sure for how long
+      - Still studying
+      - Not sure

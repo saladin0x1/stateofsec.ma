@@ -7,7 +7,7 @@ questions:
     multiple: false
     choices:
       - Offensive security (pentest, red team, bug bounty)
-      - Network & infrastructure security
+      - Network, infrastructure & IT security (incl. IT / sysadmin who handles security)
       - Security operations (SOC) / blue team
       - Incident response / DFIR
       - Application security (AppSec)
@@ -23,10 +23,20 @@ questions:
     required: false
     showIf:
       question: profile-q-5
-      in: [0, 1, 2, 3]
+      in: [0, 1, 2]
     choices:
       - Junior / entry-level
       - Mid-level
       - Senior
       - Lead / Principal
       - Manager / Head of security
+
+  - label: Do you take part in bug bounty or vulnerability disclosure programs (where organizations invite you to test them, e.g. HackerOne, YesWeHack, Bugcrowd)?
+    required: true
+    multiple: false
+    choices:
+      - Yes, regularly
+      - Yes, now and then
+      - Tried it, no longer active
+      - Not yet, learning or planning to
+      - "No"

@@ -30,7 +30,7 @@ questions:
       - Other region in Morocco
       - Abroad
 
-  - label: How many years of experience do you have in cybersecurity?
+  - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty not counted)
     required: true
     choices:
       - No professional experience yet
@@ -40,26 +40,24 @@ questions:
       - 8-11 years
       - 12+ years
 
-  - label: What is your educational background (highest, completed or in progress)?
+  - label: What is your highest level of education (completed or in progress)?
     required: true
     choices:
-      - Self-taught (no formal degree in the field)
-      - University / public school - Bac +2/+3 (incl. BTS, OFPPT / ISTA)
-      - University / public school - Bac +5 or higher (engineering, Master's, PhD)
-      - Private engineering or tech school
-      - Coding school (1337, YouCode, Solicode, etc.)
-      - Dedicated cybersecurity program or academy
+      - Bac or lower (incl. still at lycée)
+      - Bac+2 / Bac+3 (BTS, DUT, OFPPT / ISTA, Licence)
+      - Bac+5 or higher (engineering, Master's, business school, PhD)
+      - Coding school, bootcamp or academy only (1337, YouCode, etc.)
       - Other
 
   - label: What is your current employment situation?
     required: true
     multiple: false
     choices:
-      - Employee of an organization in Morocco (incl. nearshore centers)
+      - Employee of an organization in Morocco (public or private, incl. nearshore)
       - Employee of a foreign organization (abroad, or remote from Morocco)
-      - Freelancer / independent (self-employed)
+      - Freelancer / independent (incl. full-time bug bounty)
       - Founder or running my own company
       - Internship or apprenticeship (incl. PFE)
-      - Student (not working)
+      - Student (school, university, 1337, OFPPT...)
       - Looking for work
       - Other
