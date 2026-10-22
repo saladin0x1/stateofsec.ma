@@ -159,7 +159,8 @@ sociologist) was applied where at least three agreed, plus the localized lists:
   single-select mixed the three and could not hold "reported one, withheld one".
 - Neutral law-perception scale, asked before the specific vuln items; the loaded
   "treats us like criminals" option is gone. "Keep it or sell it" removed.
-- Under-18s skip the vuln block; students and job seekers skip "pressured to hide".
+- Students and job seekers skip "pressured to hide". Under-18s see the vuln
+  block like everyone else (owner decision: teens are active in bug bounty).
 - Experience and income band edges no longer overlap; MAD top band split at
   40k/60k; EUR-only abroad scale. Gender stays Male / Female only (owner decision).
 - Employment is split by employer (Moroccan vs foreign org, incl. remote from

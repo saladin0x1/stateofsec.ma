@@ -35,9 +35,6 @@ questions:
 
   - label: You find a critical vulnerability in a Moroccan organization's system (bank, ministry, telecom...) tomorrow. What would you actually do?
     required: false
-    showIf:
-      question: profile-q-1
-      notEquals: 0
     choices:
       - Report it to the organization
       - Report it to maCERT (DGSSI)
@@ -49,9 +46,6 @@ questions:
 
   - label: Outside paid work or an official bug bounty, have you ever come across a security flaw in a Moroccan organization's system?
     required: false
-    showIf:
-      question: profile-q-1
-      notEquals: 0
     choices:
       - "Yes"
       - "No"
