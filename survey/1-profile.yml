@@ -30,19 +30,6 @@ questions:
       - Other region in Morocco
       - Abroad
 
-  - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty not counted)
-    required: true
-    showIf:
-      question: profile-q-1
-      notEquals: 0
-    choices:
-      - No professional experience yet
-      - Less than 2 years
-      - 2-4 years
-      - 5-7 years
-      - 8-11 years
-      - 12+ years
-
   - label: What is your highest level of education (completed or in progress)?
     required: true
     showIf:
@@ -56,11 +43,29 @@ questions:
       - Coding school, bootcamp or academy only (1337, YouCode, etc.)
       - Other
 
+  - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty only if it is your main income)
+    required: true
+    showIf:
+      question: profile-q-3
+      notEquals: 0
+    choices:
+      - No professional experience yet
+      - Less than 2 years (incl. a current internship)
+      - 2-4 years
+      - 5-7 years
+      - 8-11 years
+      - 12+ years
+    optionShowIf:
+      - options: [8-11 years, 12+ years]
+        showIf:
+          question: profile-q-1
+          notEquals: 1
+
   - label: What is your current employment situation?
     required: true
     multiple: false
     showIf:
-      question: profile-q-4
+      question: profile-q-3
       notEquals: 0
     choices:
       - Employee of an organization in Morocco (public or private, incl. nearshore)
@@ -68,6 +73,6 @@ questions:
       - Freelancer / independent (incl. full-time bug bounty)
       - Founder or running my own company
       - Internship or apprenticeship (incl. PFE)
-      - Student (school, university, 1337, OFPPT...)
+      - Student (school, university, 1337, OFPPT; if you also work, pick your job)
       - Looking for work
       - Other

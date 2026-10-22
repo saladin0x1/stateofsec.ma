@@ -229,4 +229,45 @@ lycee with 5+ years, "No experience" with Lead/Manager seniority, Freelancer
 Model-check: 32 questions, 1,036,800 fork combinations, 675 distinct paths,
 median 22 per person (range 14-28), no dead nodes, no violations.
 
+### Organigram leaf review + engine upgrade
+
+An organigram (age -> education -> experience -> employment, 18 leaves) was
+reviewed leaf by leaf, down to every option, by 5 agents. Most findings were
+options that made no sense for one leaf, which the engine could not express, so
+the engine gained three features (syntax in `docs/survey-system.md`):
+
+- `showIf` with `all` / `any` of several conditions.
+- `optionShowIf`: hide choices per respondent. Hidden choices keep their index;
+  the client and the server drop picks of hidden choices.
+- `exclusive`: a multiple-choice pick that clears the others, enforced server-side.
+
+Tree changes:
+
+- Profile order is now age -> education -> experience -> employment, so lycee
+  students skip experience as well as employment.
+- Under-18s no longer get a "first job later" copy (dropped); teens and lycee
+  students get "After your studies, where would you like to work?" instead of
+  the two-year outlook.
+- Income, organization type and seniority need security experience (a non-security
+  salary is not a security salary). Employment "Other" gets the income question.
+  Interns get stipend bands; employees no "No income".
+- Options now follow the respondent: 8+ years hidden for 18-24, CISO domain /
+  seniority / CISSP only from 2 years of experience, no university or bootcamp
+  for teens, no "on-the-job" without experience, Morocco payout barriers hidden
+  for respondents abroad, age-limit barriers only for under-25s, tool lists per
+  domain (no Nessus twice, DFIR for SOC/IR/TI, GRC platforms for GRC/CISO).
+- Exclusive "None" / "Prefer not to say" options on certifications, barriers,
+  tools, AI use, rules and the flaw block.
+- Wording: experience counts bug bounty only as a main income; first-job
+  barriers also for job seekers ("first (or next)"); flaw block asks about "one
+  or more" flaws, adds "Wasn't sure it was a real flaw", "No reporting contact",
+  "No answer yet".
+
+Data-cleaning flags left: "pick up to 3" is still not enforced.
+
+Model-check (equivalence classes of every guard, real engine including option
+visibility): 32 questions, 540 distinct paths, median 19 per person (range
+13-28), no dead nodes, every visible question shows at least 2 choices, no
+violations.
+
 Pending: human review (Ashraf + mchklt) before merging to `main`.

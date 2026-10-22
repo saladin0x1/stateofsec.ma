@@ -7,9 +7,9 @@ questions:
     multiple: true
     showIf:
       question: roles-q-0
-      in: [0, 3, 4, 5, 7, 8, 10, 11]
+      in: [0, 1, 4, 8, 10, 11]
     choices:
-      - Burp Suite / Caido
+      - Burp Suite / Caido / ZAP
       - Nmap
       - Metasploit
       - C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)
@@ -22,8 +22,15 @@ questions:
       - Mobile (Frida, MobSF, objection)
       - None of these
       - Other
+    exclusive: [None of these]
+    optionShowIf:
+      # Everyone else gets the scanners in the next list
+      - options: [Nessus / OpenVAS / Qualys]
+        showIf:
+          question: roles-q-0
+          equals: 0
 
-  - label: Which defensive, engineering or GRC tools do you use or practice with?
+  - label: Which defensive, engineering or GRC tools do you (or your team) use or practice with?
     required: false
     multiple: true
     showIf:
@@ -39,21 +46,68 @@ questions:
       - Other firewalls (Palo Alto, Cisco, Check Point, Sophos)
       - EDR (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix)
       - Network analysis (Wireshark, Suricata, Snort, Zeek)
-      - DFIR & case tools (Velociraptor, Volatility, TheHive, MISP)
+      - DFIR (Velociraptor, Volatility, KAPE, TheHive)
+      - Threat intel & malware (MISP, OpenCTI, YARA, Ghidra / IDA, sandboxes)
       - Nessus / OpenVAS / Qualys
-      - Code & cloud security (SonarQube, Snyk, Semgrep, Wiz, Prowler, Trivy)
-      - GRC / risk platform (Archer, ServiceNow, Egerie, etc.)
+      - Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, ZAP)
+      - Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)
+      - Identity / PAM (Entra ID, CyberArk, Wallix)
+      - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
+      - Spreadsheets / in-house registers
       - None of these
       - Other
+    exclusive: [None of these]
+    optionShowIf:
+      - options:
+          - Splunk
+          - Elastic / ELK
+          - Microsoft Sentinel / Defender
+          - IBM QRadar
+          - Wazuh
+          - Fortinet (FortiGate, FortiSIEM, FortiEDR)
+          - Other firewalls (Palo Alto, Cisco, Check Point, Sophos)
+          - EDR (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix)
+        showIf:
+          question: roles-q-0
+          notIn: [4, 6]
+      - options: ["Network analysis (Wireshark, Suricata, Snort, Zeek)"]
+        showIf:
+          question: roles-q-0
+          notIn: [4, 6, 9]
+      - options:
+          - DFIR (Velociraptor, Volatility, KAPE, TheHive)
+          - Threat intel & malware (MISP, OpenCTI, YARA, Ghidra / IDA, sandboxes)
+        showIf:
+          question: roles-q-0
+          in: [2, 3, 7, 10, 11]
+      - options: ["Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, ZAP)"]
+        showIf:
+          question: roles-q-0
+          in: [4, 8, 10, 11]
+      - options: ["Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)"]
+        showIf:
+          question: roles-q-0
+          in: [5, 8, 9, 10, 11]
+      - options: ["Identity / PAM (Entra ID, CyberArk, Wallix)"]
+        showIf:
+          question: roles-q-0
+          in: [1, 2, 5, 6, 8, 9, 11]
+      - options:
+          - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
+          - Spreadsheets / in-house registers
+        showIf:
+          question: roles-q-0
+          in: [6, 9]
 
   - label: How do you use AI tools for security work or study?
     required: true
     multiple: true
     choices:
       - I don't use AI for security work
-      - Not allowed by my employer or clients
+      - Not allowed (employer, clients or school)
       - Research & learning
       - Writing or reviewing code / scripts
       - Report writing
       - Log / alert triage
       - Other
+    exclusive: [I don't use AI for security work]

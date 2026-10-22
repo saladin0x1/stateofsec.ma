@@ -8,8 +8,8 @@ const MIN_TITLE_LENGTH = VALIDATION_THRESHOLDS.MIN_TITLE_LENGTH;
 const MAX_LABEL_LENGTH = VALIDATION_THRESHOLDS.MAX_LABEL_LENGTH;
 const MAX_CHOICE_LENGTH = VALIDATION_THRESHOLDS.MAX_CHOICE_LENGTH;
 
-// Schema for conditional visibility (showIf)
-export const ShowIfConditionSchema = z
+// Schema for one condition on an earlier answer
+export const ConditionLeafSchema = z
   .object({
     question: z
       .string()
@@ -37,6 +37,19 @@ export const ShowIfConditionSchema = z
         "Exactly one operator must be specified: equals, notEquals, in, or notIn"
     }
   );
+
+// Schema for conditional visibility (showIf): one condition, or all / any of several
+export const ShowIfConditionSchema = z.union([
+  ConditionLeafSchema,
+  z.object({ all: z.array(ConditionLeafSchema).min(2) }).strict(),
+  z.object({ any: z.array(ConditionLeafSchema).min(2) }).strict()
+]);
+
+// Hides the listed choices (by label) unless the condition holds; their indices stay stable
+export const OptionConditionSchema = z.object({
+  options: z.array(z.string().trim().min(1)).min(1),
+  showIf: ShowIfConditionSchema
+});
 
 export const SurveyQuestionSchema = z.object({
   label: z
@@ -83,7 +96,12 @@ export const SurveyQuestionSchema = z.object({
     ),
   // Note: Multiple "Other" variations are handled as warnings in cross-file validation
 
-  showIf: ShowIfConditionSchema.optional()
+  showIf: ShowIfConditionSchema.optional(),
+
+  optionShowIf: z.array(OptionConditionSchema).optional(),
+
+  // Choices (by label) that cannot be combined with any other choice in a multi-select
+  exclusive: z.array(z.string().trim().min(1)).min(1).optional()
 });
 
 export const SurveyFileSchema = z
@@ -149,7 +167,9 @@ export const SurveyFileSchema = z
  * TypeScript types inferred from Zod schemas
  * These replace the types in custom-yaml.d.ts
  */
+export type ConditionLeaf = z.infer<typeof ConditionLeafSchema>;
 export type ShowIfCondition = z.infer<typeof ShowIfConditionSchema>;
+export type OptionCondition = z.infer<typeof OptionConditionSchema>;
 export type SurveyQuestion = z.infer<typeof SurveyQuestionSchema>;
 export type SurveyQuestionsYamlFile = z.infer<typeof SurveyFileSchema>;
 

@@ -1,3 +1,4 @@
+import { getExclusiveChoiceIndices, getVisibleChoiceIndices } from "@/lib/conditions";
 import { Question } from "./question";
 import { Steps } from "./steps";
 import { SurveyMachineContext } from "./survey-context";
@@ -67,6 +68,8 @@ export function SurveyForm() {
               othersValue={
                 context.answers[`${questionId}-others`] as string | undefined
               }
+              visibleChoices={getVisibleChoiceIndices(currentQuestion, context.answers)}
+              exclusiveChoices={getExclusiveChoiceIndices(currentQuestion)}
               onAnswerChange={handleAnswerChange}
               onOthersChange={handleOthersChange}
             />

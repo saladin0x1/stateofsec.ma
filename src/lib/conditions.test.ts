@@ -2,11 +2,14 @@ import type { Answers, QuestionList, SectionList } from "./conditions";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 
+  conditionLeaves,
   evaluateCondition,
+  getExclusiveChoiceIndices,
   getFirstVisibleQuestionIndex,
   getLastVisibleQuestionIndex,
   getNextVisibleQuestionIndex,
   getPrevVisibleQuestionIndex,
+  getVisibleChoiceIndices,
   getVisibleSectionIndices,
   hasNextVisibleQuestion,
   hasPrevVisibleQuestion,
@@ -503,5 +506,71 @@ describe("pruneHiddenAnswers", () => {
       { label: "b", showIf: { question: "a-q-0", equals: 1 }, questions: [{}] }
     ];
     expect(pruneHiddenAnswers(gated, { "a-q-0": 0, "b-q-0": 2 })).toEqual({ "a-q-0": 0 });
+  });
+});
+
+describe("compound conditions", () => {
+  const answers: Answers = { "profile-q-0": 2, "profile-q-1": 0 };
+
+  it("all: true only when every condition holds", () => {
+    expect(evaluateCondition({ all: [{ question: "profile-q-0", equals: 2 }, { question: "profile-q-1", equals: 0 }] }, answers)).toBe(true);
+    expect(evaluateCondition({ all: [{ question: "profile-q-0", equals: 2 }, { question: "profile-q-1", equals: 1 }] }, answers)).toBe(false);
+  });
+
+  it("any: true when at least one condition holds", () => {
+    expect(evaluateCondition({ any: [{ question: "profile-q-0", equals: 9 }, { question: "profile-q-1", equals: 0 }] }, answers)).toBe(true);
+    expect(evaluateCondition({ any: [{ question: "profile-q-0", equals: 9 }, { question: "profile-q-1", equals: 9 }] }, answers)).toBe(false);
+  });
+
+  it("all: an unanswered guard hides, like a single condition", () => {
+    expect(evaluateCondition({ all: [{ question: "profile-q-0", equals: 2 }, { question: "profile-q-9", equals: 0 }] }, answers)).toBe(false);
+  });
+
+  it("conditionLeaves lists the single conditions", () => {
+    expect(conditionLeaves(undefined)).toEqual([]);
+    expect(conditionLeaves({ question: "a-q-0", equals: 1 })).toEqual([{ question: "a-q-0", equals: 1 }]);
+    expect(conditionLeaves({ any: [{ question: "a-q-0", equals: 1 }, { question: "a-q-1", in: [2] }] })).toHaveLength(2);
+  });
+});
+
+describe("per-choice conditions", () => {
+  const question = {
+    choices: ["None yet", "Security+", "CISSP", "Other"],
+    optionShowIf: [{ options: ["CISSP"], showIf: { question: "profile-q-0", notEquals: 0 } }],
+    exclusive: ["None yet"]
+  };
+
+  it("hides a choice whose condition fails and keeps the other indices", () => {
+    expect(getVisibleChoiceIndices(question, { "profile-q-0": 0 })).toEqual([0, 1, 3]);
+    expect(getVisibleChoiceIndices(question, { "profile-q-0": 3 })).toEqual([0, 1, 2, 3]);
+  });
+
+  it("hides a conditioned choice while its guard is unanswered", () => {
+    expect(getVisibleChoiceIndices(question, {})).toEqual([0, 1, 3]);
+  });
+
+  it("shows every choice when there are no per-choice conditions", () => {
+    expect(getVisibleChoiceIndices({ choices: ["a", "b"] }, {})).toEqual([0, 1]);
+  });
+
+  it("resolves exclusive choices by label", () => {
+    expect(getExclusiveChoiceIndices(question)).toEqual([0]);
+    expect(getExclusiveChoiceIndices({ choices: ["a"], exclusive: ["missing"] })).toEqual([]);
+  });
+
+  it("pruning drops picks of hidden choices", () => {
+    const sections = [
+      { label: "profile", questions: [{}] },
+      { label: "learning", questions: [{ ...question, multiple: true }, { choices: ["x", "CISSP"], optionShowIf: question.optionShowIf }] }
+    ];
+    expect(pruneHiddenAnswers(sections, { "profile-q-0": 0, "learning-q-0": [1, 2], "learning-q-1": 1 })).toEqual({
+      "profile-q-0": 0,
+      "learning-q-0": [1]
+    });
+    expect(pruneHiddenAnswers(sections, { "profile-q-0": 4, "learning-q-0": [1, 2], "learning-q-1": 1 })).toEqual({
+      "profile-q-0": 4,
+      "learning-q-0": [1, 2],
+      "learning-q-1": 1
+    });
   });
 });

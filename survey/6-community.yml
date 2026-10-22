@@ -12,20 +12,24 @@ questions:
       - Very strong
       - Not sure
 
-  - label: Which of these rules have you dealt with in your work?
+  - label: Which of these rules or bodies have you dealt with in your work (current or past)?
     required: false
     multiple: true
     showIf:
-      question: profile-q-3
-      notEquals: 0
+      any:
+        - question: profile-q-4
+          notEquals: 0
+        - question: profile-q-5
+          equals: 3
     choices:
       - Law 05-20 on cybersecurity / DGSSI directives (DNSSI)
       - maCERT (national CERT)
       - Law 09-08 / CNDP (personal data)
       - Sector regulator directives (Bank Al-Maghrib, ACAPS, AMMC, ANRT)
-      - EU rules through clients (GDPR, NIS2, DORA)
+      - EU rules (GDPR, NIS2, DORA), directly or through clients
       - None of these
       - Other
+    exclusive: [None of these]
 
   - label: How well does Moroccan law protect people who report security flaws in good faith?
     required: false
@@ -36,7 +40,7 @@ questions:
       - Well
       - Don't know
 
-  - label: Apart from bug bounty or paid work, have you ever noticed a security flaw in a Moroccan organization's website, app or service while simply using it (as a customer, student or user)?
+  - label: Apart from bug bounty or paid work, have you ever noticed one or more security flaws in a Moroccan organization's website, app or service while simply using it (as a customer, student or user)?
     required: false
     choices:
       - "Yes"
@@ -54,20 +58,22 @@ questions:
       - "No"
       - Prefer not to say
 
-  - label: Why did you not report (some of) them?
+  - label: Why did you not report it (or some of them)?
     required: false
     multiple: true
     showIf:
       question: community-q-4
       in: [1, 2]
     choices:
+      - Wasn't sure it was a real flaw
       - Didn't know how or where to report
       - Feared legal trouble
-      - No clear or safe way to report
+      - The organization had no reporting contact
       - They wouldn't have fixed it anyway
       - Already fixed or reported by someone else
       - Not worth the effort
       - Prefer not to say
+    exclusive: [Prefer not to say]
 
   - label: When you reported, what did you get back?
     required: false
@@ -81,15 +87,17 @@ questions:
       - Fixed silently, no credit
       - Acknowledged, but not fixed
       - Ignored, no response
-      - Went through maCERT, no follow-up
+      - No answer yet
       - Told to stay quiet
       - A threat or legal warning
+      - I went through maCERT
       - Prefer not to say
+    exclusive: [Prefer not to say]
 
-  - label: Have you ever been asked at work to hide or play down a security incident, or to soften a finding in an audit or pentest report? (a bug bounty program's normal disclosure rules don't count)
+  - label: Have you ever been asked, by an employer or a client, to hide or play down a security incident, or to soften a finding in an audit or pentest report? (a bug bounty program's normal disclosure rules don't count)
     required: false
     showIf:
-      question: profile-q-3
+      question: profile-q-4
       notEquals: 0
     choices:
       - Yes, it happened to me

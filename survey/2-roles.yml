@@ -18,18 +18,32 @@ questions:
       - Management / Head of security (CISO)
       - Still exploring / no specific area yet
       - Other
+    optionShowIf:
+      - options: [Management / Head of security (CISO)]
+        showIf:
+          question: profile-q-4
+          in: [2, 3, 4, 5]
 
-  - label: What is your seniority level in your current job?
+  - label: What is your seniority level in your current security role?
     required: false
     showIf:
-      question: profile-q-5
-      in: [0, 1, 2]
+      all:
+        - question: profile-q-5
+          in: [0, 1]
+        - question: profile-q-4
+          notEquals: 0
     choices:
       - Junior / entry-level
       - Mid-level
       - Senior
-      - Lead / Principal
-      - Manager / Head of security
+      - Lead / Principal (no direct reports)
+      - Manager (leads a team)
+      - Head of security / CISO
+    optionShowIf:
+      - options: [Head of security / CISO]
+        showIf:
+          question: profile-q-4
+          in: [2, 3, 4, 5]
 
   - label: Do you take part in bug bounty or vulnerability disclosure programs (where organizations invite you to test them, e.g. HackerOne, YesWeHack, Bugcrowd)?
     required: true

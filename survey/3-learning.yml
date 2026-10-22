@@ -19,19 +19,43 @@ questions:
       - Network vendor certification (Fortinet NSE 4+, Palo Alto, Cisco, Check Point)
       - Microsoft / cloud (SC-200, AZ-500, AWS, GCP)
       - Other
+    exclusive: [None yet]
+    optionShowIf:
+      - options: [CISSP / CISM / CISA]
+        showIf:
+          question: profile-q-4
+          in: [2, 3, 4, 5]
+      - options: [ISO 27001 / 27005 / EBIOS RM]
+        showIf:
+          question: profile-q-3
+          notEquals: 0
 
   - label: How did you learn cybersecurity? (select all that helped)
     required: true
     multiple: true
     choices:
-      - University
+      - University, engineering school or OFPPT
       - Self-study (books, blogs, docs)
-      - Courses & cert training (online or classroom)
+      - Courses & training (online or in person)
       - Hands-on labs (HTB, TryHackMe, PortSwigger Academy)
       - YouTube
       - CTFs / competitions
       - Bug bounty
       - Bootcamp / coding school (1337, YouCode, etc.)
       - Clubs / online communities
-      - On-the-job / mentorship
+      - Mentorship
+      - On-the-job
       - Other
+    optionShowIf:
+      - options: ["University, engineering school or OFPPT"]
+        showIf:
+          question: profile-q-3
+          in: [2, 3, 5]
+      - options: ["Bootcamp / coding school (1337, YouCode, etc.)"]
+        showIf:
+          question: profile-q-1
+          notEquals: 0
+      - options: [On-the-job]
+        showIf:
+          question: profile-q-4
+          notEquals: 0

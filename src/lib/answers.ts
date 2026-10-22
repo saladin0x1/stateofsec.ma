@@ -1,6 +1,6 @@
 import type { Answers, AnswerValue } from "@/lib/conditions";
 import type { SurveyQuestion } from "@/lib/validators/survey-schema";
-import { pruneHiddenAnswers } from "@/lib/conditions";
+import { getExclusiveChoiceIndices, pruneHiddenAnswers } from "@/lib/conditions";
 import { isOtherChoice } from "@/lib/other-choice";
 import { surveySections } from "@/lib/survey";
 
@@ -10,6 +10,7 @@ interface QuestionInfo {
   sectionIndex: number;
   question: SurveyQuestion;
   otherIndices: number[];
+  exclusiveIndices: number[];
 }
 
 const questionsById = new Map<string, QuestionInfo>(
@@ -21,7 +22,8 @@ const questionsById = new Map<string, QuestionInfo>(
         question,
         otherIndices: question.choices
           .map((choice, choiceIndex) => (isOtherChoice(choice) ? choiceIndex : -1))
-          .filter(choiceIndex => choiceIndex !== -1)
+          .filter(choiceIndex => choiceIndex !== -1),
+        exclusiveIndices: getExclusiveChoiceIndices(question)
       }
     ])
   )
@@ -37,7 +39,7 @@ function isEmpty(value: AnswerValue) {
   return value === null || (Array.isArray(value) && value.length === 0);
 }
 
-function validateChoiceValue(id: string, value: AnswerValue, { question }: QuestionInfo) {
+function validateChoiceValue(id: string, value: AnswerValue, { question, exclusiveIndices }: QuestionInfo) {
   if (value === null)
     return;
   const choiceCount = question.choices.length;
@@ -45,6 +47,7 @@ function validateChoiceValue(id: string, value: AnswerValue, { question }: Quest
     ? Array.isArray(value)
     && new Set(value).size === value.length
     && value.every(v => isChoiceIndex(v, choiceCount))
+    && (value.length === 1 || !value.some(v => exclusiveIndices.includes(v)))
     : isChoiceIndex(value, choiceCount);
   if (!valid)
     throw new InvalidAnswersError(`Invalid value for ${id}`);
@@ -88,13 +91,19 @@ export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: 
     const info = questionsById.get(id)!;
     const visible = Object.hasOwn(visibleAnswers, key);
 
-    if (!visible || (isOthersText && !selectsOther(answers[id], info.otherIndices))) {
+    if (!visible || (isOthersText && !selectsOther(visibleAnswers[id], info.otherIndices))) {
       toDelete.push(key);
       continue;
     }
-    if (!isOthersText && info.question.required && isEmpty(value))
-      throw new InvalidAnswersError(`${id} is required`);
-    toSave[key] = value;
+    // Pruning drops picks of choices that are now hidden
+    const kept = visibleAnswers[key];
+    if (!isOthersText && info.question.required && isEmpty(kept)) {
+      if (isEmpty(value))
+        throw new InvalidAnswersError(`${id} is required`);
+      toDelete.push(key);
+      continue;
+    }
+    toSave[key] = kept;
   }
 
   return { toSave, toDelete };

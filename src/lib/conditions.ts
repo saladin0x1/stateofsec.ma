@@ -1,16 +1,36 @@
-import type { ShowIfCondition } from "./validators/survey-schema";
+import type { ConditionLeaf, OptionCondition, ShowIfCondition } from "./validators/survey-schema";
 
 export type AnswerValue = number | number[] | null | string;
 export type Answers = Record<string, AnswerValue>;
-export type QuestionList = Array<{ showIf?: ShowIfCondition }>;
+export type QuestionList = Array<{
+  showIf?: ShowIfCondition;
+  choices?: string[];
+  optionShowIf?: OptionCondition[];
+  exclusive?: string[];
+}>;
 export type SectionList = Array<{
   showIf?: ShowIfCondition;
   questions?: QuestionList;
 }>;
 
 /**
+ * Lists the single conditions inside a showIf (one, or every item of all / any)
+ * @param condition - The condition to split
+ * @returns The leaf conditions, empty when there is no condition
+ */
+export function conditionLeaves(condition: ShowIfCondition | undefined): ConditionLeaf[] {
+  if (!condition)
+    return [];
+  if ("all" in condition)
+    return condition.all;
+  if ("any" in condition)
+    return condition.any;
+  return [condition];
+}
+
+/**
  * Evaluates a showIf condition against current answers
- * @param condition - The condition to evaluate
+ * @param condition - The condition to evaluate: one condition, or all / any of several
  * @param answers - Current survey answers
  * @returns true if condition is met (show question/section), false otherwise
  */
@@ -22,6 +42,51 @@ export function evaluateCondition(
   if (!condition)
     return true;
 
+  if ("all" in condition)
+    return condition.all.every(leaf => evaluateLeaf(leaf, answers));
+  if ("any" in condition)
+    return condition.any.some(leaf => evaluateLeaf(leaf, answers));
+  return evaluateLeaf(condition, answers);
+}
+
+/**
+ * Indices of the choices to show, given the answers so far. Hidden choices keep their
+ * index, so stored answers stay comparable whatever is shown
+ * @param question - The question with its choices and optional per-choice conditions
+ * @param answers - Current survey answers
+ * @returns Visible choice indices, in order
+ */
+export function getVisibleChoiceIndices(
+  question: QuestionList[number],
+  answers: Answers
+): number[] {
+  const choices = question.choices ?? [];
+  const hidden = new Set<number>();
+  for (const rule of question.optionShowIf ?? []) {
+    if (evaluateCondition(rule.showIf, answers))
+      continue;
+    for (const label of rule.options) {
+      const index = choices.indexOf(label);
+      if (index !== -1)
+        hidden.add(index);
+    }
+  }
+  return choices.map((_, index) => index).filter(index => !hidden.has(index));
+}
+
+/**
+ * Indices of the choices that cannot be combined with any other choice
+ * @param question - The question with its choices and optional exclusive labels
+ * @returns Exclusive choice indices
+ */
+export function getExclusiveChoiceIndices(question: QuestionList[number]): number[] {
+  const choices = question.choices ?? [];
+  return (question.exclusive ?? [])
+    .map(label => choices.indexOf(label))
+    .filter(index => index !== -1);
+}
+
+function evaluateLeaf(condition: ConditionLeaf, answers: Answers): boolean {
   const {
     question,
     equals,
@@ -157,10 +222,27 @@ export function getVisibleSectionIndices(
     .map(item => item.index);
 }
 
+// Removes picks of choices that are hidden given the earlier answers
+function keepVisibleChoices(
+  question: QuestionList[number],
+  value: AnswerValue,
+  answers: Answers
+): AnswerValue | undefined {
+  if (!question.optionShowIf?.length)
+    return value;
+  const visible = new Set(getVisibleChoiceIndices(question, answers));
+  if (Array.isArray(value))
+    return value.filter(v => visible.has(v));
+  if (typeof value === "number")
+    return visible.has(value) ? value : undefined;
+  return value;
+}
+
 /**
  * Drops answers to hidden questions, walking the survey in order so that hiding cascades:
  * a question whose guard is itself hidden is dropped even if a stale answer to that guard
- * is still around (e.g. after going back and changing an earlier answer)
+ * is still around (e.g. after going back and changing an earlier answer). Picks of choices
+ * hidden by optionShowIf are dropped too
  * @param sections - All survey sections, in survey order
  * @param answers - Current survey answers, possibly with stale entries
  * @returns Only the answers (and "-others" texts) of questions that are visible
@@ -177,10 +259,13 @@ export function pruneHiddenAnswers(
       if (!evaluateCondition(question.showIf, kept))
         return;
       const id = `${section.label}-q-${index}`;
-      for (const key of [id, `${id}-others`]) {
-        if (Object.hasOwn(answers, key))
-          kept[key] = answers[key];
+      if (Object.hasOwn(answers, id)) {
+        const value = keepVisibleChoices(question, answers[id], kept);
+        if (value !== undefined)
+          kept[id] = value;
       }
+      if (Object.hasOwn(answers, `${id}-others`))
+        kept[`${id}-others`] = answers[`${id}-others`];
     });
   }
   return kept;

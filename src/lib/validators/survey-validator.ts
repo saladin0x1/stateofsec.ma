@@ -3,6 +3,7 @@ import type { SurveyQuestionsYamlFile } from "./survey-schema";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as yaml from "js-yaml";
+import { conditionLeaves } from "../conditions";
 import { isOtherChoice } from "../other-choice";
 import {
   VALIDATION_THRESHOLDS,
@@ -384,68 +385,87 @@ function performCrossFileValidation(
     });
   });
 
-  // Validate section-level showIf references
-  files.forEach((file, fileIndex) => {
-    if (file.showIf?.question) {
-      const refId = file.showIf.question;
-      const refPosition = questionPositionMap.get(refId);
+  const multipleById = new Map<string, boolean>();
+  files.forEach((file) => {
+    file.questions.forEach((question, qIndex) => {
+      multipleById.set(`${file.label}-q-${qIndex}`, question.multiple ?? false);
+    });
+  });
 
-      if (!refPosition) {
-        errors.push({
-          severity: ValidationSeverity.ERROR,
-          message: `Section showIf references non-existent question "${refId}"`,
-          path: `${filenames[fileIndex]}.showIf.question`,
-          value: refId
-        });
-      }
-      else if (refPosition.sectionPosition >= file.position) {
-        errors.push({
-          severity: ValidationSeverity.ERROR,
-          message: `Section showIf references question "${refId}" which is not in a previous section (references must point backward)`,
-          path: `${filenames[fileIndex]}.showIf.question`,
-          value: {
-            referenced: refId,
-            refSection: refPosition.sectionPosition,
-            currentSection: file.position
-          }
-        });
-      }
+  // Every condition (section, question or per-choice, and each item of all / any) must
+  // point backward to an existing single-select question
+  interface RefPosition { sectionPosition: number; questionIndex: number }
+  const checkReference = (
+    refId: string,
+    owner: string,
+    path: string,
+    pointsBackward: (ref: RefPosition) => boolean
+  ) => {
+    const refPosition = questionPositionMap.get(refId);
+    if (!refPosition) {
+      errors.push({
+        severity: ValidationSeverity.ERROR,
+        message: `${owner} showIf references non-existent question "${refId}"`,
+        path,
+        value: refId
+      });
+      return;
+    }
+    if (!pointsBackward(refPosition)) {
+      errors.push({
+        severity: ValidationSeverity.ERROR,
+        message: `${owner} showIf references "${refId}" which does not come before it (references must point backward)`,
+        path,
+        value: refId
+      });
+    }
+    if (multipleById.get(refId)) {
+      errors.push({
+        severity: ValidationSeverity.ERROR,
+        message: `${owner} showIf references "${refId}", a multi-select question; conditions need a single-select answer`,
+        path,
+        value: refId
+      });
+    }
+  };
+
+  files.forEach((file, fileIndex) => {
+    for (const leaf of conditionLeaves(file.showIf)) {
+      checkReference(leaf.question, "Section", `${filenames[fileIndex]}.showIf`, ref => ref.sectionPosition < file.position);
     }
 
-    // Validate question-level showIf references
     file.questions.forEach((question, qIndex) => {
-      if (question.showIf?.question) {
-        const refId = question.showIf.question;
-        const refPosition = questionPositionMap.get(refId);
-        const currentQuestionId = `${file.label}-q-${qIndex}`;
+      const currentQuestionId = `${file.label}-q-${qIndex}`;
+      const path = `${filenames[fileIndex]}.questions[${qIndex}]`;
+      const pointsBackward = (ref: RefPosition) =>
+        ref.sectionPosition < file.position
+        || (ref.sectionPosition === file.position && ref.questionIndex < qIndex);
 
-        if (!refPosition) {
-          errors.push({
-            severity: ValidationSeverity.ERROR,
-            message: `Question showIf references non-existent question "${refId}"`,
-            path: `${filenames[fileIndex]}.questions[${qIndex}].showIf.question`,
-            value: refId
-          });
-        }
-        else {
-          // Check if reference points backward (earlier section or earlier in same section)
-          const isEarlierSection = refPosition.sectionPosition < file.position;
-          const isSameSectionEarlierQuestion
-            = refPosition.sectionPosition === file.position
-              && refPosition.questionIndex < qIndex;
+      const conditions = [question.showIf, ...(question.optionShowIf ?? []).map(rule => rule.showIf)];
+      for (const leaf of conditions.flatMap(conditionLeaves)) {
+        checkReference(leaf.question, `Question ${currentQuestionId}`, `${path}.showIf`, pointsBackward);
+      }
 
-          if (!isEarlierSection && !isSameSectionEarlierQuestion) {
-            errors.push({
-              severity: ValidationSeverity.ERROR,
-              message: `Question showIf references "${refId}" which does not come before "${currentQuestionId}" (references must point backward)`,
-              path: `${filenames[fileIndex]}.questions[${qIndex}].showIf.question`,
-              value: {
-                referenced: refId,
-                current: currentQuestionId
-              }
-            });
-          }
-        }
+      // Per-choice conditions and exclusive choices name choices by label
+      const namedChoices = [
+        ...(question.optionShowIf ?? []).flatMap(rule => rule.options),
+        ...(question.exclusive ?? [])
+      ];
+      for (const choice of namedChoices.filter(c => !question.choices.includes(c))) {
+        errors.push({
+          severity: ValidationSeverity.ERROR,
+          message: `Question ${currentQuestionId} names choice "${choice}" which is not one of its choices`,
+          path: `${path}.choices`,
+          value: choice
+        });
+      }
+      if (question.exclusive && !question.multiple) {
+        errors.push({
+          severity: ValidationSeverity.ERROR,
+          message: `Question ${currentQuestionId} has exclusive choices but is not multi-select`,
+          path: `${path}.exclusive`,
+          value: question.exclusive
+        });
       }
     });
   });

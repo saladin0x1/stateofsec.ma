@@ -8,7 +8,7 @@ Codebase structure and file organization for stateofsec.ma.
 YAML files defining survey questions organized by sections.
 
 - Format: `{position}-{section-name}.yml`
-- Structure: `{ title, label, position, showIf?, questions: [{ label, required, multiple, choices, showIf? }] }`
+- Structure: `{ title, label, position, showIf?, questions: [{ label, required, multiple, choices, showIf?, optionShowIf?, exclusive? }] }` (condition syntax in `docs/survey-system.md`)
 - Questions referenced by ID: `{section-label}-q-{index}` (e.g., `profile-q-0`); ids are positional
 - Loaded once in `src/lib/survey.ts` and shared by the survey page and the server
 
