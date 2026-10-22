@@ -6,16 +6,16 @@ questions:
     required: true
     multiple: false
     choices:
-      - Offensive security / penetration testing
-      - Red teaming
+      - Offensive security (pentest, red team, bug bounty)
+      - Network & infrastructure security
       - Security operations (SOC) / blue team
       - Incident response / DFIR
       - Application security (AppSec)
       - Cloud security
       - Governance, risk & compliance (GRC)
-      - Malware analysis / reverse engineering
+      - Threat intelligence / malware analysis / reverse engineering
       - Security engineering / DevSecOps
-      - Management / CISO
+      - Management / Head of security (CISO)
       - Still exploring / no specific area yet
       - Other
 
@@ -25,8 +25,8 @@ questions:
       question: profile-q-5
       in: [0, 1, 2, 3]
     choices:
-      - Junior / entry-level (0-2 years)
+      - Junior / entry-level
       - Mid-level
       - Senior
       - Lead / Principal
-      - Manager / CISO
+      - Manager / Head of security

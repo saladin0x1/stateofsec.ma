@@ -12,52 +12,98 @@ questions:
       - Very strong
       - Not sure
 
-  - label: You find a critical vulnerability in a Moroccan bank or government system tomorrow. What would you actually do?
+  - label: Which of these rules have you dealt with in your work?
+    required: false
+    multiple: true
+    choices:
+      - Law 05-20 on cybersecurity / DGSSI directives (DNSSI)
+      - maCERT (national CERT)
+      - Law 09-08 / CNDP (personal data)
+      - Bank Al-Maghrib security directives
+      - EU rules through clients (GDPR, NIS2, DORA)
+      - None of these
+      - Other
+
+  - label: How well does Moroccan law protect people who report security flaws in good faith?
     required: false
     choices:
-      - Report it through an official channel
-      - Report it anonymously or under a pseudonym
-      - Quietly tell someone I know there, off the record
-      - Nothing, it's too risky legally
-      - Post it publicly to force a fix
-      - Keep it or sell it
-      - Prefer not to say
+      - Not at all
+      - Poorly
+      - Adequately
+      - Well
+      - Don't know
 
-  - label: Have you ever found a vulnerability in a Moroccan organization's system and chosen NOT to report it?
-    required: false
-    choices:
-      - Yes, I feared legal trouble
-      - Yes, there was no clear or safe way to report it
-      - Yes, they wouldn't have fixed it anyway
-      - No, I reported it
-      - I've never found one
-      - Prefer not to say
-
-  - label: When you reported a vulnerability to a Moroccan organization, what did you get back?
+  - label: You find a critical vulnerability in a Moroccan organization's system (bank, ministry, telecom...) tomorrow. What would you actually do?
     required: false
     showIf:
-      question: community-q-2
-      equals: 3
+      question: profile-q-1
+      notEquals: 0
     choices:
-      - Thanked or rewarded
+      - Report it to the organization
+      - Report it to maCERT (DGSSI)
+      - Report it anonymously or under a pseudonym
+      - Quietly tell someone I know there, off the record
+      - Do nothing
+      - Post it publicly to force a fix
+      - Prefer not to say
+
+  - label: Outside paid work or an official bug bounty, have you ever come across a security flaw in a Moroccan organization's system?
+    required: false
+    showIf:
+      question: profile-q-1
+      notEquals: 0
+    choices:
+      - "Yes"
+      - "No"
+      - Prefer not to say
+
+  - label: Did you report what you found?
+    required: false
+    showIf:
+      question: community-q-4
+      equals: 0
+    choices:
+      - Yes, every time
+      - Some, not all
+      - No, never
+      - Prefer not to say
+
+  - label: Why did you not report (some of) them?
+    required: false
+    multiple: true
+    showIf:
+      question: community-q-5
+      in: [1, 2]
+    choices:
+      - Feared legal trouble
+      - No clear or safe way to report
+      - They wouldn't have fixed it anyway
+      - Not worth the effort
+      - Other
+      - Prefer not to say
+
+  - label: When you reported, what did you get back?
+    required: false
+    multiple: true
+    showIf:
+      question: community-q-5
+      in: [0, 1]
+    choices:
+      - Thanked or credited
+      - Rewarded (bounty, gift, job offer)
       - Fixed silently, no credit
       - Ignored, no response
       - Told to stay quiet
       - A threat or legal warning
       - Prefer not to say
 
-  - label: Have you ever been pressured to hide or downplay a security incident or breach?
+  - label: Have you ever been pressured (by management, clients or authorities) to hide or downplay a security incident?
     required: false
+    showIf:
+      question: profile-q-5
+      notIn: [5, 6]
     choices:
-      - "Yes"
+      - Yes, it happened to me
+      - Not to me, but I've seen it happen to others
       - "No"
-      - I've seen it happen to others
       - Prefer not to say
-
-  - label: Do you believe Moroccan law protects good-faith security researchers?
-    required: false
-    choices:
-      - "Yes"
-      - No, the law treats us like criminals
-      - There is no clear law
-      - No idea

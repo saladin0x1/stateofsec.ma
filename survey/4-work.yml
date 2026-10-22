@@ -2,36 +2,37 @@ title: Work & market
 label: work
 position: 4
 questions:
-  - label: Your NET monthly income in Morocco (MAD) is
+  - label: "Your NET monthly income in MAD (excluding bonuses; freelancers: after business costs; convert if paid in another currency)"
     required: false
     showIf:
       question: profile-q-5
       in: [0, 2, 3, 4]
     choices:
       - No income / unpaid
-      - "< 5,000"
-      - "5,000 - 8,000"
-      - "8,000 - 12,000"
-      - "12,000 - 16,000"
-      - "16,000 - 20,000"
-      - "20,000 - 30,000"
-      - "30,000 - 40,000"
-      - "> 40,000"
+      - "Less than 5,000"
+      - "5,000 - 7,999"
+      - "8,000 - 11,999"
+      - "12,000 - 15,999"
+      - "16,000 - 19,999"
+      - "20,000 - 29,999"
+      - "30,000 - 39,999"
+      - "40,000 - 59,999"
+      - "60,000 or more"
       - Prefer not to say
 
-  - label: Your NET monthly income abroad (EUR or USD) is
+  - label: "Your NET monthly income in EUR (after income tax, excluding bonuses; convert if paid in another currency)"
     required: false
     showIf:
       question: profile-q-5
       equals: 1
     choices:
-      - "< 2,000"
-      - "2,000 - 3,000"
-      - "3,000 - 4,000"
-      - "4,000 - 5,000"
-      - "5,000 - 7,000"
-      - "7,000 - 10,000"
-      - "> 10,000"
+      - "Less than 2,000"
+      - "2,000 - 2,999"
+      - "3,000 - 3,999"
+      - "4,000 - 4,999"
+      - "5,000 - 6,999"
+      - "7,000 - 9,999"
+      - "10,000 or more"
       - Prefer not to say
 
   - label: What type of organization do you work for or with?
@@ -41,14 +42,15 @@ questions:
       in: [0, 1, 2, 3, 4, 7]
     choices:
       - Self-employed / independent (various clients)
-      - Cybersecurity vendor / product company
-      - Managed security service provider (MSSP / SOC)
-      - IT services / consulting firm
-      - Bank / financial services
+      - Security firm (MSSP / SOC, integrator, vendor)
+      - Big Four / audit & advisory
+      - IT services / ESN / nearshore (incl. regie placements)
+      - Bank / insurance / fintech
       - Telecom / ISP
-      - Government / public sector
+      - Public administration / state-owned company
+      - Industry / energy / OT
       - Tech startup / e-commerce
-      - Large enterprise (in-house security)
+      - Other company (in-house team)
       - Other
 
   - label: What is holding you back from a security job right now?
@@ -64,17 +66,19 @@ questions:
       - Few local opportunities
       - Not enough practical skills yet
       - Don't know where to look
+      - Still studying, not looking yet
       - Other
 
-  - label: What is the biggest challenge in the Moroccan security job market?
+  - label: What are the biggest challenges in the Moroccan security job market? (pick up to 3)
     required: true
     multiple: true
     choices:
-      - Low salaries compared to abroad
-      - Brain drain (talent leaving)
+      - Low salaries / talent leaving for abroad
       - Few senior roles
       - Few entry-level roles
       - Companies don't value security
       - Skills / experience gap
       - Costly certifications
-      - Weak legal protection for researchers
+      - Staffing / regie contracts instead of direct hiring
+      - Not sure
+      - Other

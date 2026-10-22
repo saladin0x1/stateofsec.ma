@@ -8,6 +8,7 @@ questions:
     choices:
       - Male
       - Female
+      - Prefer not to say
 
   - label: What is your age?
     required: true
@@ -37,15 +38,15 @@ questions:
       - Less than 2 years
       - 2-4 years
       - 5-7 years
-      - 8-12 years
+      - 8-11 years
       - 12+ years
 
-  - label: What is your educational background?
+  - label: What is your educational background (highest, completed or in progress)?
     required: true
     choices:
       - Self-taught (no formal degree in the field)
-      - University / public school - Bac +2/+3
-      - University / public school - Bac +5 (engineering / Master's)
+      - University / public school - Bac +2/+3 (incl. BTS, OFPPT / ISTA)
+      - University / public school - Bac +5 or higher (engineering, Master's, PhD)
       - Private engineering or tech school
       - Coding school (1337, YouCode, Solicode, etc.)
       - Dedicated cybersecurity program or academy
@@ -55,11 +56,11 @@ questions:
     required: true
     multiple: false
     choices:
-      - Full-time employee in Morocco
-      - Full-time employee abroad
-      - Freelancer or consultant
+      - Employee of an organization in Morocco (incl. nearshore centers)
+      - Employee of a foreign organization (abroad, or remote from Morocco)
+      - Freelancer / independent (self-employed)
       - Founder or running my own company
-      - Internship or apprenticeship
+      - Internship or apprenticeship (incl. PFE)
       - Student (not working)
       - Looking for work
       - Other

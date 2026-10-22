@@ -147,4 +147,31 @@ exhaustive enumeration of all fork combinations, and semantic if-then judging):
   research/malware tools asymmetry, exploring-has-no-tools, employment-Other org.
 - A full rendered decision-tree diagram was produced for review.
 
+### Expert panel pass
+
+A second review by four personas (survey statistician, cybersecurity consultant
+for the Moroccan market, senior practitioner walking three respondent paths,
+sociologist) was applied where at least three agreed, plus the localized lists:
+
+- The vuln block now separates finding from reporting: "outside paid work or an
+  official bug bounty, have you come across a flaw?" -> did you report (every
+  time / some / never) -> reasons (multi) and outcome (multi). The old
+  single-select mixed the three and could not hold "reported one, withheld one".
+- Neutral law-perception scale, asked before the specific vuln items; the loaded
+  "treats us like criminals" option is gone. "Keep it or sell it" removed.
+- Under-18s skip the vuln block; students and job seekers skip "pressured to hide".
+- "Prefer not to say" on gender (no new category); experience and income band
+  edges no longer overlap; MAD top band split at 40k/60k; EUR-only abroad scale.
+- Employment is split by employer (Moroccan vs foreign org, incl. remote from
+  Morocco) so the income currency follows the employer without engine changes.
+- Local stack: network & infrastructure domain, vendor certs (Fortinet, Cisco,
+  Microsoft, CRTP/CRTO/PNPT/BSCP), Fortinet / Palo Alto / EDR tools, KQL/SPL,
+  Big Four / ESN / regie / public sector org types.
+- Primary OS cut; replaced by "which rules have you dealt with" (Law 05-20 /
+  DGSSI, maCERT, 09-08 / CNDP, Bank Al-Maghrib, EU rules via clients).
+
+Model-check (real `evaluateCondition`, all 17,280 fork combinations): 29
+questions, median 21 per person (range 16-27; 24+ only for people who found a
+flaw and withheld some), no dead nodes, no structural or semantic violations.
+
 Pending: human review (Ashraf + mchklt) before merging to `main`.

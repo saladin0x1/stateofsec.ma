@@ -2,33 +2,24 @@ title: Tools & tech
 label: tech
 position: 5
 questions:
-  - label: What is your primary operating system?
-    required: true
-    choices:
-      - Windows
-      - macOS
-      - Linux-based
-      - Windows + WSL2
-      - Security-focused distro (Qubes, Tails, etc.)
-
-  - label: Which offensive / pentest tools do you use regularly?
+  - label: Which offensive / pentest tools do you use or practice with?
     required: false
     multiple: true
     showIf:
       question: roles-q-0
-      in: [0, 1, 4, 5, 7, 8, 10]
+      in: [0, 4, 5, 7, 8, 10]
     choices:
-      - Burp Suite
+      - Burp Suite / Caido
       - Nmap
       - Metasploit
-      - Cobalt Strike / Sliver / Mythic (C2)
-      - BloodHound
-      - Impacket
+      - C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)
+      - AD tooling (BloodHound, Impacket, NetExec)
       - Ghidra / IDA Pro
       - sqlmap
       - ffuf / gobuster
       - Nuclei
-      - Kali / Parrot toolset
+      - Mobile (Frida, MobSF, objection)
+      - None of these
       - Other
 
   - label: Which defensive / blue-team tools do you use?
@@ -36,19 +27,20 @@ questions:
     multiple: true
     showIf:
       question: roles-q-0
-      in: [2, 3, 5, 7, 8]
+      in: [1, 2, 3, 5, 7, 8]
     choices:
       - Splunk
       - Elastic / ELK
-      - Microsoft Sentinel
-      - Wazuh
+      - Microsoft Sentinel / Defender
       - IBM QRadar
-      - CrowdStrike
-      - Microsoft Defender
-      - SentinelOne
+      - Wazuh
+      - Fortinet (FortiGate, FortiSIEM, FortiEDR)
+      - Palo Alto (firewalls, Cortex XDR / XSOAR)
+      - EDR (CrowdStrike, SentinelOne, Kaspersky, Trellix)
       - Suricata / Snort / Zeek
       - TheHive / MISP
-      - Nessus / OpenVAS
+      - Nessus / OpenVAS / Qualys
+      - None of these
       - Other
 
   - label: Which scripting / programming languages do you use for security work?
@@ -63,17 +55,18 @@ questions:
       - JavaScript / TypeScript
       - Rust
       - SQL
+      - KQL / SPL (SIEM query languages)
       - None
       - Other
 
-  - label: How do you use AI tools in your security work?
+  - label: How do you use AI tools for security work or study?
     required: true
     multiple: true
     choices:
       - I don't use AI for security work
+      - Not allowed by my employer
       - Research & learning
-      - Writing scripts / tooling
+      - Writing or reviewing code / scripts
       - Report writing
       - Log / alert triage
-      - Code review
       - Other

@@ -17,19 +17,20 @@ questions:
       question: learning-q-0
       equals: 2
     choices:
-      - CompTIA Security+
+      - CompTIA (Security+, CySA+, PenTest+)
       - CEH (Certified Ethical Hacker)
       - OSCP
-      - OSEP / OSWE / other Offensive Security
+      - Other OffSec (OSEP, OSWE, OSED, etc.)
+      - Hands-on offensive (CRTP, CRTO, PNPT, BSCP)
+      - INE / Hack The Box (eJPT, eCPPT, CPTS)
       - CISSP
       - CISM / CISA
-      - ISO 27001 (Lead Auditor / Implementer)
-      - GIAC (GSEC, GPEN, GCIH, etc.)
-      - eLearnSecurity / INE (eJPT, eCPPT, etc.)
-      - Cloud security (AWS / Azure / GCP)
+      - ISO 27001 / 27005 / EBIOS RM
+      - Network vendor (Fortinet NSE, Palo Alto, Cisco, Check Point)
+      - Microsoft / cloud (SC-200, AZ-500, AWS, GCP)
       - Other
 
-  - label: How did you primarily learn cybersecurity?
+  - label: How did you learn cybersecurity? (select all that helped)
     required: true
     multiple: true
     choices:
