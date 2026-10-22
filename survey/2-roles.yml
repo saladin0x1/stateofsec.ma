@@ -19,7 +19,7 @@ questions:
       - Still exploring / no specific area yet
       - Other
 
-  - label: What is your seniority level?
+  - label: What is your seniority level in your current job?
     required: false
     showIf:
       question: profile-q-5

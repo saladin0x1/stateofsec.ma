@@ -7,6 +7,7 @@ questions:
     multiple: true
     choices:
       - None yet
+      - Entry-level (ISC2 CC, Google Cybersecurity)
       - CompTIA (Security+, CySA+, PenTest+)
       - CEH (Certified Ethical Hacker)
       - OSCP

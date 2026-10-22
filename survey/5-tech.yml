@@ -7,7 +7,7 @@ questions:
     multiple: true
     showIf:
       question: roles-q-0
-      in: [0, 4, 5, 7, 8, 10]
+      in: [0, 3, 4, 5, 7, 8, 10, 11]
     choices:
       - Burp Suite / Caido
       - Nmap
@@ -18,16 +18,17 @@ questions:
       - sqlmap
       - ffuf / gobuster
       - Nuclei
+      - Nessus / OpenVAS / Qualys
       - Mobile (Frida, MobSF, objection)
       - None of these
       - Other
 
-  - label: Which defensive / blue-team / GRC tools do you use or practice with?
+  - label: Which defensive, engineering or GRC tools do you use or practice with?
     required: false
     multiple: true
     showIf:
       question: roles-q-0
-      in: [1, 2, 3, 5, 6, 7, 8, 9]
+      notEquals: 0
     choices:
       - Splunk
       - Elastic / ELK
@@ -35,11 +36,12 @@ questions:
       - IBM QRadar
       - Wazuh
       - Fortinet (FortiGate, FortiSIEM, FortiEDR)
-      - Palo Alto (firewalls, Cortex XDR / XSOAR)
-      - EDR (CrowdStrike, SentinelOne, Kaspersky, Trellix)
+      - Other firewalls (Palo Alto, Cisco, Check Point, Sophos)
+      - EDR (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix)
       - Network analysis (Wireshark, Suricata, Snort, Zeek)
-      - TheHive / MISP
+      - DFIR & case tools (Velociraptor, Volatility, TheHive, MISP)
       - Nessus / OpenVAS / Qualys
+      - Code & cloud security (SonarQube, Snyk, Semgrep, Wiz, Prowler, Trivy)
       - GRC / risk platform (Archer, ServiceNow, Egerie, etc.)
       - None of these
       - Other

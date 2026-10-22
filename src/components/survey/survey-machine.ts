@@ -7,7 +7,8 @@ import {
   getPrevVisibleQuestionIndex,
   getVisibleSectionIndices,
   hasNextVisibleQuestion,
-  hasPrevVisibleQuestion
+  hasPrevVisibleQuestion,
+  pruneHiddenAnswers
 } from "@/lib/conditions";
 import { goToThanksPage, submitAnswers } from "./utils";
 
@@ -154,10 +155,11 @@ export const surveyMachine = setup({
       answers: ({ context, event }) => {
         if (event.type !== "ANSWER_CHANGE")
           return context.answers;
-        return {
+        // Drop answers this change just hid, and anything that depended on them
+        return pruneHiddenAnswers(context.sections, {
           ...context.answers,
           [event.questionId]: event.value
-        };
+        });
       }
     }),
     incrementQuestion: assign({

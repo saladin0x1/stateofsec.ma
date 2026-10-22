@@ -1,6 +1,6 @@
 import type { Answers, AnswerValue } from "@/lib/conditions";
 import type { SurveyQuestion } from "@/lib/validators/survey-schema";
-import { evaluateCondition, getVisibleSectionIndices } from "@/lib/conditions";
+import { pruneHiddenAnswers } from "@/lib/conditions";
 import { isOtherChoice } from "@/lib/other-choice";
 import { surveySections } from "@/lib/survey";
 
@@ -76,7 +76,9 @@ export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: 
     }
   }
 
-  const visibleSections = new Set(getVisibleSectionIndices(surveySections, answers));
+  // Visibility is judged on the pruned answers, so a stale answer to a hidden guard
+  // cannot keep its dependents alive
+  const visibleAnswers = pruneHiddenAnswers(surveySections, answers);
   const toSave: Answers = {};
   const toDelete: string[] = [];
 
@@ -84,8 +86,7 @@ export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: 
     const isOthersText = key.endsWith(OTHERS_SUFFIX);
     const id = isOthersText ? key.slice(0, -OTHERS_SUFFIX.length) : key;
     const info = questionsById.get(id)!;
-    const visible = visibleSections.has(info.sectionIndex)
-      && evaluateCondition(info.question.showIf, answers);
+    const visible = Object.hasOwn(visibleAnswers, key);
 
     if (!visible || (isOthersText && !selectsOther(answers[id], info.otherIndices))) {
       toDelete.push(key);

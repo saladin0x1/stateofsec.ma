@@ -16,8 +16,8 @@ questions:
     required: false
     multiple: true
     showIf:
-      question: profile-q-5
-      notIn: [5, 6]
+      question: profile-q-3
+      notEquals: 0
     choices:
       - Law 05-20 on cybersecurity / DGSSI directives (DNSSI)
       - maCERT (national CERT)
@@ -65,6 +65,7 @@ questions:
       - Feared legal trouble
       - No clear or safe way to report
       - They wouldn't have fixed it anyway
+      - Already fixed or reported by someone else
       - Not worth the effort
       - Prefer not to say
 
@@ -78,8 +79,9 @@ questions:
       - Thanked or credited
       - Rewarded (bounty, gift, job offer)
       - Fixed silently, no credit
+      - Acknowledged, but not fixed
       - Ignored, no response
-      - Reported to maCERT, no follow-up
+      - Went through maCERT, no follow-up
       - Told to stay quiet
       - A threat or legal warning
       - Prefer not to say
@@ -87,8 +89,8 @@ questions:
   - label: Have you ever been asked at work to hide or play down a security incident, or to soften a finding in an audit or pentest report? (a bug bounty program's normal disclosure rules don't count)
     required: false
     showIf:
-      question: profile-q-5
-      notIn: [5, 6]
+      question: profile-q-3
+      notEquals: 0
     choices:
       - Yes, it happened to me
       - Not to me, but I've seen it happen to others

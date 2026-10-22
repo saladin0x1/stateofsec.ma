@@ -158,6 +158,35 @@ export function getVisibleSectionIndices(
 }
 
 /**
+ * Drops answers to hidden questions, walking the survey in order so that hiding cascades:
+ * a question whose guard is itself hidden is dropped even if a stale answer to that guard
+ * is still around (e.g. after going back and changing an earlier answer)
+ * @param sections - All survey sections, in survey order
+ * @param answers - Current survey answers, possibly with stale entries
+ * @returns Only the answers (and "-others" texts) of questions that are visible
+ */
+export function pruneHiddenAnswers(
+  sections: Array<{ label: string; showIf?: ShowIfCondition; questions?: QuestionList }>,
+  answers: Answers
+): Answers {
+  const kept: Answers = {};
+  for (const section of sections) {
+    if (!evaluateCondition(section.showIf, kept))
+      continue;
+    section.questions?.forEach((question, index) => {
+      if (!evaluateCondition(question.showIf, kept))
+        return;
+      const id = `${section.label}-q-${index}`;
+      for (const key of [id, `${id}-others`]) {
+        if (Object.hasOwn(answers, key))
+          kept[key] = answers[key];
+      }
+    });
+  }
+  return kept;
+}
+
+/**
  * Finds the next visible question after the given index
  * @param questions - All questions in a section
  * @param fromIdx - Current question index

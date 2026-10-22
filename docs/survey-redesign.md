@@ -202,4 +202,31 @@ Al-Maghrib.
 Model-check: 31 questions, median 22 per person (range 17-28), no dead nodes,
 no structural or semantic violations.
 
+### Logic audit (6 agents: one per fork + a red team)
+
+- Engine bug fixed: answers to questions that became hidden after going back were
+  kept, so a stale guard answer could re-show its dependents (e.g. under-18 after
+  first answering as an adult still saw employment and income) and the server
+  saved them. `pruneHiddenAnswers` (src/lib/conditions.ts) now walks the survey in
+  order and drops them, on every answer change (client) and in `sanitizeAnswers`
+  (server).
+- Age and education are forks: under-18s skip experience, education, employment
+  and the market question; lycee students skip employment and the market question.
+- "First security job" barriers go to anyone with no professional experience
+  (not to laid-off seniors); under-18s get a forward-looking copy (work-q-7,
+  merge with work-q-6 at export).
+- "Rules at work" and "asked to hide" go to anyone with professional experience,
+  including job seekers who left a job.
+- Every domain except GRC/CISO sees a tool list; the defensive list now covers
+  AppSec/cloud, DFIR, firewalls beyond Fortinet.
+- Bug bounty barriers also go to "Not yet" (age limits, KYC keep teens out).
+
+Data-cleaning flags (the engine cannot hide options): age 18-24 with 8+ years,
+lycee with 5+ years, "No experience" with Lead/Manager seniority, Freelancer
+"incl. full-time bug bounty" with bug bounty "No", contradictory multi-selects
+("None yet" + a cert, "I don't use AI" + a use), "pick up to 3" not enforced.
+
+Model-check: 32 questions, 1,036,800 fork combinations, 675 distinct paths,
+median 22 per person (range 14-28), no dead nodes, no violations.
+
 Pending: human review (Ashraf + mchklt) before merging to `main`.

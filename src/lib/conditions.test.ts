@@ -9,7 +9,8 @@ import {
   getPrevVisibleQuestionIndex,
   getVisibleSectionIndices,
   hasNextVisibleQuestion,
-  hasPrevVisibleQuestion
+  hasPrevVisibleQuestion,
+  pruneHiddenAnswers
 
 } from "./conditions";
 
@@ -441,5 +442,66 @@ describe("hasPrevVisibleQuestion", () => {
     ];
     const answers: Answers = { "profile-q-0": 0 };
     expect(hasPrevVisibleQuestion(questions, 1, answers)).toBe(false);
+  });
+});
+
+describe("pruneHiddenAnswers", () => {
+  // profile: age (fork) -> education (age != 0) -> employment (education != 0)
+  // work: income (employment in [0, 1])
+  const sections = [
+    {
+      label: "profile",
+      questions: [
+        {},
+        { showIf: { question: "profile-q-0", notEquals: 0 } },
+        { showIf: { question: "profile-q-1", notEquals: 0 } }
+      ]
+    },
+    {
+      label: "work",
+      questions: [{ showIf: { question: "profile-q-2", in: [0, 1] } }]
+    }
+  ];
+
+  it("keeps every answer when nothing is hidden", () => {
+    const answers: Answers = { "profile-q-0": 2, "profile-q-1": 3, "profile-q-2": 0, "work-q-0": 4 };
+    expect(pruneHiddenAnswers(sections, answers)).toEqual(answers);
+  });
+
+  it("drops an answer whose guard no longer matches", () => {
+    const answers: Answers = { "profile-q-0": 2, "profile-q-1": 3, "profile-q-2": 5, "work-q-0": 4 };
+    expect(pruneHiddenAnswers(sections, answers)).toEqual({
+      "profile-q-0": 2,
+      "profile-q-1": 3,
+      "profile-q-2": 5
+    });
+  });
+
+  it("cascades through a hidden guard even when its stale answer is still present", () => {
+    // went back and changed age to 0: education is hidden, so employment and income go too
+    const answers: Answers = { "profile-q-0": 0, "profile-q-1": 3, "profile-q-2": 0, "work-q-0": 4 };
+    expect(pruneHiddenAnswers(sections, answers)).toEqual({ "profile-q-0": 0 });
+  });
+
+  it("keeps and drops \"-others\" text together with its question", () => {
+    const answers: Answers = {
+      "profile-q-0": 2,
+      "profile-q-1": 0,
+      "profile-q-1-others": "kept",
+      "profile-q-2-others": "stale"
+    };
+    expect(pruneHiddenAnswers(sections, answers)).toEqual({
+      "profile-q-0": 2,
+      "profile-q-1": 0,
+      "profile-q-1-others": "kept"
+    });
+  });
+
+  it("drops every answer of a hidden section", () => {
+    const gated = [
+      { label: "a", questions: [{}] },
+      { label: "b", showIf: { question: "a-q-0", equals: 1 }, questions: [{}] }
+    ];
+    expect(pruneHiddenAnswers(gated, { "a-q-0": 0, "b-q-0": 2 })).toEqual({ "a-q-0": 0 });
   });
 });

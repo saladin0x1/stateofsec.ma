@@ -50,7 +50,7 @@ questions:
       notEquals: 0
     choices:
       - Still at lycée / high school
-      - Bac or lower (finished studies)
+      - Bac or lower (no longer at lycée)
       - Bac+2 / Bac+3 (BTS, DUT, OFPPT / ISTA, Licence)
       - Bac+5 or higher (engineering, Master's, business school, PhD)
       - Coding school, bootcamp or academy only (1337, YouCode, etc.)

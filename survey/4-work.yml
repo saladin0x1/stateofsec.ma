@@ -2,7 +2,7 @@ title: Work & market
 label: work
 position: 4
 questions:
-  - label: "Your usual NET monthly income in MAD (incl. fixed allowances; excl. one-off bonuses and bug bounty; freelancers: average month)"
+  - label: "Your usual NET monthly income in MAD (fixed allowances in, one-off bonuses out; bug bounty is asked separately; freelancers: average month; convert other currencies)"
     required: false
     showIf:
       question: profile-q-5
@@ -17,16 +17,19 @@ questions:
       - "20,000 - 29,999"
       - "30,000 - 39,999"
       - "40,000 - 59,999"
-      - "60,000 or more"
+      - "60,000 - 99,999"
+      - "100,000 or more"
       - Prefer not to say
 
-  - label: "Your NET monthly income in EUR (after income tax; excl. one-off bonuses and bug bounty; convert if paid in another currency)"
+  - label: "Your NET monthly income in EUR (after income tax; one-off bonuses out; bug bounty is asked separately; convert other currencies)"
     required: false
     showIf:
       question: profile-q-5
       equals: 1
     choices:
-      - "Less than 2,000"
+      - "Less than 1,000"
+      - "1,000 - 1,499"
+      - "1,500 - 1,999"
       - "2,000 - 2,999"
       - "3,000 - 3,999"
       - "4,000 - 4,999"
@@ -39,7 +42,7 @@ questions:
     required: false
     showIf:
       question: profile-q-5
-      in: [0, 1, 4, 7]
+      in: [0, 1, 4]
     choices:
       - Security firm (MSSP / SOC, integrator, vendor)
       - Big Four / audit & advisory
@@ -66,14 +69,15 @@ questions:
       - Rest of Africa
       - Mostly bug bounty platforms
       - Mixed
+      - No clients yet
 
   - label: About how much did you earn from bug bounty in the last 12 months? (USD, before tax)
     required: false
     showIf:
       question: roles-q-2
-      in: [0, 1]
+      in: [0, 1, 2]
     choices:
-      - Nothing yet
+      - Nothing
       - "Less than $500"
       - "$500 - $1,999"
       - "$2,000 - $4,999"
@@ -82,15 +86,15 @@ questions:
       - "$50,000 or more"
       - Prefer not to say
 
-  - label: What has made bug bounty harder for you from Morocco?
+  - label: What has made bug bounty harder for you, or kept you from starting, from Morocco?
     required: false
     multiple: true
     showIf:
       question: roles-q-2
-      in: [0, 1, 2]
+      in: [0, 1, 2, 3]
     choices:
-      - Nothing so far
-      - Found no valid bugs / too competitive
+      - Nothing in particular
+      - Found no valid bugs, duplicates or low payouts
       - No time alongside work or studies
       - Platform age limit or parental consent
       - ID (KYC) or tax-form checks
@@ -102,12 +106,31 @@ questions:
       - Few or no Moroccan programs
       - Something else
 
-  - label: What makes it hard to start a security career?
+  - label: What makes it hard to get your first security job?
     required: false
     multiple: true
     showIf:
-      question: profile-q-5
-      in: [5, 6]
+      question: profile-q-3
+      equals: 0
+    choices:
+      - No entry-level roles
+      - Need experience to get experience
+      - Certifications too expensive
+      - Few local opportunities
+      - Hard to find an internship / PFE
+      - Not enough practical skills yet
+      - Don't know where to look
+      - Still studying, not looking yet
+      - Other
+
+  # Same question for under-18s, who skip the experience question it is gated on.
+  # Merge with work-q-6 at export.
+  - label: What could make it hard to get your first security job later?
+    required: false
+    multiple: true
+    showIf:
+      question: profile-q-1
+      equals: 0
     choices:
       - No entry-level roles
       - Need experience to get experience
@@ -123,7 +146,7 @@ questions:
     required: true
     multiple: true
     showIf:
-      question: profile-q-1
+      question: profile-q-4
       notEquals: 0
     choices:
       - Low salaries / talent leaving for abroad
