@@ -55,13 +55,23 @@
 
 <script is:inline>
 (function initThemeToggle() {
-  document.querySelectorAll(".theme-toggle").forEach((button) => {
-    button.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      const newTheme = isDark ? "light" : "dark";
-      document.documentElement.classList.toggle("dark", newTheme === "dark");
+  // This component renders in both the mobile and desktop navs, so this inline
+  // script can run more than once. Guard it and use event delegation so each
+  // click toggles the theme exactly once (double-binding made it a no-op before).
+  if (window.__themeToggleInit)
+    return;
+  window.__themeToggleInit = true;
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".theme-toggle");
+    if (!button)
+      return;
+    const isDark = document.documentElement.classList.contains("dark");
+    const newTheme = isDark ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    try {
       localStorage.setItem("theme", newTheme);
-    });
+    }
+    catch {}
   });
 })();
 </script>
