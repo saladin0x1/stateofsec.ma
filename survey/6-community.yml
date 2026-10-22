@@ -2,56 +2,6 @@ title: Community & reality
 label: community
 position: 6
 questions:
-  - label: How do you engage with the Moroccan security community?
-    required: true
-    multiple: true
-    choices:
-      - Attend meetups / conferences
-      - Member of online groups (Discord / Telegram / WhatsApp)
-      - Play on a CTF team
-      - Contribute to open source
-      - Write / blog / create content
-      - Speak at events
-      - Mentor others
-      - I don't engage yet
-      - Other
-
-  - label: Which events or communities do you follow or take part in?
-    required: false
-    multiple: true
-    choices:
-      - Local CTF teams
-      - University cybersecurity clubs
-      - OWASP chapter
-      - ISACA / professional associations
-      - Online Moroccan security groups
-      - International conferences / communities
-      - GeeksBlaBla
-      - I don't follow any
-      - Other
-
-  - label: What prevents you from engaging more with the community?
-    required: true
-    multiple: true
-    choices:
-      - Lack of time
-      - Few local events
-      - Events too far from my city
-      - Language barriers
-      - Content too basic or too advanced
-      - Cost
-      - Don't know where to find them
-      - I'm already very active
-      - Other
-
-  - label: How familiar are you with Morocco's cyber regulations (DGSSI directives, Law 09-08 on data protection)?
-    required: true
-    choices:
-      - Very familiar, I work with them
-      - Somewhat familiar
-      - Heard of them, but don't know the details
-      - Not familiar at all
-
   - label: How would you rate Morocco's overall cybersecurity maturity as a country?
     required: true
     choices:
@@ -85,44 +35,29 @@ questions:
 
   - label: When you reported a vulnerability to a Moroccan organization, what did you get back?
     required: false
+    showIf:
+      question: community-q-2
+      equals: 3
     choices:
       - Thanked or rewarded
       - Fixed silently, no credit
       - Ignored, no response
       - Told to stay quiet
       - A threat or legal warning
-      - I've never reported one
-      - Prefer not to say
-
-  - label: Do you believe Moroccan law protects good-faith security researchers?
-    required: false
-    choices:
-      - Yes
-      - No, the law treats us like criminals
-      - There is no clear law
-      - No idea
-
-  - label: Do you work under a pseudonym or handle to protect your real identity?
-    required: false
-    choices:
-      - Yes, always
-      - Sometimes
-      - No
-
-  - label: Does your employer actually fix the vulnerabilities you report internally?
-    required: false
-    choices:
-      - Always or usually
-      - Rarely
-      - They ignore them
-      - I've been told to keep quiet about them
-      - Not applicable
       - Prefer not to say
 
   - label: Have you ever been pressured to hide or downplay a security incident or breach?
     required: false
     choices:
-      - Yes
-      - No
+      - "Yes"
+      - "No"
       - I've seen it happen to others
       - Prefer not to say
+
+  - label: Do you believe Moroccan law protects good-faith security researchers?
+    required: false
+    choices:
+      - "Yes"
+      - No, the law treats us like criminals
+      - There is no clear law
+      - No idea

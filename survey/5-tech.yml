@@ -2,7 +2,7 @@ title: Tools & tech
 label: tech
 position: 5
 questions:
-  - label: What is your primary operating system for work?
+  - label: What is your primary operating system?
     required: true
     choices:
       - Windows
@@ -14,31 +14,29 @@ questions:
   - label: Which offensive / pentest tools do you use regularly?
     required: false
     multiple: true
+    showIf:
+      question: roles-q-0
+      in: [0, 1, 4, 5, 7, 8, 10]
     choices:
       - Burp Suite
       - Nmap
       - Metasploit
-      - Cobalt Strike
-      - Sliver / Mythic (C2)
+      - Cobalt Strike / Sliver / Mythic (C2)
       - BloodHound
       - Impacket
-      - Ghidra
-      - IDA Pro
-      - radare2 / Cutter
-      - x64dbg
-      - Wireshark
+      - Ghidra / IDA Pro
       - sqlmap
       - ffuf / gobuster
       - Nuclei
       - Kali / Parrot toolset
-      - Frida
-      - mimikatz
-      - None
       - Other
 
   - label: Which defensive / blue-team tools do you use?
     required: false
     multiple: true
+    showIf:
+      question: roles-q-0
+      in: [2, 3, 5, 7, 8]
     choices:
       - Splunk
       - Elastic / ELK
@@ -48,29 +46,9 @@ questions:
       - CrowdStrike
       - Microsoft Defender
       - SentinelOne
-      - Suricata / Snort
-      - Zeek
-      - TheHive / Cortex
-      - MISP
-      - Velociraptor
-      - Sysmon
-      - OSQuery
+      - Suricata / Snort / Zeek
+      - TheHive / MISP
       - Nessus / OpenVAS
-      - None
-      - Other
-
-  - label: Which cloud platforms do you secure or work with?
-    required: false
-    multiple: true
-    choices:
-      - AWS
-      - Azure
-      - GCP
-      - Oracle Cloud (OCI)
-      - Cloudflare
-      - On-premise only
-      - Moroccan cloud providers
-      - None
       - Other
 
   - label: Which scripting / programming languages do you use for security work?
@@ -84,9 +62,6 @@ questions:
       - C / C++
       - JavaScript / TypeScript
       - Rust
-      - Ruby
-      - PHP
-      - Assembly
       - SQL
       - None
       - Other
@@ -100,8 +75,5 @@ questions:
       - Writing scripts / tooling
       - Report writing
       - Log / alert triage
-      - Phishing / detection analysis
       - Code review
-      - Threat intel summarization
-      - I'm concerned about the risks
       - Other

@@ -129,3 +129,22 @@ COMMON - the reality  (everyone, internally gated)
 3. QA locally on workerd (`wrangler dev`) + a branch preview deploy; walk every
    branch of the tree, verify `showIf` paths and that `pnpm check`/tests pass.
 4. Only then decide to merge to `main`.
+
+## Implemented (on this branch)
+
+Built and verified by an automated model-check + semantic review (graph-integrity,
+exhaustive enumeration of all fork combinations, and semantic if-then judging):
+
+- Profile kept full (all demographics, incl. age) per project decision - we need
+  the year-one profile data.
+- The redundant red/blue/purple "side" question was merged into the domain
+  question; the tools section now branches off domain (`roles-q-0`).
+- Result: 46 -> 27 questions. Per-respondent median 21 (range 18-25), 78% of
+  profiles in the 15-22 target band. Option-reads 424 -> ~150.
+- Structure proven sound: no dead nodes, every `showIf` backward and in range,
+  all guards single-select.
+- Contradictions resolved: intern seniority, freelancer org, student role,
+  research/malware tools asymmetry, exploring-has-no-tools, employment-Other org.
+- A full rendered decision-tree diagram was produced for review.
+
+Pending: human review (Ashraf + mchklt) before merging to `main`.

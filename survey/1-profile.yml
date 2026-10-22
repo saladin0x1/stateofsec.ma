@@ -12,70 +12,48 @@ questions:
   - label: What is your age?
     required: true
     choices:
-      - Younger than 18 years
-      - 18 to 24 years
-      - 25 to 34 years
-      - 35 to 44 years
+      - Younger than 18
+      - 18 to 24
+      - 25 to 34
+      - 35 to 44
       - 45 or older
 
-  - label: Where are you currently located?
+  - label: Where are you based?
     required: true
     choices:
-      - Rabat-Salé-Kénitra
       - Casablanca-Settat
+      - Rabat-Salé-Kénitra
       - Marrakech-Safi
       - Tanger-Tétouan-Al Hoceïma
-      - "L'Oriental"
       - Fès-Meknès
-      - Béni Mellal-Khénifra
-      - Drâa-Tafilalet
       - Souss-Massa
-      - Guelmim-Oued Noun
-      - Laâyoune-Sakia El Hamra
-      - Dakhla-Oued Ed Dahab
-      - Europe
-      - "US & Canada"
-      - Middle East
-      - Other African country
-      - Other
-
-  - label: Which best describes you?
-    required: true
-    choices:
-      - Working professional in cybersecurity
-      - IT or developer moving into security
-      - Student learning cybersecurity
-      - Researcher or academic
-      - Hobbyist or enthusiast
-      - Looking for my first security role
+      - Other region in Morocco
+      - Abroad
 
   - label: How many years of experience do you have in cybersecurity?
     required: true
     choices:
       - No professional experience yet
-      - Less than a year
-      - 1-2 years
-      - 3-4 years
-      - 5-6 years
-      - 7-10 years
-      - 11-15 years
-      - 16+ years
+      - Less than 2 years
+      - 2-4 years
+      - 5-7 years
+      - 8-12 years
+      - 12+ years
 
   - label: What is your educational background?
     required: true
     choices:
       - Self-taught (no formal degree in the field)
-      - University/public school - Bac +2/+3
-      - University/public school - Bac +5 (engineering/Master's)
-      - University/public school - Bac +8 (Doctoral)
+      - University / public school - Bac +2/+3
+      - University / public school - Bac +5 (engineering / Master's)
       - Private engineering or tech school
       - Coding school (1337, YouCode, Solicode, etc.)
       - Dedicated cybersecurity program or academy
-      - Diploma in another field (career switch)
       - Other
 
   - label: What is your current employment situation?
     required: true
+    multiple: false
     choices:
       - Full-time employee in Morocco
       - Full-time employee abroad
@@ -85,12 +63,3 @@ questions:
       - Student (not working)
       - Looking for work
       - Other
-
-  - label: Do you have plans to work outside Morocco?
-    required: true
-    choices:
-      - Yes, in the next 12 months
-      - Yes, in the next 24 months
-      - Still hesitating
-      - Already working abroad
-      - No

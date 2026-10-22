@@ -2,26 +2,31 @@ title: Learning & certifications
 label: learning
 position: 3
 questions:
-  - label: Which certifications do you currently hold?
+  - label: Do you hold any professional security certifications?
     required: true
-    multiple: true
+    multiple: false
     choices:
-      - None
+      - "No"
+      - Working on one
+      - "Yes"
+
+  - label: Which certifications do you hold?
+    required: false
+    multiple: true
+    showIf:
+      question: learning-q-0
+      equals: 2
+    choices:
       - CompTIA Security+
-      - CompTIA (Network+, CySA+, PenTest+, etc.)
       - CEH (Certified Ethical Hacker)
       - OSCP
       - OSEP / OSWE / other Offensive Security
       - CISSP
-      - CISM
-      - CISA
+      - CISM / CISA
       - ISO 27001 (Lead Auditor / Implementer)
       - GIAC (GSEC, GPEN, GCIH, etc.)
-      - INE / eLearnSecurity (eJPT, eCPPT, etc.)
+      - eLearnSecurity / INE (eJPT, eCPPT, etc.)
       - Cloud security (AWS / Azure / GCP)
-      - CRTP / CRTE / other red team
-      - PNPT (TCM Security)
-      - Vendor certs (Cisco, Fortinet, Palo Alto, etc.)
       - Other
 
   - label: How did you primarily learn cybersecurity?
@@ -33,70 +38,6 @@ questions:
       - Online courses (Udemy, Coursera, etc.)
       - Hands-on labs (HTB, TryHackMe)
       - YouTube
-      - CTF competitions
-      - Bug bounty
+      - CTFs / bug bounty
       - On-the-job / mentorship
-      - Bootcamp or security school
-      - Discord / online communities
-      - AI assistants
       - Other
-
-  - label: Which hands-on platforms do you use?
-    required: false
-    multiple: true
-    choices:
-      - Hack The Box
-      - TryHackMe
-      - PortSwigger Web Security Academy
-      - PentesterLab
-      - OverTheWire
-      - Root-Me
-      - VulnHub
-      - HackerOne / Bugcrowd
-      - CTFtime events
-      - pwn.college
-      - LetsDefend / CyberDefenders
-      - None
-      - Other
-
-  - label: How often do you play CTFs?
-    required: true
-    choices:
-      - Regularly (monthly or more)
-      - Occasionally
-      - Rarely
-      - Used to, but stopped
-      - Never
-
-  - label: Do you participate in bug bounty programs?
-    required: true
-    choices:
-      - Yes, actively
-      - Yes, occasionally
-      - Tried, but no luck yet
-      - Planning to start
-      - Not interested
-
-  - label: What are the biggest barriers to your learning and upskilling?
-    required: true
-    multiple: true
-    choices:
-      - Cost of certs / training
-      - Lack of time
-      - Language barriers
-      - Few local training options
-      - No employer support
-      - Hard to find mentorship
-      - Keeping up with the field
-      - Affordable lab / tool access
-      - Other
-
-  - label: Who pays for your certifications and training?
-    required: true
-    choices:
-      - I pay for everything myself
-      - Employer pays fully
-      - Employer pays partially
-      - I only use free resources
-      - A mix
-      - Not applicable
