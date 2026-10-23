@@ -13,7 +13,10 @@ type AnswerValue = number | number[] | null;
 
 interface QuestionProps {
   question: SurveyQuestion;
+  // Position in the section file: part of the answer id
   index: number;
+  // Number shown to the respondent: position among the questions they see, from 1
+  number: number;
   sectionId: string;
   selected: boolean;
   value: AnswerValue | undefined;
@@ -29,6 +32,7 @@ interface QuestionProps {
 export function Question({
   question,
   index,
+  number,
   sectionId,
   selected,
   value,
@@ -116,7 +120,7 @@ export function Question({
     >
       <p className="mb-4 text-base font-medium">
         <label id={questionLabelId} className="block mb-2 ">
-          {`${index + 1}. ${label}`}
+          {`${number}. ${label}`}
           {" "}
           <br />
         </label>
