@@ -17,9 +17,9 @@ questions:
     multiple: true
     showIf:
       any:
-        - question: profile-q-4
-          notEquals: 0
         - question: profile-q-5
+          notEquals: 0
+        - question: profile-q-6
           equals: 3
     choices:
       - Law 05-20 on cybersecurity / DGSSI directives (DNSSI)
@@ -107,9 +107,9 @@ questions:
     multiple: true
     showIf:
       any:
-        - question: profile-q-4
-          notEquals: 0
         - question: profile-q-5
+          notEquals: 0
+        - question: profile-q-6
           in: [0, 1]
     choices:
       - Yes, to hide or play down an incident

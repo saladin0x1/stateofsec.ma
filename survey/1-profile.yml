@@ -18,17 +18,42 @@ questions:
       - 35 to 44
       - 45 or older
 
+  # The 12 official regions, in official order
   - label: Where are you based?
     required: true
     choices:
-      - Casablanca-Settat
-      - Rabat-Salé-Kénitra
-      - Marrakech-Safi
       - Tanger-Tétouan-Al Hoceïma
+      - "L'Oriental"
       - Fès-Meknès
+      - Rabat-Salé-Kénitra
+      - Béni Mellal-Khénifra
+      - Casablanca-Settat
+      - Marrakech-Safi
+      - Drâa-Tafilalet
       - Souss-Massa
-      - Other region in Morocco
+      - Guelmim-Oued Noun
+      - Laâyoune-Sakia El Hamra
+      - Dakhla-Oued Ed-Dahab
       - Abroad
+
+  - label: Which country are you based in?
+    required: true
+    showIf:
+      question: profile-q-2
+      equals: 12
+    choices:
+      - France
+      - Belgium, Netherlands or Luxembourg
+      - Germany, Switzerland or Austria
+      - Spain, Italy or Portugal
+      - UK or Ireland
+      - Other European country
+      - Canada
+      - United States
+      - United Arab Emirates
+      - Saudi Arabia, Qatar or another Gulf country
+      - Another African country
+      - Other country
 
   - label: What is your highest level of education (completed or in progress)?
     required: true
@@ -42,11 +67,17 @@ questions:
       - Bac+5 or higher (engineering, Master's, business school, PhD)
       - Coding school, bootcamp or academy only (1337, YouCode, etc.)
       - Other
+    optionShowIf:
+      # Only 18-24 can still be at lycee; older respondents preparing the Bac pick "Bac or lower"
+      - options: [Still at lycée / preparing the Bac (incl. repeating or candidat libre)]
+        showIf:
+          question: profile-q-1
+          equals: 1
 
   - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty only if it is your main income)
     required: true
     showIf:
-      question: profile-q-3
+      question: profile-q-4
       notEquals: 0
     choices:
       - None yet (security has not been part of my job)
@@ -65,7 +96,7 @@ questions:
     required: true
     multiple: false
     showIf:
-      question: profile-q-3
+      question: profile-q-4
       notEquals: 0
     choices:
       - Employee of an organization in Morocco (public or private, incl. nearshore)

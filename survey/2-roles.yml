@@ -22,18 +22,18 @@ questions:
       - options: [Management / Head of security (CISO)]
         showIf:
           all:
-            - question: profile-q-4
-              in: [2, 3, 4, 5]
             - question: profile-q-5
+              in: [2, 3, 4, 5]
+            - question: profile-q-6
               notEquals: 4
 
   - label: What is your seniority level in your current security role?
     required: false
     showIf:
       all:
-        - question: profile-q-5
+        - question: profile-q-6
           in: [0, 1]
-        - question: profile-q-4
+        - question: profile-q-5
           notEquals: 0
     choices:
       - Junior / entry-level
@@ -45,7 +45,7 @@ questions:
     optionShowIf:
       - options: [Head of security / CISO]
         showIf:
-          question: profile-q-4
+          question: profile-q-5
           in: [2, 3, 4, 5]
       - options: [Junior / entry-level, Mid-level]
         showIf:

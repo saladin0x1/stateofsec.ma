@@ -139,7 +139,7 @@ questions:
           all:
             - question: roles-q-0
               notEquals: 10
-            - question: profile-q-3
+            - question: profile-q-4
               notEquals: 0
 
   - label: How do you use AI tools for security work or study?

@@ -6,9 +6,9 @@ questions:
     required: false
     showIf:
       all:
-        - question: profile-q-5
+        - question: profile-q-6
           in: [0, 2, 3, 4, 7]
-        - question: profile-q-4
+        - question: profile-q-5
           notEquals: 0
     choices:
       - No income / unpaid
@@ -31,12 +31,12 @@ questions:
     optionShowIf:
       - options: [No income / unpaid]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           notEquals: 0
       # Interns get finer stipend bands and a single top band
       - options: ["Less than 1,500", "1,500 - 2,999", "3,000 - 4,999", "8,000 or more"]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           equals: 4
       - options:
           - "Less than 5,000"
@@ -50,16 +50,16 @@ questions:
           - "60,000 - 99,999"
           - "100,000 or more"
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           notEquals: 4
 
   - label: "Your NET monthly take-home pay in EUR (after tax and social charges, or what reaches your account if nothing is withheld; one-off bonuses out; bug bounty is asked separately; convert other currencies)"
     required: false
     showIf:
       all:
-        - question: profile-q-5
+        - question: profile-q-6
           equals: 1
-        - question: profile-q-4
+        - question: profile-q-5
           notEquals: 0
     choices:
       - "Less than 1,000"
@@ -78,9 +78,9 @@ questions:
     required: false
     showIf:
       all:
-        - question: profile-q-5
+        - question: profile-q-6
           in: [0, 1, 3, 4]
-        - question: profile-q-4
+        - question: profile-q-5
           notEquals: 0
     choices:
       - Security firm (MSSP / SOC, pentest or consulting firm, integrator, vendor)
@@ -105,16 +105,16 @@ questions:
           - Industry / energy / OT
           - Other company (in-house team)
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           notEquals: 3
 
   - label: Where are most of your clients?
     required: false
     showIf:
       all:
-        - question: profile-q-5
+        - question: profile-q-6
           in: [2, 3]
-        - question: profile-q-4
+        - question: profile-q-5
           notEquals: 0
     choices:
       - Morocco
@@ -130,7 +130,7 @@ questions:
       - options: [Mostly bug bounty platforms]
         showIf:
           all:
-            - question: profile-q-5
+            - question: profile-q-6
               equals: 2
             - question: roles-q-2
               in: [0, 1]
@@ -204,20 +204,20 @@ questions:
             - question: roles-q-2
               notEquals: 3
             - question: profile-q-2
-              notEquals: 7
+              notEquals: 12
       - options: [Unclear Office des Changes or tax rules]
         showIf:
           question: profile-q-2
-          notEquals: 7
+          notEquals: 12
 
   - label: What makes it hard to get your first (or next) security job?
     required: false
     multiple: true
     showIf:
       any:
-        - question: profile-q-4
-          equals: 0
         - question: profile-q-5
+          equals: 0
+        - question: profile-q-6
           in: [4, 5, 6]
     choices:
       - No entry-level roles
@@ -238,37 +238,37 @@ questions:
     optionShowIf:
       - options: [No entry-level roles, Need experience to get experience]
         showIf:
-          question: profile-q-4
+          question: profile-q-5
           in: [0, 1]
       - options: [Few roles or offers at my level or pay]
         showIf:
-          question: profile-q-4
+          question: profile-q-5
           in: [2, 3, 4, 5]
       - options: [Hard to find a security internship / PFE]
         showIf:
           all:
-            - question: profile-q-5
+            - question: profile-q-6
               in: [4, 5, 6, 7]
-            - question: profile-q-4
+            - question: profile-q-5
               in: [0, 1]
       - options: ["Switching from IT / dev: pay cut, or that experience is not counted"]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           notIn: [4, 5]
       - options: ["Still studying, not looking yet"]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           equals: 5
       - options: [Not looking for a security job]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           notIn: [5, 6]
 
   - label: What are the biggest challenges in the Moroccan security job market? (pick up to 3)
     required: true
     multiple: true
     showIf:
-      question: profile-q-3
+      question: profile-q-4
       notEquals: 0
     choices:
       - Low salaries / talent leaving for abroad
@@ -286,16 +286,16 @@ questions:
     optionShowIf:
       - options: ["Winning or getting paid for contracts (tenders, late payment, undercutting)"]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           in: [2, 3]
 
   - label: In two years, where do you expect to be working?
     required: false
     showIf:
       all:
-        - question: profile-q-3
+        - question: profile-q-4
           notEquals: 0
-        - question: profile-q-5
+        - question: profile-q-6
           notEquals: 5
     choices:
       - In Morocco
@@ -308,7 +308,7 @@ questions:
     optionShowIf:
       - options: [Still studying]
         showIf:
-          question: profile-q-5
+          question: profile-q-6
           equals: 4
 
   - label: After your studies, where would you like to work?
@@ -317,9 +317,9 @@ questions:
       any:
         - question: profile-q-1
           equals: 0
-        - question: profile-q-3
+        - question: profile-q-4
           equals: 0
-        - question: profile-q-5
+        - question: profile-q-6
           equals: 5
     choices:
       - In Morocco
