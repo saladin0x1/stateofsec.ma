@@ -2,58 +2,92 @@ title: Work & market
 label: work
 position: 4
 questions:
-  - label: "Your usual NET monthly income in MAD (employees: your main job's pay slip, fixed allowances in, 13th month, bonuses and side jobs out; interns: your stipend; freelancers and founders: what you keep in an average month after tax and charges; bug bounty only if it is your main income; convert other currencies)"
+  # stateofdev.ma's MAD bands; interns get sub-bands of "< 4 000" and one top band, and the
+  # top band is split for security seniors (every band nests into an upstream one)
+  - label: "Your usual NET monthly income in MAD (employees: your main job's pay slip, fixed allowances in, 13th month, bonuses and side jobs out; interns: your stipend; founders: what you keep in an average month after tax and charges; convert other currencies)"
     required: false
     showIf:
       all:
         - question: profile-q-6
-          in: [0, 2, 3, 4, 7]
+          in: [0, 3, 4, 7]
         - question: profile-q-5
           notEquals: 0
     choices:
       - No income / unpaid
-      - "Less than 1,500"
-      - "1,500 - 2,999"
-      - "3,000 - 4,999"
-      - "Less than 5,000"
-      - "5,000 - 7,999"
-      - "8,000 or more"
-      - "8,000 - 11,999"
-      - "12,000 - 15,999"
-      - "16,000 - 19,999"
-      - "20,000 - 24,999"
-      - "25,000 - 29,999"
-      - "30,000 - 39,999"
-      - "40,000 - 59,999"
-      - "60,000 - 99,999"
-      - "100,000 or more"
+      - "< 1 500"
+      - "1 500 - 2 500"
+      - "2 500 - 4 000"
+      - "< 4 000"
+      - "4 000 - 6 000"
+      - "6 000 - 8 000"
+      - "> 8 000"
+      - "8 000 - 10 000"
+      - "10 000 - 12 000"
+      - "12 000 - 14 000"
+      - "14 000 - 16 000"
+      - "16 000 - 18 000"
+      - "18 000 - 20 000"
+      - "20 000 - 22 000"
+      - "22 000 - 25 000"
+      - "25 000 - 30 000"
+      - "30 000 - 40 000"
+      - "40 000 - 60 000"
+      - "60 000 - 100 000"
+      - "> 100 000"
       - Prefer not to say
     optionShowIf:
       - options: [No income / unpaid]
         showIf:
           question: profile-q-6
           notEquals: 0
-      # Interns get finer stipend bands and a single top band
-      - options: ["Less than 1,500", "1,500 - 2,999", "3,000 - 4,999", "8,000 or more"]
+      - options: ["< 1 500", "1 500 - 2 500", "2 500 - 4 000", "> 8 000"]
         showIf:
           question: profile-q-6
           equals: 4
       - options:
-          - "Less than 5,000"
-          - "8,000 - 11,999"
-          - "12,000 - 15,999"
-          - "16,000 - 19,999"
-          - "20,000 - 24,999"
-          - "25,000 - 29,999"
-          - "30,000 - 39,999"
-          - "40,000 - 59,999"
-          - "60,000 - 99,999"
-          - "100,000 or more"
+          - "< 4 000"
+          - "8 000 - 10 000"
+          - "10 000 - 12 000"
+          - "12 000 - 14 000"
+          - "14 000 - 16 000"
+          - "16 000 - 18 000"
+          - "18 000 - 20 000"
+          - "20 000 - 22 000"
+          - "22 000 - 25 000"
+          - "25 000 - 30 000"
+          - "30 000 - 40 000"
+          - "40 000 - 60 000"
+          - "60 000 - 100 000"
+          - "> 100 000"
         showIf:
           question: profile-q-6
           notEquals: 4
 
-  - label: "Your NET monthly take-home pay in EUR (after tax and social charges, or what reaches your account if nothing is withheld; one-off bonuses out; bug bounty is asked separately; convert other currencies)"
+  # stateofdev.ma: freelancers in Morocco give a daily rate (TJM)
+  - label: Your usual daily rate (TJM) in MAD, before tax (convert other currencies; bug bounty is asked separately)
+    required: false
+    showIf:
+      all:
+        - question: profile-q-6
+          equals: 2
+        - question: profile-q-5
+          notEquals: 0
+        - question: profile-q-2
+          notIn: [12, 13, 14, 15]
+    choices:
+      - "< 1 000"
+      - "1 000 - 1 500"
+      - "1 500 - 2 000"
+      - "2 000 - 2 500"
+      - "2 500 - 3 000"
+      - "3 000 - 4 000"
+      - "4 000 - 5 000"
+      - "> 5 000"
+      - I don't bill by the day (e.g. full-time bug bounty)
+      - Prefer not to say
+
+  # stateofdev.ma: work for a foreign organization is asked as gross yearly USD
+  - label: Your GROSS yearly salary in USD, before tax (convert other currencies; bug bounty is asked separately)
     required: false
     showIf:
       all:
@@ -62,16 +96,40 @@ questions:
         - question: profile-q-5
           notEquals: 0
     choices:
-      - "Less than 1,000"
-      - "1,000 - 1,499"
-      - "1,500 - 1,999"
-      - "2,000 - 2,499"
-      - "2,500 - 2,999"
-      - "3,000 - 3,999"
-      - "4,000 - 4,999"
-      - "5,000 - 6,999"
-      - "7,000 - 9,999"
-      - "10,000 or more"
+      - "< 20 000"
+      - "20 000 - 25 000"
+      - "25 000 - 30 000"
+      - "30 000 - 40 000"
+      - "40 000 - 50 000"
+      - "50 000 - 60 000"
+      - "60 000 - 80 000"
+      - "80 000 - 100 000"
+      - "100 000 - 120 000"
+      - "120 000 - 150 000"
+      - "150 000 - 200 000"
+      - "> 200 000"
+      - Prefer not to say
+
+  - label: Your usual daily rate in USD, before tax (convert other currencies; bug bounty is asked separately)
+    required: false
+    showIf:
+      all:
+        - question: profile-q-6
+          equals: 2
+        - question: profile-q-5
+          notEquals: 0
+        - question: profile-q-2
+          in: [12, 13, 14, 15]
+    choices:
+      - "< 200"
+      - "200 - 500"
+      - "500 - 1 000"
+      - "1 000 - 2 000"
+      - "2 000 - 3 000"
+      - "3 000 - 5 000"
+      - "5 000 - 10 000"
+      - "> 10 000"
+      - I don't bill by the day (e.g. full-time bug bounty)
       - Prefer not to say
 
   - label: What type of organization do you work for (or run)?
@@ -134,6 +192,43 @@ questions:
               equals: 2
             - question: roles-q-2
               in: [0, 1]
+
+  # stateofdev.ma work conditions
+  - label: What remote work arrangement does your current employer offer?
+    required: false
+    showIf:
+      question: profile-q-6
+      in: [0, 1, 4]
+    choices:
+      - Back to office
+      - Full remote
+      - Hybrid
+
+  - label: How often do you work overtime or beyond the normal time expectation of your job?
+    required: false
+    showIf:
+      question: profile-q-6
+      in: [0, 1, 2, 3, 4, 7]
+    choices:
+      - Never
+      - "Rarely: 1-2 days per year or less"
+      - "Occasionally: 1-2 days per quarter but less than monthly"
+      - "Sometimes: 1-2 days per month but less than weekly"
+      - "Often: 1-2 days per week or more"
+      - "Very often: 3-5 days per week"
+      - Daily
+
+  - label: How do you feel about your job?
+    required: false
+    showIf:
+      question: profile-q-6
+      in: [0, 1, 2, 3, 4, 7]
+    choices:
+      - Very unsatisfied
+      - Slightly unsatisfied
+      - Neither satisfied nor unsatisfied
+      - Slightly satisfied
+      - Very satisfied
 
   - label: About how much did you earn from bug bounty in the last 12 months? (USD before tax; convert EUR)
     required: false
@@ -204,11 +299,25 @@ questions:
             - question: roles-q-2
               notEquals: 3
             - question: profile-q-2
-              notEquals: 12
+              notIn: [12, 13, 14, 15]
       - options: [Unclear Office des Changes or tax rules]
         showIf:
           question: profile-q-2
-          notEquals: 12
+          notIn: [12, 13, 14, 15]
+
+  # stateofdev.ma
+  - label: How long have you been unemployed after graduation?
+    required: false
+    showIf:
+      question: profile-q-4
+      notEquals: 0
+    choices:
+      - None, I worked straight after my graduation
+      - Up to 3 months
+      - Up to 6 months
+      - Up to 1 year
+      - More than 1 year
+      - Not graduated yet
 
   - label: What makes it hard to get your first (or next) security job?
     required: false
@@ -239,18 +348,18 @@ questions:
       - options: [No entry-level roles, Need experience to get experience]
         showIf:
           question: profile-q-5
-          in: [0, 1]
+          in: [0, 1, 2]
       - options: [Few roles or offers at my level or pay]
         showIf:
           question: profile-q-5
-          in: [2, 3, 4, 5]
+          in: [3, 4, 5, 6, 7]
       - options: [Hard to find a security internship / PFE]
         showIf:
           all:
             - question: profile-q-6
               in: [4, 5, 6, 7]
             - question: profile-q-5
-              in: [0, 1]
+              in: [0, 1, 2]
       - options: ["Switching from IT / dev: pay cut, or that experience is not counted"]
         showIf:
           question: profile-q-6
@@ -289,27 +398,76 @@ questions:
           question: profile-q-6
           in: [2, 3]
 
-  - label: In two years, where do you expect to be working?
+  # stateofdev.ma job preferences
+  - label: What characteristics would mostly influence your decision to choose one job offer over another?
+    required: false
+    multiple: true
+    showIf:
+      question: profile-q-4
+      notEquals: 0
+    choices:
+      - Technologies and tools I'd be working with
+      - Office environment or company culture
+      - Flexible time or schedule
+      - Opportunities for professional development
+      - Remote work options
+      - How impactful my work would be
+      - The industry I'd be working in
+      - Company paid training and certifications
+      - Salary
+      - Stock options / equity
+      - Benefits package (health insurance, pension, etc.)
+      - Work-life balance
+      - Company mission / values alignment
+      - Visa / relocation support
+
+  - label: What type of company do you prefer?
     required: false
     showIf:
-      all:
-        - question: profile-q-4
-          notEquals: 0
-        - question: profile-q-6
-          notEquals: 5
+      question: profile-q-4
+      notEquals: 0
     choices:
-      - In Morocco
-      - In Morocco, remote for foreign employers or clients (incl. bug bounty)
-      - Abroad for a few years, then back to Morocco
-      - Abroad, long term
-      - Abroad, not sure for how long
-      - Still studying
-      - Not sure
-    optionShowIf:
-      - options: [Still studying]
-        showIf:
-          question: profile-q-6
-          equals: 4
+      - Self-employed
+      - Company under 10 employees
+      - Company between 11 and 30 employees
+      - Company between 31 and 100 employees
+      - Company above 100 employees
+      - Other
+
+  - label: What is your preferred mode of work?
+    required: false
+    showIf:
+      question: profile-q-4
+      notEquals: 0
+    choices:
+      - From the office
+      - Full remote
+      - Part-time remote / Hybrid
+
+  # stateofdev.ma's emigration questions (teens and lycee students get the last one instead)
+  - label: Do you have any plans to work outside Morocco?
+    required: true
+    showIf:
+      question: profile-q-4
+      notEquals: 0
+    choices:
+      - Yes, in the next 12 months
+      - Yes, in the next 24 months
+      - Still hesitating
+      - Currently working outside Morocco
+      - "No"
+
+  - label: If you are working abroad, do you have any plans to come back to Morocco?
+    required: false
+    showIf:
+      question: work-q-17
+      equals: 3
+    choices:
+      - Yes, within the next 12 months
+      - Yes, within the next 24 months
+      - Yes, but not in the near future
+      - Still hesitating
+      - No, I plan to stay abroad
 
   - label: After your studies, where would you like to work?
     required: false
@@ -319,8 +477,6 @@ questions:
           equals: 0
         - question: profile-q-4
           equals: 0
-        - question: profile-q-6
-          equals: 5
     choices:
       - In Morocco
       - In Morocco, remote for foreign employers or clients

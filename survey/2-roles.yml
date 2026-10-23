@@ -23,7 +23,7 @@ questions:
         showIf:
           all:
             - question: profile-q-5
-              in: [2, 3, 4, 5]
+              in: [3, 4, 5, 6, 7]
             - question: profile-q-6
               notEquals: 4
 
@@ -46,7 +46,7 @@ questions:
       - options: [Head of security / CISO]
         showIf:
           question: profile-q-5
-          in: [2, 3, 4, 5]
+          in: [3, 4, 5, 6, 7]
       - options: [Junior / entry-level, Mid-level]
         showIf:
           question: roles-q-0

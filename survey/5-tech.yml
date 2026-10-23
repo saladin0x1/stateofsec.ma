@@ -142,15 +142,36 @@ questions:
             - question: profile-q-4
               notEquals: 0
 
+  # stateofdev.ma
+  - label: How often do you use AI tools for security work or study (ChatGPT, Claude, Copilot...)?
+    required: true
+    choices:
+      - Daily
+      - Occasionally
+      - Tried them but not interested
+      - Never
+
   - label: How do you use AI tools for security work or study?
     required: true
     multiple: true
+    showIf:
+      question: tech-q-2
+      in: [0, 1]
     choices:
-      - I don't use AI for security (work or study)
-      - Not allowed (employer, clients or school)
       - Research & learning
       - Writing or reviewing code / scripts
       - Report writing
       - Log / alert triage
+      - Only where allowed (some work, clients or school forbid it)
       - Other
-    exclusive: [I don't use AI for security (work or study)]
+
+  # stateofdev.ma
+  - label: Do you think AI will replace security jobs in the future?
+    required: true
+    choices:
+      - Not very much (less than 10%)
+      - Somewhat (10% - 30%)
+      - To some extent (30% - 50%)
+      - The majority (50% - 80%)
+      - Completely (more than 80%)
+      - Not sure

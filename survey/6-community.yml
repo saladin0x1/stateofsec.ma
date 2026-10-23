@@ -118,3 +118,80 @@ questions:
       - "No"
       - Prefer not to say
     exclusive: ["No", Prefer not to say]
+
+  # stateofdev.ma's community block, for the security community
+  - label: What prevents you from participating more in the Moroccan security community?
+    required: true
+    multiple: true
+    choices:
+      - Lack of time due to work or studies
+      - Don't know where to find communities/events
+      - Events are too far from my location
+      - Language barriers (prefer Arabic/Darija content)
+      - Content level doesn't match my experience (too basic/too advanced)
+      - Financial constraints (event costs, travel)
+      - I'm already active in the community
+      - Other
+
+  - label: What would make you more likely to attend security events in Morocco (meetups, conferences, CTFs)?
+    required: true
+    multiple: true
+    choices:
+      - More events in my city/region
+      - Better quality speakers/content
+      - Workshops and CTFs with hands-on practice
+      - Better networking opportunities
+      - Lower or no cost
+      - Better timing (weekends, evenings)
+      - Other
+
+  - label: How has the Moroccan security community helped your career?
+    required: true
+    multiple: true
+    choices:
+      - Learned skills that advanced my career
+      - Got mentorship from community members
+      - Built professional network
+      - Gained confidence through speaking/contributing
+      - Discovered new opportunities (jobs, projects, partnerships)
+      - It hasn't helped my career yet
+      - Other
+    exclusive: [It hasn't helped my career yet]
+
+  - label: What do you MOST need from the Moroccan security community right now? (pick up to 3)
+    required: true
+    multiple: true
+    choices:
+      - Job opportunities and career guidance
+      - Mentorship from experienced security people
+      - Learning resources in Arabic/Darija
+      - Networking with other security people
+      - Access to advanced technical content
+      - Collaboration on projects, research or CTF teams
+      - Other
+
+  - label: What type of community content would be MOST valuable to you? (pick up to 3)
+    required: true
+    multiple: true
+    choices:
+      - Hands-on workshops and labs
+      - CTFs and competitions
+      - Case studies and incident write-ups from Moroccan organizations
+      - Career development sessions (interviews, negotiations, CV)
+      - Open source security tools and contribution guides
+      - Defense and architecture discussions
+      - Soft skills (communication, leadership, teamwork)
+      - Freelancing, bug bounty and entrepreneurship guidance
+      - Other
+
+  - label: When it comes to security, what is your primary social network?
+    required: true
+    choices:
+      - LinkedIn
+      - X (Twitter)
+      - Discord
+      - Reddit
+      - Instagram
+      - YouTube
+      - Telegram
+      - Other

@@ -24,7 +24,7 @@ questions:
       - options: [CISSP / CISM / CISA]
         showIf:
           question: profile-q-5
-          in: [2, 3, 4, 5]
+          in: [3, 4, 5, 6, 7]
       - options: [ISO 27001 / 27005 / EBIOS RM]
         showIf:
           question: profile-q-4
@@ -54,7 +54,7 @@ questions:
             - question: profile-q-1
               equals: 0
             - question: profile-q-4
-              in: [1, 2, 3, 5]
+              in: [2, 3, 4, 5, 7, 9]
       - options: ["Bootcamp / coding school (1337, YouCode, etc.)"]
         showIf:
           question: profile-q-1
@@ -67,3 +67,27 @@ questions:
               notEquals: 0
             - question: profile-q-6
               in: [0, 1, 2, 3, 4]
+
+  # From stateofdev.ma
+  - label: What languages can you read/write?
+    required: true
+    multiple: true
+    choices:
+      - Arabic
+      - Amazigh
+      - French
+      - English
+      - Others
+
+  - label: What are the biggest challenges you find in learning security? (pick up to 3)
+    required: true
+    multiple: true
+    choices:
+      - Lack of time
+      - Language barriers (English/French proficiency)
+      - Cost of resources (labs, courses, certifications)
+      - Lack of practical projects or labs
+      - Information overload
+      - No mentorship/guidance
+      - Keeping up with rapid changes
+      - Other

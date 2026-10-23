@@ -308,4 +308,28 @@ Tree changes:
 Model-check: 32 questions, 630 distinct paths, median 20 per person (range
 13-28), no dead nodes, no violations.
 
+### Calibration on stateofdev.ma
+
+stateofdev.ma has surveyed Moroccan developers for five years, so its survey is the
+Morocco baseline. Where both surveys ask the same thing, stateofsec now uses its
+wording and bands, so dev and sec results compare side by side:
+
+- Age labels, location (12 official regions in its order, plus Europe, US & Canada,
+  Middle East, Others; a follow-up asks the country), education background (plus a
+  lycee option for 18-24), experience bands (none, <1, 1-2, 3-4, 5-6, 7-10, 11-16, 16+).
+- Pay: its MAD net monthly bands (interns get sub-bands of "< 4 000", seniors get the
+  top band split; every band nests into one of its bands), freelancer daily rate (TJM)
+  in MAD, gross yearly USD for foreign employers, daily USD for freelancers abroad.
+- Its questions that fit security people: languages, learning challenges, remote
+  arrangement, overtime, job satisfaction, unemployment after graduation, job offer
+  factors, company and work-mode preference, plans to work abroad and to come back,
+  AI frequency and "will AI replace us", and its community block.
+
+Kept on purpose: employment split by employer (Moroccan vs foreign), the security
+core, and the regulation question instead of the operating system one.
+
+Model-check (depth-first over every reachable class of answers): 53 questions,
+613,200 answer classes, 4,680 distinct paths, 22-47 questions per person (median
+40, stateofdev.ma's length), no dead nodes, no violations.
+
 Pending: human review (Ashraf + mchklt) before merging to `main`.

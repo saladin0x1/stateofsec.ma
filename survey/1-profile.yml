@@ -12,35 +12,38 @@ questions:
   - label: What is your age?
     required: true
     choices:
-      - Younger than 18
-      - 18 to 24
-      - 25 to 34
-      - 35 to 44
+      - Younger than 18 years
+      - 18 to 24 years
+      - 25 to 34 years
+      - 35 to 44 years
       - 45 or older
 
-  # The 12 official regions, in official order
-  - label: Where are you based?
+  # Same list as stateofdev.ma (12 official regions + 4 areas abroad), so results compare
+  - label: Where are you currently located?
     required: true
     choices:
+      - Rabat-Salé-Kénitra
+      - Casablanca-Settat
+      - Marrakech-Safi
       - Tanger-Tétouan-Al Hoceïma
       - "L'Oriental"
       - Fès-Meknès
-      - Rabat-Salé-Kénitra
       - Béni Mellal-Khénifra
-      - Casablanca-Settat
-      - Marrakech-Safi
       - Drâa-Tafilalet
       - Souss-Massa
       - Guelmim-Oued Noun
       - Laâyoune-Sakia El Hamra
-      - Dakhla-Oued Ed-Dahab
-      - Abroad
+      - Dakhla-Oued Ed Dahab
+      - Europe
+      - "US & Canada"
+      - Middle East
+      - Others
 
-  - label: Which country are you based in?
+  - label: Which country?
     required: true
     showIf:
       question: profile-q-2
-      equals: 12
+      in: [12, 13, 14, 15]
     choices:
       - France
       - Belgium, Netherlands or Luxembourg
@@ -51,29 +54,61 @@ questions:
       - Canada
       - United States
       - United Arab Emirates
-      - Saudi Arabia, Qatar or another Gulf country
-      - Another African country
+      - Saudi Arabia
+      - Qatar
+      - Other Middle East country
+      - Africa (outside Morocco)
+      - Asia or Oceania
       - Other country
+    optionShowIf:
+      - options:
+          - France
+          - Belgium, Netherlands or Luxembourg
+          - Germany, Switzerland or Austria
+          - Spain, Italy or Portugal
+          - UK or Ireland
+          - Other European country
+        showIf:
+          question: profile-q-2
+          equals: 12
+      - options: [Canada, United States]
+        showIf:
+          question: profile-q-2
+          equals: 13
+      - options: [United Arab Emirates, Saudi Arabia, Qatar, Other Middle East country]
+        showIf:
+          question: profile-q-2
+          equals: 14
+      - options: [Africa (outside Morocco), Asia or Oceania, Other country]
+        showIf:
+          question: profile-q-2
+          equals: 15
 
-  - label: What is your highest level of education (completed or in progress)?
+  # stateofdev.ma's education list, plus the lycee fork
+  - label: What is/was your IT or security education background? (completed or in progress)
     required: true
     showIf:
       question: profile-q-1
       notEquals: 0
     choices:
       - Still at lycée / preparing the Bac (incl. repeating or candidat libre)
-      - Bac or lower, no longer at lycée (incl. OFPPT Qualification / Technicien)
-      - Bac+2 / Bac+3 (BTS, DUT, OFPPT Technicien Spécialisé, Licence)
-      - Bac+5 or higher (engineering, Master's, business school, PhD)
-      - Coding school, bootcamp or academy only (1337, YouCode, etc.)
+      - Self-taught (no formal IT or security education)
+      - University/Public school - Bac +2/+3 (Bachelor's)
+      - University/Public school - Bac +5 (Master's)
+      - University/Public school - Bac +8 (Doctoral)
+      - Private engineering/tech school
+      - Coding school (1337, YouCode, Solicode, etc.)
+      - Vocational/Technical training (OFPPT, etc.)
+      - Other field's diploma (career transition)
       - Other
     optionShowIf:
-      # Only 18-24 can still be at lycee; older respondents preparing the Bac pick "Bac or lower"
+      # Only 18-24 can still be at lycee; older respondents preparing the Bac pick another answer
       - options: [Still at lycée / preparing the Bac (incl. repeating or candidat libre)]
         showIf:
           question: profile-q-1
           equals: 1
 
+  # stateofdev.ma's experience bands
   - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty only if it is your main income)
     required: true
     showIf:
@@ -81,13 +116,15 @@ questions:
       notEquals: 0
     choices:
       - None yet (security has not been part of my job)
-      - Less than 2 years (incl. a current internship)
-      - 2-4 years
-      - 5-7 years
-      - 8-11 years
-      - 12+ years
+      - Less than a year (incl. a current internship)
+      - 1-2 years
+      - 3-4 years
+      - 5-6 years
+      - 7-10 years
+      - 11-16 years
+      - 16+ years
     optionShowIf:
-      - options: [8-11 years, 12+ years]
+      - options: [11-16 years, 16+ years]
         showIf:
           question: profile-q-1
           notEquals: 1
