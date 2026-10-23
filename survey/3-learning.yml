@@ -34,8 +34,10 @@ questions:
     required: true
     multiple: true
     choices:
-      - University, engineering school, CPGE or OFPPT
-      - Self-study (books, blogs, docs)
+      - Lycée / school computer classes (informatique)
+      - University, engineering school or CPGE
+      - OFPPT or vocational training
+      - Self-study / passion projects (books, blogs, docs, home lab)
       - Courses & training (online or in person)
       - Hands-on labs (HTB, TryHackMe, PortSwigger Academy)
       - YouTube
@@ -47,14 +49,26 @@ questions:
       - On-the-job
       - Other
     optionShowIf:
-      # Under-18s skip education, but some have already started at OFPPT, a CPGE or university
-      - options: ["University, engineering school, CPGE or OFPPT"]
+      # Formal paths by age and education: teens learn at lycee or OFPPT (from about 15),
+      # university or CPGE comes after the Bac
+      - options: [Lycée / school computer classes (informatique)]
         showIf:
           any:
             - question: profile-q-1
               equals: 0
             - question: profile-q-4
-              in: [2, 3, 4, 5, 7, 9]
+              equals: 0
+      - options: ["University, engineering school or CPGE"]
+        showIf:
+          question: profile-q-4
+          in: [2, 3, 4, 5, 9]
+      - options: [OFPPT or vocational training]
+        showIf:
+          any:
+            - question: profile-q-1
+              equals: 0
+            - question: profile-q-4
+              in: [2, 7, 9]
       - options: ["Bootcamp / coding school (1337, YouCode, etc.)"]
         showIf:
           question: profile-q-1
