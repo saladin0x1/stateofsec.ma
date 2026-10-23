@@ -270,4 +270,42 @@ visibility): 32 questions, 540 distinct paths, median 19 per person (range
 13-28), no dead nodes, every visible question shows at least 2 choices, no
 violations.
 
+### Second swarm (5 leaf reviewers + an engine red team)
+
+Engine bugs found by the red team (reproduced with the real machine) and fixed:
+
+- A required multi-select emptied by a hidden option after going back blocked
+  every submit ("required"). Emptied picks now count as unanswered on the client,
+  and the server drops an empty required answer instead of rejecting the payload.
+- Stored answers that became hidden stayed in Firestore, because the client no
+  longer sent them. The server now deletes every answer field it does not save.
+- One misclick on an earlier answer erased later answers for good. The client now
+  keeps every answer given and only prunes the view, so undoing restores them.
+- Validator: condition indices are range-checked, unknown keys (`exlusive:`, a
+  leaf mixed with `all`) are errors, and a required question whose every choice is
+  conditioned is a warning. The steps bar opens a section on its first visible
+  question; choices are reachable by keyboard.
+
+Tree changes:
+
+- First-job barriers also go to interns, students and job seekers who already
+  have some experience (an internship counts), with barriers matched to the level.
+- Students get "After your studies, where would you like to work?".
+- Legal safety: tool questions say "at work or in labs / CTFs"; the payout barrier
+  no longer mentions a "workaround"; "worried about legal trouble" and (under 25)
+  "family or school against it" added.
+- Minors' bug bounty earnings stop at one "$2,000 or more" band, so top teen
+  hunters cannot be singled out in published data.
+- Income wording (pay slip of the main job; 13th month, side jobs out; bug bounty
+  only as main income), MAD 20-30k and EUR 2-3k bands split; founders describe
+  their company; public administration split from state-owned companies.
+- Tools: no tool listed twice, Moroccan vendors (Huawei, Stormshield, ESET, Trend
+  Micro, Sophos), TI / malware / forensics / SOAR split, enterprise tools hidden
+  for teens and people still exploring.
+- Flaw block: "Other" and (minors) "too young to be taken seriously" reasons;
+  "asked to hide" splits incident vs finding and also reaches IT staff.
+
+Model-check: 32 questions, 630 distinct paths, median 20 per person (range
+13-28), no dead nodes, no violations.
+
 Pending: human review (Ashraf + mchklt) before merging to `main`.

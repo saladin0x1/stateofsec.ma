@@ -7,7 +7,7 @@ questions:
     multiple: true
     choices:
       - None yet
-      - Entry-level (ISC2 CC, Google Cybersecurity)
+      - Entry-level / free (ISC2 CC, Google, Cisco NetAcad, Fortinet FCF)
       - CompTIA (Security+, CySA+, PenTest+)
       - CEH (Certified Ethical Hacker)
       - OSCP
@@ -16,7 +16,7 @@ questions:
       - INE / Hack The Box (eJPT, eCPPT, CPTS)
       - CISSP / CISM / CISA
       - ISO 27001 / 27005 / EBIOS RM
-      - Network vendor certification (Fortinet NSE 4+, Palo Alto, Cisco, Check Point)
+      - Network vendor certification (Fortinet NSE 4+, Palo Alto, Cisco, Check Point, Huawei)
       - Microsoft / cloud (SC-200, AZ-500, AWS, GCP)
       - Other
     exclusive: [None yet]
@@ -34,7 +34,7 @@ questions:
     required: true
     multiple: true
     choices:
-      - University, engineering school or OFPPT
+      - University, engineering school, CPGE or OFPPT
       - Self-study (books, blogs, docs)
       - Courses & training (online or in person)
       - Hands-on labs (HTB, TryHackMe, PortSwigger Academy)
@@ -47,15 +47,23 @@ questions:
       - On-the-job
       - Other
     optionShowIf:
-      - options: ["University, engineering school or OFPPT"]
+      # Under-18s skip education, but some are already at OFPPT, an EST or a CPGE
+      - options: ["University, engineering school, CPGE or OFPPT"]
         showIf:
-          question: profile-q-3
-          in: [2, 3, 5]
+          any:
+            - question: profile-q-1
+              equals: 0
+            - question: profile-q-3
+              in: [1, 2, 3, 5]
       - options: ["Bootcamp / coding school (1337, YouCode, etc.)"]
         showIf:
           question: profile-q-1
           notEquals: 0
+      # Developers and sysadmins often learn security in their IT job
       - options: [On-the-job]
         showIf:
-          question: profile-q-4
-          notEquals: 0
+          any:
+            - question: profile-q-4
+              notEquals: 0
+            - question: profile-q-5
+              in: [0, 1, 2, 3, 4]

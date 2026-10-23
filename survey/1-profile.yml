@@ -36,9 +36,9 @@ questions:
       question: profile-q-1
       notEquals: 0
     choices:
-      - Still at lycée / high school
-      - Bac or lower (no longer at lycée)
-      - Bac+2 / Bac+3 (BTS, DUT, OFPPT / ISTA, Licence)
+      - Still at lycée / preparing the Bac (incl. repeating or candidat libre)
+      - Bac or lower, no longer at lycée (incl. OFPPT Qualification / Technicien)
+      - Bac+2 / Bac+3 (BTS, DUT, OFPPT Technicien Spécialisé, Licence)
       - Bac+5 or higher (engineering, Master's, business school, PhD)
       - Coding school, bootcamp or academy only (1337, YouCode, etc.)
       - Other
@@ -49,7 +49,7 @@ questions:
       question: profile-q-3
       notEquals: 0
     choices:
-      - No professional experience yet
+      - None yet (security has not been part of my job)
       - Less than 2 years (incl. a current internship)
       - 2-4 years
       - 5-7 years
@@ -69,10 +69,10 @@ questions:
       notEquals: 0
     choices:
       - Employee of an organization in Morocco (public or private, incl. nearshore)
-      - Employee of a foreign organization (abroad, or remote from Morocco)
-      - Freelancer / independent (incl. full-time bug bounty)
+      - Employee of a foreign organization (abroad, or remote from Morocco, incl. via an employer-of-record)
+      - Freelancer / independent (incl. full-time bug bounty and contracting for foreign clients)
       - Founder or running my own company
-      - Internship or apprenticeship (incl. PFE)
+      - Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)
       - Student (school, university, 1337, OFPPT; if you also work, pick your job)
       - Looking for work
       - Other

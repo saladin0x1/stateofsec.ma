@@ -21,8 +21,11 @@ questions:
     optionShowIf:
       - options: [Management / Head of security (CISO)]
         showIf:
-          question: profile-q-4
-          in: [2, 3, 4, 5]
+          all:
+            - question: profile-q-4
+              in: [2, 3, 4, 5]
+            - question: profile-q-5
+              notEquals: 4
 
   - label: What is your seniority level in your current security role?
     required: false
@@ -44,6 +47,10 @@ questions:
         showIf:
           question: profile-q-4
           in: [2, 3, 4, 5]
+      - options: [Junior / entry-level, Mid-level]
+        showIf:
+          question: roles-q-0
+          notEquals: 9
 
   - label: Do you take part in bug bounty or vulnerability disclosure programs (where organizations invite you to test them, e.g. HackerOne, YesWeHack, Bugcrowd)?
     required: true

@@ -26,6 +26,8 @@ questions:
       - maCERT (national CERT)
       - Law 09-08 / CNDP (personal data)
       - Sector regulator directives (Bank Al-Maghrib, ACAPS, AMMC, ANRT)
+      - Payment / banking standards (PCI DSS, SWIFT CSP)
+      - Police cybercrime units (DGSN, Gendarmerie)
       - EU rules (GDPR, NIS2, DORA), directly or through clients
       - None of these
       - Other
@@ -71,9 +73,16 @@ questions:
       - The organization had no reporting contact
       - They wouldn't have fixed it anyway
       - Already fixed or reported by someone else
+      - Too young to be taken seriously / no adult to help
       - Not worth the effort
+      - Other
       - Prefer not to say
     exclusive: [Prefer not to say]
+    optionShowIf:
+      - options: [Too young to be taken seriously / no adult to help]
+        showIf:
+          question: profile-q-1
+          equals: 0
 
   - label: When you reported, what did you get back?
     required: false
@@ -86,21 +95,26 @@ questions:
       - Rewarded (bounty, gift, job offer)
       - Fixed silently, no credit
       - Acknowledged, but not fixed
-      - Ignored, no response
-      - No answer yet
+      - No response (yet)
       - Told to stay quiet
       - A threat or legal warning
-      - I went through maCERT
+      - Relayed or handled by maCERT
       - Prefer not to say
     exclusive: [Prefer not to say]
 
-  - label: Have you ever been asked, by an employer or a client, to hide or play down a security incident, or to soften a finding in an audit or pentest report? (a bug bounty program's normal disclosure rules don't count)
+  - label: Have you ever been asked, by an employer or a client, to hide or play down a security incident, or to remove or downgrade an audit or pentest finding for non-technical reasons? (a bug bounty program's normal disclosure rules don't count)
     required: false
+    multiple: true
     showIf:
-      question: profile-q-4
-      notEquals: 0
+      any:
+        - question: profile-q-4
+          notEquals: 0
+        - question: profile-q-5
+          in: [0, 1]
     choices:
-      - Yes, it happened to me
+      - Yes, to hide or play down an incident
+      - Yes, to remove or downgrade a finding
       - Not to me, but I've seen it happen to others
       - "No"
       - Prefer not to say
+    exclusive: ["No", Prefer not to say]

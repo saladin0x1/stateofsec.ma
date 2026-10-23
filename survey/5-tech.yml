@@ -2,7 +2,7 @@ title: Tools & tech
 label: tech
 position: 5
 questions:
-  - label: Which offensive / pentest tools do you use or practice with?
+  - label: Which offensive / pentest tools do you use at work or practice with in labs / CTFs?
     required: false
     multiple: true
     showIf:
@@ -18,19 +18,37 @@ questions:
       - sqlmap
       - ffuf / gobuster
       - Nuclei
+      - Recon (subfinder, httpx, Shodan)
+      - Password cracking (Hashcat, John the Ripper)
       - Nessus / OpenVAS / Qualys
       - Mobile (Frida, MobSF, objection)
       - None of these
       - Other
     exclusive: [None of these]
     optionShowIf:
-      # Everyone else gets the scanners in the next list
+      # Everyone else gets the scanners and reverse engineering in the next list
       - options: [Nessus / OpenVAS / Qualys]
         showIf:
           question: roles-q-0
           equals: 0
+      - options: [Ghidra / IDA Pro]
+        showIf:
+          question: roles-q-0
+          in: [0, 4, 8]
+      - options: ["C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)"]
+        showIf:
+          question: roles-q-0
+          notIn: [1, 4, 8]
+      - options: ["AD tooling (BloodHound, Impacket, NetExec)"]
+        showIf:
+          question: roles-q-0
+          notIn: [4, 8]
+      - options: ["Mobile (Frida, MobSF, objection)"]
+        showIf:
+          question: roles-q-0
+          notEquals: 1
 
-  - label: Which defensive, engineering or GRC tools do you (or your team) use or practice with?
+  - label: Which defensive, engineering or GRC tools do you use at work (you or your team) or practice with in labs?
     required: false
     multiple: true
     showIf:
@@ -39,17 +57,20 @@ questions:
     choices:
       - Splunk
       - Elastic / ELK
-      - Microsoft Sentinel / Defender
+      - Microsoft Sentinel / Defender XDR
       - IBM QRadar
       - Wazuh
       - Fortinet (FortiGate, FortiSIEM, FortiEDR)
-      - Other firewalls (Palo Alto, Cisco, Check Point, Sophos)
-      - EDR (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix)
+      - Other firewalls (Palo Alto, Cisco, Check Point, Sophos, Huawei, Stormshield)
+      - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
       - Network analysis (Wireshark, Suricata, Snort, Zeek)
-      - DFIR (Velociraptor, Volatility, KAPE, TheHive)
-      - Threat intel & malware (MISP, OpenCTI, YARA, Ghidra / IDA, sandboxes)
+      - DFIR (Velociraptor, Volatility, KAPE)
+      - Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)
+      - SOAR / case management (TheHive, Cortex XSOAR)
+      - Threat intel (MISP, OpenCTI, VirusTotal)
+      - Malware / reverse engineering (Ghidra, IDA, YARA, sandboxes)
       - Nessus / OpenVAS / Qualys
-      - Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, ZAP)
+      - Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, Fortify)
       - Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)
       - Identity / PAM (Entra ID, CyberArk, Wallix)
       - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
@@ -61,12 +82,12 @@ questions:
       - options:
           - Splunk
           - Elastic / ELK
-          - Microsoft Sentinel / Defender
+          - Microsoft Sentinel / Defender XDR
           - IBM QRadar
           - Wazuh
           - Fortinet (FortiGate, FortiSIEM, FortiEDR)
-          - Other firewalls (Palo Alto, Cisco, Check Point, Sophos)
-          - EDR (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix)
+          - Other firewalls (Palo Alto, Cisco, Check Point, Sophos, Huawei, Stormshield)
+          - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
         showIf:
           question: roles-q-0
           notIn: [4, 6]
@@ -75,19 +96,28 @@ questions:
           question: roles-q-0
           notIn: [4, 6, 9]
       - options:
-          - DFIR (Velociraptor, Volatility, KAPE, TheHive)
-          - Threat intel & malware (MISP, OpenCTI, YARA, Ghidra / IDA, sandboxes)
+          - DFIR (Velociraptor, Volatility, KAPE)
+          - Threat intel (MISP, OpenCTI, VirusTotal)
+          - Malware / reverse engineering (Ghidra, IDA, YARA, sandboxes)
         showIf:
           question: roles-q-0
           in: [2, 3, 7, 10, 11]
-      - options: ["Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, ZAP)"]
+      - options: ["Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)"]
+        showIf:
+          question: roles-q-0
+          in: [3, 10, 11]
+      - options: ["SOAR / case management (TheHive, Cortex XSOAR)"]
+        showIf:
+          question: roles-q-0
+          in: [2, 3, 8, 10, 11]
+      - options: ["Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, Fortify)"]
         showIf:
           question: roles-q-0
           in: [4, 8, 10, 11]
       - options: ["Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)"]
         showIf:
           question: roles-q-0
-          in: [5, 8, 9, 10, 11]
+          in: [4, 5, 8, 9, 10, 11]
       - options: ["Identity / PAM (Entra ID, CyberArk, Wallix)"]
         showIf:
           question: roles-q-0
@@ -98,16 +128,29 @@ questions:
         showIf:
           question: roles-q-0
           in: [6, 9]
+      # Enterprise-only tools: not for teens, lycee students or people still exploring
+      - options:
+          - IBM QRadar
+          - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
+          - Identity / PAM (Entra ID, CyberArk, Wallix)
+          - Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)
+          - SOAR / case management (TheHive, Cortex XSOAR)
+        showIf:
+          all:
+            - question: roles-q-0
+              notEquals: 10
+            - question: profile-q-3
+              notEquals: 0
 
   - label: How do you use AI tools for security work or study?
     required: true
     multiple: true
     choices:
-      - I don't use AI for security work
+      - I don't use AI for security (work or study)
       - Not allowed (employer, clients or school)
       - Research & learning
       - Writing or reviewing code / scripts
       - Report writing
       - Log / alert triage
       - Other
-    exclusive: [I don't use AI for security work]
+    exclusive: [I don't use AI for security (work or study)]
