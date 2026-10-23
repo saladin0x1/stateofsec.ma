@@ -47,10 +47,14 @@ questions:
       - On-the-job
       - Other
     optionShowIf:
+      # Under-18s skip education, but some have already started at OFPPT, a CPGE or university
       - options: ["University, engineering school, CPGE or OFPPT"]
         showIf:
-          question: profile-q-3
-          in: [1, 2, 3, 5]
+          any:
+            - question: profile-q-1
+              equals: 0
+            - question: profile-q-3
+              in: [1, 2, 3, 5]
       - options: ["Bootcamp / coding school (1337, YouCode, etc.)"]
         showIf:
           question: profile-q-1
