@@ -328,8 +328,31 @@ wording and bands, so dev and sec results compare side by side:
 Kept on purpose: employment split by employer (Moroccan vs foreign), the security
 core, and the regulation question instead of the operating system one.
 
+### Validation method
+
+1. Logic, proved by exhaustion: conditions only test equality or membership on
+   earlier single-choice answers, so answers that every condition treats the same
+   are interchangeable. A depth-first search over these classes visits every
+   reachable path and checks every rule on each one (model checking).
+2. Plausibility, measured: stateofdev.ma publishes its raw answers. On 7,161
+   respondents (2021-2024, the same experience bands as ours), each profile pair
+   (age, education, experience, employment) gets its share with a Wilson 95%
+   interval. A choice is hidden when we are 95% sure it is under 0.5% (18-24 with
+   7+ years, 25-34 with 16+ years). A rare but real pick (under 2%) gets a soft
+   check instead: founders aged 18-24 (1.1%), 18-24 with 5-6 years, 25-34 with
+   11-16 years, a doctorate before 35, founders with under 3 years, interns or
+   students aged 35+, interns with 5+ years, students with 7+ years. Self-taught
+   founders over 35 (15%) and 35+ career switchers with no experience (5%) are
+   common enough to need neither. "Looking for work" at 35+ is not checked (a
+   sensitive situation).
+3. Meaning: every question shown keeps at least two choices for that respondent.
+
+Caveat: stateofdev.ma measures developers, not security people, and only about
+100 under-18s answered; these thresholds are a Moroccan proxy to revisit with
+stateofsec's own first results.
+
 Model-check (depth-first over every reachable class of answers): 53 questions,
-613,200 answer classes, 4,680 distinct paths, 22-47 questions per person (median
+916,720 answer classes, 4,680 distinct paths, 22-47 questions per person (median
 40, stateofdev.ma's length), no dead nodes, no violations.
 
 Pending: human review (Ashraf + mchklt) before merging to `main`.

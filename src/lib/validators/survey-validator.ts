@@ -454,15 +454,20 @@ function performCrossFileValidation(
         ref.sectionPosition < file.position
         || (ref.sectionPosition === file.position && ref.questionIndex < qIndex);
 
-      const conditions = [question.showIf, ...(question.optionShowIf ?? []).map(rule => rule.showIf)];
+      const conditions = [
+        question.showIf,
+        ...(question.optionShowIf ?? []).map(rule => rule.showIf),
+        ...(question.softChecks ?? []).map(check => check.when)
+      ];
       for (const leaf of conditions.flatMap(conditionLeaves)) {
         checkReference(leaf, `Question ${currentQuestionId}`, `${path}.showIf`, pointsBackward);
       }
 
-      // Per-choice conditions and exclusive choices name choices by label
+      // Per-choice conditions, exclusive choices and soft checks name choices by label
       const namedChoices = [
         ...(question.optionShowIf ?? []).flatMap(rule => rule.options),
-        ...(question.exclusive ?? [])
+        ...(question.exclusive ?? []),
+        ...(question.softChecks ?? []).flatMap(check => check.options)
       ];
       for (const choice of namedChoices.filter(c => !question.choices.includes(c))) {
         errors.push({
@@ -470,6 +475,14 @@ function performCrossFileValidation(
           message: `Question ${currentQuestionId} names choice "${choice}" which is not one of its choices`,
           path: `${path}.choices`,
           value: choice
+        });
+      }
+      if (question.softChecks && question.multiple) {
+        errors.push({
+          severity: ValidationSeverity.ERROR,
+          message: `Question ${currentQuestionId} has soft checks but is multi-select; soft checks need a single-select answer`,
+          path: `${path}.softChecks`,
+          value: question.softChecks.length
         });
       }
       if (question.exclusive && !question.multiple) {

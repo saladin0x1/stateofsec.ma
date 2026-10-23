@@ -1,4 +1,4 @@
-import type { ConditionLeaf, OptionCondition, ShowIfCondition } from "./validators/survey-schema";
+import type { ConditionLeaf, OptionCondition, ShowIfCondition, SoftCheck } from "./validators/survey-schema";
 
 export type AnswerValue = number | number[] | null | string;
 export type Answers = Record<string, AnswerValue>;
@@ -7,6 +7,7 @@ export type QuestionList = Array<{
   choices?: string[];
   optionShowIf?: OptionCondition[];
   exclusive?: string[];
+  softChecks?: SoftCheck[];
 }>;
 export type SectionList = Array<{
   showIf?: ShowIfCondition;
@@ -84,6 +85,28 @@ export function getExclusiveChoiceIndices(question: QuestionList[number]): numbe
   return (question.exclusive ?? [])
     .map(label => choices.indexOf(label))
     .filter(index => index !== -1);
+}
+
+/**
+ * The "is that right?" message for a rare pick, if the picked choice triggers a soft check
+ * @param question - The question with its choices and optional soft checks
+ * @param value - The answer picked for this question
+ * @param answers - Current survey answers
+ * @returns The message of the first matching soft check, or undefined
+ */
+export function getSoftCheckMessage(
+  question: QuestionList[number],
+  value: AnswerValue | undefined,
+  answers: Answers
+): string | undefined {
+  if (typeof value !== "number")
+    return undefined;
+  const label = question.choices?.[value];
+  if (label === undefined)
+    return undefined;
+  return question.softChecks?.find(check =>
+    check.options.includes(label) && evaluateCondition(check.when, answers)
+  )?.message;
 }
 
 function evaluateLeaf(condition: ConditionLeaf, answers: Answers): boolean {

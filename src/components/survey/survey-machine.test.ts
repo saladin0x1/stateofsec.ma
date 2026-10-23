@@ -17,7 +17,13 @@ const sections = [
     label: "profile",
     position: 1,
     questions: [
-      { label: "Experience", required: true, multiple: false, choices: ["None", "1-4 years", "5+ years"] },
+      {
+        label: "Experience",
+        required: true,
+        multiple: false,
+        choices: ["None", "1-4 years", "5+ years"],
+        softChecks: [{ options: ["5+ years"], message: "Rare, is that right?" }]
+      },
       {
         label: "Seniority",
         required: false,
@@ -75,6 +81,37 @@ describe("survey machine answers", () => {
     expect(actor.getSnapshot().context.answers).toEqual({ "profile-q-0": 1 });
     answer(actor, "profile-q-0", 2);
     expect(actor.getSnapshot().context.answers["profile-q-1"]).toBe(2);
+  });
+
+  it("asks to confirm a rare pick before moving on, once", () => {
+    const actor = start();
+    const context = () => actor.getSnapshot().context;
+    answer(actor, "profile-q-0", 2);
+    actor.send({ type: "NEXT" });
+    expect(context().softCheck).toBe("Rare, is that right?");
+    expect(context().currentQuestionIdx).toBe(0);
+
+    actor.send({ type: "DISMISS_SOFT_CHECK" });
+    expect(context().softCheck).toBeNull();
+    actor.send({ type: "NEXT" });
+    actor.send({ type: "CONFIRM_SOFT_CHECK" });
+    expect(context().softCheck).toBeNull();
+    expect(context().currentQuestionIdx).toBe(1);
+
+    actor.send({ type: "BACK" });
+    actor.send({ type: "NEXT" });
+    expect(context().softCheck).toBeNull();
+    expect(context().currentQuestionIdx).toBe(1);
+  });
+
+  it("drops the check when the answer changes", () => {
+    const actor = start();
+    answer(actor, "profile-q-0", 2);
+    actor.send({ type: "NEXT" });
+    answer(actor, "profile-q-0", 1);
+    expect(actor.getSnapshot().context.softCheck).toBeNull();
+    actor.send({ type: "NEXT" });
+    expect(actor.getSnapshot().context.currentQuestionIdx).toBe(1);
   });
 
   it("opens a section from the steps bar on its first visible question", () => {

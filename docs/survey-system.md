@@ -67,6 +67,16 @@ optionShowIf:
 
 # a multiple-choice pick that clears the others ("None yet", "Prefer not to say")
 exclusive: [None yet]
+
+# a rare but real pick: ask "is that right?" before moving on (single-choice only)
+softChecks:
+  - options: [Founder or running my own company]
+    when:
+      question: profile-q-1
+      equals: 1
+    message: "Just checking: founders aged 18 to 24 are rare. Is that right?"
 ```
+
+Hide a choice only when it is (nearly) impossible for that respondent, and use a soft check when it is rare but real: hiding a real answer forces the respondent to pick a false one.
 
 `optionShowIf` and `exclusive` name choices by their exact text. Quote a label that contains a comma inside `[...]`, or YAML splits it; the validator reports a name that matches no choice.

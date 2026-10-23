@@ -107,6 +107,13 @@ questions:
         showIf:
           question: profile-q-1
           equals: 1
+    # Rare but real in stateofdev.ma's answers (1.4% of 25-34; PhD students count here)
+    softChecks:
+      - options: [University/Public school - Bac +8 (Doctoral)]
+        when:
+          question: profile-q-1
+          in: [1, 2]
+        message: "Just checking: a doctorate (Bac +8, completed or in progress) before 35 is rare. Is that right?"
 
   # stateofdev.ma's experience bands
   - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty only if it is your main income)
@@ -123,11 +130,27 @@ questions:
       - 7-10 years
       - 11-16 years
       - 16+ years
+    # Hidden where stateofdev.ma's answers show it under 0.5% (95% sure); confirmed where rare
     optionShowIf:
-      - options: [11-16 years, 16+ years]
+      - options: [7-10 years, 11-16 years]
         showIf:
           question: profile-q-1
           notEquals: 1
+      - options: [16+ years]
+        showIf:
+          question: profile-q-1
+          notIn: [1, 2]
+    softChecks:
+      - options: [5-6 years]
+        when:
+          question: profile-q-1
+          equals: 1
+        message: "Just checking: 5-6 years of security work before 25 is rare. Is that right?"
+      - options: [11-16 years]
+        when:
+          question: profile-q-1
+          equals: 2
+        message: "Just checking: 11-16 years of security work before 35 is rare. Is that right?"
 
   - label: What is your current employment situation?
     required: true
@@ -144,3 +167,39 @@ questions:
       - Student (school, university, 1337, OFPPT; if you also work, pick your job)
       - Looking for work
       - Other
+    # Rare but real in stateofdev.ma's answers (0.5-2%)
+    softChecks:
+      - options: [Founder or running my own company]
+        when:
+          question: profile-q-1
+          equals: 1
+        message: "Just checking: founders aged 18 to 24 are rare. Is that right?"
+      - options: [Founder or running my own company]
+        when:
+          question: profile-q-5
+          in: [0, 1, 2]
+        message: "Just checking: founders with less than 3 years of security work are rare. Is that right?"
+      - options:
+          - Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)
+        when:
+          question: profile-q-1
+          in: [3, 4]
+        message: "Just checking: interns aged 35 or older are rare. Is that right?"
+      - options:
+          - Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)
+        when:
+          question: profile-q-5
+          in: [4, 5, 6, 7]
+        message: "Just checking: an internship after 5 or more years of security work is rare. Is that right?"
+      - options:
+          - Student (school, university, 1337, OFPPT; if you also work, pick your job)
+        when:
+          question: profile-q-1
+          in: [3, 4]
+        message: "Just checking: full-time students aged 35 or older are rare. Is that right?"
+      - options:
+          - Student (school, university, 1337, OFPPT; if you also work, pick your job)
+        when:
+          question: profile-q-5
+          in: [5, 6, 7]
+        message: "Just checking: being a full-time student after 7 or more years of security work is rare. Is that right?"

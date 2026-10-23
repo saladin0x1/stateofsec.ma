@@ -9,6 +9,7 @@ import {
   getLastVisibleQuestionIndex,
   getNextVisibleQuestionIndex,
   getPrevVisibleQuestionIndex,
+  getSoftCheckMessage,
   getVisibleChoiceIndices,
   getVisibleSectionIndices,
   hasNextVisibleQuestion,
@@ -572,6 +573,18 @@ describe("per-choice conditions", () => {
       "learning-q-0": [1, 2],
       "learning-q-1": 1
     });
+  });
+
+  it("returns the soft check message for a rare pick only when its condition holds", () => {
+    const rare = {
+      choices: ["Employee", "Founder"],
+      softChecks: [{ options: ["Founder"], when: { question: "profile-q-0", equals: 1 }, message: "Young founder?" }]
+    };
+    expect(getSoftCheckMessage(rare, 1, { "profile-q-0": 1 })).toBe("Young founder?");
+    expect(getSoftCheckMessage(rare, 1, { "profile-q-0": 2 })).toBeUndefined();
+    expect(getSoftCheckMessage(rare, 0, { "profile-q-0": 1 })).toBeUndefined();
+    expect(getSoftCheckMessage(rare, null, { "profile-q-0": 1 })).toBeUndefined();
+    expect(getSoftCheckMessage({ choices: ["a", "b"] }, 1, {})).toBeUndefined();
   });
 
   it("treats a multi-select left with no visible pick as unanswered, but keeps a skip", () => {

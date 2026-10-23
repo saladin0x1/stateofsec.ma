@@ -53,6 +53,14 @@ export const OptionConditionSchema = z.object({
   showIf: ShowIfConditionSchema
 }).strict();
 
+// Asks "is that right?" before moving on when one of the listed choices is picked (and the
+// condition on earlier answers holds): a rare but real combination, so it is confirmed, not hidden
+export const SoftCheckSchema = z.object({
+  options: z.array(z.string().trim().min(1)).min(1),
+  when: ShowIfConditionSchema.optional(),
+  message: z.string().trim().min(MIN_LABEL_LENGTH).max(MAX_LABEL_LENGTH)
+}).strict();
+
 export const SurveyQuestionSchema = z.object({
   label: z
     .string()
@@ -103,7 +111,9 @@ export const SurveyQuestionSchema = z.object({
   optionShowIf: z.array(OptionConditionSchema).optional(),
 
   // Choices (by label) that cannot be combined with any other choice in a multi-select
-  exclusive: z.array(z.string().trim().min(1)).min(1).optional()
+  exclusive: z.array(z.string().trim().min(1)).min(1).optional(),
+
+  softChecks: z.array(SoftCheckSchema).optional()
 }).strict();
 
 export const SurveyFileSchema = z
@@ -173,6 +183,7 @@ export const SurveyFileSchema = z
 export type ConditionLeaf = z.infer<typeof ConditionLeafSchema>;
 export type ShowIfCondition = z.infer<typeof ShowIfConditionSchema>;
 export type OptionCondition = z.infer<typeof OptionConditionSchema>;
+export type SoftCheck = z.infer<typeof SoftCheckSchema>;
 export type SurveyQuestion = z.infer<typeof SurveyQuestionSchema>;
 export type SurveyQuestionsYamlFile = z.infer<typeof SurveyFileSchema>;
 
