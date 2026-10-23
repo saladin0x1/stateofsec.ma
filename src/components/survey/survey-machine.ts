@@ -18,6 +18,10 @@ export interface SurveyContext {
   sections: SurveyQuestionsYamlFile[];
   currentSectionIdx: number;
   currentQuestionIdx: number;
+  // Everything the respondent picked, including answers an earlier change now hides, so
+  // changing an answer back restores what depended on it
+  rawAnswers: Record<string, number | number[] | null | string>;
+  // The visible answers only (rawAnswers pruned): drives the form and is what gets submitted
   answers: Record<string, number | number[] | null | string>;
   error: string | null;
   visibleSectionIndices: number[];
@@ -151,16 +155,11 @@ export const surveyMachine = setup({
       visibleSectionIndices: ({ context }) =>
         getVisibleSectionIndices(context.sections, context.answers)
     }),
-    updateAnswer: assign({
-      answers: ({ context, event }) => {
-        if (event.type !== "ANSWER_CHANGE")
-          return context.answers;
-        // Drop answers this change just hid, and anything that depended on them
-        return pruneHiddenAnswers(context.sections, {
-          ...context.answers,
-          [event.questionId]: event.value
-        });
-      }
+    updateAnswer: assign(({ context, event }) => {
+      if (event.type !== "ANSWER_CHANGE")
+        return {};
+      const rawAnswers = { ...context.rawAnswers, [event.questionId]: event.value };
+      return { rawAnswers, answers: pruneHiddenAnswers(context.sections, rawAnswers) };
     }),
     incrementQuestion: assign({
       currentQuestionIdx: ({ context }) => {
@@ -251,7 +250,12 @@ export const surveyMachine = setup({
           return 0;
         return event.sectionIdx;
       },
-      currentQuestionIdx: 0
+      currentQuestionIdx: ({ context, event }) => {
+        if (event.type !== "GO_TO_SECTION")
+          return 0;
+        const section = context.sections[event.sectionIdx];
+        return getFirstVisibleQuestionIndex(section.questions, context.answers) ?? 0;
+      }
     }),
     goToQuestion: assign({
       currentSectionIdx: ({ event }) => {
@@ -290,12 +294,14 @@ export const surveyMachine = setup({
   initial: "answering",
   context: ({ input }) => {
     const sections = input.sections;
-    const answers = input.persisted?.answers ?? {};
+    const rawAnswers = input.persisted?.rawAnswers ?? {};
+    const answers = pruneHiddenAnswers(sections, rawAnswers);
 
     return {
       sections,
       currentSectionIdx: input.persisted?.currentSectionIdx ?? 0,
       currentQuestionIdx: input.persisted?.currentQuestionIdx ?? 0,
+      rawAnswers,
       answers,
       error: null,
       visibleSectionIndices: getVisibleSectionIndices(sections, answers)

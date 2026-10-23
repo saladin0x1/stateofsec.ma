@@ -11,6 +11,7 @@ interface PersistedState {
   version: string;
   currentSectionIdx: number;
   currentQuestionIdx: number;
+  // Raw answers, hidden ones included (the machine prunes them on load)
   answers: Record<string, number | number[] | null | string>;
 }
 
@@ -41,7 +42,7 @@ function loadPersistedState(version: string): Partial<SurveyContext> | null {
     return {
       currentSectionIdx: parsed.currentSectionIdx,
       currentQuestionIdx: parsed.currentQuestionIdx,
-      answers: parsed.answers
+      rawAnswers: parsed.answers
     };
   }
   catch (error) {
@@ -57,7 +58,7 @@ function persistState(context: SurveyContext, version: string) {
       version,
       currentSectionIdx: context.currentSectionIdx,
       currentQuestionIdx: context.currentQuestionIdx,
-      answers: context.answers
+      answers: context.rawAnswers
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toPersist));
   }

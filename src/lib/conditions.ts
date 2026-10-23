@@ -222,7 +222,8 @@ export function getVisibleSectionIndices(
     .map(item => item.index);
 }
 
-// Removes picks of choices that are hidden given the earlier answers
+// Removes picks of choices that are hidden given the earlier answers. A question left with
+// no pick counts as unanswered (undefined), not as a skip ([]), so it is asked again
 function keepVisibleChoices(
   question: QuestionList[number],
   value: AnswerValue,
@@ -231,8 +232,10 @@ function keepVisibleChoices(
   if (!question.optionShowIf?.length)
     return value;
   const visible = new Set(getVisibleChoiceIndices(question, answers));
-  if (Array.isArray(value))
-    return value.filter(v => visible.has(v));
+  if (Array.isArray(value)) {
+    const kept = value.filter(v => visible.has(v));
+    return kept.length || !value.length ? kept : undefined;
+  }
   if (typeof value === "number")
     return visible.has(value) ? value : undefined;
   return value;

@@ -61,15 +61,22 @@ describe("sanitizeAnswers", () => {
   it("deletes a required answer whose only pick is now hidden, and what it gated", () => {
     const { toSave, toDelete } = sanitizeAnswers({ "profile-q-0": 1, "profile-q-1": 2, "learning-q-1": 1 });
     expect(toSave).toEqual({ "profile-q-0": 1 });
-    expect(toDelete).toEqual(["profile-q-1", "learning-q-1"]);
+    expect(toDelete).toEqual(expect.arrayContaining(["profile-q-1", "learning-q-1"]));
   });
 
-  it("still rejects an empty required answer", () => {
-    expect(() => sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [] })).toThrow("learning-q-0 is required");
+  it("drops an empty required answer instead of blocking the whole submit", () => {
+    const { toSave, toDelete } = sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [] });
+    expect(toSave).toEqual({ "profile-q-0": 2 });
+    expect(toDelete).toContain("learning-q-0");
+  });
+
+  it("deletes stored fields the client no longer sends", () => {
+    const { toDelete } = sanitizeAnswers({ "profile-q-0": 0 });
+    expect(toDelete).toEqual(["profile-q-1", "learning-q-0", "learning-q-0-others", "learning-q-1"]);
   });
 
   it("evaluates all-of conditions on the server", () => {
     expect(sanitizeAnswers({ "profile-q-0": 2, "profile-q-1": 1, "learning-q-1": 1 }).toSave["learning-q-1"]).toBe(1);
-    expect(sanitizeAnswers({ "profile-q-0": 2, "profile-q-1": 0, "learning-q-1": 1 }).toDelete).toEqual(["learning-q-1"]);
+    expect(sanitizeAnswers({ "profile-q-0": 2, "profile-q-1": 0, "learning-q-1": 1 }).toDelete).toContain("learning-q-1");
   });
 });

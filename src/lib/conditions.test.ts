@@ -573,4 +573,16 @@ describe("per-choice conditions", () => {
       "learning-q-1": 1
     });
   });
+
+  it("treats a multi-select left with no visible pick as unanswered, but keeps a skip", () => {
+    const sections = [
+      { label: "profile", questions: [{}] },
+      { label: "learning", questions: [{ ...question, multiple: true }] }
+    ];
+    expect(pruneHiddenAnswers(sections, { "profile-q-0": 0, "learning-q-0": [2] })).toEqual({ "profile-q-0": 0 });
+    expect(pruneHiddenAnswers(sections, { "profile-q-0": 0, "learning-q-0": [] })).toEqual({
+      "profile-q-0": 0,
+      "learning-q-0": []
+    });
+  });
 });

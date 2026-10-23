@@ -27,7 +27,7 @@ export function Choice({
   return (
     <div className="relative w-full overflow-hidden flex items-center bg-card p-3 pl-14 mb-2 cursor-pointer transition-all duration-200 hover:translate-x-1">
       <input
-        className="peer hidden"
+        className="peer sr-only"
         type={multiple ? "checkbox" : "radio"}
         id={id}
         name={name}
@@ -42,6 +42,7 @@ export function Choice({
           peer-checked:ring-2 peer-checked:ring-primary/30 peer-checked:ring-offset-2 peer-checked:ring-offset-background
           border-2 border-input
           hover:border-primary/50
+          peer-focus-visible:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-primary/60
           transition-all duration-200"
         htmlFor={id}
       >

@@ -29,6 +29,11 @@ const questionsById = new Map<string, QuestionInfo>(
   )
 );
 
+// Every field an answer document can hold: one per question, plus its "-others" text
+const answerFields = [...questionsById].flatMap(([id, { otherIndices }]) =>
+  otherIndices.length ? [id, `${id}${OTHERS_SUFFIX}`] : [id]
+);
+
 export class InvalidAnswersError extends Error {}
 
 function isChoiceIndex(value: unknown, choiceCount: number): value is number {
@@ -60,8 +65,10 @@ function selectsOther(value: AnswerValue | undefined, otherIndices: number[]) {
 
 /**
  * Checks submitted answers against the survey definition. Returns the answers to store and
- * the fields to delete: answers to questions that are now hidden by showIf conditions, and
- * "other" text whose "Other" choice is no longer selected.
+ * the fields to delete: every answer field that is not stored. The client sends all its
+ * answers on each submit, so this removes stored answers to questions now hidden by showIf,
+ * picks hidden by optionShowIf and "other" text whose "Other" choice is no longer selected,
+ * even when the client has already dropped them.
  */
 export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: string[] } {
   for (const [key, value] of Object.entries(answers)) {
@@ -83,28 +90,21 @@ export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: 
   // cannot keep its dependents alive
   const visibleAnswers = pruneHiddenAnswers(surveySections, answers);
   const toSave: Answers = {};
-  const toDelete: string[] = [];
 
-  for (const [key, value] of Object.entries(answers)) {
+  for (const [key, value] of Object.entries(visibleAnswers)) {
     const isOthersText = key.endsWith(OTHERS_SUFFIX);
     const id = isOthersText ? key.slice(0, -OTHERS_SUFFIX.length) : key;
     const info = questionsById.get(id)!;
-    const visible = Object.hasOwn(visibleAnswers, key);
 
-    if (!visible || (isOthersText && !selectsOther(visibleAnswers[id], info.otherIndices))) {
-      toDelete.push(key);
+    if (isOthersText && !selectsOther(visibleAnswers[id], info.otherIndices))
       continue;
-    }
-    // Pruning drops picks of choices that are now hidden
-    const kept = visibleAnswers[key];
-    if (!isOthersText && info.question.required && isEmpty(kept)) {
-      if (isEmpty(value))
-        throw new InvalidAnswersError(`${id} is required`);
-      toDelete.push(key);
+    // An empty required answer is dropped, not rejected: a missing one is accepted anyway
+    // (sections are saved one at a time), and rejecting it would block every later submit
+    if (!isOthersText && info.question.required && isEmpty(value))
       continue;
-    }
-    toSave[key] = kept;
+    toSave[key] = value;
   }
 
+  const toDelete = answerFields.filter(key => !Object.hasOwn(toSave, key));
   return { toSave, toDelete };
 }

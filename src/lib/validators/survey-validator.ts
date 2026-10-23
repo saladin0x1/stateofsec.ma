@@ -1,5 +1,5 @@
 import type { ValidationError } from "./constants";
-import type { SurveyQuestionsYamlFile } from "./survey-schema";
+import type { ConditionLeaf, SurveyQuestionsYamlFile } from "./survey-schema";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as yaml from "js-yaml";
@@ -386,21 +386,24 @@ function performCrossFileValidation(
   });
 
   const multipleById = new Map<string, boolean>();
+  const choiceCountById = new Map<string, number>();
   files.forEach((file) => {
     file.questions.forEach((question, qIndex) => {
       multipleById.set(`${file.label}-q-${qIndex}`, question.multiple ?? false);
+      choiceCountById.set(`${file.label}-q-${qIndex}`, question.choices.length);
     });
   });
 
   // Every condition (section, question or per-choice, and each item of all / any) must
-  // point backward to an existing single-select question
+  // point backward to an existing single-select question, with choice indices in range
   interface RefPosition { sectionPosition: number; questionIndex: number }
   const checkReference = (
-    refId: string,
+    leaf: ConditionLeaf,
     owner: string,
     path: string,
     pointsBackward: (ref: RefPosition) => boolean
   ) => {
+    const refId = leaf.question;
     const refPosition = questionPositionMap.get(refId);
     if (!refPosition) {
       errors.push({
@@ -427,11 +430,21 @@ function performCrossFileValidation(
         value: refId
       });
     }
+    const choiceCount = choiceCountById.get(refId) ?? 0;
+    const values = [leaf.equals, leaf.notEquals, ...(leaf.in ?? []), ...(leaf.notIn ?? [])];
+    for (const value of values.filter(v => v !== undefined && v >= choiceCount)) {
+      errors.push({
+        severity: ValidationSeverity.ERROR,
+        message: `${owner} showIf tests choice ${value} of "${refId}", which only has ${choiceCount} choices`,
+        path,
+        value
+      });
+    }
   };
 
   files.forEach((file, fileIndex) => {
     for (const leaf of conditionLeaves(file.showIf)) {
-      checkReference(leaf.question, "Section", `${filenames[fileIndex]}.showIf`, ref => ref.sectionPosition < file.position);
+      checkReference(leaf, "Section", `${filenames[fileIndex]}.showIf`, ref => ref.sectionPosition < file.position);
     }
 
     file.questions.forEach((question, qIndex) => {
@@ -443,7 +456,7 @@ function performCrossFileValidation(
 
       const conditions = [question.showIf, ...(question.optionShowIf ?? []).map(rule => rule.showIf)];
       for (const leaf of conditions.flatMap(conditionLeaves)) {
-        checkReference(leaf.question, `Question ${currentQuestionId}`, `${path}.showIf`, pointsBackward);
+        checkReference(leaf, `Question ${currentQuestionId}`, `${path}.showIf`, pointsBackward);
       }
 
       // Per-choice conditions and exclusive choices name choices by label
@@ -465,6 +478,15 @@ function performCrossFileValidation(
           message: `Question ${currentQuestionId} has exclusive choices but is not multi-select`,
           path: `${path}.exclusive`,
           value: question.exclusive
+        });
+      }
+      const conditioned = new Set((question.optionShowIf ?? []).flatMap(rule => rule.options));
+      if (question.required && question.choices.every(choice => conditioned.has(choice))) {
+        errors.push({
+          severity: ValidationSeverity.WARNING,
+          message: `Question ${currentQuestionId} is required but every choice has a condition; make sure one is always shown`,
+          path: `${path}.optionShowIf`,
+          value: question.choices.length
         });
       }
     });

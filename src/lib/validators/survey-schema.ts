@@ -22,6 +22,8 @@ export const ConditionLeafSchema = z
     in: z.array(z.number().int().nonnegative()).min(1).optional(),
     notIn: z.array(z.number().int().nonnegative()).min(1).optional()
   })
+  // Unknown keys are errors, so a typo or a leaf mixed with all / any is not silently dropped
+  .strict()
   .refine(
     (data) => {
       const operators = [
@@ -49,7 +51,7 @@ export const ShowIfConditionSchema = z.union([
 export const OptionConditionSchema = z.object({
   options: z.array(z.string().trim().min(1)).min(1),
   showIf: ShowIfConditionSchema
-});
+}).strict();
 
 export const SurveyQuestionSchema = z.object({
   label: z
@@ -102,7 +104,7 @@ export const SurveyQuestionSchema = z.object({
 
   // Choices (by label) that cannot be combined with any other choice in a multi-select
   exclusive: z.array(z.string().trim().min(1)).min(1).optional()
-});
+}).strict();
 
 export const SurveyFileSchema = z
   .object({
@@ -149,6 +151,7 @@ export const SurveyFileSchema = z
 
     showIf: ShowIfConditionSchema.optional()
   })
+  .strict()
   .refine(
     (data) => {
       // Validate that at least one question is required

@@ -17,7 +17,8 @@ End-to-end survey flow, session management, and answer data structures.
 - Questions come from `src/lib/survey.ts` (the YAML files), organized by sections
 - Answers are collected as `{ "question-id": choiceIndex, "question-id-others": "text" }`
 - Each section is submitted through `submitAnswers` with all answers collected so far
-- The server rejects unknown ids, invalid choice indexes, empty required answers and an exclusive choice combined with others, deletes answers to questions now hidden by `showIf` and picks of choices hidden by `optionShowIf`, and saves to Firestore with the anonymous user id as document id
+- The client keeps every answer given (`rawAnswers`) and submits only the visible ones, so changing an earlier answer back restores what depended on it
+- The server rejects unknown ids, invalid choice indexes and an exclusive choice combined with others, drops answers to questions hidden by `showIf`, picks of choices hidden by `optionShowIf` and empty required answers, deletes every stored answer field it does not save, and saves to Firestore with the anonymous user id as document id
 
 ### 3. Data Export (manual)
 
