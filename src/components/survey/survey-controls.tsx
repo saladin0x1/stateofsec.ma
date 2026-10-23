@@ -55,6 +55,48 @@ export function ErrorMessage({ error, onClose }: ErrorMessageProps) {
   );
 }
 
+interface SoftCheckPromptProps {
+  message: string | null;
+  onConfirm: () => void;
+  onChange: () => void;
+}
+
+// Asks the respondent to confirm a rare but possible answer before moving on
+export function SoftCheckPrompt({ message, onConfirm, onChange }: SoftCheckPromptProps) {
+  if (!message)
+    return null;
+  return (
+    <div
+      role="alert"
+      aria-live="polite"
+      data-testid="soft-check"
+      className="absolute bottom-full left-0 right-0 mb-3 flex justify-center"
+    >
+      <div className="bg-card text-card-foreground px-5 py-3.5 rounded-md shadow-xl border-l-4 border-secondary max-w-[90%] md:max-w-[500px]">
+        <p className="text-sm font-semibold mb-3">{message}</p>
+        <div className="flex flex-wrap gap-2 justify-end">
+          <button
+            type="button"
+            onClick={onChange}
+            className="px-3 py-1.5 text-sm font-medium text-primary underline"
+            data-testid="soft-check-change"
+          >
+            Change my answer
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            className="px-3 py-1.5 text-sm font-medium bg-primary text-primary-foreground border-2 border-primary hover:opacity-90"
+            data-testid="soft-check-confirm"
+          >
+            Yes, that's right
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface BackButtonProps {
   onClick: () => void;
 }
@@ -140,6 +182,11 @@ export function SurveyActions() {
       <ErrorMessage
         error={context.error}
         onClose={() => actorRef.send({ type: "CLEAR_ERROR" })}
+      />
+      <SoftCheckPrompt
+        message={context.softCheck}
+        onConfirm={() => actorRef.send({ type: "CONFIRM_SOFT_CHECK" })}
+        onChange={() => actorRef.send({ type: "DISMISS_SOFT_CHECK" })}
       />
       <div>{canGoBack && <BackButton onClick={handleBack} />}</div>
       <div className="relative">

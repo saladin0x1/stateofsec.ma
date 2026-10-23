@@ -2,106 +2,176 @@ title: Tools & tech
 label: tech
 position: 5
 questions:
-  - label: What is your primary operating system for work?
-    required: true
-    choices:
-      - Windows
-      - macOS
-      - Linux-based
-      - Windows + WSL2
-      - Security-focused distro (Qubes, Tails, etc.)
-
-  - label: Which offensive / pentest tools do you use regularly?
+  - label: Which offensive / pentest tools do you use at work or practice with in labs / CTFs?
     required: false
     multiple: true
+    showIf:
+      question: roles-q-0
+      in: [0, 1, 4, 8, 10, 11]
     choices:
-      - Burp Suite
+      - Burp Suite / Caido / ZAP
       - Nmap
       - Metasploit
-      - Cobalt Strike
-      - Sliver / Mythic (C2)
-      - BloodHound
-      - Impacket
-      - Ghidra
-      - IDA Pro
-      - radare2 / Cutter
-      - x64dbg
-      - Wireshark
+      - C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)
+      - AD tooling (BloodHound, Impacket, NetExec)
+      - Ghidra / IDA Pro
       - sqlmap
       - ffuf / gobuster
       - Nuclei
-      - Kali / Parrot toolset
-      - Frida
-      - mimikatz
-      - None
+      - Recon (subfinder, httpx, Shodan)
+      - Password cracking (Hashcat, John the Ripper)
+      - Nessus / OpenVAS / Qualys
+      - Mobile (Frida, MobSF, objection)
+      - None of these
       - Other
+    exclusive: [None of these]
+    optionShowIf:
+      # Everyone else gets the scanners and reverse engineering in the next list
+      - options: [Nessus / OpenVAS / Qualys]
+        showIf:
+          question: roles-q-0
+          equals: 0
+      - options: [Ghidra / IDA Pro]
+        showIf:
+          question: roles-q-0
+          in: [0, 4, 8]
+      - options: ["C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)"]
+        showIf:
+          question: roles-q-0
+          notIn: [1, 4, 8]
+      - options: ["AD tooling (BloodHound, Impacket, NetExec)"]
+        showIf:
+          question: roles-q-0
+          notIn: [4, 8]
+      - options: ["Mobile (Frida, MobSF, objection)"]
+        showIf:
+          question: roles-q-0
+          notEquals: 1
 
-  - label: Which defensive / blue-team tools do you use?
+  - label: Which defensive, engineering or GRC tools do you use at work (you or your team) or practice with in labs?
     required: false
     multiple: true
+    showIf:
+      question: roles-q-0
+      notEquals: 0
     choices:
       - Splunk
       - Elastic / ELK
-      - Microsoft Sentinel
-      - Wazuh
+      - Microsoft Sentinel / Defender XDR
       - IBM QRadar
-      - CrowdStrike
-      - Microsoft Defender
-      - SentinelOne
-      - Suricata / Snort
-      - Zeek
-      - TheHive / Cortex
-      - MISP
-      - Velociraptor
-      - Sysmon
-      - OSQuery
-      - Nessus / OpenVAS
-      - None
+      - Wazuh
+      - Fortinet (FortiGate, FortiSIEM, FortiEDR)
+      - Other firewalls (Palo Alto, Cisco, Check Point, Sophos, Huawei, Stormshield)
+      - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
+      - Network analysis (Wireshark, Suricata, Snort, Zeek)
+      - DFIR (Velociraptor, Volatility, KAPE)
+      - Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)
+      - SOAR / case management (TheHive, Cortex XSOAR)
+      - Threat intel (MISP, OpenCTI, VirusTotal)
+      - Malware / reverse engineering (Ghidra, IDA, YARA, sandboxes)
+      - Nessus / OpenVAS / Qualys
+      - Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, Fortify)
+      - Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)
+      - Identity / PAM (Entra ID, CyberArk, Wallix)
+      - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
+      - Spreadsheets / in-house registers
+      - None of these
       - Other
+    exclusive: [None of these]
+    optionShowIf:
+      - options:
+          - Splunk
+          - Elastic / ELK
+          - Microsoft Sentinel / Defender XDR
+          - IBM QRadar
+          - Wazuh
+          - Fortinet (FortiGate, FortiSIEM, FortiEDR)
+          - Other firewalls (Palo Alto, Cisco, Check Point, Sophos, Huawei, Stormshield)
+          - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
+        showIf:
+          question: roles-q-0
+          notIn: [4, 6]
+      - options: ["Network analysis (Wireshark, Suricata, Snort, Zeek)"]
+        showIf:
+          question: roles-q-0
+          notIn: [4, 6, 9]
+      - options:
+          - DFIR (Velociraptor, Volatility, KAPE)
+          - Threat intel (MISP, OpenCTI, VirusTotal)
+          - Malware / reverse engineering (Ghidra, IDA, YARA, sandboxes)
+        showIf:
+          question: roles-q-0
+          in: [2, 3, 7, 10, 11]
+      - options: ["Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)"]
+        showIf:
+          question: roles-q-0
+          in: [3, 10, 11]
+      - options: ["SOAR / case management (TheHive, Cortex XSOAR)"]
+        showIf:
+          question: roles-q-0
+          in: [2, 3, 8, 10, 11]
+      - options: ["Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, Fortify)"]
+        showIf:
+          question: roles-q-0
+          in: [4, 8, 10, 11]
+      - options: ["Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)"]
+        showIf:
+          question: roles-q-0
+          in: [4, 5, 8, 9, 10, 11]
+      - options: ["Identity / PAM (Entra ID, CyberArk, Wallix)"]
+        showIf:
+          question: roles-q-0
+          in: [1, 2, 5, 6, 8, 9, 11]
+      - options:
+          - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
+          - Spreadsheets / in-house registers
+        showIf:
+          question: roles-q-0
+          in: [6, 9]
+      # Enterprise-only tools: not for teens, lycee students or people still exploring
+      - options:
+          - IBM QRadar
+          - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
+          - Identity / PAM (Entra ID, CyberArk, Wallix)
+          - Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)
+          - SOAR / case management (TheHive, Cortex XSOAR)
+        showIf:
+          all:
+            - question: roles-q-0
+              notEquals: 10
+            - question: profile-q-4
+              notEquals: 0
 
-  - label: Which cloud platforms do you secure or work with?
-    required: false
-    multiple: true
+  # stateofdev.ma
+  - label: How often do you use AI tools for security work or study (ChatGPT, Claude, Copilot...)?
+    required: true
     choices:
-      - AWS
-      - Azure
-      - GCP
-      - Oracle Cloud (OCI)
-      - Cloudflare
-      - On-premise only
-      - Moroccan cloud providers
-      - None
-      - Other
+      - Daily
+      - Occasionally
+      - Tried them but not interested
+      - Never
 
-  - label: Which scripting / programming languages do you use for security work?
+  - label: How do you use AI tools for security work or study?
     required: true
     multiple: true
+    showIf:
+      question: tech-q-2
+      in: [0, 1]
     choices:
-      - Python
-      - Bash / Shell
-      - PowerShell
-      - Go
-      - C / C++
-      - JavaScript / TypeScript
-      - Rust
-      - Ruby
-      - PHP
-      - Assembly
-      - SQL
-      - None
-      - Other
-
-  - label: How do you use AI tools in your security work?
-    required: true
-    multiple: true
-    choices:
-      - I don't use AI for security work
       - Research & learning
-      - Writing scripts / tooling
+      - Writing or reviewing code / scripts
       - Report writing
       - Log / alert triage
-      - Phishing / detection analysis
-      - Code review
-      - Threat intel summarization
-      - I'm concerned about the risks
+      - Only where allowed (some work, clients or school forbid it)
       - Other
+
+  # stateofdev.ma
+  - label: Do you think AI will replace security jobs in the future?
+    required: true
+    choices:
+      - Not very much (less than 10%)
+      - Somewhat (10% - 30%)
+      - To some extent (30% - 50%)
+      - The majority (50% - 80%)
+      - Completely (more than 80%)
+      - Not sure

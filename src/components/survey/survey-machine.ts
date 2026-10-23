@@ -1,13 +1,15 @@
 import type { SurveyQuestionsYamlFile } from "@/lib/validators/survey-schema";
-import { assign, fromPromise, setup } from "xstate";
+import { assign, fromPromise, raise, setup } from "xstate";
 import {
   getFirstVisibleQuestionIndex,
   getLastVisibleQuestionIndex,
   getNextVisibleQuestionIndex,
   getPrevVisibleQuestionIndex,
+  getSoftCheckMessage,
   getVisibleSectionIndices,
   hasNextVisibleQuestion,
-  hasPrevVisibleQuestion
+  hasPrevVisibleQuestion,
+  pruneHiddenAnswers
 } from "@/lib/conditions";
 import { goToThanksPage, submitAnswers } from "./utils";
 
@@ -17,8 +19,16 @@ export interface SurveyContext {
   sections: SurveyQuestionsYamlFile[];
   currentSectionIdx: number;
   currentQuestionIdx: number;
+  // Everything the respondent picked, including answers an earlier change now hides, so
+  // changing an answer back restores what depended on it
+  rawAnswers: Record<string, number | number[] | null | string>;
+  // The visible answers only (rawAnswers pruned): drives the form and is what gets submitted
   answers: Record<string, number | number[] | null | string>;
   error: string | null;
+  // "Is that right?" message shown for a rare pick, until confirmed or changed
+  softCheck: string | null;
+  // Picks already confirmed ("questionId:choice"), so the check is not asked twice
+  confirmedChecks: string[];
   visibleSectionIndices: number[];
 }
 
@@ -33,7 +43,26 @@ export type SurveyEvents
     }
     | { type: "GO_TO_SECTION"; sectionIdx: number }
     | { type: "GO_TO_QUESTION"; sectionIdx: number; questionIdx: number }
-    | { type: "CLEAR_ERROR" };
+    | { type: "CLEAR_ERROR" }
+    | { type: "CONFIRM_SOFT_CHECK" }
+    | { type: "DISMISS_SOFT_CHECK" };
+
+// The current question's id and answer
+function currentAnswer(context: SurveyContext) {
+  const section = context.sections[context.currentSectionIdx];
+  const questionId = `${section.label}-q-${context.currentQuestionIdx}`;
+  return {
+    question: section.questions[context.currentQuestionIdx],
+    questionId,
+    value: context.answers[questionId]
+  };
+}
+
+// Identifies a confirmed soft check: the question and the pick that triggered it
+function softCheckKey(context: SurveyContext) {
+  const { questionId, value } = currentAnswer(context);
+  return `${questionId}:${String(value)}`;
+}
 
 export const ERRORS = {
   none: null,
@@ -96,6 +125,11 @@ export const surveyMachine = setup({
       const value = context.answers[questionId];
       return value == null || (Array.isArray(value) && !value.length);
     },
+    needsSoftCheck: ({ context }) => {
+      const { question, value } = currentAnswer(context);
+      return getSoftCheckMessage(question, value, context.answers) !== undefined
+        && !context.confirmedChecks.includes(softCheckKey(context));
+    },
     isLastQuestion: ({ context }) => {
       const section = context.sections[context.currentSectionIdx];
       return !hasNextVisibleQuestion(
@@ -150,15 +184,11 @@ export const surveyMachine = setup({
       visibleSectionIndices: ({ context }) =>
         getVisibleSectionIndices(context.sections, context.answers)
     }),
-    updateAnswer: assign({
-      answers: ({ context, event }) => {
-        if (event.type !== "ANSWER_CHANGE")
-          return context.answers;
-        return {
-          ...context.answers,
-          [event.questionId]: event.value
-        };
-      }
+    updateAnswer: assign(({ context, event }) => {
+      if (event.type !== "ANSWER_CHANGE")
+        return {};
+      const rawAnswers = { ...context.rawAnswers, [event.questionId]: event.value };
+      return { rawAnswers, answers: pruneHiddenAnswers(context.sections, rawAnswers) };
     }),
     incrementQuestion: assign({
       currentQuestionIdx: ({ context }) => {
@@ -239,6 +269,19 @@ export const surveyMachine = setup({
     clearError: assign({
       error: ERRORS.none
     }),
+    showSoftCheck: assign({
+      softCheck: ({ context }) => {
+        const { question, value } = currentAnswer(context);
+        return getSoftCheckMessage(question, value, context.answers) ?? null;
+      }
+    }),
+    confirmSoftCheck: assign({
+      confirmedChecks: ({ context }) => [...context.confirmedChecks, softCheckKey(context)],
+      softCheck: null
+    }),
+    clearSoftCheck: assign({
+      softCheck: null
+    }),
     scrollToTop: () => {
       scrollToSection("#steps");
     },
@@ -249,7 +292,12 @@ export const surveyMachine = setup({
           return 0;
         return event.sectionIdx;
       },
-      currentQuestionIdx: 0
+      currentQuestionIdx: ({ context, event }) => {
+        if (event.type !== "GO_TO_SECTION")
+          return 0;
+        const section = context.sections[event.sectionIdx];
+        return getFirstVisibleQuestionIndex(section.questions, context.answers) ?? 0;
+      }
     }),
     goToQuestion: assign({
       currentSectionIdx: ({ event }) => {
@@ -288,14 +336,18 @@ export const surveyMachine = setup({
   initial: "answering",
   context: ({ input }) => {
     const sections = input.sections;
-    const answers = input.persisted?.answers ?? {};
+    const rawAnswers = input.persisted?.rawAnswers ?? {};
+    const answers = pruneHiddenAnswers(sections, rawAnswers);
 
     return {
       sections,
       currentSectionIdx: input.persisted?.currentSectionIdx ?? 0,
       currentQuestionIdx: input.persisted?.currentQuestionIdx ?? 0,
+      rawAnswers,
       answers,
       error: null,
+      softCheck: null,
+      confirmedChecks: [],
       visibleSectionIndices: getVisibleSectionIndices(sections, answers)
     };
   },
@@ -313,7 +365,13 @@ export const surveyMachine = setup({
           actions: ["clearError"]
         },
         ANSWER_CHANGE: {
-          actions: ["updateAnswer", "computeVisibleIndices", "clearError"]
+          actions: ["updateAnswer", "computeVisibleIndices", "clearError", "clearSoftCheck"]
+        },
+        CONFIRM_SOFT_CHECK: {
+          actions: ["confirmSoftCheck", raise({ type: "NEXT" })]
+        },
+        DISMISS_SOFT_CHECK: {
+          actions: ["clearSoftCheck"]
         },
         NEXT: [
           {
@@ -321,6 +379,10 @@ export const surveyMachine = setup({
             target: "answering",
             reenter: true,
             actions: ["setRequiredError"]
+          },
+          {
+            guard: "needsSoftCheck",
+            actions: ["showSoftCheck", "clearError"]
           },
           {
             guard: "isLastQuestion",
@@ -346,22 +408,23 @@ export const surveyMachine = setup({
         BACK: [
           {
             guard: "canGoBackInSection",
-            actions: ["decrementQuestion", "scrollToTop", "clearError"]
+            actions: ["decrementQuestion", "scrollToTop", "clearError", "clearSoftCheck"]
           },
           {
             guard: "canGoBackToSection",
             actions: [
               "goToLastQuestionInPreviousSection",
               "scrollToTop",
-              "clearError"
+              "clearError",
+              "clearSoftCheck"
             ]
           }
         ],
         GO_TO_SECTION: {
-          actions: ["goToSection", "scrollToTop", "clearError"]
+          actions: ["goToSection", "scrollToTop", "clearError", "clearSoftCheck"]
         },
         GO_TO_QUESTION: {
-          actions: ["goToQuestion", "scrollToTop", "clearError"]
+          actions: ["goToQuestion", "scrollToTop", "clearError", "clearSoftCheck"]
         }
       }
     },

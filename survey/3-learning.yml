@@ -2,101 +2,106 @@ title: Learning & certifications
 label: learning
 position: 3
 questions:
-  - label: Which certifications do you currently hold?
+  - label: Which security certifications do you hold?
     required: true
     multiple: true
     choices:
-      - None
-      - CompTIA Security+
-      - CompTIA (Network+, CySA+, PenTest+, etc.)
+      - None yet
+      - Entry-level / free (ISC2 CC, Google, Cisco NetAcad, Fortinet FCF)
+      - CompTIA (Security+, CySA+, PenTest+)
       - CEH (Certified Ethical Hacker)
       - OSCP
-      - OSEP / OSWE / other Offensive Security
-      - CISSP
-      - CISM
-      - CISA
-      - ISO 27001 (Lead Auditor / Implementer)
-      - GIAC (GSEC, GPEN, GCIH, etc.)
-      - INE / eLearnSecurity (eJPT, eCPPT, etc.)
-      - Cloud security (AWS / Azure / GCP)
-      - CRTP / CRTE / other red team
-      - PNPT (TCM Security)
-      - Vendor certs (Cisco, Fortinet, Palo Alto, etc.)
+      - Other OffSec (OSEP, OSWE, OSED, etc.)
+      - Hands-on offensive (CRTP, CRTO, PNPT, BSCP)
+      - INE / Hack The Box (eJPT, eCPPT, CPTS)
+      - CISSP / CISM / CISA
+      - ISO 27001 / 27005 / EBIOS RM
+      - Network vendor certification (Fortinet NSE 4+, Palo Alto, Cisco, Check Point, Huawei)
+      - Microsoft / cloud (SC-200, AZ-500, AWS, GCP)
       - Other
+    exclusive: [None yet]
+    optionShowIf:
+      - options: [CISSP / CISM / CISA]
+        showIf:
+          question: profile-q-5
+          in: [3, 4, 5, 6, 7]
+      - options: [ISO 27001 / 27005 / EBIOS RM]
+        showIf:
+          question: profile-q-4
+          notEquals: 0
 
-  - label: How did you primarily learn cybersecurity?
+  - label: How did you learn cybersecurity? (select all that helped)
     required: true
     multiple: true
     choices:
-      - University
-      - Self-study (books, blogs, docs)
-      - Online courses (Udemy, Coursera, etc.)
-      - Hands-on labs (HTB, TryHackMe)
+      - Lycée / school computer classes (informatique)
+      - University, engineering school or CPGE
+      - OFPPT or vocational training
+      - Self-study / passion projects (books, blogs, docs, home lab)
+      - Courses & training (online or in person)
+      - Hands-on labs (HTB, TryHackMe, PortSwigger Academy)
       - YouTube
-      - CTF competitions
+      - CTFs / competitions
       - Bug bounty
-      - On-the-job / mentorship
-      - Bootcamp or security school
-      - Discord / online communities
-      - AI assistants
+      - Bootcamp / coding school (1337, YouCode, etc.)
+      - Clubs / online communities
+      - Mentorship
+      - On-the-job
       - Other
+    optionShowIf:
+      # Formal paths by age and education: teens learn at lycee or OFPPT (from about 15),
+      # university or CPGE comes after the Bac
+      - options: [Lycée / school computer classes (informatique)]
+        showIf:
+          any:
+            - question: profile-q-1
+              equals: 0
+            - question: profile-q-4
+              equals: 0
+      - options: ["University, engineering school or CPGE"]
+        showIf:
+          question: profile-q-4
+          in: [2, 3, 4, 5, 9]
+      - options: [OFPPT or vocational training]
+        showIf:
+          any:
+            - question: profile-q-1
+              equals: 0
+            - question: profile-q-4
+              in: [2, 7, 9]
+      - options: ["Bootcamp / coding school (1337, YouCode, etc.)"]
+        showIf:
+          question: profile-q-1
+          notEquals: 0
+      # Developers and sysadmins often learn security in their IT job
+      - options: [On-the-job]
+        showIf:
+          any:
+            - question: profile-q-5
+              notEquals: 0
+            - question: profile-q-6
+              in: [0, 1, 2, 3, 4]
 
-  - label: Which hands-on platforms do you use?
-    required: false
+  # From stateofdev.ma
+  - label: What languages can you read/write?
+    required: true
     multiple: true
     choices:
-      - Hack The Box
-      - TryHackMe
-      - PortSwigger Web Security Academy
-      - PentesterLab
-      - OverTheWire
-      - Root-Me
-      - VulnHub
-      - HackerOne / Bugcrowd
-      - CTFtime events
-      - pwn.college
-      - LetsDefend / CyberDefenders
-      - None
-      - Other
+      - Arabic
+      - Amazigh
+      - French
+      - English
+      - Others
 
-  - label: How often do you play CTFs?
-    required: true
-    choices:
-      - Regularly (monthly or more)
-      - Occasionally
-      - Rarely
-      - Used to, but stopped
-      - Never
-
-  - label: Do you participate in bug bounty programs?
-    required: true
-    choices:
-      - Yes, actively
-      - Yes, occasionally
-      - Tried, but no luck yet
-      - Planning to start
-      - Not interested
-
-  - label: What are the biggest barriers to your learning and upskilling?
+  - label: What are the biggest challenges you find in learning security? (pick up to 3)
     required: true
     multiple: true
     choices:
-      - Cost of certs / training
       - Lack of time
-      - Language barriers
-      - Few local training options
-      - No employer support
-      - Hard to find mentorship
-      - Keeping up with the field
-      - Affordable lab / tool access
+      - Language barriers (English/French proficiency)
+      - Cost of resources (labs, courses, certifications)
+      - Lack of practical projects or labs
+      - Information overload
+      - No mentorship/guidance
+      - Keeping up with rapid changes
       - Other
-
-  - label: Who pays for your certifications and training?
-    required: true
-    choices:
-      - I pay for everything myself
-      - Employer pays fully
-      - Employer pays partially
-      - I only use free resources
-      - A mix
-      - Not applicable

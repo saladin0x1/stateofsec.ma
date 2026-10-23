@@ -13,11 +13,18 @@ type AnswerValue = number | number[] | null;
 
 interface QuestionProps {
   question: SurveyQuestion;
+  // Position in the section file: part of the answer id
   index: number;
+  // Number shown to the respondent: position among the questions they see, from 1
+  number: number;
   sectionId: string;
   selected: boolean;
   value: AnswerValue | undefined;
   othersValue: string | undefined;
+  // Indices of the choices to render; hidden choices keep their index
+  visibleChoices: number[];
+  // Indices of choices that clear (and are cleared by) every other choice
+  exclusiveChoices: number[];
   onAnswerChange: (value: AnswerValue) => void;
   onOthersChange: (value: string) => void;
 }
@@ -25,15 +32,18 @@ interface QuestionProps {
 export function Question({
   question,
   index,
+  number,
   sectionId,
   selected,
   value,
   othersValue,
+  visibleChoices,
+  exclusiveChoices,
   onAnswerChange,
   onOthersChange
 }: QuestionProps) {
   const { label, choices } = question;
-  const fitContent = choices.length > GRID_LAYOUT_THRESHOLD;
+  const fitContent = visibleChoices.length > GRID_LAYOUT_THRESHOLD;
 
   // Check if "other" options exist
   const othersIndices = useMemo(
@@ -63,11 +73,13 @@ export function Question({
   const handleChoiceChange = useCallback(
     (choiceIndex: number, checked: boolean) => {
       if (question.multiple) {
-        // Multiple choice: toggle in array
+        // Multiple choice: toggle in array; an exclusive choice replaces everything else
         const currentArray = Array.isArray(value) ? value : [];
-        const newValue = checked
-          ? [...currentArray, choiceIndex]
-          : currentArray.filter(v => v !== choiceIndex);
+        const newValue = !checked
+          ? currentArray.filter(v => v !== choiceIndex)
+          : exclusiveChoices.includes(choiceIndex)
+            ? [choiceIndex]
+            : [...currentArray.filter(v => !exclusiveChoices.includes(v)), choiceIndex];
         onAnswerChange(newValue);
       }
       else {
@@ -75,7 +87,7 @@ export function Question({
         onAnswerChange(choiceIndex);
       }
     },
-    [question.multiple, value, onAnswerChange]
+    [question.multiple, value, exclusiveChoices, onAnswerChange]
   );
 
   const handleOthersChange = useCallback(
@@ -108,7 +120,7 @@ export function Question({
     >
       <p className="mb-4 text-base font-medium">
         <label id={questionLabelId} className="block mb-2 ">
-          {`${index + 1}. ${label}`}
+          {`${number}. ${label}`}
           {" "}
           <br />
         </label>
@@ -126,10 +138,10 @@ export function Question({
         aria-required={question.required ?? true}
         className={fitContent ? "grid md:grid-cols-2 gap-4 grid-cols-1" : ""}
       >
-        {choices.map((c, i) => (
+        {visibleChoices.map(i => (
           <Choice
-            key={`${sectionId}-q-${index}-${c}`}
-            text={c}
+            key={`${sectionId}-q-${index}-${choices[i]}`}
+            text={choices[i]}
             id={`${sectionId}-q-${index}-${i}`}
             name={`${sectionId}-q-${index}`}
             index={i}

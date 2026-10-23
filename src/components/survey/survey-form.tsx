@@ -1,3 +1,4 @@
+import { evaluateCondition, getExclusiveChoiceIndices, getVisibleChoiceIndices } from "@/lib/conditions";
 import { Question } from "./question";
 import { Steps } from "./steps";
 import { SurveyMachineContext } from "./survey-context";
@@ -16,6 +17,12 @@ export function SurveyForm() {
   const currentQuestion = currentSection?.questions[context.currentQuestionIdx];
 
   const questionId = `${currentSection.label}-q-${context.currentQuestionIdx}`;
+
+  // Numbered among the questions this respondent sees, so skipped ones leave no gaps
+  const questionNumber = currentSection.questions
+    .slice(0, context.currentQuestionIdx)
+    .filter(question => evaluateCondition(question.showIf, context.answers))
+    .length + 1;
 
   const handleAnswerChange = (value: number | number[] | null | string) => {
     actorRef.send({
@@ -55,6 +62,7 @@ export function SurveyForm() {
               selected={true}
               question={currentQuestion}
               index={context.currentQuestionIdx}
+              number={questionNumber}
               key={questionId}
               sectionId={currentSection.label}
               value={
@@ -67,6 +75,8 @@ export function SurveyForm() {
               othersValue={
                 context.answers[`${questionId}-others`] as string | undefined
               }
+              visibleChoices={getVisibleChoiceIndices(currentQuestion, context.answers)}
+              exclusiveChoices={getExclusiveChoiceIndices(currentQuestion)}
               onAnswerChange={handleAnswerChange}
               onOthersChange={handleOthersChange}
             />

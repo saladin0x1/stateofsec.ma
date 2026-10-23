@@ -18,6 +18,7 @@ questions:
       - 35 to 44 years
       - 45 or older
 
+  # Same list as stateofdev.ma (12 official regions + 4 areas abroad), so results compare
   - label: Where are you currently located?
     required: true
     choices:
@@ -36,61 +37,169 @@ questions:
       - Europe
       - "US & Canada"
       - Middle East
-      - Other African country
+      - Others
+
+  - label: Which country?
+    required: true
+    showIf:
+      question: profile-q-2
+      in: [12, 13, 14, 15]
+    choices:
+      - France
+      - Belgium, Netherlands or Luxembourg
+      - Germany, Switzerland or Austria
+      - Spain, Italy or Portugal
+      - UK or Ireland
+      - Other European country
+      - Canada
+      - United States
+      - United Arab Emirates
+      - Saudi Arabia
+      - Qatar
+      - Other Middle East country
+      - Africa (outside Morocco)
+      - Asia or Oceania
+      - Other country
+    optionShowIf:
+      - options:
+          - France
+          - Belgium, Netherlands or Luxembourg
+          - Germany, Switzerland or Austria
+          - Spain, Italy or Portugal
+          - UK or Ireland
+          - Other European country
+        showIf:
+          question: profile-q-2
+          equals: 12
+      - options: [Canada, United States]
+        showIf:
+          question: profile-q-2
+          equals: 13
+      - options: [United Arab Emirates, Saudi Arabia, Qatar, Other Middle East country]
+        showIf:
+          question: profile-q-2
+          equals: 14
+      - options: [Africa (outside Morocco), Asia or Oceania, Other country]
+        showIf:
+          question: profile-q-2
+          equals: 15
+
+  # stateofdev.ma's education list, plus the lycee fork
+  - label: What is/was your IT or security education background? (completed or in progress)
+    required: true
+    showIf:
+      question: profile-q-1
+      notEquals: 0
+    choices:
+      - Still at lycée / preparing the Bac (incl. repeating or candidat libre)
+      - Self-taught (no formal IT or security education)
+      - University/Public school - Bac +2/+3 (Bachelor's)
+      - University/Public school - Bac +5 (Master's)
+      - University/Public school - Bac +8 (Doctoral)
+      - Private engineering/tech school
+      - Coding school (1337, YouCode, Solicode, etc.)
+      - Vocational/Technical training (OFPPT, etc.)
+      - Other field's diploma (career transition)
       - Other
+    optionShowIf:
+      # Only 18-24 can still be at lycee; older respondents preparing the Bac pick another answer
+      - options: [Still at lycée / preparing the Bac (incl. repeating or candidat libre)]
+        showIf:
+          question: profile-q-1
+          equals: 1
+    # Rare but real in stateofdev.ma's answers (1.4% of 25-34; PhD students count here)
+    softChecks:
+      - options: [University/Public school - Bac +8 (Doctoral)]
+        when:
+          question: profile-q-1
+          in: [1, 2]
+        message: "Just checking: a doctorate (Bac +8, completed or in progress) before 35 is rare. Is that right?"
 
-  - label: Which best describes you?
+  # stateofdev.ma's experience bands
+  - label: How many years has security been part or all of your job? (jobs, freelance, internships; bug bounty only if it is your main income)
     required: true
+    showIf:
+      question: profile-q-4
+      notEquals: 0
     choices:
-      - Working professional in cybersecurity
-      - IT or developer moving into security
-      - Student learning cybersecurity
-      - Researcher or academic
-      - Hobbyist or enthusiast
-      - Looking for my first security role
-
-  - label: How many years of experience do you have in cybersecurity?
-    required: true
-    choices:
-      - No professional experience yet
-      - Less than a year
+      - None yet (security has not been part of my job)
+      - Less than a year (incl. a current internship)
       - 1-2 years
       - 3-4 years
       - 5-6 years
       - 7-10 years
-      - 11-15 years
+      - 11-16 years
       - 16+ years
-
-  - label: What is your educational background?
-    required: true
-    choices:
-      - Self-taught (no formal degree in the field)
-      - University/public school - Bac +2/+3
-      - University/public school - Bac +5 (engineering/Master's)
-      - University/public school - Bac +8 (Doctoral)
-      - Private engineering or tech school
-      - Coding school (1337, YouCode, Solicode, etc.)
-      - Dedicated cybersecurity program or academy
-      - Diploma in another field (career switch)
-      - Other
+    # Hidden where stateofdev.ma's answers show it under 0.5% (95% sure); confirmed where rare
+    optionShowIf:
+      - options: [7-10 years, 11-16 years]
+        showIf:
+          question: profile-q-1
+          notEquals: 1
+      - options: [16+ years]
+        showIf:
+          question: profile-q-1
+          notIn: [1, 2]
+    softChecks:
+      - options: [5-6 years]
+        when:
+          question: profile-q-1
+          equals: 1
+        message: "Just checking: 5-6 years of security work before 25 is rare. Is that right?"
+      - options: [11-16 years]
+        when:
+          question: profile-q-1
+          equals: 2
+        message: "Just checking: 11-16 years of security work before 35 is rare. Is that right?"
 
   - label: What is your current employment situation?
     required: true
+    multiple: false
+    showIf:
+      question: profile-q-4
+      notEquals: 0
     choices:
-      - Full-time employee in Morocco
-      - Full-time employee abroad
-      - Freelancer or consultant
+      - Employee of an organization in Morocco (public or private, incl. nearshore)
+      - Employee of a foreign organization (abroad, or remote from Morocco, incl. via an employer-of-record)
+      - Freelancer / independent (incl. full-time bug bounty and contracting for foreign clients)
       - Founder or running my own company
-      - Internship or apprenticeship
-      - Student (not working)
+      - Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)
+      - Student (school, university, 1337, OFPPT; if you also work, pick your job)
       - Looking for work
       - Other
-
-  - label: Do you have plans to work outside Morocco?
-    required: true
-    choices:
-      - Yes, in the next 12 months
-      - Yes, in the next 24 months
-      - Still hesitating
-      - Already working abroad
-      - No
+    # Rare but real in stateofdev.ma's answers (0.5-2%)
+    softChecks:
+      - options: [Founder or running my own company]
+        when:
+          question: profile-q-1
+          equals: 1
+        message: "Just checking: founders aged 18 to 24 are rare. Is that right?"
+      - options: [Founder or running my own company]
+        when:
+          question: profile-q-5
+          in: [0, 1, 2]
+        message: "Just checking: founders with less than 3 years of security work are rare. Is that right?"
+      - options:
+          - Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)
+        when:
+          question: profile-q-1
+          in: [3, 4]
+        message: "Just checking: interns aged 35 or older are rare. Is that right?"
+      - options:
+          - Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)
+        when:
+          question: profile-q-5
+          in: [4, 5, 6, 7]
+        message: "Just checking: an internship after 5 or more years of security work is rare. Is that right?"
+      - options:
+          - Student (school, university, 1337, OFPPT; if you also work, pick your job)
+        when:
+          question: profile-q-1
+          in: [3, 4]
+        message: "Just checking: full-time students aged 35 or older are rare. Is that right?"
+      - options:
+          - Student (school, university, 1337, OFPPT; if you also work, pick your job)
+        when:
+          question: profile-q-5
+          in: [5, 6, 7]
+        message: "Just checking: being a full-time student after 7 or more years of security work is rare. Is that right?"

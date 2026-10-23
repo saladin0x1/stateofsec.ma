@@ -8,8 +8,8 @@ const MIN_TITLE_LENGTH = VALIDATION_THRESHOLDS.MIN_TITLE_LENGTH;
 const MAX_LABEL_LENGTH = VALIDATION_THRESHOLDS.MAX_LABEL_LENGTH;
 const MAX_CHOICE_LENGTH = VALIDATION_THRESHOLDS.MAX_CHOICE_LENGTH;
 
-// Schema for conditional visibility (showIf)
-export const ShowIfConditionSchema = z
+// Schema for one condition on an earlier answer
+export const ConditionLeafSchema = z
   .object({
     question: z
       .string()
@@ -22,6 +22,8 @@ export const ShowIfConditionSchema = z
     in: z.array(z.number().int().nonnegative()).min(1).optional(),
     notIn: z.array(z.number().int().nonnegative()).min(1).optional()
   })
+  // Unknown keys are errors, so a typo or a leaf mixed with all / any is not silently dropped
+  .strict()
   .refine(
     (data) => {
       const operators = [
@@ -37,6 +39,27 @@ export const ShowIfConditionSchema = z
         "Exactly one operator must be specified: equals, notEquals, in, or notIn"
     }
   );
+
+// Schema for conditional visibility (showIf): one condition, or all / any of several
+export const ShowIfConditionSchema = z.union([
+  ConditionLeafSchema,
+  z.object({ all: z.array(ConditionLeafSchema).min(2) }).strict(),
+  z.object({ any: z.array(ConditionLeafSchema).min(2) }).strict()
+]);
+
+// Hides the listed choices (by label) unless the condition holds; their indices stay stable
+export const OptionConditionSchema = z.object({
+  options: z.array(z.string().trim().min(1)).min(1),
+  showIf: ShowIfConditionSchema
+}).strict();
+
+// Asks "is that right?" before moving on when one of the listed choices is picked (and the
+// condition on earlier answers holds): a rare but real combination, so it is confirmed, not hidden
+export const SoftCheckSchema = z.object({
+  options: z.array(z.string().trim().min(1)).min(1),
+  when: ShowIfConditionSchema.optional(),
+  message: z.string().trim().min(MIN_LABEL_LENGTH).max(MAX_LABEL_LENGTH)
+}).strict();
 
 export const SurveyQuestionSchema = z.object({
   label: z
@@ -83,8 +106,15 @@ export const SurveyQuestionSchema = z.object({
     ),
   // Note: Multiple "Other" variations are handled as warnings in cross-file validation
 
-  showIf: ShowIfConditionSchema.optional()
-});
+  showIf: ShowIfConditionSchema.optional(),
+
+  optionShowIf: z.array(OptionConditionSchema).optional(),
+
+  // Choices (by label) that cannot be combined with any other choice in a multi-select
+  exclusive: z.array(z.string().trim().min(1)).min(1).optional(),
+
+  softChecks: z.array(SoftCheckSchema).optional()
+}).strict();
 
 export const SurveyFileSchema = z
   .object({
@@ -131,6 +161,7 @@ export const SurveyFileSchema = z
 
     showIf: ShowIfConditionSchema.optional()
   })
+  .strict()
   .refine(
     (data) => {
       // Validate that at least one question is required
@@ -149,7 +180,10 @@ export const SurveyFileSchema = z
  * TypeScript types inferred from Zod schemas
  * These replace the types in custom-yaml.d.ts
  */
+export type ConditionLeaf = z.infer<typeof ConditionLeafSchema>;
 export type ShowIfCondition = z.infer<typeof ShowIfConditionSchema>;
+export type OptionCondition = z.infer<typeof OptionConditionSchema>;
+export type SoftCheck = z.infer<typeof SoftCheckSchema>;
 export type SurveyQuestion = z.infer<typeof SurveyQuestionSchema>;
 export type SurveyQuestionsYamlFile = z.infer<typeof SurveyFileSchema>;
 

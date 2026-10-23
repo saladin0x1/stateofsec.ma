@@ -28,3 +28,6 @@ coverage/
 .dev.vars*
 .wrangler/
 scripts/*.json
+
+# local dev test pages
+src/pages/playground.astro
