@@ -1,3 +1,14 @@
 #!/bin/sh
 
+# The local survey playground (src/pages/playground*) skips the captcha and the session to
+# test the survey tree: it must never be committed. .gitignore keeps it out of `git add .`;
+# this also stops `git add -f`. CI fails too if one lands (src/lib/production-routes.test.ts)
+playground=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '^src/pages/playground' || true)
+if [ -n "$playground" ]; then
+  echo "pre-commit: the local playground must never be committed:"
+  echo "$playground"
+  echo "Unstage it with: git restore --staged $playground"
+  exit 1
+fi
+
 pnpm lint-staged

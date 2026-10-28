@@ -13,7 +13,7 @@ export interface PageProbe {
   submits: SubmitRecord[];
   // The survey asked for /thanks (the end of the survey)
   thanksRequested: boolean;
-  // Status of that /thanks response (the playground has no session, so 302 to /before-start)
+  // Status of that /thanks response, when the navigation goes through (the playground cancels it)
   thanksStatus: number | null;
   // Trusted mouse or touch presses the pages received, across navigations (keyboard-only
   // walks expect none)
@@ -60,6 +60,21 @@ export async function preparePage(page: Page, options: SetupOptions = {}): Promi
   page.on("request", (request) => {
     if (request.isNavigationRequest() && new URL(request.url()).pathname === "/thanks")
       probe.thanksRequested = true;
+  });
+  // The local playground cancels the navigation to /thanks (which needs a session and would
+  // bounce to the captcha) and shows its own finished screen: the attempt still counts
+  await page.exposeFunction("__e2eThanks", () => {
+    probe.thanksRequested = true;
+  });
+  await page.addInitScript(() => {
+    const win = window as unknown as {
+      navigation?: { addEventListener: (type: string, listener: (event: { destination: { url: string } }) => void) => void };
+      __e2eThanks?: () => void;
+    };
+    win.navigation?.addEventListener("navigate", (event) => {
+      if (new URL(event.destination.url).pathname === "/thanks")
+        win.__e2eThanks?.();
+    });
   });
   page.on("response", (response) => {
     if (response.request().isNavigationRequest() && new URL(response.url()).pathname === "/thanks")
