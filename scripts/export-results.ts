@@ -77,8 +77,14 @@ async function run() {
   if (outputArg) {
     // Structured output mode for results directory
     const outputDir = outputArg.split("=")[1];
-    if (path.resolve(outputDir).startsWith(path.resolve("results")))
-      console.warn("[WARN] This is the full private export (ids, timestamps, free text, flaw block): do not commit it under results/. Publish with --public instead (docs/privacy.md)");
+    // results/ is published: the full private export (ids, timestamps, free text, flaw block)
+    // must never be written there
+    const resolved = path.resolve(outputDir);
+    if (resolved === path.resolve("results") || resolved.startsWith(`${path.resolve("results")}${path.sep}`)) {
+      console.error("[REFUSED] The full private export (ids, timestamps, free text, flaw block) cannot be written under results/, which is published. Write it to a private folder outside the repo; publish with --public (docs/privacy.md)");
+      process.exitCode = 1;
+      return;
+    }
     ensureDirectoryExists(outputDir);
 
     const resultsPath = path.join(outputDir, "results.json");

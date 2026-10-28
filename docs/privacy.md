@@ -40,8 +40,12 @@ and the survey's branching: which follow-up questions a row answered reveals the
 that opened them, so a blanked field can be read back from the questions around it.
 
 **Out of scope.** The owners (they hold the raw data), Firestore access control, and
-analytics (constraint A: never linked to answers). Constraint D (never *how*, never *which
-org*) is enforced by the survey itself; the export adds the protections below.
+analytics. PostHog runs only after a respondent accepts the cookie banner, which says it may
+record how they use the site, including this survey: its autocapture and session recordings
+(kept on purpose, to see how people scroll and get stuck in the form) can show which choices
+a consenting respondent clicked. They are not part of any release, and access to the PostHog
+project must stay limited to the owners. Constraint D (never *how*, never *which org*) is
+enforced by the survey itself; the export adds the protections below.
 
 ## What Gets Published
 
@@ -143,10 +147,8 @@ pnpm export-results --public=results/<year>/data --allow-rows # straight from Fi
 ```
 
 `export-results` without `--public` still writes the full private export (default
-`scripts/<timestamp>.json`, git-ignored). It now warns when `--output` points under
-`results/`: that folder is published, so the private export must not be committed there.
-The README and `docs/survey-system.md` still show `--output=results/<year>/data` as the
-publishing step and should be updated to `--public` (not changed here). Run
+`scripts/<timestamp>.json`, git-ignored). It refuses any `--output` under `results/`: that
+folder is published, so the private export can never land there. Run
 `generate-questions` as before for the full question list; `export-public` writes its own
 `questions.json` with the coarsened choices, so run it last.
 

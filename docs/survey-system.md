@@ -22,7 +22,7 @@ End-to-end survey flow, session management, and answer data structures.
 
 ### 3. Data Export (manual)
 
-- `pnpm export-results --output=results/<year>/data` dumps all Firestore documents to `results.json`
+- `pnpm export-results --output=<private dir>` dumps all Firestore documents to `results.json` (owners only: it refuses any path under the published `results/`; the public release is `--public`, see `docs/privacy.md`)
 - `pnpm generate-questions --output=results/<year>/data` creates `questions.json` from the YAML
 - Run both before changing the survey for the next edition
 

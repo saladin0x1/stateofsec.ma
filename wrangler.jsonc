@@ -8,12 +8,11 @@
     "binding": "ASSETS",
     "directory": "./dist"
   },
-  // Served at these custom domains (zone stateofsec.ma on Cloudflare); dev shares the worker
-  // and its Firestore
+  // Production custom domains (zone stateofsec.ma on Cloudflare). No dev domain on this
+  // worker: it would share production's Firestore and session secret (test locally instead)
   "routes": [
     { "pattern": "stateofsec.ma", "custom_domain": true },
-    { "pattern": "www.stateofsec.ma", "custom_domain": true },
-    { "pattern": "dev.stateofsec.ma", "custom_domain": true }
+    { "pattern": "www.stateofsec.ma", "custom_domain": true }
   ],
   "observability": {
     "enabled": true

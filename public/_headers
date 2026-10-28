@@ -1,0 +1,9 @@
+# Security headers for the prerendered pages and assets, served without the worker.
+# Keep in sync with SECURITY_HEADERS in src/lib/security-headers.ts (worker-rendered responses)
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
