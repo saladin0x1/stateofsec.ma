@@ -192,7 +192,7 @@ export function SurveyActions() {
   };
 
   return (
-    <div className="relative flex flex-row justify-between mt-3 sticky bottom-0 bg-background py-4 border-t-2 border-border z-20 transition-all duration-1000">
+    <div id="survey-actions" className="relative flex flex-row justify-between mt-3 sticky bottom-0 bg-background py-4 border-t-2 border-border z-20 transition-all duration-1000">
       <ErrorMessage
         error={context.error}
         onClose={() => actorRef.send({ type: "CLEAR_ERROR" })}

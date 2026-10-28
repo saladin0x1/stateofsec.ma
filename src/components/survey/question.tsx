@@ -2,12 +2,19 @@ import type { ChangeEvent } from "react";
 import type { SurveyQuestion } from "@/lib/validators/survey-schema";
 import {
   useCallback,
-  useMemo
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef
 } from "react";
 import { isOtherChoice } from "@/lib/other-choice";
 import { Choice } from "./choice";
 
 const GRID_LAYOUT_THRESHOLD = 10;
+// Space between the options box and the pinned Back/Next bar (its mt-3)
+const OPTIONS_BOX_GAP = 12;
+// About five rows: the box never gets smaller, even on a phone held sideways
+const OPTIONS_BOX_MIN_HEIGHT = 240;
 
 type AnswerValue = number | number[] | null;
 
@@ -127,6 +134,53 @@ export function Question({
     [question.multiple, value]
   );
 
+  // Long lists scroll inside their own box sized to the screen, so the page stays put.
+  // Height and fade are set on the DOM directly: no re-render on every scroll
+  const optionsRef = useRef<HTMLDivElement>(null);
+  const fadeRef = useRef<HTMLDivElement>(null);
+  const othersInputRef = useRef<HTMLTextAreaElement>(null);
+
+  // The fade shows while more options are hidden below (8px slack: the box's own padding plus rounding)
+  const updateFade = useCallback(() => {
+    const box = optionsRef.current;
+    if (box && fadeRef.current)
+      fadeRef.current.hidden = box.scrollTop + box.clientHeight >= box.scrollHeight - 8;
+  }, []);
+
+  useLayoutEffect(() => {
+    const fit = () => {
+      const box = optionsRef.current;
+      const steps = document.getElementById("steps");
+      if (!box || !steps)
+        return;
+      // Where the box sits now (the header is still on screen after a reload), but never higher
+      // than with the steps bar at the top of the screen, where every question change scrolls
+      const boxTop = box.getBoundingClientRect().top;
+      const top = Math.max(boxTop, boxTop - steps.getBoundingClientRect().top);
+      const bar = document.getElementById("survey-actions")?.offsetHeight ?? 0;
+      box.style.maxHeight = `${Math.max(OPTIONS_BOX_MIN_HEIGHT, window.innerHeight - top - bar - OPTIONS_BOX_GAP)}px`;
+      updateFade();
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    window.addEventListener("scroll", fit, { passive: true });
+    return () => {
+      window.removeEventListener("resize", fit);
+      window.removeEventListener("scroll", fit);
+    };
+  }, [updateFade]);
+
+  // The list grows or shrinks with the answers ("Other" field, choices hidden by earlier answers)
+  useEffect(() => {
+    updateFade();
+  }, [updateFade, visibleChoices.length, showOtherInput]);
+
+  // "Other" opens its text field at the end of the box: bring it into view
+  useEffect(() => {
+    if (showOtherInput)
+      othersInputRef.current?.scrollIntoView({ block: "nearest" });
+  }, [showOtherInput]);
+
   const questionLabelId = `${sectionId}-q-${index}-label`;
   const pickedCount = Array.isArray(value) ? value.length : 0;
   const atLimit = question.max !== undefined && pickedCount >= question.max;
@@ -140,7 +194,8 @@ export function Question({
       `}
       data-testid={`${sectionId}-q-${index}`}
     >
-      <p className="mb-4 text-base font-medium">
+      {/* Pinned while a long list scrolls under it, so only the options move (Back/Next is pinned at the bottom) */}
+      <p className="sticky top-0 z-20 mb-3 border-b-2 border-border bg-background py-3 text-base font-medium">
         <label id={questionLabelId} className="block mb-1">
           {`${number}. ${label}`}
         </label>
@@ -151,12 +206,17 @@ export function Question({
         </span>
       </p>
       <div
+        ref={optionsRef}
         role="group"
         aria-labelledby={questionLabelId}
         aria-required={question.required ?? true}
-        className={
-          fitContent && !grouped.some(g => g.header) ? "grid md:grid-cols-2 gap-2 grid-cols-1" : ""
-        }
+        onScroll={updateFade}
+        // -m-1 p-1 leaves room for the checked ring and the hover nudge inside the scroll box
+        className={`-m-1 p-1 overflow-y-auto overflow-x-hidden overscroll-contain ${
+          // Column gap only: rows keep the same spacing as short lists (each choice has its own margin)
+          // auto-rows-max: a capped box must not shrink rows (the "Other" field collapsed without it)
+          fitContent && !grouped.some(g => g.header) ? "grid auto-rows-max md:grid-cols-2 gap-x-2 grid-cols-1" : ""
+        }`}
       >
         {grouped.map((group, groupIndex) => (
           <div key={group.header ?? `ungrouped-${groupIndex}`} className={group.header ? "" : "contents"}>
@@ -183,7 +243,8 @@ export function Question({
         ))}
         {showOtherInput && (
           <textarea
-            className="mt-4 w-full p-2 bg-card text-foreground border-2 border-input focus:ring-2 focus:ring-ring focus:border-ring placeholder:text-muted-foreground transition-colors"
+            ref={othersInputRef}
+            className="col-span-full mt-4 w-full p-2 bg-card text-foreground border-2 border-input focus:ring-2 focus:ring-ring focus:border-ring placeholder:text-muted-foreground transition-colors"
             placeholder="Please specify... use comma to separate each item (max 200 characters)"
             rows={3}
             maxLength={200}
@@ -192,6 +253,12 @@ export function Question({
             data-testid={`${sectionId}-q-${index}-others`}
           />
         )}
+        {/* Fades the last visible rows while more options are hidden below */}
+        <div
+          ref={fadeRef}
+          aria-hidden="true"
+          className="pointer-events-none sticky bottom-0 col-span-full -mt-12 h-12 bg-gradient-to-t from-background to-transparent"
+        />
       </div>
     </div>
   );

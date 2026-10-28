@@ -133,7 +133,7 @@ export function Steps() {
   return (
     <div
       id="steps"
-      className="mx-auto mt-4 md:mb-20 mb-10 flex w-full flex-wrap items-center justify-center space-x-4 md:px-10  px-0 py-2 pt-6"
+      className="mx-auto md:mt-4 md:mb-20 mb-4 flex w-full flex-wrap items-center justify-center space-x-4 md:px-10  px-0 py-2 md:pt-6"
     >
       {sectionsLabels.map((section, index) => {
         return (

@@ -45,7 +45,7 @@ export function SurveyForm() {
   }
 
   return (
-    <div className="min-h-screen pt-10">
+    <div className="min-h-screen pt-4 md:pt-10">
       <Steps />
       <main className="flex flex-1 justify-center items-center">
         <div
