@@ -9,9 +9,9 @@ in `scripts/privacy/`.
 ## Before Any Analysis: Drop Dev Test Answers
 
 dev.stateofsec.ma and stateofsec.ma run the same worker and write to the same Firestore
-collection. The survey launched on stateofsec.ma on 2026-10-28: drop every document whose
-`lastUpdated` is earlier than the launch deploy (the time is in the launch commit's notes)
-before any export or chart, so dev test answers never reach the results.
+collection. The survey launched on stateofsec.ma with Worker version 08e7e4fd, deployed at
+2026-10-28T12:26:35Z: drop every document whose `lastUpdated` is earlier than that before
+any export or chart, so dev test answers never reach the results.
 
 ## Threat Model
 
