@@ -66,7 +66,7 @@ async function run() {
   // e.g. --public=results/2026/data. The full private export below is unchanged
   const publicArg = process.argv.find(arg => arg.startsWith("--public="));
   if (publicArg) {
-    if (!writePublicRelease(data.results, publicArg.split("=")[1]))
+    if (!writePublicRelease(data.results, publicArg.split("=")[1], { allowRows: process.argv.includes("--allow-rows") }))
       process.exitCode = 1;
     return;
   }

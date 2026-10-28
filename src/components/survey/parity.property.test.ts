@@ -12,7 +12,7 @@ import { isDeepStrictEqual } from "node:util";
 import fc from "fast-check";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { submitAnswers as submitAnswersAction } from "@/actions/submit-answers";
-import { pruneHiddenAnswers } from "@/lib/conditions";
+import { conditionLeaves, evaluateCondition, pruneHiddenAnswers } from "@/lib/conditions";
 import { createFakeFirestore } from "@/lib/fake-firestore";
 import { surveySections } from "@/lib/survey";
 import { expectedDocument, storedDocumentViolations, unansweredRequired } from "@/lib/survey-test-model";
@@ -54,10 +54,23 @@ function sectionOf(key: string) {
   return surveySections.findIndex(section => key.startsWith(`${section.label}-q-`));
 }
 
+// True when the submitted answers alone show that a later field's question is hidden: every
+// condition on it reads sections up to `submitted`, and they do not hold
+function settledHidden(key: string, visible: Answers, submitted: number) {
+  const id = key.replace(/-others$/, "");
+  const section = surveySections[sectionOf(id)];
+  const question = section.questions[Number(id.slice(id.lastIndexOf("-") + 1))];
+  const leaves = [...conditionLeaves(section.showIf), ...conditionLeaves(question.showIf)];
+  return leaves.every(leaf => sectionOf(leaf.question) <= submitted)
+    && !(evaluateCondition(section.showIf, visible) && evaluateCondition(question.showIf, visible));
+}
+
 // The stored document after a submit from section `submitted`, given the one before it
-function expectedAfterSubmit(expected: Answers, before: Answers, submitted: number): Answers {
+function expectedAfterSubmit(expected: Answers, before: Answers, submitted: number, visible: Answers): Answers {
   const result: Answers = {};
   for (const key of new Set([...Object.keys(expected), ...Object.keys(before)])) {
+    if (!Object.hasOwn(expected, key) && sectionOf(key) > submitted && settledHidden(key, visible, submitted))
+      continue;
     const source = Object.hasOwn(expected, key) || sectionOf(key) <= submitted ? expected : before;
     if (Object.hasOwn(source, key))
       result[key] = source[key];
@@ -100,7 +113,7 @@ describe("client/server parity (real survey, real action, fake Firestore)", () =
           const submitted = surveySections.findIndex(section => section.label === record.section);
           if (submitted === -1)
             driver.fail(`the client sent no known section: ${String(record.section)}`);
-          const expected = expectedAfterSubmit(expectedDocument(surveySections, rawAnswers), stored, submitted);
+          const expected = expectedAfterSubmit(expectedDocument(surveySections, rawAnswers), stored, submitted, record.payload);
           if (!isDeepStrictEqual(doc, expected))
             driver.fail(`stored ${JSON.stringify(doc)}\nexpected ${JSON.stringify(expected)}`);
           // Stale fields of later sections may remain until the last section is submitted

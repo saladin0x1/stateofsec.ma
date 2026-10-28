@@ -22,15 +22,26 @@ export function readRawExport(file: string): Row[] {
   return rows;
 }
 
+// Owners' decision for 2026: charts and totals only, no row-level file (docs/privacy.md).
+// Writing one takes an explicit allowRows (--allow-rows) once the owners decide otherwise
+export interface WriteOptions extends ReleaseOptions {
+  allowRows?: boolean;
+}
+
 /**
- * Builds the public release and writes it only if the gate passes.
+ * Builds the public release and writes it only if row-level files are allowed and the gate
+ * passes. The gate report is printed either way.
  * @returns whether the files were written
  */
-export function writePublicRelease(raw: Row[], outputDir: string, options: ReleaseOptions = {}): boolean {
+export function writePublicRelease(raw: Row[], outputDir: string, options: WriteOptions = {}): boolean {
   const survey = loadSurvey();
   const release = buildRelease(raw, survey, options);
   const gate = evaluateGate(release, survey, options.thresholds);
   console.log(formatGateReport(release, gate));
+  if (!options.allowRows) {
+    console.error(`[REFUSED] Nothing written to ${outputDir}: row-level files are not published this year (charts and totals only, docs/privacy.md); pass --allow-rows once the owners decide otherwise`);
+    return false;
+  }
   if (!gate.pass) {
     console.error(`[REFUSED] Nothing written to ${outputDir}: the release does not meet the thresholds (see docs/privacy.md)`);
     return false;

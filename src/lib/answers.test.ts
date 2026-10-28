@@ -92,4 +92,17 @@ describe("sanitizeAnswers", () => {
     expect(sanitizeAnswers({ "profile-q-0": 2, "profile-q-1": 1, "learning-q-1": 1 }).toSave["learning-q-1"]).toBe(1);
     expect(sanitizeAnswers({ "profile-q-0": 2, "profile-q-1": 0, "learning-q-1": 1 }).toDelete).toContain("learning-q-1");
   });
+
+  it("keeps later sections' fields on an earlier submit, unless the submit settles they are hidden", () => {
+    // From profile (section 0): a minor's stored seniority is hidden by profile answers alone
+    const minor = sanitizeAnswers({ "profile-q-0": 0 }, 0);
+    expect(minor.toDelete).toContain("learning-q-1");
+    // An unconditional later question may just not be resubmitted yet: it is kept
+    expect(minor.toDelete).not.toContain("learning-q-0");
+    expect(minor.toDelete).not.toContain("learning-q-0-others");
+    // An adult with experience: seniority is shown, so it is kept until resubmitted
+    expect(sanitizeAnswers({ "profile-q-0": 2, "profile-q-1": 1 }, 0).toDelete).not.toContain("learning-q-1");
+    // Missing or unknown section (-1): nothing is deleted
+    expect(sanitizeAnswers({ "profile-q-0": 0 }, -1).toDelete).toEqual([]);
+  });
 });

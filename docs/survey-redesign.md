@@ -401,9 +401,9 @@ The plan above was carried out by six agents, each in its own worktree, then mer
 - Model checker (`pnpm verify-survey`, src/lib/verify): sound equivalence classes (a guard's
   answers share a class only if every condition, option rule, soft check, exclusive and
   "Other" membership agrees, plus a "no answer" class), cross-checked by brute force on
-  fixtures and 150 random surveys, with seeded defects it must catch. Proves the 61
-  invariants of `scripts/verify/spec.yml` (review pending), pins golden statistics and
-  locks positional ids (`survey/survey.lock.json`).
+  fixtures and 150 random surveys, with seeded defects it must catch. Proves the 64
+  invariants of `scripts/verify/spec.yml` (review pending; a launched survey fails until it
+  is approved), pins golden statistics and locks positional ids (`survey/survey.lock.json`).
 - Independent z3 cross-check (`pnpm verify-smt`): 550 queries (dead questions and options,
   options per question, soft checks, the age, income and outlook properties), written from
   the docs only.
@@ -447,5 +447,19 @@ Owner decisions:
   adults 11.5-14.4 minutes at 150 wpm (second-language readers), 9.4-11.0 at 200;
   under-18s 7.4-9.2.
 
+Fresh review (an agent with no prior context, before the push) found no high-severity
+defect; fixed:
+
+- A respondent who went back, turned out to be a minor and left kept their stored pay and
+  seniority: a submit now also deletes later answers that its own answers settle as hidden,
+  and the public release prunes every row of hidden answers before anything else.
+- The public export could still write row-level files: it now refuses unless
+  `--allow-rows`, matching "charts and totals only this year".
+- Threat-intel and malware people had no reverse-engineering choice, and minors in SOC,
+  DFIR or threat intel had lost the free DFIR tools: a defensive "Malware analysis &
+  reverse engineering" choice (SOC, IR, threat intel only, so it is never listed twice),
+  and only the enterprise suites stay hidden from minors.
+- The income question says "fixed allowances included" again.
+
 Current figures: 52 questions, 6,840 distinct complete paths, 22-45 screens per path
-(median 37, p90 41), 40,256,580 class-states, no findings.
+(median 37, p90 41), 44,131,710 class-states, no findings.

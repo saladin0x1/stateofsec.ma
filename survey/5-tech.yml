@@ -44,6 +44,7 @@ questions:
       - Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)
       - Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)
       - DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)
+      - Malware analysis & reverse engineering (Ghidra, IDA Pro, x64dbg, YARA)
       - Vulnerability scanning, code & cloud (Nessus, OpenVAS, Qualys, SonarQube, Snyk, Semgrep, Wiz, Prowler)
       - GRC & risk platforms (Archer, ServiceNow, Egerie, CISO Assistant, spreadsheets)
       - None of these
@@ -56,21 +57,25 @@ questions:
         showIf:
           question: roles-q-0
           notIn: [4, 6, 9]
-      - options:
-          - Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)
-          - DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)
+      # Enterprise suites: not for minors (never asked education), lycee students, AppSec, GRC
+      # or people still exploring
+      - options: ["Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)"]
         showIf:
           all:
             - question: roles-q-0
-              notIn: [4, 6]
-            - question: roles-q-0
-              notEquals: 10
+              notIn: [4, 6, 10]
             - question: profile-q-4
               notEquals: 0
+      # Free DFIR and threat-intel tools stay open to minors
       - options: ["DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)"]
         showIf:
           question: roles-q-0
           in: [2, 3, 7, 10, 11]
+      # SOC, IR and threat intel never see the offensive list, where the others report reversing
+      - options: ["Malware analysis & reverse engineering (Ghidra, IDA Pro, x64dbg, YARA)"]
+        showIf:
+          question: roles-q-0
+          in: [2, 3, 7]
       - options: ["GRC & risk platforms (Archer, ServiceNow, Egerie, CISO Assistant, spreadsheets)"]
         showIf:
           question: roles-q-0

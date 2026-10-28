@@ -202,6 +202,8 @@ export function storedDocumentViolations(sections: SurveyQuestionsYamlFile[], do
       violations.push(`${key} holds a duplicate pick`);
     if (picks.length > 1 && picks.some(pick => exclusiveIndices.includes(pick as number)))
       violations.push(`${key} combines an exclusive choice with others: ${JSON.stringify(value)}`);
+    if (question.max !== undefined && picks.length > question.max)
+      violations.push(`${key} holds more than ${question.max} picks: ${JSON.stringify(value)}`);
   }
   return violations;
 }

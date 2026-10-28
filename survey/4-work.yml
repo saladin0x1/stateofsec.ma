@@ -4,7 +4,7 @@ position: 4
 questions:
   # stateofdev.ma's MAD bands merged in pairs to keep the list short: every band is a union of
   # upstream bands, so results still compare. Interns get sub-bands of "< 4 000" and one top band
-  - label: "Net monthly income in MAD (employees: main job pay slip without 13th month, bonuses and side jobs; interns: stipend; founders: take-home after tax and charges; convert other currencies)"
+  - label: "Net monthly income in MAD (employees: main job pay slip, fixed allowances included; 13th month, bonuses and side jobs excluded; interns: stipend; founders: take-home after tax and charges; convert other currencies)"
     required: false
     showIf:
       all:

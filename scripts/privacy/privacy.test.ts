@@ -185,6 +185,20 @@ describe("privacy: public release", () => {
     expect(rel.flawRows).toHaveLength(24);
   });
 
+  it("never publishes answers that the row's own answers hide", () => {
+    // Minors who first answered as adults, then went back and left: pay, seniority and
+    // employer stay in their stored documents
+    const stale = passingFixture().map(row => row[F.age] === 0
+      ? { ...row, [F.incomeMad]: 9, [F.seniority]: 1, [F.orgType]: 0 }
+      : row);
+    const count = (rows: Row[], id: string) => rows.filter(row => row[id] !== undefined && row[id] !== null).length;
+    const clean = release(passingFixture());
+    const rel = release(stale);
+    for (const id of [F.incomeMad, F.seniority, F.orgType])
+      expect(count(rel.publicRows, id), id).toBe(count(clean.publicRows, id));
+    expect(evaluateGate(rel, survey).pass).toBe(evaluateGate(clean, survey).pass);
+  });
+
   it("publishes answers only, and the flaw block apart with no join key", () => {
     const rel = release(passingFixture());
     for (const row of rel.publicRows) {
@@ -218,13 +232,19 @@ describe("privacy: public release", () => {
   it("writes nothing when the gate fails", () => {
     const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "privacy-")), "data");
     const rows = Array.from({ length: 12 }, (_, i) => respondent({ ...EMPLOYEE, [F.region]: i, [F.experience]: 1 + (i % 7) }, i));
-    expect(writePublicRelease(rows, out, { random: seededRandom(1) })).toBe(false);
+    expect(writePublicRelease(rows, out, { random: seededRandom(1), allowRows: true })).toBe(false);
     expect(fs.existsSync(out)).toBe(false);
   });
 
-  it("writes the four files when the gate passes", () => {
+  it("writes nothing without allowRows, even when the gate passes (charts and totals only)", () => {
     const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "privacy-")), "data");
-    expect(writePublicRelease(passingFixture(), out, { random: seededRandom(1) })).toBe(true);
+    expect(writePublicRelease(passingFixture(), out, { random: seededRandom(1) })).toBe(false);
+    expect(fs.existsSync(out)).toBe(false);
+  });
+
+  it("writes the four files when rows are allowed and the gate passes", () => {
+    const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "privacy-")), "data");
+    expect(writePublicRelease(passingFixture(), out, { random: seededRandom(1), allowRows: true })).toBe(true);
     expect(fs.readdirSync(out).sort()).toEqual(["flaws-questions.json", "flaws.json", "questions.json", "results.json"]);
   });
 

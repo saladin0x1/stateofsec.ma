@@ -230,7 +230,7 @@
     },
     "work-q-0": {
       "section": "work",
-      "label": "Net monthly income in MAD (employees: main job pay slip without 13th month, bonuses and side jobs; interns: stipend; founders: take-home after tax and charges; convert other currencies)",
+      "label": "Net monthly income in MAD (employees: main job pay slip, fixed allowances included; 13th month, bonuses and side jobs excluded; interns: stipend; founders: take-home after tax and charges; convert other currencies)",
       "multiple": false,
       "choices": [
         "No income / unpaid",
@@ -537,6 +537,7 @@
         "Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)",
         "Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)",
         "DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)",
+        "Malware analysis & reverse engineering (Ghidra, IDA Pro, x64dbg, YARA)",
         "Vulnerability scanning, code & cloud (Nessus, OpenVAS, Qualys, SonarQube, Snyk, Semgrep, Wiz, Prowler)",
         "GRC & risk platforms (Archer, ServiceNow, Egerie, CISO Assistant, spreadsheets)",
         "None of these",

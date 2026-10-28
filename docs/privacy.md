@@ -38,8 +38,10 @@ org*) is enforced by the survey itself; the export adds the protections below.
 
 ## What Gets Published
 
-`pnpm export-public` (or `export-results --public=...`) writes four files, and only when
-the gate passes:
+`pnpm export-public` (or `export-results --public=...`) writes four files, only with
+`--allow-rows` (refused by default this year: charts and totals only) and only when the gate
+passes. Every stored row is first pruned of answers its own answers hide (a respondent who
+went back and changed their profile, then left):
 
 | File | Content |
 | --- | --- |
@@ -129,8 +131,8 @@ pnpm privacy:simulate                          # n = 300, 800, 2000; minors 2% a
 pnpm privacy:simulate --n=800 --minors=0.03 --seed=4
 pnpm privacy:simulate --k-s3=1                 # what-if thresholds (simulate and check only)
 pnpm privacy:check --input=scripts/<raw export>.json      # dry run, writes nothing, exit 1 on FAIL
-pnpm export-public --input=scripts/<raw export>.json --output=results/<year>/data
-pnpm export-results --public=results/<year>/data           # straight from Firestore, same gate
+pnpm export-public --input=scripts/<raw export>.json --output=results/<year>/data --allow-rows
+pnpm export-results --public=results/<year>/data --allow-rows # straight from Firestore, same gate
 ```
 
 `export-results` without `--public` still writes the full private export (default

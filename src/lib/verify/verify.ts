@@ -54,6 +54,9 @@ export function verifySurvey(input: VerifyInput): VerifyResult {
   const golden = exploration ? goldenOf(model, exploration) : undefined;
   const goldenDiff = golden && input.golden !== undefined ? diffGolden(input.golden, golden) : [];
   const lock = input.lock ? { ...checkLock(input.lock, model), launched: input.lock.launched } : undefined;
+  // The spec is what the survey is proved against: a launched survey needs it signed off
+  if (lock?.launched && input.specText !== undefined && spec.review.status !== "approved")
+    findings.push({ check: "spec-unsigned", subject: "scripts/verify/spec.yml", message: "the survey is launched but the spec review is not approved (Ashraf or mchklt)" });
   return {
     ok: findings.length === 0 && goldenDiff.length === 0 && (lock?.ok ?? true),
     questions: model.questions.length,

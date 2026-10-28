@@ -6,7 +6,7 @@
     "profile-q-4": 9,
     "profile-q-5": 8,
     "profile-q-6": 8,
-    "roles-q-0": 10,
+    "roles-q-0": 11,
     "roles-q-2": 4,
     "work-q-16": 2,
     "tech-q-2": 2,
@@ -14,8 +14,8 @@
     "community-q-4": 4
   },
   "classStates": {
-    "all": 40256580,
-    "complete": 8585136
+    "all": 44131710,
+    "complete": 9488864
   },
   "paths": {
     "complete": 6840,

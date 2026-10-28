@@ -1,6 +1,6 @@
 import type { Answers, AnswerValue } from "@/lib/conditions";
 import type { SurveyQuestion } from "@/lib/validators/survey-schema";
-import { getExclusiveChoiceIndices, pruneHiddenAnswers } from "@/lib/conditions";
+import { conditionLeaves, evaluateCondition, getExclusiveChoiceIndices, pruneHiddenAnswers } from "@/lib/conditions";
 import { isOtherChoice } from "@/lib/other-choice";
 import { surveySections } from "@/lib/survey";
 
@@ -12,7 +12,15 @@ interface QuestionInfo {
   question: SurveyQuestion;
   otherIndices: number[];
   exclusiveIndices: number[];
+  // Last section any of its conditions (or its section's) reads; -1 when unconditional
+  guardSection: number;
 }
+
+const sectionIndexById = new Map(
+  surveySections.flatMap((section, sectionIndex) =>
+    section.questions.map((_, index): [string, number] => [`${section.label}-q-${index}`, sectionIndex])
+  )
+);
 
 const questionsById = new Map<string, QuestionInfo>(
   surveySections.flatMap((section, sectionIndex) =>
@@ -24,15 +32,25 @@ const questionsById = new Map<string, QuestionInfo>(
         otherIndices: question.choices
           .map((choice, choiceIndex) => (isOtherChoice(choice) ? choiceIndex : -1))
           .filter(choiceIndex => choiceIndex !== -1),
-        exclusiveIndices: getExclusiveChoiceIndices(question)
+        exclusiveIndices: getExclusiveChoiceIndices(question),
+        guardSection: Math.max(
+          -1,
+          ...[...conditionLeaves(section.showIf), ...conditionLeaves(question.showIf)]
+            .map(leaf => sectionIndexById.get(leaf.question) ?? Number.POSITIVE_INFINITY)
+        )
       }
     ])
   )
 );
 
+function isShown(id: string, answers: Answers) {
+  const { sectionIndex, question } = questionsById.get(id)!;
+  return evaluateCondition(surveySections[sectionIndex].showIf, answers) && evaluateCondition(question.showIf, answers);
+}
+
 // Every field an answer document can hold: one per question, plus its "-others" text
 const answerFields = [...questionsById].flatMap(([id, { sectionIndex, otherIndices }]) =>
-  (otherIndices.length ? [id, `${id}${OTHERS_SUFFIX}`] : [id]).map(key => ({ key, sectionIndex }))
+  (otherIndices.length ? [id, `${id}${OTHERS_SUFFIX}`] : [id]).map(key => ({ key, id, sectionIndex }))
 );
 
 /** Index of the section a submit comes from, by label; -1 when missing or unknown */
@@ -76,9 +94,11 @@ function selectsOther(value: AnswerValue | undefined, otherIndices: number[]) {
  * stored. The client sends all its answers on each submit, so this removes stored answers to
  * questions now hidden by showIf, picks hidden by optionShowIf and "other" text whose "Other"
  * choice is no longer selected, even when the client has already dropped them. Fields of
- * later sections are left alone: a client that lost its saved answers (cleared storage,
- * another tab) must not wipe what it has not resubmitted yet; the last section's submit
- * cleans them up.
+ * later sections are kept, since a client that lost its saved answers (cleared storage,
+ * another tab) must not wipe what it has not resubmitted yet, unless the answers submitted
+ * settle that their question is hidden (every condition reads sections up to `lastSection`):
+ * a respondent who goes back and turns out to be a minor loses their stored pay at once.
+ * The last section's submit cleans up the rest.
  */
 export function sanitizeAnswers(
   answers: Answers,
@@ -129,7 +149,10 @@ export function sanitizeAnswers(
   }
 
   const toDelete = answerFields
-    .filter(({ key, sectionIndex }) => sectionIndex <= lastSection && !Object.hasOwn(toSave, key))
+    .filter(({ key, id, sectionIndex }) => !Object.hasOwn(toSave, key) && (
+      sectionIndex <= lastSection
+      || (questionsById.get(id)!.guardSection <= lastSection && !isShown(id, visibleAnswers))
+    ))
     .map(({ key }) => key);
   return { toSave, toDelete };
 }

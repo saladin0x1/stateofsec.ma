@@ -1,6 +1,6 @@
 import type { AnswerValue } from "../../src/lib/conditions";
 
-// Question ids are positional: fields.test.ts checks each id still holds the expected question
+// Question ids are positional: privacy.test.ts checks each id still holds the expected question
 export const F = {
   gender: "profile-q-0",
   age: "profile-q-1",

@@ -68,7 +68,7 @@ To close the survey, set `SURVEY_OPEN = false` in `src/site-config.mjs`: the sur
 
 ```sh
 pnpm export-results --output=<private dir>            # full private dump of Firestore responses (never commit it)
-pnpm export-results --public=results/<year>/data      # coarsened public release, written only if the privacy gate passes
+pnpm export-results --public=results/<year>/data      # coarsened row-level release: refused this year, see docs/privacy.md
 pnpm generate-questions --output=results/<year>/data  # questions.json from the current survey YAML
 pnpm query-results                                    # query results from the CLI, see docs/query-results.md
 ```

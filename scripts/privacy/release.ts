@@ -14,7 +14,7 @@ import type { CompiledLevel, FieldPolicy } from "./coarsen";
 import type { Row } from "./fields";
 import type { Random } from "./rng";
 import type { SurveyDefinition } from "./survey-definition";
-import { conditionLeaves } from "../../src/lib/conditions";
+import { conditionLeaves, pruneHiddenAnswers } from "../../src/lib/conditions";
 import { compileLevel, dependentsOf, guardViolations, POLICIES, POLICY_BY_ID, UNPUBLISHED } from "./coarsen";
 import { F, FLAW_AGE, FLAW_BLOCK, FLAW_REGION, isAbroad, MINOR_QI, S2, S3, STRATA } from "./fields";
 import { cellKey, countKeys, lDiversity, rowKey } from "./metrics";
@@ -139,10 +139,17 @@ function copy(value: AnswerValue | undefined): AnswerValue | undefined {
   return Array.isArray(value) ? [...value] : value;
 }
 
-function prepare(raw: readonly Row[], survey: SurveyDefinition): Prepared {
+function prepare(stored: readonly Row[], survey: SurveyDefinition): Prepared {
   const problems = guardViolations(survey);
   if (problems.length)
     throw new Error(`Recoding rules no longer fit the survey:\n- ${problems.join("\n- ")}`);
+  // A stored document can hold answers its own answers hide (a respondent who went back and
+  // changed their profile, then left before the last section): they are never published,
+  // and the thresholds assume they are gone (minors have no pay, seniority or employer)
+  const raw = stored.map((row): Row => pruneHiddenAnswers(
+    survey.sections,
+    Object.fromEntries(Object.entries(row).filter((entry): entry is [string, AnswerValue] => entry[1] !== undefined))
+  ));
   const publishedIds = [...survey.questions.keys()].filter(id => !UNPUBLISHED.has(id));
   // Only answers given are published: skipped, not asked and hidden all look the same
   const base = raw.map((row) => {

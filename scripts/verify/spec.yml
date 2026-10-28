@@ -454,6 +454,28 @@ invariants:
     hiddenOptions:
       defensiveTools: ["Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)"]
 
+  - name: Minors in SOC, incident response or threat intel keep the free DFIR tools
+    source: fresh review 2026-10-28 (Volatility and MISP were hidden from them)
+    when:
+      age: ["Younger than 18 years"]
+      domain: ["Security operations (SOC) / blue team", "Incident response / DFIR", "Threat intelligence / malware analysis / reverse engineering"]
+    visibleOptions:
+      defensiveTools: ["DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)"]
+
+  - name: Malware and reverse-engineering people can report reversing tools
+    source: fresh review 2026-10-28 (Ghidra and IDA were only in the offensive list)
+    when:
+      domain: ["Threat intelligence / malware analysis / reverse engineering"]
+    visibleOptions:
+      defensiveTools: ["Malware analysis & reverse engineering (Ghidra, IDA Pro, x64dbg, YARA)"]
+
+  - name: Reversing is listed once per respondent
+    source: fresh review 2026-10-28
+    when:
+      domain: { not: ["Security operations (SOC) / blue team", "Incident response / DFIR", "Threat intelligence / malware analysis / reverse engineering"] }
+    hiddenOptions:
+      defensiveTools: ["Malware analysis & reverse engineering (Ghidra, IDA Pro, x64dbg, YARA)"]
+
   - name: Enterprise tools hidden for people still exploring
     source: survey-redesign.md, Second swarm
     when:

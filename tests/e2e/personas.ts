@@ -15,7 +15,7 @@ export const Q = {
   certifications: "Which security certifications do you hold?",
   learnedBy: "How did you learn cybersecurity? (select all that helped)",
   languages: "What languages can you read/write?",
-  madIncome: "Net monthly income in MAD (employees: main job pay slip without 13th month, bonuses and side jobs; interns: stipend; founders: take-home after tax and charges; convert other currencies)",
+  madIncome: "Net monthly income in MAD (employees: main job pay slip, fixed allowances included; 13th month, bonuses and side jobs excluded; interns: stipend; founders: take-home after tax and charges; convert other currencies)",
   usdSalary: "Gross yearly salary in USD, before tax (convert other currencies; excl. bug bounty)",
   organization: "What type of organization do you work for (or run)?",
   remote: "What remote work arrangement does your current employer offer?",
