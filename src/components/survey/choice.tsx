@@ -26,8 +26,11 @@ export function Choice({
     onChange(index, e.target.checked);
   };
 
+  const textId = `${id}-text`;
+
   return (
-    <div className={`relative w-full overflow-hidden flex items-center bg-card p-3 pl-14 mb-2 transition-all duration-200 ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:translate-x-1"}`}>
+    // min-h-11: every row stays a 44px tap target (WCAG 2.5.5) even with compact padding
+    <div className={`relative w-full min-h-11 overflow-hidden flex items-center bg-card py-2.5 pl-12 pr-3 mb-1.5 transition-all duration-200 ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:translate-x-1"}`}>
       <input
         className="peer sr-only"
         type={multiple ? "checkbox" : "radio"}
@@ -37,6 +40,8 @@ export function Choice({
         checked={checked}
         disabled={disabled}
         onChange={handleChange}
+        // The <label> is an empty click overlay, so the option text names the input
+        aria-labelledby={textId}
         data-testid={id}
       />
       <label
@@ -51,13 +56,14 @@ export function Choice({
       >
       </label>
       <div
-        className="absolute pointer-events-none left-4 h-5 w-5 border-2 border-input bg-muted
+        className="absolute pointer-events-none left-3.5 h-4 w-4 border-2 border-input bg-muted
         peer-checked:border-primary peer-checked:bg-primary peer-checked:shadow-md peer-checked:shadow-primary/50
         transition-all duration-200"
       >
       </div>
       <span
-        className="pointer-events-none z-10 text-foreground
+        id={textId}
+        className="pointer-events-none z-10 text-sm md:text-base text-foreground
         peer-checked:font-medium
         transition-all duration-200"
       >

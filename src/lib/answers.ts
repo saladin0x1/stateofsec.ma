@@ -5,6 +5,7 @@ import { isOtherChoice } from "@/lib/other-choice";
 import { surveySections } from "@/lib/survey";
 
 const OTHERS_SUFFIX = "-others";
+const LONE_SURROGATE = /\p{Cs}/u;
 
 interface QuestionInfo {
   sectionIndex: number;
@@ -30,9 +31,14 @@ const questionsById = new Map<string, QuestionInfo>(
 );
 
 // Every field an answer document can hold: one per question, plus its "-others" text
-const answerFields = [...questionsById].flatMap(([id, { otherIndices }]) =>
-  otherIndices.length ? [id, `${id}${OTHERS_SUFFIX}`] : [id]
+const answerFields = [...questionsById].flatMap(([id, { sectionIndex, otherIndices }]) =>
+  (otherIndices.length ? [id, `${id}${OTHERS_SUFFIX}`] : [id]).map(key => ({ key, sectionIndex }))
 );
+
+/** Index of the section a submit comes from, by label; -1 when missing or unknown */
+export function reachedSectionIndex(label: string | undefined) {
+  return surveySections.findIndex(section => section.label === label);
+}
 
 export class InvalidAnswersError extends Error {}
 
@@ -66,30 +72,41 @@ function selectsOther(value: AnswerValue | undefined, otherIndices: number[]) {
 
 /**
  * Checks submitted answers against the survey definition. Returns the answers to store and
- * the fields to delete: every answer field that is not stored. The client sends all its
- * answers on each submit, so this removes stored answers to questions now hidden by showIf,
- * picks hidden by optionShowIf and "other" text whose "Other" choice is no longer selected,
- * even when the client has already dropped them.
+ * the fields to delete: every answer field of the sections up to `lastSection` that is not
+ * stored. The client sends all its answers on each submit, so this removes stored answers to
+ * questions now hidden by showIf, picks hidden by optionShowIf and "other" text whose "Other"
+ * choice is no longer selected, even when the client has already dropped them. Fields of
+ * later sections are left alone: a client that lost its saved answers (cleared storage,
+ * another tab) must not wipe what it has not resubmitted yet; the last section's submit
+ * cleans them up.
  */
-export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: string[] } {
+export function sanitizeAnswers(
+  answers: Answers,
+  lastSection = surveySections.length - 1
+): { toSave: Answers; toDelete: string[] } {
+  const known: Answers = {};
   for (const [key, value] of Object.entries(answers)) {
     const isOthersText = key.endsWith(OTHERS_SUFFIX);
     const id = isOthersText ? key.slice(0, -OTHERS_SUFFIX.length) : key;
     const info = questionsById.get(id);
-    if (!info)
-      throw new InvalidAnswersError(`Unknown question ${key}`);
+    // A field this deployment does not know comes from a client on another survey version
+    // (a deploy mid-survey): it is ignored, since rejecting it would fail every retry
+    if (!info || (isOthersText && info.otherIndices.length === 0))
+      continue;
     if (isOthersText) {
-      if (typeof value !== "string" || info.otherIndices.length === 0)
+      // A lone surrogate (half an emoji) is not valid text: the client never sends one
+      if (typeof value !== "string" || LONE_SURROGATE.test(value))
         throw new InvalidAnswersError(`Invalid value for ${key}`);
     }
     else {
       validateChoiceValue(id, value, info);
     }
+    known[key] = value;
   }
 
   // Visibility is judged on the pruned answers, so a stale answer to a hidden guard
   // cannot keep its dependents alive
-  const visibleAnswers = pruneHiddenAnswers(surveySections, answers);
+  const visibleAnswers = pruneHiddenAnswers(surveySections, known);
   const toSave: Answers = {};
 
   for (const [key, value] of Object.entries(visibleAnswers)) {
@@ -111,6 +128,8 @@ export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: 
     toSave[key] = value;
   }
 
-  const toDelete = answerFields.filter(key => !Object.hasOwn(toSave, key));
+  const toDelete = answerFields
+    .filter(({ key, sectionIndex }) => sectionIndex <= lastSection && !Object.hasOwn(toSave, key))
+    .map(({ key }) => key);
   return { toSave, toDelete };
 }

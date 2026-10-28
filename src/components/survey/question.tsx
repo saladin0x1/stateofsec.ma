@@ -45,6 +45,26 @@ export function Question({
   const { label, choices } = question;
   const fitContent = visibleChoices.length > GRID_LAYOUT_THRESHOLD;
 
+  // Grouped display: choices under their group header (in group order), ungrouped last.
+  // Purely presentational - indices and answers are untouched.
+  const grouped: Array<{ header?: string; indices: number[] }> = [];
+  if (question.groups?.length) {
+    const groupedChoices = new Set(question.groups.flatMap(g => g.choices));
+    for (const group of question.groups) {
+      const indices = group.choices
+        .map(choice => choices.indexOf(choice))
+        .filter(index => index !== -1 && visibleChoices.includes(index));
+      if (indices.length)
+        grouped.push({ header: group.label, indices });
+    }
+    const rest = visibleChoices.filter(index => !groupedChoices.has(choices[index]));
+    if (rest.length)
+      grouped.push({ indices: rest });
+  }
+  else {
+    grouped.push({ indices: visibleChoices });
+  }
+
   // Check if "other" options exist
   const othersIndices = useMemo(
     () =>
@@ -121,38 +141,45 @@ export function Question({
       data-testid={`${sectionId}-q-${index}`}
     >
       <p className="mb-4 text-base font-medium">
-        <label id={questionLabelId} className="block mb-2 ">
+        <label id={questionLabelId} className="block mb-1">
           {`${number}. ${label}`}
-          {" "}
-          <br />
         </label>
-
-        <span className="font-normal text-sm pl-2.5">
-          {question.multiple ? (question.max ? `- Pick up to ${question.max}` : "- Pick all that apply") : ""}
-        </span>
-        <span className="font-normal text-sm pl-2.5">
-          {question.required ? "" : "- Click skip button if not applicable"}
+        <span className="font-normal text-xs text-muted-foreground">
+          {question.multiple ? (question.max ? `Pick up to ${question.max}` : "Pick all that apply") : ""}
+          {question.multiple && !question.required ? " · " : ""}
+          {!question.required ? "Optional - skip if not applicable" : ""}
         </span>
       </p>
       <div
         role="group"
         aria-labelledby={questionLabelId}
         aria-required={question.required ?? true}
-        className={fitContent ? "grid md:grid-cols-2 gap-4 grid-cols-1" : ""}
+        className={
+          fitContent && !grouped.some(g => g.header) ? "grid md:grid-cols-2 gap-2 grid-cols-1" : ""
+        }
       >
-        {visibleChoices.map(i => (
-          <Choice
-            key={`${sectionId}-q-${index}-${choices[i]}`}
-            text={choices[i]}
-            id={`${sectionId}-q-${index}-${i}`}
-            name={`${sectionId}-q-${index}`}
-            index={i}
-            required={question.required ?? true}
-            multiple={question.multiple ?? false}
-            checked={isChecked(i)}
-            disabled={atLimit && !isChecked(i) && !exclusiveChoices.includes(i)}
-            onChange={handleChoiceChange}
-          />
+        {grouped.map((group, groupIndex) => (
+          <div key={group.header ?? `ungrouped-${groupIndex}`} className={group.header ? "" : "contents"}>
+            {group.header && (
+              <div className="mt-4 mb-1.5 first:mt-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {group.header}
+              </div>
+            )}
+            {group.indices.map(i => (
+              <Choice
+                key={`${sectionId}-q-${index}-${choices[i]}`}
+                text={choices[i]}
+                id={`${sectionId}-q-${index}-${i}`}
+                name={`${sectionId}-q-${index}`}
+                index={i}
+                required={question.required ?? true}
+                multiple={question.multiple ?? false}
+                checked={isChecked(i)}
+                disabled={atLimit && !isChecked(i) && !exclusiveChoices.includes(i)}
+                onChange={handleChoiceChange}
+              />
+            ))}
+          </div>
         ))}
         {showOtherInput && (
           <textarea

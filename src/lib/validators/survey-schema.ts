@@ -61,6 +61,13 @@ export const SoftCheckSchema = z.object({
   message: z.string().trim().min(MIN_LABEL_LENGTH).max(MAX_LABEL_LENGTH)
 }).strict();
 
+// Presentational only: renders the listed choices under a group header, in this order.
+// Choice indices, visibility rules and storage are untouched; unlisted choices come after
+export const ChoiceGroupSchema = z.object({
+  label: z.string().trim().min(2).max(MAX_LABEL_LENGTH),
+  choices: z.array(z.string().trim().min(1)).min(1)
+}).strict();
+
 export const SurveyQuestionSchema = z.object({
   label: z
     .string()
@@ -116,8 +123,32 @@ export const SurveyQuestionSchema = z.object({
   // Most choices a respondent may pick in a multi-select ("pick up to 3")
   max: z.number().int().min(2).optional(),
 
-  softChecks: z.array(SoftCheckSchema).optional()
-}).strict();
+  softChecks: z.array(SoftCheckSchema).optional(),
+
+  // Presentational grouping (e.g. tools by phase); does not affect answers or conditions
+  groups: z.array(ChoiceGroupSchema).optional()
+})
+  .strict()
+  .refine(
+    (data) => {
+      if (!data.groups)
+        return true;
+      const known = new Set(data.choices);
+      const seen = new Set<string>();
+      return data.groups.every(group =>
+        group.choices.every((choice) => {
+          if (!known.has(choice) || seen.has(choice))
+            return false;
+          seen.add(choice);
+          return true;
+        })
+      );
+    },
+    {
+      message:
+        "Every grouped choice must exist in the question and appear in at most one group"
+    }
+  );
 
 export const SurveyFileSchema = z
   .object({
@@ -187,6 +218,7 @@ export type ConditionLeaf = z.infer<typeof ConditionLeafSchema>;
 export type ShowIfCondition = z.infer<typeof ShowIfConditionSchema>;
 export type OptionCondition = z.infer<typeof OptionConditionSchema>;
 export type SoftCheck = z.infer<typeof SoftCheckSchema>;
+export type ChoiceGroup = z.infer<typeof ChoiceGroupSchema>;
 export type SurveyQuestion = z.infer<typeof SurveyQuestionSchema>;
 export type SurveyQuestionsYamlFile = z.infer<typeof SurveyFileSchema>;
 

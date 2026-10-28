@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { hasPrevVisibleQuestion } from "@/lib/conditions";
 import { SurveyMachineContext } from "./survey-context";
 
@@ -101,9 +102,11 @@ interface BackButtonProps {
   onClick: () => void;
 }
 
+// A real button, so keyboard and screen-reader users can go back too
 export function BackButton({ onClick }: BackButtonProps) {
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
       data-testid="back-button"
       className="group flex w-full cursor-pointer items-center justify-center bg-transparent pr-6 py-2 text-muted-foreground hover:text-foreground transition"
@@ -125,8 +128,15 @@ export function BackButton({ onClick }: BackButtonProps) {
       <span className="group flex w-full items-center justify-center rounded py-1 text-center font-medium">
         Back
       </span>
-    </div>
+    </button>
   );
+}
+
+// The second click of a double-click (detail 2+) lands on whatever screen the first one
+// opened: on an optional question it would skip that question unanswered. Keyboard
+// activation has detail 0, so it is never ignored.
+function isRepeatClick(event: MouseEvent<HTMLButtonElement>) {
+  return event.detail > 1;
 }
 
 export function SurveyActions() {
@@ -151,7 +161,9 @@ export function SurveyActions() {
 
   const questionId = `${currentSection.label}-q-${context.currentQuestionIdx}`;
 
-  const handleNext = () => {
+  const handleNext = (event: MouseEvent<HTMLButtonElement>) => {
+    if (isRepeatClick(event))
+      return;
     const currentAnswer = context.answers[questionId];
     if (currentAnswer == null && currentQuestion.multiple) {
       actorRef.send({
@@ -163,7 +175,9 @@ export function SurveyActions() {
     actorRef.send({ type: "NEXT" });
   };
 
-  const handleSkip = () => {
+  const handleSkip = (event: MouseEvent<HTMLButtonElement>) => {
+    if (isRepeatClick(event))
+      return;
     const value = currentQuestion.multiple ? [] : null;
     actorRef.send({
       type: "ANSWER_CHANGE",

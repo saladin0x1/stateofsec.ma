@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { getPossibleSectionIndices } from "@/lib/conditions";
 import { SurveyMachineContext } from "./survey-context";
 
 interface StepProps {
@@ -101,13 +102,15 @@ function Step({
 export function Steps() {
   const actorRef = SurveyMachineContext.useActorRef();
   const context = SurveyMachineContext.useSelector(state => state.context);
+  // Optimistic list: a section appears from the start unless the answers exclude it, so
+  // the bar never pops sections in mid-survey (navigation itself stays strict)
   const visibleSections = useMemo(
     () =>
-      context.visibleSectionIndices.map(idx => ({
+      getPossibleSectionIndices(context.sections, context.answers).map(idx => ({
         label: context.sections[idx].title,
         originalIdx: idx
       })),
-    [context.sections, context.visibleSectionIndices]
+    [context.sections, context.answers]
   );
 
   const sectionsLabels = useMemo(
@@ -116,8 +119,8 @@ export function Steps() {
   );
 
   const currentVisibleSectionIdx = useMemo(
-    () => context.visibleSectionIndices.indexOf(context.currentSectionIdx),
-    [context.visibleSectionIndices, context.currentSectionIdx]
+    () => visibleSections.findIndex(s => s.originalIdx === context.currentSectionIdx),
+    [visibleSections, context.currentSectionIdx]
   );
 
   const handleStepClick = (visibleIdx: number) => {

@@ -130,12 +130,14 @@
 
   html {
     /* The off-canvas mobile menu sits translated off-screen-right; clip it so it
-       never adds horizontal scroll on small viewports */
-    overflow-x: hidden;
+       never adds horizontal scroll on small viewports. clip, not hidden: hidden makes
+       html and body scroll containers, which breaks position: sticky (the survey's
+       Next bar) */
+    overflow-x: clip;
   }
 
   body {
-    @apply flex min-h-[100svh] flex-col overflow-x-hidden font-mono font-light tracking-tight;
+    @apply flex min-h-[100svh] flex-col overflow-x-clip font-mono font-light tracking-tight;
     background-color: var(--background);
     color: var(--foreground);
   }

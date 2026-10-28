@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -46,5 +47,45 @@ describe("production routes integrity", () => {
 
     // Must NOT contain dev bypasses in session check
     expect(content).not.toContain("!import.meta.env.DEV");
+  });
+
+  it("never tracks local-only dev bypass files (they stay untracked like the playground)", () => {
+    // git ls-files lists only tracked files, so local untracked copies pass here while
+    // an accidental commit fails in CI - exactly the policy: local-only, never on origin
+    const tracked = execSync("git ls-files", { cwd: repoRoot, encoding: "utf8" })
+      .split("\n")
+      .filter(Boolean);
+    const forbidden = [
+      "src/pages/playground.astro",
+      "src/lib/dev-bypass.ts",
+      "src/middleware.ts",
+      ".env.local",
+      ".dev.vars"
+    ];
+    for (const file of forbidden) {
+      expect(
+        tracked.includes(file),
+        `${file} is local-only tooling and must never be committed to origin`
+      ).toBe(false);
+    }
+  });
+
+  it("keeps bypass markers out of the tracked server code", () => {
+    const trackedPaths = [
+      "src/actions/init-session.ts",
+      "src/actions/submit-answers.ts",
+      "astro.config.mjs",
+      "src/lib/firebase/server.ts"
+    ];
+    for (const rel of trackedPaths) {
+      const full = path.join(repoRoot, rel);
+      if (!fs.existsSync(full))
+        continue;
+      const content = fs.readFileSync(full, "utf-8");
+      expect(
+        content.includes("DEV_AUTH_BYPASS") || content.includes("isDevAuthBypass"),
+        `${rel} must not contain dev-auth bypass code (local-only pattern)`
+      ).toBe(false);
+    }
   });
 });

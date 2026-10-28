@@ -30,6 +30,56 @@ export function conditionLeaves(condition: ShowIfCondition | undefined): Conditi
 }
 
 /**
+ * Tri-state leaf: "unknown" while the guard is unanswered, so a section the respondent
+ * may still unlock is not hidden from the steps bar before its guards are answered
+ */
+function evaluateLeafPossibly(condition: ConditionLeaf, answers: Answers): boolean | undefined {
+  if (!/^[a-z0-9-]+-q-\d+$/.test(condition.question))
+    return true;
+  const answerValue = answers[condition.question];
+  if (answerValue == null)
+    return undefined; // guard unanswered: could still become true
+  return evaluateLeaf(condition, answers);
+}
+
+/**
+ * Could this condition become true with the answers so far? Used for display only
+ * (the steps bar): false only when the answers already rule it out
+ */
+export function couldBeTrue(
+  condition: ShowIfCondition | undefined,
+  answers: Answers
+): boolean {
+  if (!condition)
+    return true;
+  if ("all" in condition)
+    return condition.all.every(leaf => evaluateLeafPossibly(leaf, answers) !== false);
+  if ("any" in condition)
+    return condition.any.some(leaf => evaluateLeafPossibly(leaf, answers) !== false);
+  return evaluateLeafPossibly(condition, answers) !== false;
+}
+
+/**
+ * Sections the respondent may still reach, for a stable steps bar: a section is listed
+ * unless the current answers already exclude it. Navigation uses the strict variant
+ * (getVisibleSectionIndices), which also requires a visible question right now
+ */
+export function getPossibleSectionIndices(
+  sections: SectionList,
+  answers: Answers
+): number[] {
+  return sections
+    .map((section, index) => ({
+      index,
+      possible:
+        couldBeTrue(section.showIf, answers)
+        && !!section.questions?.some(q => couldBeTrue(q.showIf, answers))
+    }))
+    .filter(item => item.possible)
+    .map(item => item.index);
+}
+
+/**
  * Evaluates a showIf condition against current answers
  * @param condition - The condition to evaluate: one condition, or all / any of several
  * @param answers - Current survey answers

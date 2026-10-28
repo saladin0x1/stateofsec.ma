@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { InvalidAnswersError, sanitizeAnswers } from "@/lib/answers";
+import { InvalidAnswersError, reachedSectionIndex, sanitizeAnswers } from "@/lib/answers";
 import { saveAnswers } from "@/lib/firebase/database";
 import { getSessionUserId } from "@/lib/session";
 import { SURVEY_OPEN } from "@/site-config.mjs";
@@ -12,9 +12,12 @@ export const submitAnswers = defineAction({
     answers: z.record(
       z.string(),
       z.union([z.number(), z.string().max(200), z.array(z.number()), z.null()])
-    )
+    ),
+    // Label of the section being submitted: stored fields of later sections are kept
+    // (missing or unknown, e.g. a client from an older deploy: nothing is deleted)
+    section: z.string().max(64).optional()
   }),
-  handler: async ({ answers }, { cookies }) => {
+  handler: async ({ answers, section }, { cookies }) => {
     if (!SURVEY_OPEN) {
       throw new ActionError({
         code: "FORBIDDEN",
@@ -34,7 +37,7 @@ export const submitAnswers = defineAction({
     /* Validate answers against the survey definition */
     let sanitized: ReturnType<typeof sanitizeAnswers>;
     try {
-      sanitized = sanitizeAnswers(answers);
+      sanitized = sanitizeAnswers(answers, reachedSectionIndex(section));
     }
     catch (error) {
       if (error instanceof InvalidAnswersError) {

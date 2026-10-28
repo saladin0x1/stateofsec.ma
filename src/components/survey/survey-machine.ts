@@ -70,6 +70,21 @@ export const ERRORS = {
   submission: "Error submitting your answers, please try again."
 } as const;
 
+const MAX_OTHERS_LENGTH = 200;
+
+// "Other" text as the server takes it: at most 200 UTF-16 units (its limit), cut without
+// splitting an emoji in half, and with any lone surrogate replaced: half a character is not
+// valid text and would be stored as such
+function toOthersText(value: unknown) {
+  if (typeof value !== "string")
+    return "";
+  let text = value.slice(0, MAX_OTHERS_LENGTH);
+  const last = text.charCodeAt(text.length - 1);
+  if (value.length > MAX_OTHERS_LENGTH && last >= 0xD800 && last <= 0xDBFF)
+    text = text.slice(0, -1);
+  return text.replace(/\p{Cs}/gu, "�");
+}
+
 // Normalize answers for backend submission
 function normalizeAnswers(answers: Record<string, number | number[] | null | string | boolean>) {
   const convertedAnswers: Record<string, number | number[] | null | string>
@@ -77,8 +92,7 @@ function normalizeAnswers(answers: Record<string, number | number[] | null | str
 
   for (const [key, value] of Object.entries(answers)) {
     if (key.endsWith("others")) {
-      convertedAnswers[key]
-        = typeof value === "string" ? value.slice(0, 200) : "";
+      convertedAnswers[key] = toOthersText(value);
     }
     else if (value === null) {
       convertedAnswers[key] = null;
@@ -317,10 +331,10 @@ export const surveyMachine = setup({
       async ({
         input
       }: {
-        input: { answers: Record<string, number | number[] | null | string> };
+        input: { answers: Record<string, number | number[] | null | string>; section: string };
       }) => {
         const normalizedAnswers = normalizeAnswers(input.answers);
-        const result = await submitAnswers({ answers: normalizedAnswers });
+        const result = await submitAnswers({ answers: normalizedAnswers, section: input.section });
         if (result.error) {
           throw new Error("Submission failed");
         }
@@ -432,7 +446,8 @@ export const surveyMachine = setup({
       invoke: {
         src: "submitSection",
         input: ({ context }) => ({
-          answers: context.answers
+          answers: context.answers,
+          section: context.sections[context.currentSectionIdx].label
         }),
         onDone: [
           {

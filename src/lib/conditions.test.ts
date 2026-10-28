@@ -3,11 +3,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 
   conditionLeaves,
+  couldBeTrue,
   evaluateCondition,
   getExclusiveChoiceIndices,
   getFirstVisibleQuestionIndex,
   getLastVisibleQuestionIndex,
   getNextVisibleQuestionIndex,
+  getPossibleSectionIndices,
   getPrevVisibleQuestionIndex,
   getSoftCheckMessage,
   getVisibleChoiceIndices,
@@ -597,5 +599,29 @@ describe("per-choice conditions", () => {
       "profile-q-0": 0,
       "learning-q-0": []
     });
+  });
+});
+
+describe("optimistic (steps bar) section visibility", () => {
+  const sections: SectionList = [
+    { questions: [{}, { showIf: { question: "profile-q-0", equals: 0 } }] },
+    { questions: [{ showIf: { question: "profile-q-0", notEquals: 0 } }] }
+  ];
+
+  it("lists a section whose guards are unanswered (strict visibility hides it)", () => {
+    expect(getVisibleSectionIndices(sections, {})).toEqual([0]);
+    expect(getPossibleSectionIndices(sections, {})).toEqual([0, 1]);
+  });
+
+  it("removes a section only once the answers exclude it", () => {
+    expect(getPossibleSectionIndices(sections, { "profile-q-0": 0 })).toEqual([0]);
+    expect(getPossibleSectionIndices(sections, { "profile-q-0": 1 })).toEqual([0, 1]);
+  });
+
+  it("couldBeTrue is unknown-friendly for compound conditions", () => {
+    const all = { all: [{ question: "a-q-0", equals: 1 }, { question: "b-q-0", equals: 1 }] };
+    expect(couldBeTrue(all, {})).toBe(true);
+    expect(couldBeTrue(all, { "a-q-0": 2 })).toBe(false);
+    expect(couldBeTrue(all, { "a-q-0": 1 })).toBe(true);
   });
 });
