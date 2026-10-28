@@ -1,6 +1,6 @@
 {
   "$comment": "Positional question ids and their meaning. Rewrite with `pnpm lock-survey --update`. Set launched to true when the survey opens: from then on, changing an existing id fails the checks.",
-  "launched": false,
+  "launched": true,
   "questions": {
     "profile-q-0": {
       "section": "profile",

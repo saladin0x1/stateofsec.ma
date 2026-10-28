@@ -8,8 +8,11 @@
     "binding": "ASSETS",
     "directory": "./dist"
   },
-  // Dev deployment served at this custom domain (zone stateofsec.ma must be on Cloudflare)
+  // Served at these custom domains (zone stateofsec.ma on Cloudflare); dev shares the worker
+  // and its Firestore
   "routes": [
+    { "pattern": "stateofsec.ma", "custom_domain": true },
+    { "pattern": "www.stateofsec.ma", "custom_domain": true },
     { "pattern": "dev.stateofsec.ma", "custom_domain": true }
   ],
   "observability": {

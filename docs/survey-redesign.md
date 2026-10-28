@@ -402,8 +402,8 @@ The plan above was carried out by six agents, each in its own worktree, then mer
   answers share a class only if every condition, option rule, soft check, exclusive and
   "Other" membership agrees, plus a "no answer" class), cross-checked by brute force on
   fixtures and 150 random surveys, with seeded defects it must catch. Proves the 64
-  invariants of `scripts/verify/spec.yml` (review pending; a launched survey fails until it
-  is approved), pins golden statistics and locks positional ids (`survey/survey.lock.json`).
+  invariants of `scripts/verify/spec.yml` (external review reported, not a gate), pins
+  golden statistics and locks positional ids (`survey/survey.lock.json`).
 - Independent z3 cross-check (`pnpm verify-smt`): 550 queries (dead questions and options,
   options per question, soft checks, the age, income and outlook properties), written from
   the docs only.

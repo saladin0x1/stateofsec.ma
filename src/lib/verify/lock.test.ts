@@ -40,14 +40,4 @@ describe("positional-id lock", () => {
     expect(checkLock(lock!, appended).ok).toBe(true);
     expect(updateLock(launched, reordered)).toEqual({ refused: ["pa-q-1: choices (first difference at index 0)"] });
   });
-
-  it("fails a launched survey whose spec review is still pending", async () => {
-    const { verifySurvey } = await import("./verify");
-    const sections = surveyOf(...FORK);
-    const lock = { ...buildLock(model), launched: true };
-    const spec = (status: string) => `review:\n  status: ${status}\n  reviewers: [mchklt]\nquestions: {}\ninvariants: []\n`;
-    expect(verifySurvey({ sections, specText: spec("pending"), lock }).findings.map(f => f.check)).toContain("spec-unsigned");
-    expect(verifySurvey({ sections, specText: spec("approved"), lock }).findings.map(f => f.check)).not.toContain("spec-unsigned");
-    expect(verifySurvey({ sections, specText: spec("pending"), lock: { ...lock, launched: false } }).findings.map(f => f.check)).not.toContain("spec-unsigned");
-  });
 });

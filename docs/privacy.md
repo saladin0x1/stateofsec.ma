@@ -6,6 +6,13 @@ sensitive flaw block is published as a separate file that cannot be joined back,
 release gate refuses to write anything unless k-anonymity thresholds pass. The code lives
 in `scripts/privacy/`.
 
+## Before Any Analysis: Drop Dev Test Answers
+
+dev.stateofsec.ma and stateofsec.ma run the same worker and write to the same Firestore
+collection. The survey launched on stateofsec.ma on 2026-10-28: drop every document whose
+`lastUpdated` is earlier than the launch deploy (the time is in the launch commit's notes)
+before any export or chart, so dev test answers never reach the results.
+
 ## Threat Model
 
 **Who might try.** A colleague, manager, client, recruiter or journalist who already knows
