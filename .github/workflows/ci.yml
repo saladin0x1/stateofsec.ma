@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   ci:
@@ -20,6 +20,24 @@ jobs:
 
       - name: Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
+
+      - name: "Validate Survey"
+        run: pnpm run validate-survey
+
+      # Exhaustive model check of the branching (spec invariants, golden statistics, id lock)
+      - name: "Verify Survey"
+        run: pnpm run verify-survey
+
+      # Independent cross-check with the z3 solver; the pip wheel ships the z3 CLI. Installed
+      # before the tests so the solver tests run instead of skipping
+      - name: "Install z3"
+        run: |
+          python3 -m venv "$RUNNER_TEMP/z3"
+          "$RUNNER_TEMP/z3/bin/pip" install --quiet z3-solver==4.15.4.0
+          echo "$RUNNER_TEMP/z3/bin" >> "$GITHUB_PATH"
+
+      - name: "SMT cross-check of the survey logic"
+        run: pnpm run verify-smt
 
       - name: "Astro Check"
         run: pnpm run astro check

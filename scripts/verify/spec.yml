@@ -1,0 +1,500 @@
+# Survey invariants checked by `pnpm verify-survey` (src/lib/verify).
+#
+# HUMAN REVIEW REQUIRED. This file is the specification the survey is proved against, so it is
+# only as good as its review: it must be read and signed off by a human advisor (Ashraf or
+# mchklt) before launch, and again after any change. Record the sign-off in `review` below.
+# It was drafted from the decisions in docs/survey-redesign.md; each invariant names its source.
+#
+# Written by choice TEXT, never by index, so it does not depend on how the YAML author wrote the
+# conditions: a shifted index in survey/*.yml breaks an invariant here instead of slipping
+# through. Questions are named by alias (id + the start of the question text, both checked):
+# a renamed or moved question or choice fails the check until this file is reviewed again.
+#
+# Semantics (see src/lib/verify/spec.ts and collector.ts):
+#   when: { alias: [texts] }        the answer is one of these texts
+#   when: { alias: { not: [texts] } } the answer is not one of them (no answer counts as "not")
+#   scope: all (default)            checked on every answer set the server accepts
+#   scope: complete                 only where every shown required question was answered
+#   hidden / visible                the questions are hidden / shown
+#   hiddenOptions / visibleOptions  whenever the question is shown, these choices are hidden / shown
+#   softCheck: fires true / false   picking the choice does / does not ask "is that right?"
+#   exactlyOne / atMostOne / atLeastOne  how many of the listed questions are shown
+# Every invariant must apply to at least one respondent (else it is reported as vacuous).
+
+review:
+  status: pending
+  reviewers: []
+
+questions:
+  age: { id: profile-q-1, label: "What is your age?" }
+  location: { id: profile-q-2, label: "Where are you currently located?" }
+  country: { id: profile-q-3, label: "Which country?" }
+  education: { id: profile-q-4, label: "What is your IT or security education?" }
+  experience: { id: profile-q-5, label: "How many years have you worked in security?" }
+  employment: { id: profile-q-6, label: "What is your current employment situation?" }
+  domain: { id: roles-q-0, label: "Which security domain best describes your current work?" }
+  seniority: { id: roles-q-1, label: "What is your seniority level" }
+  bugBounty: { id: roles-q-2, label: "Do you take part in bug bounty" }
+  certifications: { id: learning-q-0, label: "Which security certifications do you hold?" }
+  learnedHow: { id: learning-q-1, label: "How did you learn cybersecurity?" }
+  incomeMad: { id: work-q-0, label: "Net monthly income in MAD" }
+  dailyRateMad: { id: work-q-1, label: "Usual daily rate (TJM) in MAD" }
+  salaryUsd: { id: work-q-2, label: "Gross yearly salary in USD" }
+  dailyRateUsd: { id: work-q-3, label: "Usual daily rate in USD" }
+  orgType: { id: work-q-4, label: "What type of organization do you work for" }
+  remoteArrangement: { id: work-q-6, label: "What remote work arrangement does your current employer offer?" }
+  unemployedAfterGraduation: { id: work-q-11, label: "How long have you been unemployed after graduation?" }
+  bountyEarnings: { id: work-q-9, label: "Bug bounty earnings in the last 12 months?" }
+  bountyBarriers: { id: work-q-10, label: "What made bug bounty harder" }
+  firstJob: { id: work-q-12, label: "What makes it hard to get your first (or next) security job?" }
+  marketChallenges: { id: work-q-13, label: "What are the biggest challenges in the Moroccan security job market?" }
+  preferredMode: { id: work-q-15, label: "What is your preferred mode of work?" }
+  plansAbroad: { id: work-q-16, label: "Do you have any plans to work outside Morocco?" }
+  comeBack: { id: work-q-17, label: "Do you plan to come back to live in Morocco?" }
+  afterStudies: { id: work-q-18, label: "After your studies, where would you like to work?" }
+  offensiveTools: { id: tech-q-0, label: "Which offensive tools" }
+  defensiveTools: { id: tech-q-1, label: "Which defensive, engineering or GRC tools" }
+  rulesDealtWith: { id: community-q-1, label: "Which of these rules or bodies have you dealt with" }
+  flawNoticed: { id: community-q-3, label: "Outside bug bounty or paid work, have you noticed" }
+  reported: { id: community-q-4, label: "Did you report what you noticed?" }
+  whyNotReported: { id: community-q-5, label: "Why did you not report it" }
+  askedToHide: { id: community-q-7, label: "In the last 3 years, has an employer or client asked you to hide" }
+
+# Path statistics are also reported per profile leaf: these answers name the leaf
+profileLeaf: [age, employment]
+
+invariants:
+  # Profile forks
+  - name: Minors skip education, experience, employment and the job-market question
+    source: survey-redesign.md, Logic audit
+    when:
+      age: ["Younger than 18 years"]
+    hidden: [education, experience, employment, marketChallenges]
+
+  - name: Lycee students skip experience, employment and the job-market question
+    source: survey-redesign.md, Logic audit and Organigram leaf review
+    when:
+      education: ["Still at lycée / preparing the Bac (incl. repeating or candidat libre)"]
+    hidden: [experience, employment, marketChallenges]
+
+  - name: Only 18-24 can still be at lycee
+    source: survey-redesign.md, Calibration on stateofdev.ma (a lycee option for 18-24)
+    when:
+      age: ["25 to 34 years", "35 to 44 years", "45 or older"]
+    hiddenOptions:
+      education: ["Still at lycée / preparing the Bac (incl. repeating or candidat libre)"]
+
+  - name: Country follow-up only for respondents abroad
+    source: survey-redesign.md, Calibration on stateofdev.ma (a follow-up asks the country)
+    when:
+      location: { not: ["Europe", "US & Canada", "Middle East", "Others"] }
+    hidden: [country]
+
+  - name: Respondents abroad are asked their country
+    source: survey-redesign.md, Calibration on stateofdev.ma
+    when:
+      location: ["Europe", "US & Canada", "Middle East", "Others"]
+    visible: [country]
+
+  # Experience bands (hidden when under 0.5% with 95% confidence, else a soft check)
+  - name: 18-24 are never offered 7 or more years of experience
+    source: survey-redesign.md, Validation method (hidden 18-24 with 7+ years)
+    when:
+      age: ["18 to 24 years"]
+    hiddenOptions:
+      experience: ["7-10 years", "11-16 years", "16+ years"]
+
+  - name: 25-34 are never offered 16+ years of experience
+    source: survey-redesign.md, Validation method (hidden 25-34 with 16+ years)
+    when:
+      age: ["25 to 34 years"]
+    hiddenOptions:
+      experience: ["16+ years"]
+
+  - name: 35 and older are offered every experience band
+    source: docs/survey-system.md, Conditions (hide a choice only when it is nearly impossible)
+    when:
+      age: ["35 to 44 years", "45 or older"]
+    visibleOptions:
+      experience:
+        - "None yet (security has not been part of my job)"
+        - "Less than a year (incl. a current internship)"
+        - "1-2 years"
+        - "3-4 years"
+        - "5-6 years"
+        - "7-10 years"
+        - "11-16 years"
+        - "16+ years"
+
+  # Soft checks: rare but real picks are confirmed, not hidden
+  - name: Soft check on founders aged 18-24
+    source: survey-redesign.md, Validation method
+    when:
+      age: ["18 to 24 years"]
+    softCheck: { question: employment, options: ["Founder or running my own company"], fires: true }
+
+  - name: Soft check on 18-24 with 5-6 years
+    source: survey-redesign.md, Validation method
+    when:
+      age: ["18 to 24 years"]
+    softCheck: { question: experience, options: ["5-6 years"], fires: true }
+
+  - name: Soft check on 25-34 with 11-16 years
+    source: survey-redesign.md, Validation method
+    when:
+      age: ["25 to 34 years"]
+    softCheck: { question: experience, options: ["11-16 years"], fires: true }
+
+  - name: Soft check on a doctorate before 35
+    source: survey-redesign.md, Validation method
+    when:
+      age: ["18 to 24 years", "25 to 34 years"]
+    softCheck: { question: education, options: ["University/Public school - Bac +8 (Doctoral)"], fires: true }
+
+  - name: Soft check on founders with under 3 years
+    source: survey-redesign.md, Validation method
+    when:
+      experience:
+        - "None yet (security has not been part of my job)"
+        - "Less than a year (incl. a current internship)"
+        - "1-2 years"
+    softCheck: { question: employment, options: ["Founder or running my own company"], fires: true }
+
+  - name: Soft check on interns or students aged 35 or older
+    source: survey-redesign.md, Validation method
+    when:
+      age: ["35 to 44 years", "45 or older"]
+    softCheck:
+      question: employment
+      options:
+        - "Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)"
+        - "Student (school, university, 1337, OFPPT; if you also work, pick your job)"
+      fires: true
+
+  - name: Soft check on interns with 5 or more years
+    source: survey-redesign.md, Validation method
+    when:
+      experience: ["5-6 years", "7-10 years", "11-16 years", "16+ years"]
+    softCheck: { question: employment, options: ["Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)"], fires: true }
+
+  - name: Soft check on students with 7 or more years
+    source: survey-redesign.md, Validation method
+    when:
+      experience: ["7-10 years", "11-16 years", "16+ years"]
+    softCheck: { question: employment, options: ["Student (school, university, 1337, OFPPT; if you also work, pick your job)"], fires: true }
+
+  - name: No soft check on looking for work at 35 or older
+    source: survey-redesign.md, Validation method (a sensitive situation)
+    when:
+      age: ["35 to 44 years", "45 or older"]
+    softCheck: { question: employment, options: ["Looking for work"], fires: false }
+
+  - name: No soft check on experienced founders over 35
+    source: survey-redesign.md, Validation method (self-taught founders over 35 are common)
+    when:
+      age: ["35 to 44 years", "45 or older"]
+      experience: ["3-4 years", "5-6 years", "7-10 years", "11-16 years", "16+ years"]
+    softCheck: { question: employment, options: ["Founder or running my own company"], fires: false }
+
+  - name: No soft check on 35+ career switchers with no experience
+    source: survey-redesign.md, Validation method
+    when:
+      age: ["35 to 44 years", "45 or older"]
+      education: ["Other field's diploma (career transition)"]
+    softCheck: { question: experience, options: ["None yet (security has not been part of my job)"], fires: false }
+
+  # Roles and learning
+  - name: Bug bounty question for everyone, teens included
+    source: survey-redesign.md, Architecture council
+    visible: [bugBounty]
+
+  - name: Head-of-security choices need security experience
+    source: survey-redesign.md, Organigram leaf review (CISO domain, seniority and CISSP from 2 years)
+    when:
+      experience:
+        - "None yet (security has not been part of my job)"
+        - "Less than a year (incl. a current internship)"
+    hiddenOptions:
+      domain: ["Management / Head of security (CISO)"]
+      seniority: ["Head of security / CISO"]
+      certifications: ["CISSP / CISM / CISA"]
+
+  - name: No university or bootcamp for minors
+    source: survey-redesign.md, Organigram leaf review
+    when:
+      age: ["Younger than 18 years"]
+    hiddenOptions:
+      learnedHow: ["University, engineering school or CPGE", "Bootcamp / coding school (1337, YouCode, etc.)"]
+
+  - name: No on-the-job learning for minors
+    source: survey-redesign.md, Organigram leaf review (no on-the-job without experience)
+    when:
+      age: ["Younger than 18 years"]
+    hiddenOptions:
+      learnedHow: ["On-the-job"]
+
+  - name: No on-the-job learning for students and job seekers without experience
+    source: survey-redesign.md, Organigram leaf review (no on-the-job without experience)
+    when:
+      employment: ["Student (school, university, 1337, OFPPT; if you also work, pick your job)", "Looking for work"]
+      experience: ["None yet (security has not been part of my job)"]
+    hiddenOptions:
+      learnedHow: ["On-the-job"]
+
+  # Money and market
+  - name: At most one income question
+    source: survey-redesign.md, The tree (fork A) and Calibration (pay)
+    atMostOne: [incomeMad, dailyRateMad, salaryUsd, dailyRateUsd]
+
+  - name: Working respondents with security experience get exactly one income question
+    source: survey-redesign.md, Organigram leaf review (income needs security experience; Other gets it)
+    scope: complete
+    when:
+      employment:
+        - "Employee of an organization in Morocco (public or private, incl. nearshore)"
+        - "Employee of a foreign organization (abroad or remote, incl. employer-of-record)"
+        - "Freelancer / independent (incl. full-time bug bounty, foreign clients)"
+        - "Founder or running my own company"
+        - "Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)"
+        - "Other"
+      experience: { not: ["None yet (security has not been part of my job)"] }
+    exactlyOne: [incomeMad, dailyRateMad, salaryUsd, dailyRateUsd]
+
+  - name: Students and job seekers are not asked about pay
+    source: survey-redesign.md, The tree (student/looking skip salary)
+    when:
+      employment: ["Student (school, university, 1337, OFPPT; if you also work, pick your job)", "Looking for work"]
+    hidden: [incomeMad, dailyRateMad, salaryUsd, dailyRateUsd]
+
+  - name: No security experience, no income, organization type or seniority
+    source: survey-redesign.md, Organigram leaf review
+    when:
+      experience: ["None yet (security has not been part of my job)"]
+    hidden: [incomeMad, dailyRateMad, salaryUsd, dailyRateUsd, orgType, seniority]
+
+  - name: Employees of a Moroccan organization are paid in MAD
+    source: survey-redesign.md, Expert panel (the income currency follows the employer)
+    scope: complete
+    when:
+      employment: ["Employee of an organization in Morocco (public or private, incl. nearshore)"]
+      experience: { not: ["None yet (security has not been part of my job)"] }
+    visible: [incomeMad]
+
+  - name: Employees of a foreign organization give a yearly USD salary
+    source: survey-redesign.md, Expert panel and Calibration (gross yearly USD for foreign employers)
+    scope: complete
+    when:
+      employment: ["Employee of a foreign organization (abroad or remote, incl. employer-of-record)"]
+      experience: { not: ["None yet (security has not been part of my job)"] }
+    visible: [salaryUsd]
+
+  - name: Freelancers abroad are not asked a MAD daily rate
+    source: survey-redesign.md, Calibration (TJM in MAD; daily USD for freelancers abroad)
+    when:
+      location: ["Europe", "US & Canada", "Middle East", "Others"]
+    hidden: [dailyRateMad]
+
+  - name: Freelancers in Morocco are not asked a USD daily rate
+    source: survey-redesign.md, Calibration (TJM in MAD; daily USD for freelancers abroad)
+    when:
+      location: { not: ["Europe", "US & Canada", "Middle East", "Others"] }
+    hidden: [dailyRateUsd]
+
+  - name: Employees in Morocco are never offered no income
+    source: survey-redesign.md, Organigram leaf review (employees no "No income")
+    when:
+      employment: ["Employee of an organization in Morocco (public or private, incl. nearshore)"]
+    hiddenOptions:
+      incomeMad: ["No income / unpaid"]
+
+  - name: Interns get stipend bands
+    source: survey-redesign.md, Organigram leaf review and Calibration (sub-bands of "< 4 000")
+    when:
+      employment: ["Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)"]
+    visibleOptions:
+      incomeMad: ["No income / unpaid", "< 1 500", "1 500 - 2 500", "2 500 - 4 000", "> 8 000"]
+    hiddenOptions:
+      incomeMad: ["< 4 000"]
+
+  - name: Minors' bug bounty earnings stop at one top band
+    source: survey-redesign.md, Second swarm (top teen hunters cannot be singled out)
+    when:
+      age: ["Younger than 18 years"]
+    visibleOptions:
+      bountyEarnings: ["$2,000 or more"]
+    hiddenOptions:
+      bountyEarnings: ["$2,000 - $4,999", "$5,000 - $19,999", "$20,000 - $49,999", "$50,000 or more"]
+
+  - name: Adults get the detailed top earnings bands
+    source: survey-redesign.md, Second swarm
+    when:
+      age: ["18 to 24 years", "25 to 34 years", "35 to 44 years", "45 or older"]
+    visibleOptions:
+      bountyEarnings: ["$2,000 - $4,999", "$5,000 - $19,999", "$20,000 - $49,999", "$50,000 or more"]
+    hiddenOptions:
+      bountyEarnings: ["$2,000 or more"]
+
+  - name: Morocco payout barriers are hidden for respondents abroad
+    source: survey-redesign.md, Organigram leaf review
+    when:
+      location: ["Europe", "US & Canada", "Middle East", "Others"]
+    hiddenOptions:
+      bountyBarriers:
+        - "Usual payout method (e.g. PayPal) not available in Morocco"
+        - "Bank blocked, delayed or questioned a transfer"
+        - "Unclear Office des Changes or tax rules"
+
+  - name: Age-limit barriers only for under-25s
+    source: survey-redesign.md, Organigram leaf review and Second swarm
+    when:
+      age: ["25 to 34 years", "35 to 44 years", "45 or older"]
+    hiddenOptions:
+      bountyBarriers: ["Platform age limit or parental consent", "Family or school against it"]
+
+  - name: First-job barriers for everyone without security experience
+    source: survey-redesign.md, Logic audit
+    when:
+      experience: ["None yet (security has not been part of my job)"]
+    visible: [firstJob]
+
+  - name: First-job barriers for interns, students and job seekers
+    source: survey-redesign.md, Second swarm
+    when:
+      employment:
+        - "Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)"
+        - "Student (school, university, 1337, OFPPT; if you also work, pick your job)"
+        - "Looking for work"
+    visible: [firstJob]
+
+  # Outlook
+  - name: Each respondent sees exactly one outlook question
+    source: survey-redesign.md, Calibration (teens and lycee students get the last one instead)
+    scope: complete
+    exactlyOne: [plansAbroad, afterStudies]
+
+  - name: Nobody sees both outlook questions
+    source: survey-redesign.md, Calibration
+    atMostOne: [plansAbroad, afterStudies]
+
+  - name: Minors get the after-studies outlook
+    source: survey-redesign.md, Organigram leaf review
+    when:
+      age: ["Younger than 18 years"]
+    visible: [afterStudies]
+
+  - name: Lycee students get the after-studies outlook
+    source: survey-redesign.md, Organigram leaf review
+    when:
+      education: ["Still at lycée / preparing the Bac (incl. repeating or candidat libre)"]
+    visible: [afterStudies]
+
+  - name: Coming back is asked only to those who live and work abroad
+    source: survey-redesign.md, Calibration (plans to work abroad and to come back)
+    when:
+      plansAbroad: { not: ["I already live and work outside Morocco"] }
+    hidden: [comeBack]
+
+  - name: Residents of Morocco cannot say they already work abroad
+    source: docs/verification/method-audit.md, A2 (remote employees misread the choice)
+    when:
+      location: { not: [Europe, "US & Canada", Middle East, Others] }
+    hiddenOptions:
+      plansAbroad: ["I already live and work outside Morocco"]
+
+  # HR block cuts (peers found it redundant): nobody answers two versions of one question
+  - name: Nobody answers both the first-job and the job-market question
+    source: survey-redesign.md, HR block cuts
+    atMostOne: [firstJob, marketChallenges]
+
+  - name: Nobody answers both the remote arrangement and the preferred work mode
+    source: survey-redesign.md, HR block cuts
+    atMostOne: [remoteArrangement, preferredMode]
+
+  - name: The self-taught are not asked about unemployment after graduation
+    source: docs/verification/method-audit.md, A4
+    when:
+      education: ["Self-taught (no formal IT or security education)"]
+    hidden: [unemployedAfterGraduation]
+
+  # Tools
+  - name: Pentesters keep a vulnerability scanner choice
+    source: docs/verification/method-audit.md, A10
+    when:
+      domain: ["Offensive security (pentest, red team, bug bounty)"]
+    visibleOptions:
+      offensiveTools: ["Vulnerability scanning (Nessus, OpenVAS, Qualys)"]
+
+  - name: Scanners are listed once per respondent
+    source: docs/verification/method-audit.md, A10 (Nessus was counted twice)
+    when:
+      domain: { not: ["Offensive security (pentest, red team, bug bounty)"] }
+    hiddenOptions:
+      offensiveTools: ["Vulnerability scanning (Nessus, OpenVAS, Qualys)"]
+
+  - name: A daily USD rate of 2 000 or more asks whether it is per day
+    source: docs/verification/method-audit.md, A3
+    softCheck: { question: dailyRateUsd, options: ["2 000 - 5 000", "> 5 000"], fires: true }
+
+  - name: Every respondent sees a tools list
+    source: survey-redesign.md, Logic audit and Synthetic respondents (GRC and CISOs see a tools list)
+    scope: complete
+    atLeastOne: [offensiveTools, defensiveTools]
+
+  - name: GRC platforms only for GRC and heads of security
+    source: survey-redesign.md, Organigram leaf review
+    when:
+      domain: { not: ["Governance, risk & compliance (GRC)", "Management / Head of security (CISO)"] }
+    hiddenOptions:
+      defensiveTools: ["GRC & risk platforms (Archer, ServiceNow, Egerie, CISO Assistant, spreadsheets)"]
+
+  - name: Enterprise tools hidden for minors
+    source: survey-redesign.md, Second swarm
+    when:
+      age: ["Younger than 18 years"]
+    hiddenOptions:
+      defensiveTools: ["Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)"]
+
+  - name: Enterprise tools hidden for people still exploring
+    source: survey-redesign.md, Second swarm
+    when:
+      domain: ["Still exploring / no specific area yet"]
+    hiddenOptions:
+      defensiveTools: ["Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)"]
+
+  # Reality block
+  - name: Flaw question for everyone, minors included
+    source: survey-redesign.md, Expert panel (under-18s see the vuln block like everyone else)
+    visible: [flawNoticed]
+
+  - name: Reporting is asked only after noticing a flaw
+    source: survey-redesign.md, Expert panel
+    when:
+      flawNoticed: { not: ["Yes"] }
+    hidden: [reported, whyNotReported]
+
+  - name: Too young to be taken seriously is only offered to minors
+    source: survey-redesign.md, Second swarm
+    when:
+      age: { not: ["Younger than 18 years"] }
+    hiddenOptions:
+      whyNotReported: ["Too young to be taken seriously / no adult to help"]
+
+  - name: Respondents with security experience are asked about rules and pressure to hide
+    source: survey-redesign.md, Logic audit (anyone with professional experience)
+    when:
+      experience:
+        - "Less than a year (incl. a current internship)"
+        - "1-2 years"
+        - "3-4 years"
+        - "5-6 years"
+        - "7-10 years"
+        - "11-16 years"
+        - "16+ years"
+    visible: [rulesDealtWith, askedToHide]
+
+  - name: Students and job seekers without experience skip pressure to hide
+    source: survey-redesign.md, Expert panel
+    when:
+      employment: ["Student (school, university, 1337, OFPPT; if you also work, pick your job)", "Looking for work"]
+      experience: ["None yet (security has not been part of my job)"]
+    hidden: [askedToHide]

@@ -1,0 +1,202 @@
+{
+  "questions": 52,
+  "guardClasses": {
+    "profile-q-1": 5,
+    "profile-q-2": 5,
+    "profile-q-4": 9,
+    "profile-q-5": 8,
+    "profile-q-6": 8,
+    "roles-q-0": 10,
+    "roles-q-2": 4,
+    "work-q-16": 2,
+    "tech-q-2": 2,
+    "community-q-3": 2,
+    "community-q-4": 4
+  },
+  "classStates": {
+    "all": 40256580,
+    "complete": 8585136
+  },
+  "paths": {
+    "complete": 6840,
+    "all": 14160
+  },
+  "screens": {
+    "min": 22,
+    "median": 37,
+    "p90": 41,
+    "max": 45
+  },
+  "profiles": {
+    "profile-q-1=18 to 24 years; profile-q-6=-": {
+      "paths": 180,
+      "min": 23,
+      "max": 31
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Employee of a foreign organization (abroad or remote, incl. employer-of-record)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Employee of an organization in Morocco (public or private, incl. nearshore)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Founder or running my own company": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Freelancer / independent (incl. full-time bug bounty, foreign clients)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Looking for work": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Other": {
+      "paths": 1080,
+      "min": 30,
+      "max": 43
+    },
+    "profile-q-1=18 to 24 years; profile-q-6=Student (school, university, 1337, OFPPT; if you also work, pick your job)": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Employee of a foreign organization (abroad or remote, incl. employer-of-record)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Employee of an organization in Morocco (public or private, incl. nearshore)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Founder or running my own company": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Freelancer / independent (incl. full-time bug bounty, foreign clients)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Looking for work": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Other": {
+      "paths": 1080,
+      "min": 30,
+      "max": 43
+    },
+    "profile-q-1=25 to 34 years; profile-q-6=Student (school, university, 1337, OFPPT; if you also work, pick your job)": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Employee of a foreign organization (abroad or remote, incl. employer-of-record)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Employee of an organization in Morocco (public or private, incl. nearshore)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Founder or running my own company": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Freelancer / independent (incl. full-time bug bounty, foreign clients)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Looking for work": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Other": {
+      "paths": 1080,
+      "min": 30,
+      "max": 43
+    },
+    "profile-q-1=35 to 44 years; profile-q-6=Student (school, university, 1337, OFPPT; if you also work, pick your job)": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=45 or older; profile-q-6=Employee of a foreign organization (abroad or remote, incl. employer-of-record)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=45 or older; profile-q-6=Employee of an organization in Morocco (public or private, incl. nearshore)": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=45 or older; profile-q-6=Founder or running my own company": {
+      "paths": 1080,
+      "min": 31,
+      "max": 45
+    },
+    "profile-q-1=45 or older; profile-q-6=Freelancer / independent (incl. full-time bug bounty, foreign clients)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=45 or older; profile-q-6=Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)": {
+      "paths": 1080,
+      "min": 30,
+      "max": 44
+    },
+    "profile-q-1=45 or older; profile-q-6=Looking for work": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=45 or older; profile-q-6=Other": {
+      "paths": 1080,
+      "min": 30,
+      "max": 43
+    },
+    "profile-q-1=45 or older; profile-q-6=Student (school, university, 1337, OFPPT; if you also work, pick your job)": {
+      "paths": 1080,
+      "min": 28,
+      "max": 40
+    },
+    "profile-q-1=Younger than 18 years; profile-q-6=-": {
+      "paths": 180,
+      "min": 22,
+      "max": 30
+    }
+  }
+}
