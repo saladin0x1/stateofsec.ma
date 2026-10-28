@@ -58,7 +58,7 @@ wrangler deploy
 1. `/before-start` shows the rules and the Turnstile captcha. On start, the browser signs in anonymously with Firebase and calls the `initSession` action with its ID token and the captcha token.
 2. The server checks the captcha and the ID token, then sets a signed, `httpOnly` session cookie.
 3. `/survey` renders the questions from `survey/*.yml`. Answers are submitted at the end of each section through the `submitAnswers` action.
-4. The server validates every answer against the survey definition (known question ids, valid choice indexes, required questions) and drops answers to questions hidden by `showIf` conditions before writing to Firestore.
+4. The server validates every answer against the survey definition (valid choice indexes, `max` picks, exclusive choices), ignores question ids it does not know, and drops answers to questions hidden by `showIf` conditions before writing to Firestore. A submit only deletes stored answers of the sections up to the one being submitted.
 
 Question ids are positional: `<section label>-q-<index>`. Inserting, removing or reordering questions in a YAML file changes the ids of every later question in that section, so freeze the survey once it is open.
 
@@ -67,12 +67,13 @@ To close the survey, set `SURVEY_OPEN = false` in `src/site-config.mjs`: the sur
 ## Results
 
 ```sh
-pnpm export-results --output=results/<year>/data      # dump Firestore responses to results.json
+pnpm export-results --output=<private dir>            # full private dump of Firestore responses (never commit it)
+pnpm export-results --public=results/<year>/data      # coarsened public release, written only if the privacy gate passes
 pnpm generate-questions --output=results/<year>/data  # questions.json from the current survey YAML
 pnpm query-results                                    # query results from the CLI, see docs/query-results.md
 ```
 
-Run `generate-questions` before editing the survey for the next edition, or the questions will no longer match that year's answers. The export is a raw dump of Firestore documents, including their anonymous ids and timestamps; review free-text answers before publishing.
+Run `generate-questions` before editing the survey for the next edition, or the questions will no longer match that year's answers. The private export is a raw dump of Firestore documents, including their anonymous ids, timestamps and free text: it is for the owners only. This year only aggregates and charts are published, no row-level file; see `docs/privacy.md` for the release gate and what a row-level release needs.
 
 ## Scripts
 

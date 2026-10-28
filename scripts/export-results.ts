@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import { cert, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
+import { writePublicRelease } from "./privacy/export-public";
 
 // Runs on Node (locally or in CI), so firebase-admin is fine here, unlike on Workers
 const app = initializeApp({
@@ -61,12 +62,23 @@ async function run() {
   console.log("exporting results");
   const data = await exportResults();
 
+  // Public release (docs/privacy.md): coarsened, gated, written only if the gate passes,
+  // e.g. --public=results/2026/data. The full private export below is unchanged
+  const publicArg = process.argv.find(arg => arg.startsWith("--public="));
+  if (publicArg) {
+    if (!writePublicRelease(data.results, publicArg.split("=")[1]))
+      process.exitCode = 1;
+    return;
+  }
+
   // Get output directory from command line args (e.g., --output=results/2025/data)
   const outputArg = process.argv.find(arg => arg.startsWith("--output="));
 
   if (outputArg) {
     // Structured output mode for results directory
     const outputDir = outputArg.split("=")[1];
+    if (path.resolve(outputDir).startsWith(path.resolve("results")))
+      console.warn("[WARN] This is the full private export (ids, timestamps, free text, flaw block): do not commit it under results/. Publish with --public instead (docs/privacy.md)");
     ensureDirectoryExists(outputDir);
 
     const resultsPath = path.join(outputDir, "results.json");
