@@ -493,6 +493,14 @@ function performCrossFileValidation(
           value: question.exclusive
         });
       }
+      if (question.max !== undefined && (!question.multiple || question.max >= question.choices.length)) {
+        errors.push({
+          severity: ValidationSeverity.ERROR,
+          message: `Question ${currentQuestionId} has max ${question.max}: it must be multi-select with fewer picks than choices`,
+          path: `${path}.max`,
+          value: question.max
+        });
+      }
       const conditioned = new Set((question.optionShowIf ?? []).flatMap(rule => rule.options));
       if (question.required && question.choices.every(choice => conditioned.has(choice))) {
         errors.push({

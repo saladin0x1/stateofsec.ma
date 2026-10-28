@@ -4,7 +4,7 @@ position: 4
 questions:
   # stateofdev.ma's MAD bands; interns get sub-bands of "< 4 000" and one top band, and the
   # top band is split for security seniors (every band nests into an upstream one)
-  - label: "Your usual NET monthly income in MAD (employees: your main job's pay slip, fixed allowances in, 13th month, bonuses and side jobs out; interns: your stipend; founders: what you keep in an average month after tax and charges; convert other currencies)"
+  - label: "Net monthly income in MAD (employees: main job pay slip without 13th month, bonuses and side jobs; interns: stipend; founders: take-home after tax and charges; convert other currencies)"
     required: false
     showIf:
       all:
@@ -64,7 +64,7 @@ questions:
           notEquals: 4
 
   # stateofdev.ma: freelancers in Morocco give a daily rate (TJM)
-  - label: Your usual daily rate (TJM) in MAD, before tax (convert other currencies; bug bounty is asked separately)
+  - label: Usual daily rate (TJM) in MAD, before tax (convert other currencies; excl. bug bounty)
     required: false
     showIf:
       all:
@@ -87,7 +87,7 @@ questions:
       - Prefer not to say
 
   # stateofdev.ma: work for a foreign organization is asked as gross yearly USD
-  - label: Your GROSS yearly salary in USD, before tax (convert other currencies; bug bounty is asked separately)
+  - label: Gross yearly salary in USD, before tax (convert other currencies; excl. bug bounty)
     required: false
     showIf:
       all:
@@ -110,7 +110,7 @@ questions:
       - "> 200 000"
       - Prefer not to say
 
-  - label: Your usual daily rate in USD, before tax (convert other currencies; bug bounty is asked separately)
+  - label: Usual daily rate in USD, before tax (convert other currencies; excl. bug bounty)
     required: false
     showIf:
       all:
@@ -204,7 +204,7 @@ questions:
       - Full remote
       - Hybrid
 
-  - label: How often do you work overtime or beyond the normal time expectation of your job?
+  - label: How often do you work beyond normal hours?
     required: false
     showIf:
       question: profile-q-6
@@ -230,7 +230,7 @@ questions:
       - Slightly satisfied
       - Very satisfied
 
-  - label: About how much did you earn from bug bounty in the last 12 months? (USD before tax; convert EUR)
+  - label: Bug bounty earnings in the last 12 months? (USD before tax; convert EUR)
     required: false
     showIf:
       question: roles-q-2
@@ -257,7 +257,7 @@ questions:
           question: profile-q-1
           notEquals: 0
 
-  - label: What has made bug bounty harder for you, made you stop, or kept you from starting?
+  - label: What made bug bounty harder, made you stop, or kept you from starting?
     required: false
     multiple: true
     showIf:
@@ -373,9 +373,10 @@ questions:
           question: profile-q-6
           notIn: [5, 6]
 
-  - label: What are the biggest challenges in the Moroccan security job market? (pick up to 3)
+  - label: What are the biggest challenges in the Moroccan security job market?
     required: true
     multiple: true
+    max: 3
     showIf:
       question: profile-q-4
       notEquals: 0
@@ -399,7 +400,7 @@ questions:
           in: [2, 3]
 
   # stateofdev.ma job preferences
-  - label: What characteristics would mostly influence your decision to choose one job offer over another?
+  - label: What would most influence your choice between job offers?
     required: false
     multiple: true
     showIf:
@@ -457,7 +458,7 @@ questions:
       - Currently working outside Morocco
       - "No"
 
-  - label: If you are working abroad, do you have any plans to come back to Morocco?
+  - label: If you work abroad, do you plan to return to Morocco?
     required: false
     showIf:
       question: work-q-17

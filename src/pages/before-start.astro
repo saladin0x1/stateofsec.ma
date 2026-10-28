@@ -5,15 +5,15 @@ import { surveySections } from "@/lib/survey";
 const parts = surveySections.map(section => section.title).join(", ");
 
 const rules = [
-  "We care about privacy: your answers are **anonymous** and we only rely on anonymous sessions to avoid spam",
-  "Analytics (PostHog) only runs if you **accept it** in the cookie banner. If you do, it may record how you use the site, including this survey",
-  "**Please be honest**. Our goal is to understand Morocco's cybersecurity community and share the results with everyone",
-  "The survey takes around **8 minutes** to complete",
-  "**Under 18? You are welcome.** Questions about security flaws only cover authorized work (bug bounty, VDPs, contracted tests) or flaws you noticed while using a service. We never ask how you found one or which organization, and the questions about flaws you noticed can be skipped",
-  `The survey has **${surveySections.length} parts**: ${parts}. Your answers are saved at the end of each part`,
+  "Answers are **anonymous**: no name or email. An anonymous session only limits spam",
+  "Analytics (PostHog) runs only if you **accept** the cookie banner, and may record how you use the site, including this survey",
+  "**Answer honestly**: the goal is an accurate picture of Morocco's security community, shared with everyone",
+  "Takes about **8 minutes**",
+  "**Under 18 is fine.** Security-flaw questions cover only authorized work (bug bounty, VDPs, contracted tests) or flaws you noticed as a user. We never ask how you found one or which organization, and the user-flaw questions can be skipped",
+  `**${surveySections.length} parts**: ${parts}. Answers are saved at the end of each part`,
   "Questions are **required** unless they have a **skip button**",
-  "If you pick **Other**, you can add details in the text field. Please keep personal or identifying details out of it",
-  "There are two types of questions: **Multiple Choice** (select one or more options) and **Single Select** (choose only one option)"
+  "**Other** opens a text field. Keep personal or identifying details out of it",
+  "**Single select**: pick one. **Multiple choice**: pick several, some with a cap"
 ];
 
 export const prerender = true;
@@ -89,24 +89,34 @@ const errorMessage = document.querySelector(
 ) as HTMLParagraphElement;
 const captchaSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 let captchaToken = "";
-// @ts-expect-error - Turnstile callback is added to window dynamically
-window.onloadTurnstileCallback = function () {
-  if (!captchaSiteKey)
+let captchaRendered = false;
+function renderCaptcha() {
+  if (!captchaSiteKey || captchaRendered)
     return;
+  captchaRendered = true;
   // @ts-expect-error - Turnstile is added to window dynamically by Cloudflare script
   window.turnstile.render("#captcha-container", {
-    sitekey: captchaSiteKey,
+    "sitekey": captchaSiteKey,
     callback(token: string) {
       captchaToken = token;
     },
-    theme: "auto"
+    "expired-callback": () => {
+      captchaToken = "";
+    },
+    "theme": "auto"
   });
-};
+}
+// @ts-expect-error - Turnstile callback is added to window dynamically
+window.onloadTurnstileCallback = renderCaptcha;
+// api.js can finish loading before this module runs and miss the callback above
+// @ts-expect-error - Turnstile is added to window dynamically by Cloudflare script
+if (window.turnstile)
+  renderCaptcha();
 
 function showError(message: string) {
   errorMessage.innerHTML = message;
   errorAlert.classList.remove("hidden");
-  startButton.innerHTML = "Start Survey";
+  startButton.innerHTML = "Start";
   startButton.disabled = false;
   startButton.classList.remove("opacity-50", "cursor-not-allowed");
 }

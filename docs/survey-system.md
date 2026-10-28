@@ -18,7 +18,7 @@ End-to-end survey flow, session management, and answer data structures.
 - Answers are collected as `{ "question-id": choiceIndex, "question-id-others": "text" }`
 - Each section is submitted through `submitAnswers` with all answers collected so far
 - The client keeps every answer given (`rawAnswers`) and submits only the visible ones, so changing an earlier answer back restores what depended on it
-- The server rejects unknown ids, invalid choice indexes and an exclusive choice combined with others, drops answers to questions hidden by `showIf`, picks of choices hidden by `optionShowIf` and empty required answers, deletes every stored answer field it does not save, and saves to Firestore with the anonymous user id as document id
+- The server rejects unknown ids, invalid choice indexes, more picks than `max` and an exclusive choice combined with others, drops answers to questions hidden by `showIf`, picks of choices hidden by `optionShowIf` and empty required answers, deletes every stored answer field it does not save, and saves to Firestore with the anonymous user id as document id
 
 ### 3. Data Export (manual)
 
@@ -35,7 +35,7 @@ End-to-end survey flow, session management, and answer data structures.
 
 - **Single choice**: `{ "profile-q-0": 1 }` (choice index)
 - **Multiple choice**: `{ "profile-q-2": [3, 2] }` (array of choice indexes)
-- **With "other" text**: `{ "profile-q-3": 6, "profile-q-3-others": "custom text" }`, only kept while an "Other" choice is selected
+- **With "other" text**: `{ "profile-q-3": 6, "profile-q-3-others": "custom text" }`, trimmed, and only kept while an "Other" choice is selected and the text is not blank
 - **Skipped**: `{ "profile-q-4": null }` (single) or `[]` (multiple), only for questions that are not required
 
 An "Other" choice is one whose text is exactly "Other" or "Others", optionally followed by a parenthesis, e.g. "Other (please specify)".
@@ -67,6 +67,9 @@ optionShowIf:
 
 # a multiple-choice pick that clears the others ("None yet", "Prefer not to say")
 exclusive: [None yet]
+
+# cap the picks of a multi-select ("pick up to 3"): the form disables the rest, the server rejects more
+max: 3
 
 # a rare but real pick: ask "is that right?" before moving on (single-choice only)
 softChecks:

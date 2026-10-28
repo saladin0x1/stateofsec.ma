@@ -113,6 +113,9 @@ export const SurveyQuestionSchema = z.object({
   // Choices (by label) that cannot be combined with any other choice in a multi-select
   exclusive: z.array(z.string().trim().min(1)).min(1).optional(),
 
+  // Most choices a respondent may pick in a multi-select ("pick up to 3")
+  max: z.number().int().min(2).optional(),
+
   softChecks: z.array(SoftCheckSchema).optional()
 }).strict();
 

@@ -2,7 +2,7 @@ title: Community & reality
 label: community
 position: 6
 questions:
-  - label: How would you rate Morocco's overall cybersecurity maturity as a country?
+  - label: How mature is Morocco's cybersecurity overall?
     required: true
     choices:
       - Very weak
@@ -12,7 +12,7 @@ questions:
       - Very strong
       - Not sure
 
-  - label: Which of these rules or bodies have you dealt with in your work (current or past)?
+  - label: Which of these rules or bodies have you dealt with at work (current or past)?
     required: false
     multiple: true
     showIf:
@@ -33,7 +33,7 @@ questions:
       - Other
     exclusive: [None of these]
 
-  - label: How well does Moroccan law protect people who report security flaws in good faith?
+  - label: How well does Moroccan law protect people who report flaws in good faith?
     required: false
     choices:
       - Not at all
@@ -42,7 +42,7 @@ questions:
       - Well
       - Don't know
 
-  - label: Apart from bug bounty or paid work, have you ever noticed one or more security flaws in a Moroccan organization's website, app or service while simply using it (as a customer, student or user)?
+  - label: Outside bug bounty or paid work, have you noticed security flaws in a Moroccan organization's site, app or service while using it (as a customer, student or user)?
     required: false
     choices:
       - "Yes"
@@ -102,7 +102,7 @@ questions:
       - Prefer not to say
     exclusive: [Prefer not to say]
 
-  - label: Have you ever been asked, by an employer or a client, to hide or play down a security incident, or to remove or downgrade an audit or pentest finding for non-technical reasons? (a bug bounty program's normal disclosure rules don't count)
+  - label: Has an employer or client asked you to hide or play down an incident, or to remove or downgrade an audit or pentest finding for non-technical reasons? (normal bug bounty disclosure rules don't count)
     required: false
     multiple: true
     showIf:
@@ -120,7 +120,7 @@ questions:
     exclusive: ["No", Prefer not to say]
 
   # stateofdev.ma's community block, for the security community
-  - label: What prevents you from participating more in the Moroccan security community?
+  - label: What stops you from taking part more in the Moroccan security community?
     required: true
     multiple: true
     choices:
@@ -133,7 +133,7 @@ questions:
       - I'm already active in the community
       - Other
 
-  - label: What would make you more likely to attend security events in Morocco (meetups, conferences, CTFs)?
+  - label: What would make you attend security events in Morocco? (meetups, conferences, CTFs)
     required: true
     multiple: true
     choices:
@@ -158,9 +158,10 @@ questions:
       - Other
     exclusive: [It hasn't helped my career yet]
 
-  - label: What do you MOST need from the Moroccan security community right now? (pick up to 3)
+  - label: What do you most need from the Moroccan security community now?
     required: true
     multiple: true
+    max: 3
     choices:
       - Job opportunities and career guidance
       - Mentorship from experienced security people
@@ -170,9 +171,10 @@ questions:
       - Collaboration on projects, research or CTF teams
       - Other
 
-  - label: What type of community content would be MOST valuable to you? (pick up to 3)
+  - label: Which community content is most valuable to you?
     required: true
     multiple: true
+    max: 3
     choices:
       - Hands-on workshops and labs
       - CTFs and competitions

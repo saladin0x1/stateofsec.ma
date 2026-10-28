@@ -52,6 +52,7 @@ function validateChoiceValue(id: string, value: AnswerValue, { question, exclusi
     ? Array.isArray(value)
     && new Set(value).size === value.length
     && value.every(v => isChoiceIndex(v, choiceCount))
+    && value.length <= (question.max ?? choiceCount)
     && (value.length === 1 || !value.some(v => exclusiveIndices.includes(v)))
     : isChoiceIndex(value, choiceCount);
   if (!valid)
@@ -96,11 +97,16 @@ export function sanitizeAnswers(answers: Answers): { toSave: Answers; toDelete: 
     const id = isOthersText ? key.slice(0, -OTHERS_SUFFIX.length) : key;
     const info = questionsById.get(id)!;
 
-    if (isOthersText && !selectsOther(visibleAnswers[id], info.otherIndices))
+    if (isOthersText) {
+      // Blank text is no answer; store the trimmed text
+      const text = (value as string).trim();
+      if (text && selectsOther(visibleAnswers[id], info.otherIndices))
+        toSave[key] = text;
       continue;
+    }
     // An empty required answer is dropped, not rejected: a missing one is accepted anyway
     // (sections are saved one at a time), and rejecting it would block every later submit
-    if (!isOthersText && info.question.required && isEmpty(value))
+    if (info.question.required && isEmpty(value))
       continue;
     toSave[key] = value;
   }

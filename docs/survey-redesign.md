@@ -356,3 +356,9 @@ Model-check (depth-first over every reachable class of answers): 53 questions,
 40, stateofdev.ma's length), no dead nodes, no violations.
 
 Pending: human review (Ashraf + mchklt) before merging to `main`.
+
+### Later fixes
+
+- "Pick up to 3" is enforced: `max: 3` on the question (schema, validator, form, `sanitizeAnswers`); the hint is no longer in the label.
+- Blank "other" text is dropped and the rest trimmed on the server.
+- Question labels shortened; ids, order and choice indexes unchanged.

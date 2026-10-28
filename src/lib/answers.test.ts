@@ -30,6 +30,7 @@ vi.mock("@/lib/survey", () => ({
           multiple: true,
           choices: ["None yet", "Security+", "CISSP", "Other"],
           exclusive: ["None yet"],
+          max: 2,
           optionShowIf: [{ options: ["CISSP"], showIf: { question: "profile-q-1", in: [1, 2] } }]
         },
         {
@@ -47,6 +48,18 @@ vi.mock("@/lib/survey", () => ({
 describe("sanitizeAnswers", () => {
   it("rejects an exclusive choice combined with others", () => {
     expect(() => sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [0, 1] })).toThrow(InvalidAnswersError);
+  });
+
+  it("rejects more picks than max", () => {
+    expect(() => sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [1, 2, 3] })).toThrow(InvalidAnswersError);
+    expect(sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [1, 3] }).toSave["learning-q-0"]).toEqual([1, 3]);
+  });
+
+  it("stores trimmed other text and drops blank text", () => {
+    expect(sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [3], "learning-q-0-others": "  PNPT  " }).toSave["learning-q-0-others"]).toBe("PNPT");
+    const { toSave, toDelete } = sanitizeAnswers({ "profile-q-0": 2, "learning-q-0": [3], "learning-q-0-others": "   " });
+    expect(toSave).not.toHaveProperty("learning-q-0-others");
+    expect(toDelete).toContain("learning-q-0-others");
   });
 
   it("keeps an exclusive choice picked alone", () => {

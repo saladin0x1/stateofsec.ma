@@ -8,6 +8,7 @@ interface ChoiceProps {
   required: boolean;
   multiple: boolean;
   checked: boolean;
+  disabled?: boolean;
   onChange: (index: number, checked: boolean) => void;
 }
 
@@ -18,6 +19,7 @@ export function Choice({
   name,
   multiple,
   checked,
+  disabled = false,
   onChange
 }: ChoiceProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +27,7 @@ export function Choice({
   };
 
   return (
-    <div className="relative w-full overflow-hidden flex items-center bg-card p-3 pl-14 mb-2 cursor-pointer transition-all duration-200 hover:translate-x-1">
+    <div className={`relative w-full overflow-hidden flex items-center bg-card p-3 pl-14 mb-2 transition-all duration-200 ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:translate-x-1"}`}>
       <input
         className="peer sr-only"
         type={multiple ? "checkbox" : "radio"}
@@ -33,11 +35,12 @@ export function Choice({
         name={name}
         value={index}
         checked={checked}
+        disabled={disabled}
         onChange={handleChange}
         data-testid={id}
       />
       <label
-        className="absolute inset-0 cursor-pointer
+        className="absolute inset-0 cursor-[inherit]
           peer-checked:border-primary peer-checked:bg-gradient-to-r peer-checked:from-primary/15 peer-checked:to-primary/5
           peer-checked:ring-2 peer-checked:ring-primary/30 peer-checked:ring-offset-2 peer-checked:ring-offset-background
           border-2 border-input

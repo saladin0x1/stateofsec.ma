@@ -16,7 +16,7 @@ questions:
       - INE / Hack The Box (eJPT, eCPPT, CPTS)
       - CISSP / CISM / CISA
       - ISO 27001 / 27005 / EBIOS RM
-      - Network vendor certification (Fortinet NSE 4+, Palo Alto, Cisco, Check Point, Huawei)
+      - Network vendor certs (Fortinet NSE 4+, Palo Alto, Cisco, Check Point, Huawei)
       - Microsoft / cloud (SC-200, AZ-500, AWS, GCP)
       - Other
     exclusive: [None yet]
@@ -93,9 +93,10 @@ questions:
       - English
       - Others
 
-  - label: What are the biggest challenges you find in learning security? (pick up to 3)
+  - label: What are your biggest challenges in learning security?
     required: true
     multiple: true
+    max: 3
     choices:
       - Lack of time
       - Language barriers (English/French proficiency)

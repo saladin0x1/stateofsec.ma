@@ -108,6 +108,8 @@ export function Question({
   );
 
   const questionLabelId = `${sectionId}-q-${index}-label`;
+  const pickedCount = Array.isArray(value) ? value.length : 0;
+  const atLimit = question.max !== undefined && pickedCount >= question.max;
 
   return (
     <div
@@ -126,7 +128,7 @@ export function Question({
         </label>
 
         <span className="font-normal text-sm pl-2.5">
-          {question.multiple ? "- You can choose multiple answers " : ""}
+          {question.multiple ? (question.max ? `- Pick up to ${question.max}` : "- Pick all that apply") : ""}
         </span>
         <span className="font-normal text-sm pl-2.5">
           {question.required ? "" : "- Click skip button if not applicable"}
@@ -148,6 +150,7 @@ export function Question({
             required={question.required ?? true}
             multiple={question.multiple ?? false}
             checked={isChecked(i)}
+            disabled={atLimit && !isChecked(i) && !exclusiveChoices.includes(i)}
             onChange={handleChoiceChange}
           />
         ))}

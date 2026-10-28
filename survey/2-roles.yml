@@ -2,12 +2,12 @@ title: Role & specialization
 label: roles
 position: 2
 questions:
-  - label: Which cybersecurity domain best describes your role, focus, or main interest?
+  - label: Which security domain fits your role or main interest?
     required: true
     multiple: false
     choices:
       - Offensive security (pentest, red team, bug bounty)
-      - Network, infrastructure & IT security (incl. IT / sysadmin who handles security)
+      - Network, infrastructure & IT security (incl. sysadmins handling security)
       - Security operations (SOC) / blue team
       - Incident response / DFIR
       - Application security (AppSec)
@@ -52,7 +52,7 @@ questions:
           question: roles-q-0
           notEquals: 9
 
-  - label: Do you take part in bug bounty or vulnerability disclosure programs (where organizations invite you to test them, e.g. HackerOne, YesWeHack, Bugcrowd)?
+  - label: Do you take part in bug bounty or VDP programs (organizations invite you to test, e.g. HackerOne, YesWeHack, Bugcrowd)?
     required: true
     multiple: false
     choices:
