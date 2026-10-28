@@ -252,8 +252,9 @@ Tree changes:
   salary is not a security salary). Employment "Other" gets the income question.
   Interns get stipend bands; employees no "No income".
 - Options now follow the respondent: 8+ years hidden for 18-24, CISO domain /
-  seniority / CISSP only from 2 years of experience, no university or bootcamp
-  for teens, no "on-the-job" without experience, Morocco payout barriers hidden
+  seniority / CISSP only from 3-4 years of experience (hidden up to 1-2 years), no
+  university or bootcamp for teens, "on-the-job" only with experience or a job (an IT
+  employee new to security does learn on the job), Morocco payout barriers hidden
   for respondents abroad, age-limit barriers only for under-25s, tool lists per
   domain (no Nessus twice, DFIR for SOC/IR/TI, GRC platforms for GRC/CISO).
 - Exclusive "None" / "Prefer not to say" options on certifications, barriers,
@@ -352,13 +353,99 @@ Caveat: stateofdev.ma measures developers, not security people, and only about
 stateofsec's own first results.
 
 Model-check (depth-first over every reachable class of answers): 53 questions,
-916,720 answer classes, 4,680 distinct paths, 22-47 questions per person (median
-40, stateofdev.ma's length), no dead nodes, no violations.
+4,680 distinct paths, 22-47 questions per person (median 40, stateofdev.ma's
+length), no dead nodes, no violations. The class count grew from 916,720 to
+1,827,280 when the learning options became age-dependent. These figures came from
+throwaway scripts that were lost; they were re-proved by the in-repo verification
+(see "Verification results" below for the current figures).
 
-Pending: human review (Ashraf + mchklt) before merging to `main`.
+### Research corrections (docs/research/)
 
-### Later fixes
+A research program (completion psychology, UI/UX, Morocco/MENA, comparable
+surveys, validation design, retrospective; see `docs/research/`) led to:
+
+- Shorter lists: MAD, TJM and USD pay bands merged (22 to 16 MAD bands; every band
+  is a union of stateofdev.ma bands, so pay still compares); tool lists replaced by
+  5 offensive and 6 defensive categories.
+- Overtime (7 to 4 levels) and job-offer factors (14 to 8) shortened because peers
+  found the HR-profiling questions redundant: these two are not comparable with
+  stateofdev.ma.
+- A steps bar that lists every section the respondent can still reach, so it no
+  longer pops sections in mid-survey; compact choice rows; optional choice groups
+  (display only).
+- CI now runs the survey validator, and a test fails on any validation error.
+
+### Verification and QA plan (2026-10-27)
+
+Four planners (formal methods, survey methodology, software QA, disclosure
+control) produced the plan; owner decisions: shorter lists above kept, open data
+protected at export (survey unchanged; the public file is coarsened, the flaw block
+is published as a separate unlinked file, and a release gate checks k-anonymity),
+Playwright, fast-check and z3 (in CI) approved. Verification tools live in the
+repo this time (scripts/ and CI), with a lock on positional ids before launch.
+
+Pending: human review (Ashraf + mchklt) before launch.
+
+### Later fixes (mchklt)
 
 - "Pick up to 3" is enforced: `max: 3` on the question (schema, validator, form, `sanitizeAnswers`); the hint is no longer in the label.
 - Blank "other" text is dropped and the rest trimmed on the server.
 - Question labels shortened; ids, order and choice indexes unchanged.
+- An expired session on submit sends the respondent back to /before-start (answers stay in
+  localStorage); the captcha renders even when Cloudflare's script loads first.
+
+### Verification results and owner decisions (2026-10-28)
+
+The plan above was carried out by six agents, each in its own worktree, then merged:
+
+- Model checker (`pnpm verify-survey`, src/lib/verify): sound equivalence classes (a guard's
+  answers share a class only if every condition, option rule, soft check, exclusive and
+  "Other" membership agrees, plus a "no answer" class), cross-checked by brute force on
+  fixtures and 150 random surveys, with seeded defects it must catch. Proves the 61
+  invariants of `scripts/verify/spec.yml` (review pending), pins golden statistics and
+  locks positional ids (`survey/survey.lock.json`).
+- Independent z3 cross-check (`pnpm verify-smt`): 550 queries (dead questions and options,
+  options per question, soft checks, the age, income and outlook properties), written from
+  the docs only.
+- Client/server parity fuzzer (fast-check), pruning laws, machine invariants and an
+  endpoint abuse table; Playwright walks of every profile leaf at 3 viewports, keyboard
+  only, reload, double click, offline and screenshot baselines.
+- Plausibility rebuilt from stateofdev.ma 2021-2025 (`scripts/verify/plausibility.ts`),
+  question audit and burden (`docs/verification/method-audit.md`), persona grid.
+- Privacy simulator, coarsened public release and release gate (`docs/privacy.md`).
+
+Bugs found and fixed: an emoji split at the 200-character cut of "other" text; choice rows
+under 44px on phones; choices without an accessible name; Back not keyboard reachable; a
+double click on Next skipping a question; the Next bar never sticky (`overflow-x: hidden`);
+a client that lost its saved answers wiping later sections on its first submit (deletes
+now stop at the submitted section); a deploy mid-survey failing every retry (unknown ids
+are now ignored).
+
+Owner decisions:
+
+- Survey changes from the audit, all applied: the domain question asks about current work;
+  "I already live and work outside Morocco" replaces "Currently working outside Morocco"
+  and is offered only to respondents abroad; the unemployment question is hidden from the
+  self-taught; the "asked to hide" question has a 3-year timeframe and separates being
+  asked from seeing it; "has the community helped" no longer presumes help; Facebook,
+  WhatsApp groups and None added to social networks; exits on five required
+  multi-selects; Nessus listed once per respondent (pentesters keep a scanner choice).
+- Six new soft checks: 60 000+ MAD with under 3 years, under 4 000 MAD for an employee
+  with 7+ years, under $20,000 a year abroad (stateofdev.ma: under 2% each); a daily USD
+  rate of $2,000+ (a unit check: 28.6% of stateofdev.ma's freelancers abroad typed a
+  monthly rate), Junior with 11+ years and "Still exploring" with 7+ years (judgment).
+- HR block cuts (peers found it redundant): "What type of company do you prefer?" dropped;
+  the preferred work mode only for those not asked their current remote arrangement; the
+  job-market question only for practitioners (students, interns, job seekers and people
+  without experience answer the first-job question instead).
+- Docs and YAML disagreed twice; the YAML wins (CISO from 3-4 years, on-the-job for
+  employees new to security).
+- "Other" stays on "Why did you not report it?" (free text never leaves the private
+  export).
+- Open data: charts and totals only this year, no row-level file (`docs/privacy.md`).
+- Time: the start and share pages say about 10 to 15 minutes. Measured on typical paths:
+  adults 11.5-14.4 minutes at 150 wpm (second-language readers), 9.4-11.0 at 200;
+  under-18s 7.4-9.2.
+
+Current figures: 52 questions, 6,840 distinct complete paths, 22-45 screens per path
+(median 37, p90 41), 40,256,580 class-states, no findings.

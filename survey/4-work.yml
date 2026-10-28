@@ -2,8 +2,8 @@ title: Work & market
 label: work
 position: 4
 questions:
-  # stateofdev.ma's MAD bands; interns get sub-bands of "< 4 000" and one top band, and the
-  # top band is split for security seniors (every band nests into an upstream one)
+  # stateofdev.ma's MAD bands merged in pairs to keep the list short: every band is a union of
+  # upstream bands, so results still compare. Interns get sub-bands of "< 4 000" and one top band
   - label: "Net monthly income in MAD (employees: main job pay slip without 13th month, bonuses and side jobs; interns: stipend; founders: take-home after tax and charges; convert other currencies)"
     required: false
     showIf:
@@ -21,19 +21,13 @@ questions:
       - "4 000 - 6 000"
       - "6 000 - 8 000"
       - "> 8 000"
-      - "8 000 - 10 000"
-      - "10 000 - 12 000"
-      - "12 000 - 14 000"
-      - "14 000 - 16 000"
-      - "16 000 - 18 000"
-      - "18 000 - 20 000"
-      - "20 000 - 22 000"
-      - "22 000 - 25 000"
+      - "8 000 - 12 000"
+      - "12 000 - 16 000"
+      - "16 000 - 20 000"
+      - "20 000 - 25 000"
       - "25 000 - 30 000"
-      - "30 000 - 40 000"
-      - "40 000 - 60 000"
-      - "60 000 - 100 000"
-      - "> 100 000"
+      - "30 000 - 60 000"
+      - "> 60 000"
       - Prefer not to say
     optionShowIf:
       - options: [No income / unpaid]
@@ -46,22 +40,30 @@ questions:
           equals: 4
       - options:
           - "< 4 000"
-          - "8 000 - 10 000"
-          - "10 000 - 12 000"
-          - "12 000 - 14 000"
-          - "14 000 - 16 000"
-          - "16 000 - 18 000"
-          - "18 000 - 20 000"
-          - "20 000 - 22 000"
-          - "22 000 - 25 000"
+          - "8 000 - 12 000"
+          - "12 000 - 16 000"
+          - "16 000 - 20 000"
+          - "20 000 - 25 000"
           - "25 000 - 30 000"
-          - "30 000 - 40 000"
-          - "40 000 - 60 000"
-          - "60 000 - 100 000"
-          - "> 100 000"
+          - "30 000 - 60 000"
+          - "> 60 000"
         showIf:
           question: profile-q-6
           notEquals: 4
+    softChecks:
+      - options: ["> 60 000"]
+        when:
+          question: profile-q-5
+          in: [1, 2]
+        message: More than 60 000 MAD net a month with under 3 years in security. Is that right?
+      - options: ["< 4 000"]
+        when:
+          all:
+            - question: profile-q-5
+              in: [5, 6, 7]
+            - question: profile-q-6
+              equals: 0
+        message: Under 4 000 MAD net a month with 7+ years in security. Is that right?
 
   # stateofdev.ma: freelancers in Morocco give a daily rate (TJM)
   - label: Usual daily rate (TJM) in MAD, before tax (convert other currencies; excl. bug bounty)
@@ -76,12 +78,9 @@ questions:
           notIn: [12, 13, 14, 15]
     choices:
       - "< 1 000"
-      - "1 000 - 1 500"
-      - "1 500 - 2 000"
-      - "2 000 - 2 500"
-      - "2 500 - 3 000"
-      - "3 000 - 4 000"
-      - "4 000 - 5 000"
+      - "1 000 - 2 000"
+      - "2 000 - 3 000"
+      - "3 000 - 5 000"
       - "> 5 000"
       - I don't bill by the day (e.g. full-time bug bounty)
       - Prefer not to say
@@ -97,18 +96,18 @@ questions:
           notEquals: 0
     choices:
       - "< 20 000"
-      - "20 000 - 25 000"
-      - "25 000 - 30 000"
-      - "30 000 - 40 000"
-      - "40 000 - 50 000"
-      - "50 000 - 60 000"
-      - "60 000 - 80 000"
-      - "80 000 - 100 000"
-      - "100 000 - 120 000"
-      - "120 000 - 150 000"
-      - "150 000 - 200 000"
-      - "> 200 000"
+      - "20 000 - 30 000"
+      - "30 000 - 50 000"
+      - "50 000 - 80 000"
+      - "80 000 - 120 000"
+      - "> 120 000"
       - Prefer not to say
+    softChecks:
+      - options: ["< 20 000"]
+        when:
+          question: profile-q-2
+          in: [12, 13, 14, 15]
+        message: Under 20 000 USD a year while living abroad. Is that right? (yearly, before tax)
 
   - label: Usual daily rate in USD, before tax (convert other currencies; excl. bug bounty)
     required: false
@@ -121,16 +120,16 @@ questions:
         - question: profile-q-2
           in: [12, 13, 14, 15]
     choices:
-      - "< 200"
-      - "200 - 500"
+      - "< 500"
       - "500 - 1 000"
       - "1 000 - 2 000"
-      - "2 000 - 3 000"
-      - "3 000 - 5 000"
-      - "5 000 - 10 000"
-      - "> 10 000"
+      - "2 000 - 5 000"
+      - "> 5 000"
       - I don't bill by the day (e.g. full-time bug bounty)
       - Prefer not to say
+    softChecks:
+      - options: ["2 000 - 5 000", "> 5 000"]
+        message: "Just checking: this is your rate per DAY, not per month. Is that right?"
 
   - label: What type of organization do you work for (or run)?
     required: false
@@ -204,6 +203,8 @@ questions:
       - Full remote
       - Hybrid
 
+  # Shortened from stateofdev.ma's 7 levels (peers found the HR-profiling questions redundant):
+  # not comparable with stateofdev.ma
   - label: How often do you work beyond normal hours?
     required: false
     showIf:
@@ -211,12 +212,9 @@ questions:
       in: [0, 1, 2, 3, 4, 7]
     choices:
       - Never
-      - "Rarely: 1-2 days per year or less"
-      - "Occasionally: 1-2 days per quarter but less than monthly"
-      - "Sometimes: 1-2 days per month but less than weekly"
-      - "Often: 1-2 days per week or more"
-      - "Very often: 3-5 days per week"
-      - Daily
+      - "Rarely: a few days a year or less"
+      - "Sometimes: a few days a month"
+      - "Often: weekly or more"
 
   - label: How do you feel about your job?
     required: false
@@ -310,7 +308,7 @@ questions:
     required: false
     showIf:
       question: profile-q-4
-      notEquals: 0
+      notIn: [0, 1]
     choices:
       - None, I worked straight after my graduation
       - Up to 3 months
@@ -377,9 +375,16 @@ questions:
     required: true
     multiple: true
     max: 3
+    # Practitioners only: students, interns, job seekers and people with no security
+    # experience answer the first-job question above instead (peers found the HR block redundant)
     showIf:
-      question: profile-q-4
-      notEquals: 0
+      all:
+        - question: profile-q-4
+          notEquals: 0
+        - question: profile-q-5
+          notEquals: 0
+        - question: profile-q-6
+          notIn: [4, 5, 6]
     choices:
       - Low salaries / talent leaving for abroad
       - Few senior roles
@@ -399,7 +404,8 @@ questions:
           question: profile-q-6
           in: [2, 3]
 
-  # stateofdev.ma job preferences
+  # From stateofdev.ma, shortened from 14 to 8 factors (peers found the HR-profiling questions
+  # redundant): not comparable with stateofdev.ma
   - label: What would most influence your choice between job offers?
     required: false
     multiple: true
@@ -407,39 +413,24 @@ questions:
       question: profile-q-4
       notEquals: 0
     choices:
-      - Technologies and tools I'd be working with
-      - Office environment or company culture
-      - Flexible time or schedule
-      - Opportunities for professional development
-      - Remote work options
-      - How impactful my work would be
-      - The industry I'd be working in
-      - Company paid training and certifications
       - Salary
-      - Stock options / equity
-      - Benefits package (health insurance, pension, etc.)
-      - Work-life balance
-      - Company mission / values alignment
+      - Remote work options
+      - Technologies and tools I'd be working with
+      - Work-life balance and flexible schedule
+      - Professional development and paid certifications
+      - Office environment or company culture
+      - How impactful the work would be
       - Visa / relocation support
 
-  - label: What type of company do you prefer?
-    required: false
-    showIf:
-      question: profile-q-4
-      notEquals: 0
-    choices:
-      - Self-employed
-      - Company under 10 employees
-      - Company between 11 and 30 employees
-      - Company between 31 and 100 employees
-      - Company above 100 employees
-      - Other
-
+  # Employees answer the remote arrangement question instead (peers found the HR block redundant)
   - label: What is your preferred mode of work?
     required: false
     showIf:
-      question: profile-q-4
-      notEquals: 0
+      all:
+        - question: profile-q-4
+          notEquals: 0
+        - question: profile-q-6
+          notIn: [0, 1, 4]
     choices:
       - From the office
       - Full remote
@@ -455,13 +446,18 @@ questions:
       - Yes, in the next 12 months
       - Yes, in the next 24 months
       - Still hesitating
-      - Currently working outside Morocco
+      - I already live and work outside Morocco
       - "No"
+    optionShowIf:
+      - options: [I already live and work outside Morocco]
+        showIf:
+          question: profile-q-2
+          in: [12, 13, 14, 15]
 
-  - label: If you work abroad, do you plan to return to Morocco?
+  - label: Do you plan to come back to live in Morocco?
     required: false
     showIf:
-      question: work-q-17
+      question: work-q-16
       equals: 3
     choices:
       - Yes, within the next 12 months

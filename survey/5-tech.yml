@@ -9,44 +9,29 @@ questions:
       question: roles-q-0
       in: [0, 1, 4, 8, 10, 11]
     choices:
-      - Burp Suite / Caido / ZAP
-      - Nmap
-      - Metasploit
-      - C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)
-      - AD tooling (BloodHound, Impacket, NetExec)
-      - Ghidra / IDA Pro
-      - sqlmap
-      - ffuf / gobuster
-      - Nuclei
-      - Recon (subfinder, httpx, Shodan)
-      - Password cracking (Hashcat, John the Ripper)
-      - Nessus / OpenVAS / Qualys
-      - Mobile (Frida, MobSF, objection)
+      - Web & API testing (Burp Suite, Caido, ZAP, sqlmap, ffuf, Nuclei)
+      - Recon & network (Nmap, subfinder, httpx, Shodan)
+      - Exploitation & AD attacks (Metasploit, Cobalt Strike, Sliver, BloodHound, Impacket, NetExec)
+      - Cracking & reversing (Hashcat, John the Ripper, Ghidra, IDA Pro)
+      - Mobile testing (Frida, MobSF, objection)
+      - Vulnerability scanning (Nessus, OpenVAS, Qualys)
       - None of these
       - Other
     exclusive: [None of these]
     optionShowIf:
-      # Everyone else gets the scanners and reverse engineering in the next list
-      - options: [Nessus / OpenVAS / Qualys]
-        showIf:
-          question: roles-q-0
-          equals: 0
-      - options: [Ghidra / IDA Pro]
-        showIf:
-          question: roles-q-0
-          in: [0, 4, 8]
-      - options: ["C2 frameworks (Cobalt Strike, Sliver, Mythic, Havoc)"]
+      - options: ["Exploitation & AD attacks (Metasploit, Cobalt Strike, Sliver, BloodHound, Impacket, NetExec)"]
         showIf:
           question: roles-q-0
           notIn: [1, 4, 8]
-      - options: ["AD tooling (BloodHound, Impacket, NetExec)"]
-        showIf:
-          question: roles-q-0
-          notIn: [4, 8]
-      - options: ["Mobile (Frida, MobSF, objection)"]
+      - options: ["Mobile testing (Frida, MobSF, objection)"]
         showIf:
           question: roles-q-0
           notEquals: 1
+      # Everyone else lists scanners in the defensive question: no tool is counted twice
+      - options: ["Vulnerability scanning (Nessus, OpenVAS, Qualys)"]
+        showIf:
+          question: roles-q-0
+          equals: 0
 
   - label: Which defensive, engineering or GRC tools do you use (you or your team) at work or in labs?
     required: false
@@ -55,92 +40,41 @@ questions:
       question: roles-q-0
       notEquals: 0
     choices:
-      - Splunk
-      - Elastic / ELK
-      - Microsoft Sentinel / Defender XDR
-      - IBM QRadar
-      - Wazuh
-      - Fortinet (FortiGate, FortiSIEM, FortiEDR)
-      - Other firewalls (Palo Alto, Cisco, Check Point, Sophos, Huawei, Stormshield)
-      - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
-      - Network analysis (Wireshark, Suricata, Snort, Zeek)
-      - DFIR (Velociraptor, Volatility, KAPE)
-      - Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)
-      - SOAR / case management (TheHive, Cortex XSOAR)
-      - Threat intel (MISP, OpenCTI, VirusTotal)
-      - Malware / reverse engineering (Ghidra, IDA, YARA, sandboxes)
-      - Nessus / OpenVAS / Qualys
-      - Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, Fortify)
-      - Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)
-      - Identity / PAM (Entra ID, CyberArk, Wallix)
-      - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
-      - Spreadsheets / in-house registers
+      - SIEM & log analysis (Splunk, Microsoft Sentinel, Elastic / ELK, Wazuh, QRadar)
+      - Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)
+      - Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)
+      - DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)
+      - Vulnerability scanning, code & cloud (Nessus, OpenVAS, Qualys, SonarQube, Snyk, Semgrep, Wiz, Prowler)
+      - GRC & risk platforms (Archer, ServiceNow, Egerie, CISO Assistant, spreadsheets)
       - None of these
       - Other
     exclusive: [None of these]
     optionShowIf:
       - options:
-          - Splunk
-          - Elastic / ELK
-          - Microsoft Sentinel / Defender XDR
-          - IBM QRadar
-          - Wazuh
-          - Fortinet (FortiGate, FortiSIEM, FortiEDR)
-          - Other firewalls (Palo Alto, Cisco, Check Point, Sophos, Huawei, Stormshield)
-          - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
-        showIf:
-          question: roles-q-0
-          notIn: [4, 6]
-      - options: ["Network analysis (Wireshark, Suricata, Snort, Zeek)"]
+          - SIEM & log analysis (Splunk, Microsoft Sentinel, Elastic / ELK, Wazuh, QRadar)
+          - Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)
         showIf:
           question: roles-q-0
           notIn: [4, 6, 9]
       - options:
-          - DFIR (Velociraptor, Volatility, KAPE)
-          - Threat intel (MISP, OpenCTI, VirusTotal)
-          - Malware / reverse engineering (Ghidra, IDA, YARA, sandboxes)
-        showIf:
-          question: roles-q-0
-          in: [2, 3, 7, 10, 11]
-      - options: ["Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)"]
-        showIf:
-          question: roles-q-0
-          in: [3, 10, 11]
-      - options: ["SOAR / case management (TheHive, Cortex XSOAR)"]
-        showIf:
-          question: roles-q-0
-          in: [2, 3, 8, 10, 11]
-      - options: ["Code & app security (SonarQube, Snyk, Semgrep, Checkmarx, Fortify)"]
-        showIf:
-          question: roles-q-0
-          in: [4, 8, 10, 11]
-      - options: ["Cloud security (Wiz, Prowler, Defender for Cloud, GuardDuty, Trivy)"]
-        showIf:
-          question: roles-q-0
-          in: [4, 5, 8, 9, 10, 11]
-      - options: ["Identity / PAM (Entra ID, CyberArk, Wallix)"]
-        showIf:
-          question: roles-q-0
-          in: [1, 2, 5, 6, 8, 9, 11]
-      - options:
-          - GRC / risk platform (Archer, ServiceNow, Egerie, CISO Assistant)
-          - Spreadsheets / in-house registers
-        showIf:
-          question: roles-q-0
-          in: [6, 9]
-      # Enterprise-only tools: not for teens, lycee students or people still exploring
-      - options:
-          - IBM QRadar
-          - EDR / antivirus (CrowdStrike, SentinelOne, Cortex XDR, Kaspersky, Trellix, ESET, Trend Micro, Sophos)
-          - Identity / PAM (Entra ID, CyberArk, Wallix)
-          - Forensic suites (EnCase, FTK, Magnet AXIOM, Cellebrite)
-          - SOAR / case management (TheHive, Cortex XSOAR)
+          - Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)
+          - DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)
         showIf:
           all:
+            - question: roles-q-0
+              notIn: [4, 6]
             - question: roles-q-0
               notEquals: 10
             - question: profile-q-4
               notEquals: 0
+      - options: ["DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)"]
+        showIf:
+          question: roles-q-0
+          in: [2, 3, 7, 10, 11]
+      - options: ["GRC & risk platforms (Archer, ServiceNow, Egerie, CISO Assistant, spreadsheets)"]
+        showIf:
+          question: roles-q-0
+          in: [6, 9]
 
   # stateofdev.ma
   - label: How often do you use AI tools for security work or study? (ChatGPT, Claude, Copilot...)

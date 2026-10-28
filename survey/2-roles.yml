@@ -2,7 +2,7 @@ title: Role & specialization
 label: roles
 position: 2
 questions:
-  - label: Which security domain fits your role or main interest?
+  - label: "Which security domain best describes your current work? (no security work yet: the area you focus on)"
     required: true
     multiple: false
     choices:
@@ -26,6 +26,12 @@ questions:
               in: [3, 4, 5, 6, 7]
             - question: profile-q-6
               notEquals: 4
+    softChecks:
+      - options: [Still exploring / no specific area yet]
+        when:
+          question: profile-q-5
+          in: [5, 6, 7]
+        message: You have 7+ years in security but no specific area yet. Is that right?
 
   - label: What is your seniority level in your current security role?
     required: false
@@ -51,6 +57,12 @@ questions:
         showIf:
           question: roles-q-0
           notEquals: 9
+    softChecks:
+      - options: [Junior / entry-level]
+        when:
+          question: profile-q-5
+          in: [6, 7]
+        message: Junior / entry-level with 11+ years in security. Is that right?
 
   - label: Do you take part in bug bounty or VDP programs (organizations invite you to test, e.g. HackerOne, YesWeHack, Bugcrowd)?
     required: true

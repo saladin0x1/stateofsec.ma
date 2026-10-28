@@ -102,7 +102,7 @@ questions:
       - Prefer not to say
     exclusive: [Prefer not to say]
 
-  - label: Has an employer or client asked you to hide or play down an incident, or to remove or downgrade an audit or pentest finding for non-technical reasons? (normal bug bounty disclosure rules don't count)
+  - label: In the last 3 years, has an employer or client asked you to hide or play down an incident, or to remove or downgrade an audit or pentest finding for non-technical reasons? (normal bug bounty disclosure rules don't count)
     required: false
     multiple: true
     showIf:
@@ -114,10 +114,10 @@ questions:
     choices:
       - Yes, to hide or play down an incident
       - Yes, to remove or downgrade a finding
-      - Not to me, but I've seen it happen to others
-      - "No"
+      - I have seen it asked of someone else
+      - No, none of these
       - Prefer not to say
-    exclusive: ["No", Prefer not to say]
+    exclusive: ["No, none of these", Prefer not to say]
 
   # stateofdev.ma's community block, for the security community
   - label: What stops you from taking part more in the Moroccan security community?
@@ -132,6 +132,8 @@ questions:
       - Financial constraints (event costs, travel)
       - I'm already active in the community
       - Other
+      - Nothing in particular
+    exclusive: [Nothing in particular]
 
   - label: What would make you attend security events in Morocco? (meetups, conferences, CTFs)
     required: true
@@ -144,8 +146,10 @@ questions:
       - Lower or no cost
       - Better timing (weekends, evenings)
       - Other
+      - Nothing, I don't plan to attend
+    exclusive: ["Nothing, I don't plan to attend"]
 
-  - label: How has the Moroccan security community helped your career?
+  - label: Has the Moroccan security community helped your career? If so, how?
     required: true
     multiple: true
     choices:
@@ -170,6 +174,8 @@ questions:
       - Access to advanced technical content
       - Collaboration on projects, research or CTF teams
       - Other
+      - Nothing right now
+    exclusive: [Nothing right now]
 
   - label: Which community content is most valuable to you?
     required: true
@@ -185,6 +191,8 @@ questions:
       - Soft skills (communication, leadership, teamwork)
       - Freelancing, bug bounty and entrepreneurship guidance
       - Other
+      - None of these
+    exclusive: [None of these]
 
   - label: When it comes to security, what is your primary social network?
     required: true
@@ -197,3 +205,6 @@ questions:
       - YouTube
       - Telegram
       - Other
+      - Facebook
+      - WhatsApp groups
+      - None

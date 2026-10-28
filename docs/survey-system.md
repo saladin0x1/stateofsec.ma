@@ -18,7 +18,7 @@ End-to-end survey flow, session management, and answer data structures.
 - Answers are collected as `{ "question-id": choiceIndex, "question-id-others": "text" }`
 - Each section is submitted through `submitAnswers` with all answers collected so far
 - The client keeps every answer given (`rawAnswers`) and submits only the visible ones, so changing an earlier answer back restores what depended on it
-- The server rejects unknown ids, invalid choice indexes, more picks than `max` and an exclusive choice combined with others, drops answers to questions hidden by `showIf`, picks of choices hidden by `optionShowIf` and empty required answers, deletes every stored answer field it does not save, and saves to Firestore with the anonymous user id as document id
+- The server rejects invalid choice indexes, more picks than `max` and an exclusive choice combined with others; ignores question ids it does not know (a client on another deploy must not fail every retry); drops answers to questions hidden by `showIf`, picks of choices hidden by `optionShowIf` and empty required answers; deletes the stored answer fields it does not save, but only for the sections up to the one being submitted (the client sends its label), so a client that lost its saved answers cannot wipe later sections; and saves to Firestore with the anonymous user id as document id
 
 ### 3. Data Export (manual)
 
