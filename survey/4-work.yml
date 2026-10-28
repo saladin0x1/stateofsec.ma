@@ -304,11 +304,18 @@ questions:
           notIn: [12, 13, 14, 15]
 
   # stateofdev.ma
+  # Recent graduates only: seniors would describe the market of 15-20 years ago, students
+  # have not graduated yet, the self-taught had no graduation
   - label: How long have you been unemployed after graduation?
     required: false
     showIf:
-      question: profile-q-4
-      notIn: [0, 1]
+      all:
+        - question: profile-q-4
+          notIn: [0, 1]
+        - question: profile-q-5
+          in: [0, 1, 2]
+        - question: profile-q-6
+          notEquals: 5
     choices:
       - None, I worked straight after my graduation
       - Up to 3 months
@@ -439,26 +446,27 @@ questions:
   # stateofdev.ma's emigration questions (teens and lycee students get the last one instead)
   - label: Do you have any plans to work outside Morocco?
     required: true
+    # Respondents already abroad get the coming-back question instead
     showIf:
-      question: profile-q-4
-      notEquals: 0
+      all:
+        - question: profile-q-4
+          notEquals: 0
+        - question: profile-q-2
+          notIn: [12, 13, 14, 15]
     choices:
       - Yes, in the next 12 months
       - Yes, in the next 24 months
       - Still hesitating
-      - I already live and work outside Morocco
       - "No"
-    optionShowIf:
-      - options: [I already live and work outside Morocco]
-        showIf:
-          question: profile-q-2
-          in: [12, 13, 14, 15]
 
   - label: Do you plan to come back to live in Morocco?
     required: false
     showIf:
-      question: work-q-16
-      equals: 3
+      all:
+        - question: profile-q-2
+          in: [12, 13, 14, 15]
+        - question: profile-q-4
+          notEquals: 0
     choices:
       - Yes, within the next 12 months
       - Yes, within the next 24 months

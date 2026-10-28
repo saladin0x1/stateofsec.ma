@@ -172,12 +172,13 @@ const extremes: Persona[] = [
       [Q.employment]: EMPLOYMENT[1],
       [Q.domain]: "Application security (AppSec)",
       [Q.usdSalary]: "80 000 - 120 000",
-      [Q.plansAbroad]: "I already live and work outside Morocco",
       [Q.comeBack]: "Still hesitating",
       [Q.socialNetwork]: { choices: ["Other"], other: "Mastodon" }
     },
-    sees: ["profile-q-3", "work-q-16", "work-q-17"],
-    neverSees: ["work-q-0"]
+    // Living abroad: straight to coming back, no plans-to-work-abroad question
+    sees: ["profile-q-3", "work-q-17"],
+    // No MAD income, no unemployment question at 5-6 years, no plans to work abroad
+    neverSees: ["work-q-0", "work-q-11", "work-q-16"]
   }
 ];
 

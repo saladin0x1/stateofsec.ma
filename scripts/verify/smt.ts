@@ -394,10 +394,17 @@ export function propertyQueries(model: Model): Query[] {
     property(`at-most-one-income:${a.id}+${b.id}`, `Income questions ${a.id} and ${b.id} are never both visible`, [a, b], and([smt.visible(a), smt.visible(b)]));
   }));
 
-  const abroad = model.question("Do you have any plans to work outside Morocco?");
-  const afterStudies = model.question("After your studies, where would you like to work?");
-  property(`exactly-one-outlook:both:${abroad.id}+${afterStudies.id}`, "The two outlook questions are never both visible", [abroad, afterStudies], and([smt.visible(abroad), smt.visible(afterStudies)]));
-  property(`exactly-one-outlook:neither:${abroad.id}+${afterStudies.id}`, "One of the two outlook questions is always visible", [abroad, afterStudies], and([`(not ${smt.visible(abroad)})`, `(not ${smt.visible(afterStudies)})`]));
+  // Plans to work abroad (living in Morocco), coming back (living abroad), after your studies
+  // (minors and lycee students): exactly one of them for every respondent
+  const outlook = [
+    "Do you have any plans to work outside Morocco?",
+    "Do you plan to come back to live in Morocco?",
+    "After your studies, where would you like to work?"
+  ].map(model.question);
+  outlook.forEach((a, i) => outlook.slice(i + 1).forEach((b) => {
+    property(`exactly-one-outlook:both:${a.id}+${b.id}`, `Outlook questions ${a.id} and ${b.id} are never both visible`, [a, b], and([smt.visible(a), smt.visible(b)]));
+  }));
+  property(`exactly-one-outlook:none:${outlook.map(q => q.id).join("+")}`, "One of the three outlook questions is always visible", outlook, and(outlook.map(q => `(not ${smt.visible(q)})`)));
 
   return queries;
 }

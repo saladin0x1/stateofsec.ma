@@ -254,7 +254,7 @@ describe("survey verdict file", { timeout: 60_000 }, () => {
   it("finds every property's questions by label", () => {
     const model = buildModel(loadSurvey(path.join(root, "survey")));
     const ids = propertyQueries(model).map(query => query.id);
-    expect(ids).toContain("property:exactly-one-outlook:neither:work-q-16+work-q-18");
+    expect(ids).toContain("property:exactly-one-outlook:none:work-q-16+work-q-17+work-q-18");
     expect(ids.filter(id => id.startsWith("property:at-most-one-income:"))).toHaveLength(6);
   });
 

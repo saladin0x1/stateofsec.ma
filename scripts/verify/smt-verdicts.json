@@ -12,15 +12,15 @@
   ],
   "summary": {
     "questions": 52,
-    "queries": 551,
+    "queries": 552,
     "problems": 0,
     "byKind": {
       "submission": 1,
       "question-visible": 52,
-      "option-pickable": 417,
+      "option-pickable": 416,
       "fewer-than-2-options": 52,
       "soft-check-reachable": 15,
-      "property": 14
+      "property": 16
     }
   },
   "verdicts": [
@@ -35,10 +35,10 @@
       "witness": {
         "profile-q-0": 0,
         "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 9,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 5,
+        "profile-q-5": 3,
         "profile-q-6": 0,
         "roles-q-0": 1,
         "roles-q-2": 4,
@@ -47,7 +47,6 @@
         "work-q-6": 0,
         "work-q-7": 0,
         "work-q-8": 0,
-        "work-q-16": 3,
         "work-q-17": 0,
         "tech-q-2": 2,
         "tech-q-4": 0,
@@ -241,7 +240,7 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 4,
-        "profile-q-2": 14
+        "profile-q-2": 15
       }
     },
     {
@@ -2842,12 +2841,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 5,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -2867,12 +2866,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -2892,12 +2891,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -2917,12 +2916,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -2942,12 +2941,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -2967,12 +2966,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -2992,12 +2991,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3017,12 +3016,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3042,12 +3041,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3067,12 +3066,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3092,12 +3091,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3117,12 +3116,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3142,12 +3141,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3173,12 +3172,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3198,12 +3197,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3223,12 +3222,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3248,12 +3247,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3273,12 +3272,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3298,12 +3297,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3329,12 +3328,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3354,12 +3353,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3379,12 +3378,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3404,12 +3403,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3429,12 +3428,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3454,12 +3453,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3479,12 +3478,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3504,12 +3503,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3529,12 +3528,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3554,12 +3553,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 4
       }
@@ -3585,15 +3584,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
-        "roles-q-2": 4,
-        "work-q-0": 4
+        "roles-q-2": 4
       }
     },
     {
@@ -3611,12 +3609,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
-        "profile-q-6": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 0
@@ -3637,11 +3635,11 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
         "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 4,
@@ -3663,11 +3661,11 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
         "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 4,
@@ -3689,11 +3687,11 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 3,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
         "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 4,
@@ -3715,12 +3713,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 4
@@ -3741,12 +3739,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 5
@@ -3767,12 +3765,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 6
@@ -3793,11 +3791,11 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
         "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 4,
@@ -3819,12 +3817,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 8
@@ -3845,12 +3843,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 9
@@ -3871,12 +3869,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 10
@@ -3897,12 +3895,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 11
@@ -3923,12 +3921,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 12
@@ -3949,12 +3947,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 13
@@ -3975,12 +3973,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 14
@@ -4001,12 +3999,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 15
@@ -4034,12 +4032,12 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 1,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
-        "profile-q-5": 2,
-        "profile-q-6": 7,
+        "profile-q-4": 7,
+        "profile-q-5": 1,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
         "work-q-0": 14
@@ -4057,10 +4055,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 15,
         "profile-q-3": 14,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 0,
         "roles-q-0": 10,
@@ -4079,9 +4077,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4103,9 +4101,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4128,9 +4126,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4153,9 +4151,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4178,9 +4176,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4203,9 +4201,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4228,9 +4226,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4253,9 +4251,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4284,9 +4282,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4308,9 +4306,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4333,9 +4331,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4358,9 +4356,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4383,9 +4381,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4408,9 +4406,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4433,9 +4431,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4458,9 +4456,9 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
+        "profile-q-1": 2,
         "profile-q-2": 11,
-        "profile-q-4": 9,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4490,10 +4488,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
@@ -4512,10 +4510,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4537,10 +4535,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4563,10 +4561,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4589,10 +4587,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4615,10 +4613,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4641,10 +4639,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4667,10 +4665,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4693,10 +4691,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -4726,15 +4724,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
         "roles-q-2": 4,
-        "work-q-3": 4
+        "work-q-3": 3
       }
     },
     {
@@ -4748,14 +4746,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
-        "roles-q-2": 4
+        "roles-q-2": 4,
+        "work-q-2": 0
       }
     },
     {
@@ -4773,14 +4772,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 0
       }
     },
@@ -4799,14 +4799,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 1
       }
     },
@@ -4825,14 +4826,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 2
       }
     },
@@ -4851,14 +4853,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 3
       }
     },
@@ -4877,14 +4880,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 4
       }
     },
@@ -4903,14 +4907,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 5
       }
     },
@@ -4929,14 +4934,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 6
       }
     },
@@ -4955,14 +4961,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 7
       }
     },
@@ -4981,14 +4988,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 8
       }
     },
@@ -5007,14 +5015,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 9
       }
     },
@@ -5033,14 +5042,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 1,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-2": 0,
         "work-q-4": 10
       }
     },
@@ -5065,14 +5075,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
-        "roles-q-2": 4
+        "roles-q-2": 4,
+        "work-q-4": 10
       }
     },
     {
@@ -5090,14 +5101,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-4": 10,
         "work-q-5": 0
       }
     },
@@ -5116,14 +5128,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-4": 10,
         "work-q-5": 1
       }
     },
@@ -5142,14 +5155,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-4": 10,
         "work-q-5": 2
       }
     },
@@ -5168,14 +5182,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-4": 10,
         "work-q-5": 3
       }
     },
@@ -5194,14 +5209,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-4": 10,
         "work-q-5": 4
       }
     },
@@ -5220,14 +5236,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
-        "profile-q-6": 2,
+        "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 4,
+        "work-q-4": 10,
         "work-q-5": 5
       }
     },
@@ -5246,10 +5263,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -5272,10 +5289,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -5298,10 +5315,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 2,
         "roles-q-0": 10,
@@ -5330,10 +5347,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5355,10 +5372,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5381,10 +5398,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5407,10 +5424,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5439,16 +5456,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 1,
-        "work-q-6": 2,
-        "work-q-7": 0
+        "work-q-6": 2
       }
     },
     {
@@ -5466,10 +5482,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5493,10 +5509,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5520,10 +5536,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5547,10 +5563,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5580,17 +5596,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-6": 2,
-        "work-q-7": 3,
-        "work-q-8": 0
+        "work-q-7": 3
       }
     },
     {
@@ -5608,10 +5623,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5636,10 +5651,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5664,10 +5679,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5692,10 +5707,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5720,10 +5735,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5754,10 +5769,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5782,10 +5797,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5811,10 +5826,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5840,10 +5855,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5869,10 +5884,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 3,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 9,
+        "profile-q-1": 2,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 7,
         "profile-q-5": 5,
         "profile-q-6": 4,
         "roles-q-0": 10,
@@ -5899,8 +5914,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 4
@@ -5922,9 +5937,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 5
@@ -5946,9 +5963,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 6
@@ -5970,9 +5989,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 7
@@ -5994,9 +6015,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 8
@@ -6018,9 +6041,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 9
@@ -6048,9 +6073,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 9
@@ -6072,9 +6099,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 1,
         "work-q-9": 9
@@ -6096,9 +6125,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6120,9 +6151,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6144,9 +6177,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6168,9 +6203,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6192,9 +6229,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6216,9 +6255,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6240,9 +6281,11 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 1,
-        "profile-q-2": 14,
-        "profile-q-3": 8,
-        "profile-q-4": 0,
+        "profile-q-2": 12,
+        "profile-q-3": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6265,7 +6308,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6288,7 +6333,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6311,7 +6358,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6334,7 +6383,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6357,7 +6408,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6380,7 +6433,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6403,7 +6458,9 @@
         "profile-q-0": 1,
         "profile-q-1": 1,
         "profile-q-2": 11,
-        "profile-q-4": 0,
+        "profile-q-4": 1,
+        "profile-q-5": 1,
+        "profile-q-6": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -6698,12 +6755,13 @@
         "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 5,
-        "profile-q-6": 6,
+        "profile-q-5": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6724,12 +6782,13 @@
         "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 5,
-        "profile-q-6": 6,
+        "profile-q-5": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6750,12 +6809,13 @@
         "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 5,
-        "profile-q-6": 6,
+        "profile-q-5": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6773,15 +6833,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
-        "profile-q-6": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6799,15 +6860,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
-        "profile-q-6": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6825,15 +6887,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
-        "profile-q-6": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6851,15 +6914,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
-        "profile-q-6": 6,
+        "profile-q-6": 4,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-0": 3,
+        "work-q-4": 6,
+        "work-q-9": 9
       }
     },
     {
@@ -6877,15 +6941,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 1,
-        "profile-q-6": 6,
+        "profile-q-5": 0,
+        "profile-q-6": 2,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -6903,15 +6966,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 1,
-        "profile-q-6": 6,
+        "profile-q-5": 0,
+        "profile-q-6": 2,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -6929,15 +6991,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 1,
+        "profile-q-5": 0,
         "profile-q-6": 5,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -6955,15 +7016,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 1,
-        "profile-q-6": 4,
+        "profile-q-5": 0,
+        "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -6981,15 +7041,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
-        "profile-q-5": 1,
-        "profile-q-6": 4,
+        "profile-q-5": 0,
+        "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7013,15 +7072,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7039,15 +7097,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7065,15 +7122,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7091,15 +7147,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7117,15 +7172,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7143,15 +7197,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7169,15 +7222,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7195,15 +7247,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7221,15 +7272,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7247,15 +7297,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 7,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7273,15 +7322,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7299,15 +7347,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7325,15 +7372,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7357,15 +7403,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7383,15 +7428,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7409,15 +7453,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7435,15 +7478,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7461,15 +7503,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7487,15 +7528,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7513,15 +7553,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7539,15 +7578,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7565,15 +7603,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7597,15 +7634,14 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5
+        "work-q-9": 9
       }
     },
     {
@@ -7623,7 +7659,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7631,7 +7667,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 0
       }
     },
@@ -7650,7 +7685,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7658,7 +7693,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 1
       }
     },
@@ -7677,7 +7711,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7685,7 +7719,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2
       }
     },
@@ -7710,7 +7743,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7718,7 +7751,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2
       }
     },
@@ -7737,7 +7769,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7745,7 +7777,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
         "work-q-16": 0
       }
@@ -7765,7 +7796,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7773,7 +7804,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
         "work-q-16": 1
       }
@@ -7793,7 +7823,7 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
+        "profile-q-1": 2,
         "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
@@ -7801,7 +7831,6 @@
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
         "work-q-16": 2
       }
@@ -7814,35 +7843,6 @@
       ],
       "option": {
         "index": 3,
-        "label": "I already live and work outside Morocco"
-      },
-      "expected": "sat",
-      "result": "sat",
-      "status": "ok",
-      "witness": {
-        "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
-        "profile-q-4": 2,
-        "profile-q-5": 1,
-        "profile-q-6": 3,
-        "roles-q-0": 10,
-        "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-11": 5,
-        "work-q-15": 2,
-        "work-q-16": 3
-      }
-    },
-    {
-      "id": "option-pickable:work-q-16:4",
-      "kind": "option-pickable",
-      "questions": [
-        "work-q-16"
-      ],
-      "option": {
-        "index": 4,
         "label": "No"
       },
       "expected": "sat",
@@ -7850,18 +7850,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 11,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
-        "work-q-16": 4
+        "work-q-16": 3
       }
     },
     {
@@ -7885,18 +7883,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
-        "work-q-15": 2,
-        "work-q-16": 3
+        "work-q-15": 2
       }
     },
     {
@@ -7914,18 +7910,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
-        "work-q-16": 3,
         "work-q-17": 0
       }
     },
@@ -7944,18 +7938,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
-        "work-q-16": 3,
         "work-q-17": 1
       }
     },
@@ -7974,18 +7966,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
-        "work-q-16": 3,
         "work-q-17": 2
       }
     },
@@ -8004,18 +7994,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
-        "work-q-16": 3,
         "work-q-17": 3
       }
     },
@@ -8034,18 +8022,16 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 1,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 2,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 2,
         "profile-q-5": 1,
         "profile-q-6": 3,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-11": 5,
         "work-q-15": 2,
-        "work-q-16": 3,
         "work-q-17": 4
       }
     },
@@ -8070,9 +8056,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9
@@ -8093,9 +8080,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8117,9 +8105,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8141,9 +8130,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8165,9 +8155,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8189,9 +8180,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8219,9 +8211,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8243,9 +8236,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8267,9 +8261,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8291,9 +8286,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8315,9 +8311,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8339,9 +8336,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 10,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8363,9 +8361,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 0,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8387,9 +8386,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 0,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8411,9 +8411,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 0,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8441,9 +8442,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 1,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8465,9 +8467,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 1,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8489,9 +8492,10 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
+        "profile-q-4": 0,
         "roles-q-0": 1,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -8513,16 +8517,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 1,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8540,16 +8543,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 2,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8567,16 +8569,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 2,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8594,16 +8595,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 2,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8621,16 +8621,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8648,16 +8647,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8675,16 +8673,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
-        "work-q-9": 9,
-        "work-q-16": 0
+        "work-q-9": 9
       }
     },
     {
@@ -8708,16 +8705,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 2
       }
     },
@@ -8736,16 +8732,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 0
       }
     },
@@ -8764,16 +8759,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -8792,16 +8786,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 2
       }
     },
@@ -8820,16 +8813,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 3
       }
     },
@@ -8854,16 +8846,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -8882,16 +8873,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -8910,16 +8900,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -8938,16 +8927,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -8966,16 +8954,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -8994,16 +8981,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -9022,16 +9008,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1
       }
     },
@@ -9056,16 +9041,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 0
       }
@@ -9085,16 +9069,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 0
       }
@@ -9114,16 +9097,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 1
       }
@@ -9143,16 +9125,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 2
       }
@@ -9172,16 +9153,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 3
       }
@@ -9201,16 +9181,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 4
       }
@@ -9230,16 +9209,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5
       }
@@ -9265,16 +9243,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 0
@@ -9295,16 +9272,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 0
@@ -9325,16 +9301,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 1
@@ -9355,16 +9330,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 2
@@ -9385,16 +9359,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 3
@@ -9415,16 +9388,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 4
@@ -9445,16 +9417,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9481,16 +9452,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9511,16 +9481,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9541,16 +9510,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9571,16 +9539,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9601,16 +9568,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9631,16 +9597,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9661,16 +9626,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9691,16 +9655,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9721,16 +9684,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9751,16 +9713,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5
@@ -9787,16 +9748,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -9818,16 +9778,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -9849,16 +9808,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -9880,16 +9838,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -9911,16 +9868,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -9942,16 +9898,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -9979,16 +9934,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10011,16 +9965,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10043,16 +9996,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10075,16 +10027,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10113,16 +10064,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10145,16 +10095,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10178,16 +10127,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10211,16 +10159,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10244,16 +10191,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10283,16 +10229,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10316,16 +10261,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10349,16 +10293,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10382,16 +10325,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10415,16 +10357,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10448,16 +10389,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10481,16 +10421,15 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
-        "profile-q-5": 1,
+        "profile-q-5": 2,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
@@ -10515,8 +10454,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10544,8 +10483,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10573,8 +10512,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10602,8 +10541,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10637,8 +10576,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10647,7 +10586,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10666,8 +10605,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10676,7 +10615,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10695,8 +10634,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10705,7 +10644,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10724,8 +10663,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10734,7 +10673,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10753,8 +10692,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10763,7 +10702,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10782,8 +10721,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10792,7 +10731,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10811,8 +10750,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10821,7 +10760,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10840,8 +10779,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10850,7 +10789,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10869,8 +10808,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10879,7 +10818,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10898,8 +10837,8 @@
       "witness": {
         "profile-q-0": 1,
         "profile-q-1": 0,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
@@ -10908,7 +10847,7 @@
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10932,22 +10871,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10965,22 +10903,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -10998,22 +10935,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11031,22 +10967,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11064,22 +10999,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11097,22 +11031,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11136,22 +11069,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11169,22 +11101,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11202,22 +11133,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11235,22 +11165,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11268,22 +11197,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11301,22 +11229,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11334,22 +11261,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11367,22 +11293,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11400,22 +11325,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11433,22 +11357,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11472,22 +11395,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11505,22 +11427,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11538,22 +11459,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11571,22 +11491,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11604,22 +11523,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11637,22 +11555,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11670,22 +11587,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11703,22 +11619,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11736,22 +11651,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11775,22 +11689,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11808,22 +11721,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11841,22 +11753,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11874,22 +11785,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11907,22 +11817,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11940,22 +11849,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -11973,22 +11881,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12006,22 +11913,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12045,22 +11951,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12078,22 +11983,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12111,22 +12015,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12144,22 +12047,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12177,22 +12079,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12210,22 +12111,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12243,22 +12143,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12276,22 +12175,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12309,22 +12207,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12348,22 +12245,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12381,22 +12277,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12414,22 +12309,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12447,22 +12341,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12480,22 +12373,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12513,22 +12405,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12546,22 +12437,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12579,22 +12469,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12612,22 +12501,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12645,22 +12533,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12678,22 +12565,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0
+        "community-q-4": 1
       }
     },
     {
@@ -12717,22 +12603,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 0
       }
     },
@@ -12751,22 +12636,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 0
       }
     },
@@ -12785,22 +12669,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 1
       }
     },
@@ -12819,22 +12702,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 2
       }
     },
@@ -12853,22 +12735,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 3
       }
     },
@@ -12887,22 +12768,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 4
       }
     },
@@ -12921,22 +12801,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 5
       }
     },
@@ -12955,22 +12834,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 6
       }
     },
@@ -12989,22 +12867,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 7
       }
     },
@@ -13023,22 +12900,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 8
       }
     },
@@ -13057,22 +12933,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 9
       }
     },
@@ -13091,22 +12966,21 @@
       "status": "ok",
       "witness": {
         "profile-q-0": 1,
-        "profile-q-1": 2,
-        "profile-q-2": 12,
-        "profile-q-3": 0,
+        "profile-q-1": 1,
+        "profile-q-2": 15,
+        "profile-q-3": 12,
         "profile-q-4": 1,
         "profile-q-5": 0,
         "profile-q-6": 0,
         "roles-q-0": 6,
         "roles-q-2": 2,
         "work-q-9": 9,
-        "work-q-16": 0,
         "tech-q-2": 1,
         "tech-q-4": 5,
         "community-q-0": 5,
         "community-q-2": 4,
         "community-q-3": 0,
-        "community-q-4": 0,
+        "community-q-4": 1,
         "community-q-13": 10
       }
     },
@@ -13265,25 +13139,50 @@
       "status": "ok"
     },
     {
+      "id": "property:exactly-one-outlook:both:work-q-16+work-q-17",
+      "kind": "property",
+      "questions": [
+        "work-q-16",
+        "work-q-17"
+      ],
+      "description": "Outlook questions work-q-16 and work-q-17 are never both visible",
+      "expected": "unsat",
+      "result": "unsat",
+      "status": "ok"
+    },
+    {
       "id": "property:exactly-one-outlook:both:work-q-16+work-q-18",
       "kind": "property",
       "questions": [
         "work-q-16",
         "work-q-18"
       ],
-      "description": "The two outlook questions are never both visible",
+      "description": "Outlook questions work-q-16 and work-q-18 are never both visible",
       "expected": "unsat",
       "result": "unsat",
       "status": "ok"
     },
     {
-      "id": "property:exactly-one-outlook:neither:work-q-16+work-q-18",
+      "id": "property:exactly-one-outlook:both:work-q-17+work-q-18",
+      "kind": "property",
+      "questions": [
+        "work-q-17",
+        "work-q-18"
+      ],
+      "description": "Outlook questions work-q-17 and work-q-18 are never both visible",
+      "expected": "unsat",
+      "result": "unsat",
+      "status": "ok"
+    },
+    {
+      "id": "property:exactly-one-outlook:none:work-q-16+work-q-17+work-q-18",
       "kind": "property",
       "questions": [
         "work-q-16",
+        "work-q-17",
         "work-q-18"
       ],
-      "description": "One of the two outlook questions is always visible",
+      "description": "One of the three outlook questions is always visible",
       "expected": "unsat",
       "result": "unsat",
       "status": "ok"

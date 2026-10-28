@@ -461,5 +461,18 @@ defect; fixed:
   and only the enterprise suites stay hidden from minors.
 - The income question says "fixed allowances included" again.
 
-Current figures: 52 questions, 6,840 distinct complete paths, 22-45 screens per path
-(median 37, p90 41), 44,131,710 class-states, no findings.
+DAG map review (2026-10-28): every question and option was partially evaluated for a
+ladder of 12 profiles (teen, lycee, student, intern, junior, mid, senior, remote lead, head of
+security, founder, freelancer, abroad). Changes:
+
+- "Unemployed after graduation" only for graduates with 0-2 years of experience who are not
+  students: seniors would describe the market of 15-20 years ago.
+- Heads of security get SIEM and network tools ("you or your team").
+- Respondents living abroad skip "plans to work outside Morocco" and go straight to "Do you
+  plan to come back to live in Morocco?" (a student abroad had no fitting answer); the "I
+  already live and work outside Morocco" choice is gone. Every respondent gets exactly one
+  of the three outlook questions.
+
+Current figures: 52 questions, 4,680 distinct complete paths, 22-44 screens per path
+(median 36, p90 40), no findings; adults about 11.5-13.6 minutes at 150 wpm, 9.2-10.9 at
+200.

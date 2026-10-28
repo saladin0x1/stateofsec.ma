@@ -56,7 +56,7 @@ questions:
           - Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)
         showIf:
           question: roles-q-0
-          notIn: [4, 6, 9]
+          notIn: [4, 6]
       # Enterprise suites: not for minors (never asked education), lycee students, AppSec, GRC
       # or people still exploring
       - options: ["Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)"]

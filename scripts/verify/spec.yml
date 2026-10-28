@@ -368,13 +368,13 @@ invariants:
 
   # Outlook
   - name: Each respondent sees exactly one outlook question
-    source: survey-redesign.md, Calibration (teens and lycee students get the last one instead)
+    source: survey-redesign.md, Calibration (teens and lycee students get the last one instead; respondents abroad get coming back)
     scope: complete
-    exactlyOne: [plansAbroad, afterStudies]
+    exactlyOne: [plansAbroad, comeBack, afterStudies]
 
-  - name: Nobody sees both outlook questions
+  - name: Nobody sees two outlook questions
     source: survey-redesign.md, Calibration
-    atMostOne: [plansAbroad, afterStudies]
+    atMostOne: [plansAbroad, comeBack, afterStudies]
 
   - name: Minors get the after-studies outlook
     source: survey-redesign.md, Organigram leaf review
@@ -388,18 +388,38 @@ invariants:
       education: ["Still at lycée / preparing the Bac (incl. repeating or candidat libre)"]
     visible: [afterStudies]
 
-  - name: Coming back is asked only to those who live and work abroad
-    source: survey-redesign.md, Calibration (plans to work abroad and to come back)
-    when:
-      plansAbroad: { not: ["I already live and work outside Morocco"] }
-    hidden: [comeBack]
-
-  - name: Residents of Morocco cannot say they already work abroad
-    source: docs/verification/method-audit.md, A2 (remote employees misread the choice)
+  - name: Coming back is asked only to respondents living abroad
+    source: DAG map review 2026-10-28 (students abroad had no fitting answer to the plans question)
     when:
       location: { not: [Europe, "US & Canada", Middle East, Others] }
-    hiddenOptions:
-      plansAbroad: ["I already live and work outside Morocco"]
+    hidden: [comeBack]
+
+  - name: Respondents living abroad are not asked about plans to work outside Morocco
+    source: DAG map review 2026-10-28
+    when:
+      location: [Europe, "US & Canada", Middle East, Others]
+    hidden: [plansAbroad]
+
+  - name: Heads of security can report the SIEM and network tools their team runs
+    source: DAG map review 2026-10-28
+    when:
+      domain: ["Management / Head of security (CISO)"]
+    visibleOptions:
+      defensiveTools:
+        - SIEM & log analysis (Splunk, Microsoft Sentinel, Elastic / ELK, Wazuh, QRadar)
+        - Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)
+
+  - name: Only recent graduates are asked about unemployment after graduation
+    source: DAG map review 2026-10-28 (seniors would describe the market of 15-20 years ago)
+    when:
+      experience: [3-4 years, 5-6 years, 7-10 years, 11-16 years, 16+ years]
+    hidden: [unemployedAfterGraduation]
+
+  - name: Students are not asked about unemployment after graduation
+    source: DAG map review 2026-10-28
+    when:
+      employment: ["Student (school, university, 1337, OFPPT; if you also work, pick your job)"]
+    hidden: [unemployedAfterGraduation]
 
   # HR block cuts (peers found it redundant): nobody answers two versions of one question
   - name: Nobody answers both the first-job and the job-market question

@@ -17,7 +17,7 @@ test("keyboard only: Tab, Space, arrows and Enter reach /thanks with no mouse", 
   expect(result.reachedThanks).toBe(true);
   expectSequentialNumbering(result.seen, who.name);
   // Same path as the mouse walk of this persona
-  expect(result.seen.length).toBe(44);
+  expect(result.seen.length).toBe(42);
   expect(probe.submits.length).toBe(6);
   expect(probe.submits.at(-1)?.answers["community-q-13-others"]).toBe("Mastodon");
   expect(probe.pointerEvents, "mouse or touch presses").toBe(0);
