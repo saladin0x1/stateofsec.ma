@@ -55,10 +55,11 @@ describe("production routes integrity", () => {
     const tracked = execSync("git ls-files", { cwd: repoRoot, encoding: "utf8" })
       .split("\n")
       .filter(Boolean);
+    // src/middleware.ts is tracked since it sets the security headers: the marker scan
+    // below keeps bypass code out of it instead
     const forbidden = [
       "src/pages/playground.astro",
       "src/lib/dev-bypass.ts",
-      "src/middleware.ts",
       ".env.local",
       ".dev.vars"
     ];
@@ -75,7 +76,9 @@ describe("production routes integrity", () => {
       "src/actions/init-session.ts",
       "src/actions/submit-answers.ts",
       "astro.config.mjs",
-      "src/lib/firebase/server.ts"
+      "src/lib/firebase/server.ts",
+      "src/middleware.ts",
+      "src/lib/security-headers.ts"
     ];
     for (const rel of trackedPaths) {
       const full = path.join(repoRoot, rel);
