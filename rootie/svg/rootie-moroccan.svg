@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="-40 -25 380 380">
+  <title>Rootie - rootie-moroccan</title>
+
+  <g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 58 Q-4 72 6 88" stroke-width="5"/><path d="M-12 50 Q-28 74 -12 98" stroke-width="5"/>
+    <path d="M47 168 C 15 152, 8 118, 22 90"/>
+  </g><circle cx="24" cy="80" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+
+  <g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"><path d="M125 274 L120 308"/><path d="M175 274 L180 308"/></g>
+
+  <path d="M74 318 Q98 300 130 308 Q138 322 118 327 Q92 331 74 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M226 318 Q202 300 170 308 Q162 322 182 327 Q208 331 226 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+
+  <path d="M115 250 L185 250 L200 276 L100 276 Z" fill="#e8dfc6" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+  <rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/>
+  <rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23"/>
+  <ellipse cx="62" cy="232" rx="10" ry="6" fill="#f5b041" opacity="0.8"/>
+
+  <g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M98 152 l16 -16 l16 16"/><path d="M170 152 l16 -16 l16 16"/><path d="M118 176 Q150 204 182 176"/>
+  </g>
+<circle cx="230" cy="234" r="7" fill="#3ddc84" stroke="#1e1f23" stroke-width="3"/>
+
+  <g transform="rotate(-8 150 60)">
+    <path d="M106 76 L120 20 L180 20 L194 76 Z" fill="#c1272d" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+    <ellipse cx="150" cy="20" rx="30" ry="6" fill="#a51f24" stroke="#1e1f23" stroke-width="6"/>
+    <path d="M150 18 Q 204 8 200 54" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+    <path d="M194 52 l-6 22 M200 54 l0 24 M206 52 l6 22" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+  <path d="M268 176 L300 176 L295 212 L273 212 Z" fill="#d9952b"/>
+  <path d="M264 160 L304 160 L296 212 L272 212 Z" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M278 160 q-8 -18 6 -26 q6 14 -6 26 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M288 160 q4 -20 18 -20 q-2 16 -18 20 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+</svg>

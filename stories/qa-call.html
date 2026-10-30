@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>QA Testers Story</title>
+<link rel="stylesheet" href="fun.css">
+<style>
+  .hero { position: relative; width: 900px; height: 280px; }
+  .hero svg.bot { position: absolute; left: 250px; top: 0; }
+  .bubble {
+    position: absolute; left: 580px; top: 30px; padding: 16px 28px; background: var(--paper);
+    border: 5px solid var(--ink); border-radius: 26px; box-shadow: 7px 7px 0 var(--ink);
+    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 42px; line-height: 1.12; transform: rotate(4deg); white-space: nowrap;
+  }
+  .bubble::after {
+    content: ""; position: absolute; left: -26px; bottom: 18px; width: 30px; height: 30px; background: var(--paper);
+    border-left: 5px solid var(--ink); border-bottom: 5px solid var(--ink); transform: rotate(45deg) skew(10deg, 10deg);
+  }
+  .row { display: flex; align-items: center; justify-content: center; gap: 34px; width: 920px; }
+  .note {
+    width: 560px; text-align: left; background: var(--note); border: 5px solid var(--ink); border-radius: 10px;
+    box-shadow: 10px 10px 0 var(--ink); padding: 24px 30px; transform: rotate(-2deg);
+    font-size: 29px; line-height: 1.5; font-weight: 500;
+  }
+  .note .t { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 34px; margin-bottom: 6px; }
+  .note .in { color: var(--green-dk); font-weight: 700; }
+  .note .out { color: var(--orange); font-weight: 700; }
+  .spots { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .spots .sticker { background: var(--green); transform: rotate(5deg); font-size: 36px; }
+  .spots .sticker.amber { background: var(--amber); transform: rotate(-4deg); font-size: 30px; }
+  .doodle { position: absolute; }
+</style>
+</head>
+<body>
+  <div class="tape" style="top: 120px; transform: rotate(-3deg);"><b>PRE-LAUNCH QA IN PROGRESS</b></div>
+  <div class="tape" style="top: 1690px; transform: rotate(2deg);"><b>FOUND A BUG? SLIDE INTO OUR DMS.</b></div>
+
+  <!-- doodles -->
+  <svg class="doodle" style="left:70px; top:300px" width="110" height="110" viewBox="0 0 120 120"><path d="M60 8 L70 48 L112 60 L70 72 L60 112 L50 72 L8 60 L50 48 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="5" stroke-linejoin="round"/></svg>
+  <svg class="doodle" style="left:915px; top:540px" width="100" height="100" viewBox="0 0 120 120"><path d="M60 8 L70 48 L112 60 L70 72 L60 112 L50 72 L8 60 L50 48 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/></svg>
+  <!-- the bug Rootie is hunting -->
+  <svg class="doodle" style="left:120px; top:520px; transform: rotate(-18deg)" width="96" height="96" viewBox="0 0 100 100">
+    <g stroke="#1e1f23" stroke-width="5" stroke-linecap="round" fill="none">
+      <path d="M30 40 L12 30 M28 55 L8 55 M30 70 L12 82"/>
+      <path d="M70 40 L88 30 M72 55 L92 55 M70 70 L88 82"/>
+      <path d="M42 22 L34 8 M58 22 L66 8"/>
+    </g>
+    <ellipse cx="50" cy="58" rx="24" ry="30" fill="#f54e00" stroke="#1e1f23" stroke-width="5"/>
+    <path d="M50 30 L50 88" stroke="#1e1f23" stroke-width="4"/>
+    <circle cx="50" cy="26" r="11" fill="#1e1f23"/>
+    <circle cx="40" cy="52" r="5" fill="#1e1f23"/><circle cx="60" cy="66" r="5" fill="#1e1f23"/>
+  </svg>
+
+  <div class="safe">
+    <div class="hero">
+      <!-- mascot: Moroccan Rootie with a magnifying glass, on bug duty -->
+      <svg class="bot" width="272" height="280" viewBox="-40 -25 380 380">
+        <g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 58 Q-4 72 6 88" stroke-width="5"/><path d="M-12 50 Q-28 74 -12 98" stroke-width="5"/>
+          <path d="M47 168 C 15 152, 8 118, 22 90"/>
+        </g>
+        <circle cx="24" cy="80" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+        <g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"><path d="M125 274 L120 308"/><path d="M175 274 L180 308"/></g>
+        <!-- babouches -->
+        <path d="M74 318 Q98 300 130 308 Q138 322 118 327 Q92 331 74 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M226 318 Q202 300 170 308 Q162 322 182 327 Q208 331 226 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M115 250 L185 250 L200 276 L100 276 Z" fill="#e8dfc6" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/>
+        <rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23"/>
+        <ellipse cx="62" cy="232" rx="10" ry="6" fill="#f5b041" opacity="0.8"/>
+        <!-- focused face: one eye squinting, one wide, determined mouth -->
+        <g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 146 L128 146"/>
+          <circle cx="186" cy="146" r="13"/>
+          <path d="M126 184 Q150 196 174 184"/>
+        </g>
+        <circle cx="230" cy="234" r="7" fill="#3ddc84" stroke="#1e1f23" stroke-width="3"/>
+        <!-- tarbouch -->
+        <g transform="rotate(-8 150 60)">
+          <path d="M106 76 L120 20 L180 20 L194 76 Z" fill="#c1272d" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+          <ellipse cx="150" cy="20" rx="30" ry="6" fill="#a51f24" stroke="#1e1f23" stroke-width="6"/>
+          <path d="M150 18 Q 204 8 200 54" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+          <path d="M194 52 l-6 22 M200 54 l0 24 M206 52 l6 22" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+        </g>
+        <!-- right arm holding a magnifying glass -->
+        <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M286 212 L298 178" stroke="#1e1f23" stroke-width="11" stroke-linecap="round"/>
+        <circle cx="306" cy="148" r="30" fill="#cdeffd" stroke="#1e1f23" stroke-width="7"/>
+        <path d="M292 136 Q298 126 310 126" fill="none" stroke="#fffdf6" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+      </svg>
+      <div class="bubble">chkoun bgha<br>y-testi?</div>
+    </div>
+
+    <div class="h1" style="font-size: 52px; color: var(--olive); margin-top: 22px; letter-spacing: -1px;">before we go live...</div>
+    <div class="h1" style="font-size: 88px; margin-top: 10px;">we need<br><span class="mark">10 testers.</span></div>
+
+    <div class="sub" style="margin-top: 26px;">take the survey on your phone, try to break it, tell us what felt off. ~10 min, anonymous.</div>
+
+    <div class="row" style="margin-top: 32px;">
+      <div class="note">
+        <div class="t">scope.txt</div>
+        <div><span class="in">[in]</span>&nbsp; bugs &amp; typos</div>
+        <div><span class="in">[in]</span>&nbsp; confusing qs</div>
+        <div><span class="out">[out]</span> DoS, spam</div>
+        <div><span class="out">[out]</span> our feelings</div>
+      </div>
+      <div class="spots">
+        <div class="sticker">10 spots</div>
+        <div class="sticker amber">bounty:<br>eternal respect</div>
+      </div>
+    </div>
+
+    <div class="btn" style="margin-top: 38px;">reply &ldquo;QA&rdquo; <span>&rarr;</span></div>
+    <div class="sub" style="margin-top: 30px; font-size: 27px; font-weight: 700; color: var(--ink);">pls accept cookies. we'll be watching you on <span class="mark-amber">PostHog</span>.</div>
+    <div class="handle" style="margin-top: 14px;">@stateofsec</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="908" viewBox="-50 -30 440 390">
+  <title>Rootie - rootie-point</title>
+  <!-- generated from the parts in design-sheet.html -->
+  <defs>
+      <!-- arms: drawn before the body so the shoulders tuck under it -->
+      <g id="arm-l-down"><path d="M47 175 C 20 190, 15 220, 28 240" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="30" cy="246" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-r-down"><path d="M253 175 C 280 190, 285 220, 272 240" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="270" cy="246" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-l-up"><path d="M47 168 C 15 152, 8 118, 22 90" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="24" cy="80" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-r-up"><path d="M253 168 C 285 152, 292 118, 278 90" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="276" cy="80" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-l-wave">
+        <g fill="none" stroke="#1e1f23" stroke-linecap="round"><path d="M8 58 Q-4 72 6 88" stroke-width="5"/><path d="M-12 50 Q-28 74 -12 98" stroke-width="5"/></g>
+        <use href="#arm-l-up"/>
+      </g>
+      <!-- arms drawn after the body (they hold or point at something) -->
+      <g id="arm-r-point">
+        <path d="M253 176 C 290 176, 314 168, 336 160" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M350 156 L374 150" stroke="#1e1f23" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="344" cy="158" r="15" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+        <g fill="none" stroke="#f54e00" stroke-width="5" stroke-linecap="round"><path d="M362 128 l10 -10"/><path d="M378 140 l14 -4"/></g>
+      </g>
+      <g id="arm-r-atay">
+        <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M268 176 L300 176 L295 212 L273 212 Z" fill="#d9952b"/>
+        <path d="M264 160 L304 160 L296 212 L272 212 Z" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M278 160 q-8 -18 6 -26 q6 14 -6 26 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M288 160 q4 -20 18 -20 q-2 16 -18 20 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+      </g>
+      <g id="arm-r-lens">
+        <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M286 212 L298 178" stroke="#1e1f23" stroke-width="11" stroke-linecap="round"/>
+        <circle cx="306" cy="148" r="30" fill="#cdeffd" stroke="#1e1f23" stroke-width="7"/>
+        <path d="M292 136 Q298 126 310 126" fill="none" stroke="#fffdf6" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+      </g>
+
+      <!-- legs and feet -->
+      <g id="legs"><g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"><path d="M125 274 L120 308"/><path d="M175 274 L180 308"/></g></g>
+      <g id="feet-sneakers"><ellipse cx="110" cy="318" rx="27" ry="12" fill="#1e1f23"/><ellipse cx="190" cy="318" rx="27" ry="12" fill="#1e1f23"/></g>
+      <g id="feet-babouches">
+        <path d="M74 318 Q98 300 130 308 Q138 322 118 327 Q92 331 74 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M226 318 Q202 300 170 308 Q162 322 182 327 Q208 331 226 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+      </g>
+
+      <!-- the CRT: stand, body, screen, blush -->
+      <g id="body">
+        <path d="M115 250 L185 250 L200 276 L100 276 Z" fill="#e8dfc6" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/>
+        <rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23"/>
+        <ellipse cx="62" cy="232" rx="10" ry="6" fill="#f5b041" opacity="0.8"/>
+      </g>
+      <g id="led-ok"><circle cx="230" cy="234" r="7" fill="#3ddc84" stroke="#1e1f23" stroke-width="3"/></g>
+      <g id="led-warn"><circle cx="230" cy="234" r="7" fill="#f54e00" stroke="#1e1f23" stroke-width="3"/></g>
+
+      <!-- faces: terminal green strokes on the black screen -->
+      <g id="face-happy"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M98 152 l16 -16 l16 16"/><path d="M170 152 l16 -16 l16 16"/><path d="M118 176 Q150 204 182 176"/></g></g>
+      <g id="face-worried"><g fill="none" stroke="#3ddc84" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><circle cx="114" cy="146" r="11"/><circle cx="186" cy="146" r="11"/><path d="M116 186 q8 -9 17 0 t17 0 t17 0 t17 0"/></g></g>
+      <g id="face-focused"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M100 146 L128 146"/><circle cx="186" cy="146" r="13"/><path d="M126 184 Q150 196 174 184"/></g></g>
+      <g id="face-surprised"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><circle cx="114" cy="142" r="11"/><circle cx="186" cy="142" r="11"/><circle cx="150" cy="186" r="10"/></g></g>
+      <g id="face-sleepy"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M100 148 Q114 158 128 148"/><path d="M172 148 Q186 158 200 148"/><path d="M138 186 L162 186"/><path d="M196 110 h14 l-14 14 h14" stroke-width="4"/></g></g>
+      <g id="face-error"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M104 136 l20 20 M124 136 l-20 20"/><path d="M176 136 l20 20 M196 136 l-20 20"/><path d="M124 188 L176 188"/></g></g>
+      <g id="face-wink"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M98 152 l16 -16 l16 16"/><path d="M172 146 L200 146"/><path d="M118 176 Q150 204 182 176"/></g></g>
+      <g id="face-prompt"><g fill="none" stroke="#3ddc84" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M104 130 l22 18 l-22 18"/><path d="M140 168 L176 168"/></g></g>
+
+      <!-- accessories -->
+      <g id="tarbouch"><g transform="rotate(-8 150 60)">
+        <path d="M106 76 L120 20 L180 20 L194 76 Z" fill="#c1272d" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <ellipse cx="150" cy="20" rx="30" ry="6" fill="#a51f24" stroke="#1e1f23" stroke-width="6"/>
+        <path d="M150 18 Q 204 8 200 54" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+        <path d="M194 52 l-6 22 M200 54 l0 24 M206 52 l6 22" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+      </g></g>
+      <g id="hardhat">
+        <path d="M78 76 Q150 -8 222 76 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M150 16 L150 70" stroke="#1e1f23" stroke-width="5"/>
+        <rect x="58" y="66" width="184" height="18" rx="9" fill="#f5b041" stroke="#1e1f23" stroke-width="7"/>
+      </g>
+      <g id="sweat"><path d="M268 100 q15 24 0 33 q-15 -9 0 -33 Z" fill="#4fc3f7" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/></g>
+
+      <!-- full figures used across the sheet -->
+      <g id="rootie-idle"><use href="#arm-l-down"/><use href="#arm-r-down"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/></g>
+    </defs>
+  <use href="#arm-l-down"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/><use href="#arm-r-point"/>
+</svg>

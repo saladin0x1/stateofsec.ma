@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ENSA Intro Story</title>
+<link rel="stylesheet" href="fun.css">
+<style>
+  .note {
+    width: 760px; text-align: left; background: var(--note); border: 5px solid var(--ink); border-radius: 10px;
+    box-shadow: 10px 10px 0 var(--ink); padding: 24px 32px; transform: rotate(-2deg);
+    font-size: 29px; line-height: 1.6; font-weight: 500;
+  }
+  .note .t { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 34px; margin-bottom: 6px; }
+  .note .ld { color: var(--green-dk); font-weight: 700; }
+  .row { display: flex; align-items: center; justify-content: center; gap: 10px; width: 940px; }
+  /* Empty on purpose: the @stateofsec mention sticker goes here */
+  .zone { position: relative; width: 600px; height: 160px; }
+  .zone i { position: absolute; width: 56px; height: 56px; border: 0 solid var(--ink); }
+  .zone i:nth-of-type(1) { left: 0; top: 0; border-left-width: 7px; border-top-width: 7px; border-top-left-radius: 14px; }
+  .zone i:nth-of-type(2) { right: 0; top: 0; border-right-width: 7px; border-top-width: 7px; border-top-right-radius: 14px; }
+  .zone i:nth-of-type(3) { left: 0; bottom: 0; border-left-width: 7px; border-bottom-width: 7px; border-bottom-left-radius: 14px; }
+  .zone i:nth-of-type(4) { right: 0; bottom: 0; border-right-width: 7px; border-bottom-width: 7px; border-bottom-right-radius: 14px; }
+  .zone .tag { position: absolute; left: 50%; top: -58px; transform: translateX(-50%) rotate(-2deg); }
+  .zone .tag .sticker { background: var(--green); font-size: 30px; padding: 8px 20px; white-space: nowrap; }
+  .doodle { position: absolute; }
+</style>
+</head>
+<body>
+  <div class="tape" style="top: 120px; transform: rotate(-3deg);"><b>SALAM ENSA! MEET @STATEOFSEC</b></div>
+  <div class="tape" style="top: 1690px; transform: rotate(2deg);"><b>STUDENTS COUNT TOO. YES, YOU.</b></div>
+
+  <!-- doodles -->
+  <svg class="doodle" style="left:60px; top:330px" width="100" height="100" viewBox="0 0 120 120"><path d="M60 8 L70 48 L112 60 L70 72 L60 112 L50 72 L8 60 L50 48 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/></svg>
+  <svg class="doodle" style="left:40px; top:900px" width="90" height="90" viewBox="0 0 120 120"><path d="M60 8 L70 48 L112 60 L70 72 L60 112 L50 72 L8 60 L50 48 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/></svg>
+
+  <div class="safe">
+    <div class="h1" style="font-size: 54px; color: var(--olive); letter-spacing: -1px; line-height: 1.1;">how much does a pentester<br>earn in Morocco?</div>
+    <div class="h1" style="font-size: 100px; margin-top: 18px;">nobody knows.<br><span class="mark">yet.</span></div>
+
+    <div class="sub" style="margin-top: 34px;">@stateofsec is launching a yearly, anonymous survey of Morocco's cybersecurity people. the results will be free, for everyone.</div>
+
+    <div class="note" style="margin-top: 40px;">
+      <div class="t">results.txt</div>
+      <div><span class="ld">[..]</span> salaries in MAD</div>
+      <div><span class="ld">[..]</span> certs that actually matter</div>
+      <div><span class="ld">[..]</span> how people got their first job</div>
+      <div><span class="ld">[..]</span> bug bounty in Morocco</div>
+    </div>
+
+    <div class="row" style="margin-top: 88px;">
+      <!-- mascot: Moroccan Rootie pointing at the mention sticker -->
+      <svg width="290" height="270" viewBox="-40 -25 420 380">
+        <g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M47 175 C 20 190, 15 220, 28 240"/>
+          <path d="M125 274 L120 308"/><path d="M175 274 L180 308"/>
+        </g>
+        <circle cx="30" cy="246" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+        <!-- babouches -->
+        <path d="M74 318 Q98 300 130 308 Q138 322 118 327 Q92 331 74 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M226 318 Q202 300 170 308 Q162 322 182 327 Q208 331 226 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M115 250 L185 250 L200 276 L100 276 Z" fill="#e8dfc6" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/>
+        <rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23"/>
+        <ellipse cx="62" cy="232" rx="10" ry="6" fill="#f5b041" opacity="0.8"/>
+        <g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M98 152 l16 -16 l16 16"/><path d="M170 152 l16 -16 l16 16"/><path d="M118 176 Q150 204 182 176"/>
+        </g>
+        <circle cx="230" cy="234" r="7" fill="#3ddc84" stroke="#1e1f23" stroke-width="3"/>
+        <!-- tarbouch -->
+        <g transform="rotate(-8 150 60)">
+          <path d="M106 76 L120 20 L180 20 L194 76 Z" fill="#c1272d" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+          <ellipse cx="150" cy="20" rx="30" ry="6" fill="#a51f24" stroke="#1e1f23" stroke-width="6"/>
+          <path d="M150 18 Q 204 8 200 54" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+          <path d="M194 52 l-6 22 M200 54 l0 24 M206 52 l6 22" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+        </g>
+        <!-- right arm pointing at the sticker -->
+        <path d="M253 176 C 290 176, 314 168, 336 160" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M350 156 L374 150" stroke="#1e1f23" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="344" cy="158" r="15" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+        <g fill="none" stroke="#f54e00" stroke-width="5" stroke-linecap="round"><path d="M362 128 l10 -10"/><path d="M378 140 l14 -4"/></g>
+      </svg>
+
+      <div class="zone">
+        <div class="tag"><div class="sticker">tap to follow</div></div>
+        <i></i><i></i><i></i><i></i>
+      </div>
+    </div>
+
+    <div class="sub" style="margin-top: 40px; font-weight: 700; color: var(--ink);">not open yet. follow to catch the launch.</div>
+  </div>
+</body>
+</html>

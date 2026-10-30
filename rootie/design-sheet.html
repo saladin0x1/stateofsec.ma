@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rootie Character Sheet</title>
+<!--
+  Rootie character sheet. The <defs> below are the canonical Rootie parts: compose new poses from them.
+  Render from the branch root: ./render.sh rootie/design-sheet.html rootie/design-sheet.png 2400 5470 1
+-->
+<style>
+  @font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("../fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Space Grotesk"; font-weight: 500; src: url("../fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("../fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 700; src: url("../fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2"); }
+
+  :root { --bg: #eeefe9; --ink: #1e1f23; --olive: #4d4f46; --sage: #bfc1b7; --paper: #fffdf6; --green: #3ddc84; --amber: #f5b041; --note: #fff1a8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 2400px; }
+  body {
+    color: var(--ink); font-family: "JetBrains Mono", monospace; font-weight: 500;
+    background: var(--bg) radial-gradient(var(--sage) 1.8px, transparent 2px) 0 0 / 38px 38px;
+    padding: 90px 110px 110px;
+  }
+  h1 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 150px; letter-spacing: -6px; line-height: 0.9; }
+  h2 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 46px; letter-spacing: -1px; margin-bottom: 26px; }
+  h2 span { font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700; letter-spacing: 2px; color: var(--olive); margin-left: 16px; }
+  .mark { background: linear-gradient(transparent 58%, var(--green) 58%, var(--green) 92%, transparent 92%); padding: 0 8px; }
+  .lede { font-size: 30px; line-height: 1.5; color: var(--olive); margin-top: 22px; max-width: 1500px; }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 70px; }
+  .stamp { font-size: 24px; font-weight: 700; letter-spacing: 3px; border: 5px solid var(--ink); border-radius: 14px; padding: 12px 22px; background: var(--amber); box-shadow: 8px 8px 0 var(--ink); transform: rotate(3deg); }
+
+  .card { background: var(--paper); border: 5px solid var(--ink); border-radius: 22px; box-shadow: 12px 12px 0 var(--ink); padding: 40px 44px; }
+  .row { display: flex; gap: 50px; margin-bottom: 60px; align-items: stretch; }
+  .grow { flex: 1; }
+  .cap { font-size: 22px; line-height: 1.45; color: var(--olive); text-align: center; margin-top: 10px; }
+  .cap b { color: var(--ink); }
+
+  .legend { list-style: none; font-size: 26px; line-height: 1.55; }
+  .legend li { display: flex; gap: 18px; align-items: baseline; margin-bottom: 10px; }
+  .legend .n { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--amber); border: 4px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; }
+  .legend em { font-style: normal; color: var(--olive); }
+
+  .grid { display: grid; gap: 28px; }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .g8 { grid-template-columns: repeat(8, 1fr); }
+  .cell { text-align: center; }
+  .cell svg { display: block; margin: 0 auto; }
+
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 26px; }
+  .sw { border: 5px solid var(--ink); border-radius: 16px; overflow: hidden; background: var(--paper); box-shadow: 7px 7px 0 var(--ink); }
+  .sw i { display: block; height: 110px; border-bottom: 5px solid var(--ink); }
+  .sw div { padding: 12px 16px; font-size: 20px; line-height: 1.4; }
+  .sw b { font-size: 22px; }
+
+  .strokes div { display: flex; align-items: center; gap: 24px; font-size: 24px; margin-bottom: 18px; }
+  .strokes i { display: inline-block; width: 220px; border-radius: 10px; }
+
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .rules ul { list-style: none; font-size: 25px; line-height: 1.5; }
+  .rules li { margin-bottom: 12px; padding-left: 64px; position: relative; }
+  .rules li::before { position: absolute; left: 0; font-weight: 700; }
+  .do li::before { content: "[x]"; color: #08693a; }
+  .dont li::before { content: "[-]"; color: #f54e00; }
+  .ground { height: 0; border-top: 5px dashed var(--olive); margin: -14px 30px 0; }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+    <defs>
+      <!-- arms: drawn before the body so the shoulders tuck under it -->
+      <g id="arm-l-down"><path d="M47 175 C 20 190, 15 220, 28 240" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="30" cy="246" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-r-down"><path d="M253 175 C 280 190, 285 220, 272 240" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="270" cy="246" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-l-up"><path d="M47 168 C 15 152, 8 118, 22 90" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="24" cy="80" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-r-up"><path d="M253 168 C 285 152, 292 118, 278 90" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/><circle cx="276" cy="80" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/></g>
+      <g id="arm-l-wave">
+        <g fill="none" stroke="#1e1f23" stroke-linecap="round"><path d="M8 58 Q-4 72 6 88" stroke-width="5"/><path d="M-12 50 Q-28 74 -12 98" stroke-width="5"/></g>
+        <use href="#arm-l-up"/>
+      </g>
+      <!-- arms drawn after the body (they hold or point at something) -->
+      <g id="arm-r-point">
+        <path d="M253 176 C 290 176, 314 168, 336 160" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M350 156 L374 150" stroke="#1e1f23" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="344" cy="158" r="15" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+        <g fill="none" stroke="#f54e00" stroke-width="5" stroke-linecap="round"><path d="M362 128 l10 -10"/><path d="M378 140 l14 -4"/></g>
+      </g>
+      <g id="arm-r-atay">
+        <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M268 176 L300 176 L295 212 L273 212 Z" fill="#d9952b"/>
+        <path d="M264 160 L304 160 L296 212 L272 212 Z" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M278 160 q-8 -18 6 -26 q6 14 -6 26 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M288 160 q4 -20 18 -20 q-2 16 -18 20 Z" fill="#3ddc84" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+      </g>
+      <g id="arm-r-lens">
+        <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"/>
+        <path d="M286 212 L298 178" stroke="#1e1f23" stroke-width="11" stroke-linecap="round"/>
+        <circle cx="306" cy="148" r="30" fill="#cdeffd" stroke="#1e1f23" stroke-width="7"/>
+        <path d="M292 136 Q298 126 310 126" fill="none" stroke="#fffdf6" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7"/>
+      </g>
+
+      <!-- legs and feet -->
+      <g id="legs"><g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"><path d="M125 274 L120 308"/><path d="M175 274 L180 308"/></g></g>
+      <g id="feet-sneakers"><ellipse cx="110" cy="318" rx="27" ry="12" fill="#1e1f23"/><ellipse cx="190" cy="318" rx="27" ry="12" fill="#1e1f23"/></g>
+      <g id="feet-babouches">
+        <path d="M74 318 Q98 300 130 308 Q138 322 118 327 Q92 331 74 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M226 318 Q202 300 170 308 Q162 322 182 327 Q208 331 226 318 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="6" stroke-linejoin="round"/>
+      </g>
+
+      <!-- the CRT: stand, body, screen, blush -->
+      <g id="body">
+        <path d="M115 250 L185 250 L200 276 L100 276 Z" fill="#e8dfc6" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/>
+        <rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23"/>
+        <ellipse cx="62" cy="232" rx="10" ry="6" fill="#f5b041" opacity="0.8"/>
+      </g>
+      <g id="led-ok"><circle cx="230" cy="234" r="7" fill="#3ddc84" stroke="#1e1f23" stroke-width="3"/></g>
+      <g id="led-warn"><circle cx="230" cy="234" r="7" fill="#f54e00" stroke="#1e1f23" stroke-width="3"/></g>
+
+      <!-- faces: terminal green strokes on the black screen -->
+      <g id="face-happy"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M98 152 l16 -16 l16 16"/><path d="M170 152 l16 -16 l16 16"/><path d="M118 176 Q150 204 182 176"/></g></g>
+      <g id="face-worried"><g fill="none" stroke="#3ddc84" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><circle cx="114" cy="146" r="11"/><circle cx="186" cy="146" r="11"/><path d="M116 186 q8 -9 17 0 t17 0 t17 0 t17 0"/></g></g>
+      <g id="face-focused"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M100 146 L128 146"/><circle cx="186" cy="146" r="13"/><path d="M126 184 Q150 196 174 184"/></g></g>
+      <g id="face-surprised"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><circle cx="114" cy="142" r="11"/><circle cx="186" cy="142" r="11"/><circle cx="150" cy="186" r="10"/></g></g>
+      <g id="face-sleepy"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M100 148 Q114 158 128 148"/><path d="M172 148 Q186 158 200 148"/><path d="M138 186 L162 186"/><path d="M196 110 h14 l-14 14 h14" stroke-width="4"/></g></g>
+      <g id="face-error"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M104 136 l20 20 M124 136 l-20 20"/><path d="M176 136 l20 20 M196 136 l-20 20"/><path d="M124 188 L176 188"/></g></g>
+      <g id="face-wink"><g fill="none" stroke="#3ddc84" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M98 152 l16 -16 l16 16"/><path d="M172 146 L200 146"/><path d="M118 176 Q150 204 182 176"/></g></g>
+      <g id="face-prompt"><g fill="none" stroke="#3ddc84" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M104 130 l22 18 l-22 18"/><path d="M140 168 L176 168"/></g></g>
+
+      <!-- accessories -->
+      <g id="tarbouch"><g transform="rotate(-8 150 60)">
+        <path d="M106 76 L120 20 L180 20 L194 76 Z" fill="#c1272d" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <ellipse cx="150" cy="20" rx="30" ry="6" fill="#a51f24" stroke="#1e1f23" stroke-width="6"/>
+        <path d="M150 18 Q 204 8 200 54" fill="none" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+        <path d="M194 52 l-6 22 M200 54 l0 24 M206 52 l6 22" stroke="#1e1f23" stroke-width="5" stroke-linecap="round"/>
+      </g></g>
+      <g id="hardhat">
+        <path d="M78 76 Q150 -8 222 76 Z" fill="#f5b041" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M150 16 L150 70" stroke="#1e1f23" stroke-width="5"/>
+        <rect x="58" y="66" width="184" height="18" rx="9" fill="#f5b041" stroke="#1e1f23" stroke-width="7"/>
+      </g>
+      <g id="sweat"><path d="M268 100 q15 24 0 33 q-15 -9 0 -33 Z" fill="#4fc3f7" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round"/></g>
+
+      <!-- full figures used across the sheet -->
+      <g id="rootie-idle"><use href="#arm-l-down"/><use href="#arm-r-down"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/></g>
+    </defs>
+  </svg>
+
+  <div class="head">
+    <div>
+      <h1>meet <span class="mark">Rootie.</span></h1>
+      <p class="lede">the stateofsec.ma mascot: a root shell living in a little CRT. curious, kind, a bit clumsy, always authorized. character sheet v1: build him from the parts on this sheet, never from memory.</p>
+    </div>
+    <div class="stamp">CHARACTER SHEET v1</div>
+  </div>
+
+  <!-- 1. anatomy + construction -->
+  <div class="row">
+    <div class="card" style="width: 1180px;">
+      <h2>anatomy <span>FRONT VIEW, viewBox -50 -30 440 390</span></h2>
+      <div style="display: flex; gap: 30px; align-items: center;">
+        <svg width="640" height="567" viewBox="-50 -30 440 390">
+          <use href="#rootie-idle"/>
+          <g stroke="#1e1f23" stroke-width="2.5" stroke-dasharray="6 5">
+            <path d="M-22 120 L76 132"/><path d="M322 132 L204 150"/><path d="M322 226 L238 233"/><path d="M-22 214 L52 230"/>
+            <path d="M322 62 L252 88"/><path d="M-22 268 L102 268"/><path d="M322 292 L180 296"/><path d="M322 340 L214 322"/><path d="M-22 176 L20 236"/>
+          </g>
+          <g font-family="JetBrains Mono" font-weight="700" font-size="15" text-anchor="middle">
+            <g fill="#f5b041" stroke="#1e1f23" stroke-width="3.5">
+              <circle cx="-30" cy="120" r="14"/><circle cx="330" cy="132" r="14"/><circle cx="330" cy="226" r="14"/><circle cx="-30" cy="214" r="14"/>
+              <circle cx="330" cy="62" r="14"/><circle cx="-30" cy="268" r="14"/><circle cx="330" cy="292" r="14"/><circle cx="330" cy="340" r="14"/><circle cx="-30" cy="176" r="14"/>
+            </g>
+            <g fill="#1e1f23">
+              <text x="-30" y="125">1</text><text x="330" y="137">2</text><text x="330" y="231">3</text><text x="-30" y="219">4</text>
+              <text x="330" y="67">5</text><text x="-30" y="273">6</text><text x="330" y="297">7</text><text x="330" y="345">8</text><text x="-30" y="181">9</text>
+            </g>
+          </g>
+        </svg>
+        <ul class="legend">
+          <li><span class="n">1</span><span>screen <em>156x118, r18, always ink black</em></span></li>
+          <li><span class="n">2</span><span>face <em>terminal green strokes, width 8</em></span></li>
+          <li><span class="n">3</span><span>power LED <em>green ok, orange worried</em></span></li>
+          <li><span class="n">4</span><span>blush <em>amber, 80% opacity</em></span></li>
+          <li><span class="n">5</span><span>CRT body <em>210x182, r30, cream</em></span></li>
+          <li><span class="n">6</span><span>stand <em>trapezoid, warm beige</em></span></li>
+          <li><span class="n">7</span><span>legs <em>two ink lines, width 7</em></span></li>
+          <li><span class="n">8</span><span>feet <em>sneakers or babouches</em></span></li>
+          <li><span class="n">9</span><span>hands <em>paper circles, r16</em></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card grow">
+      <h2>construction <span>4 STEPS</span></h2>
+      <div class="grid g4" style="gap: 14px;">
+        <div class="cell">
+          <svg width="230" height="204" viewBox="-50 -30 440 390"><rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/></svg>
+          <div class="cap"><b>1 box</b><br>210x182 r30</div>
+        </div>
+        <div class="cell">
+          <svg width="230" height="204" viewBox="-50 -30 440 390"><rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7"/><rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23"/></svg>
+          <div class="cap"><b>2 screen</b><br>inset 27 / 26</div>
+        </div>
+        <div class="cell">
+          <svg width="230" height="204" viewBox="-50 -30 440 390"><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/></svg>
+          <div class="cap"><b>3 stand + legs</b><br>feet 54x24</div>
+        </div>
+        <div class="cell">
+          <svg width="230" height="204" viewBox="-50 -30 440 390"><use href="#rootie-idle"/></svg>
+          <div class="cap"><b>4 arms + face</b><br>LED, blush</div>
+        </div>
+      </div>
+      <h2 style="margin-top: 40px;">line weights <span>AT viewBox SCALE</span></h2>
+      <div class="strokes">
+        <div><i style="border-top: 7px solid #1e1f23;"></i>7 outlines, legs, arms</div>
+        <div><i style="border-top: 8px solid #3ddc84; background: #1e1f23; padding: 6px 0;"></i>8 face (on black)</div>
+        <div><i style="border-top: 5px solid #1e1f23;"></i>5-6 accessories, motion lines</div>
+        <div><i style="border-top: 3px solid #1e1f23;"></i>3 LED rim</div>
+      </div>
+      <p class="cap" style="text-align: left; margin-top: 18px;">hard offset shadows only: ink, 7-12px, no blur. no gradients on Rootie himself.</p>
+    </div>
+  </div>
+
+  <!-- 2. palette -->
+  <div class="card" style="margin-bottom: 60px;">
+    <h2>palette <span>USE THESE HEX VALUES EXACTLY</span></h2>
+    <div class="swatches">
+      <div class="sw"><i style="background:#1e1f23"></i><div><b>ink</b><br>#1e1f23<br>outlines, screen</div></div>
+      <div class="sw"><i style="background:#f7f0dc"></i><div><b>cream</b><br>#f7f0dc<br>CRT body</div></div>
+      <div class="sw"><i style="background:#e8dfc6"></i><div><b>beige</b><br>#e8dfc6<br>stand</div></div>
+      <div class="sw"><i style="background:#fffdf6"></i><div><b>paper</b><br>#fffdf6<br>hands, cards</div></div>
+      <div class="sw"><i style="background:#3ddc84"></i><div><b>terminal green</b><br>#3ddc84<br>face, LED ok</div></div>
+      <div class="sw"><i style="background:#08693a"></i><div><b>deep green</b><br>#08693a<br>green text on light</div></div>
+      <div class="sw"><i style="background:#f5b041"></i><div><b>amber</b><br>#f5b041<br>babouches, hardhat</div></div>
+      <div class="sw"><i style="background:#f54e00"></i><div><b>alert orange</b><br>#f54e00<br>LED warn, motion</div></div>
+      <div class="sw"><i style="background:#c1272d"></i><div><b>tarbouch red</b><br>#c1272d / #a51f24<br>fez, fez top</div></div>
+      <div class="sw"><i style="background:#4fc3f7"></i><div><b>sky</b><br>#4fc3f7 / #cdeffd<br>sweat, lens</div></div>
+      <div class="sw"><i style="background:#eeefe9"></i><div><b>sage paper</b><br>#eeefe9 + #bfc1b7<br>story bg + dots</div></div>
+      <div class="sw"><i style="background:#fff1a8"></i><div><b>sticky note</b><br>#fff1a8<br>todo / scope notes</div></div>
+    </div>
+  </div>
+
+  <!-- 3. expressions -->
+  <div class="card" style="margin-bottom: 60px;">
+    <h2>expressions <span>THE SCREEN IS THE FACE: GREEN GLYPHS ONLY</span></h2>
+    <div class="grid g8">
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/></svg><div class="cap"><b>happy</b><br>default, welcome</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-wink"/><use href="#led-ok"/></svg><div class="cap"><b>wink</b><br>jokes, insider</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-focused"/><use href="#led-ok"/></svg><div class="cap"><b>focused</b><br>QA, hunting bugs</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-surprised"/><use href="#led-ok"/></svg><div class="cap"><b>surprised</b><br>big numbers</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-worried"/><use href="#led-warn"/></svg><div class="cap"><b>worried</b><br>LED goes orange</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-error"/><use href="#led-warn"/></svg><div class="cap"><b>error</b><br>outages, 404s</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-sleepy"/><use href="#led-ok"/></svg><div class="cap"><b>sleepy</b><br>waiting, coming soon</div></div>
+      <div class="cell"><svg width="230" height="210" viewBox="35 55 230 210"><use href="#body"/><use href="#face-prompt"/><use href="#led-ok"/></svg><div class="cap"><b>prompt</b><br>idle, the &gt;_ mark</div></div>
+    </div>
+  </div>
+
+  <!-- 4. poses and outfits -->
+  <div class="card" style="margin-bottom: 60px;">
+    <h2>poses + outfits <span>ONE OUTFIT AT A TIME</span></h2>
+    <div class="grid g4" style="row-gap: 40px;">
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#rootie-idle"/></svg><div class="cap"><b>idle</b> arms down, happy</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-wave"/><use href="#arm-r-down"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/></svg><div class="cap"><b>wave</b> hello, welcome</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-down"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/><use href="#arm-r-point"/></svg><div class="cap"><b>point</b> at a link or mention sticker</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-up"/><use href="#arm-r-up"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-surprised"/><use href="#led-ok"/></svg><div class="cap"><b>celebrate</b> milestones, results</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-down"/><use href="#arm-r-down"/><use href="#legs"/><use href="#feet-sneakers"/><use href="#body"/><use href="#face-worried"/><use href="#led-warn"/><use href="#hardhat"/><use href="#sweat"/></svg><div class="cap"><b>hardhat</b> under construction</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-wave"/><use href="#legs"/><use href="#feet-babouches"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/><use href="#tarbouch"/><use href="#arm-r-atay"/></svg><div class="cap"><b>moroccan</b> tarbouch, babouches, atay</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-wave"/><use href="#legs"/><use href="#feet-babouches"/><use href="#body"/><use href="#face-focused"/><use href="#led-ok"/><use href="#tarbouch"/><use href="#arm-r-lens"/></svg><div class="cap"><b>QA</b> magnifying glass, focused</div></div>
+      <div class="cell"><svg width="420" height="372" viewBox="-50 -30 440 390"><use href="#arm-l-down"/><use href="#legs"/><use href="#feet-babouches"/><use href="#body"/><use href="#face-happy"/><use href="#led-ok"/><use href="#tarbouch"/><use href="#arm-r-point"/></svg><div class="cap"><b>moroccan point</b> partner stories</div></div>
+    </div>
+  </div>
+
+  <!-- 5. feet + walk cycle -->
+  <div class="row">
+    <div class="card" style="width: 760px;">
+      <h2>feet <span>CLOSE-UP</span></h2>
+      <div class="cell">
+        <svg width="660" height="206" viewBox="66 286 168 52"><use href="#legs"/><use href="#feet-sneakers"/></svg>
+        <div class="cap"><b>sneakers</b> (default): ink ellipses 54x24, centers x110 / x190, y318</div>
+      </div>
+      <div class="cell" style="margin-top: 30px;">
+        <svg width="660" height="206" viewBox="66 286 168 52"><use href="#legs"/><use href="#feet-babouches"/></svg>
+        <div class="cap"><b>babouches</b> (moroccan kit): amber pointed slippers, toes turn out, stroke 6</div>
+      </div>
+    </div>
+    <div class="card grow">
+      <h2>walk cycle <span>FRONT WADDLE, 4 FRAMES, ~8 FPS LOOP</span></h2>
+      <div class="grid g4" style="gap: 10px;">
+        <div class="cell"><svg width="300" height="266" viewBox="-50 -30 440 390"><use href="#rootie-idle"/></svg></div>
+        <div class="cell"><svg width="300" height="266" viewBox="-50 -30 440 390"><g transform="rotate(7 190 318)"><use href="#rootie-idle"/></g><g stroke="#4d4f46" stroke-width="4" stroke-linecap="round"><path d="M88 344 h14"/><path d="M112 348 h10"/></g></svg></div>
+        <div class="cell"><svg width="300" height="266" viewBox="-50 -30 440 390"><g transform="translate(0 -6)"><use href="#rootie-idle"/></g></svg></div>
+        <div class="cell"><svg width="300" height="266" viewBox="-50 -30 440 390"><g transform="rotate(-7 110 318)"><use href="#rootie-idle"/></g><g stroke="#4d4f46" stroke-width="4" stroke-linecap="round"><path d="M198 344 h14"/><path d="M178 348 h10"/></g></svg></div>
+      </div>
+      <div class="ground"></div>
+      <div class="grid g4" style="gap: 10px; margin-top: 16px;">
+        <div class="cap"><b>1 contact</b><br>both feet down</div>
+        <div class="cap"><b>2 lift left</b><br>rotate +7deg around the right foot (190, 318)</div>
+        <div class="cap"><b>3 pass</b><br>both down, body up 6</div>
+        <div class="cap"><b>4 lift right</b><br>rotate -7deg around the left foot (110, 318)</div>
+      </div>
+      <p class="cap" style="text-align: left; margin-top: 20px;">the whole figure tips over the planted foot, so the other foot lifts on its own. works with sneakers or babouches; keep arms down while walking.</p>
+    </div>
+  </div>
+
+  <!-- 6. rules + story frame -->
+  <div class="row" style="margin-bottom: 0;">
+    <div class="card grow">
+      <h2>rules</h2>
+      <div class="rules">
+        <ul class="do">
+          <li>build from the parts on this sheet</li>
+          <li>keep the screen black and the face terminal green</li>
+          <li>scale uniformly; keep strokes proportional</li>
+          <li>one outfit at a time (moroccan, hardhat, QA)</li>
+          <li>on dark backgrounds, add a light sticker outline</li>
+          <li>he points at sticker zones (link, mention)</li>
+        </ul>
+        <ul class="dont">
+          <li>no emoji, anywhere</li>
+          <li>no words on the screen, only glyphs (&gt;_ zz x)</li>
+          <li>don't recolor the body or stretch the box</li>
+          <li>no blur, glow or gradients on Rootie</li>
+          <li>never shown attacking a real, named target</li>
+          <li>no new limbs, mouths or a second screen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="width: 560px;">
+      <h2>story frame</h2>
+      <svg width="470" height="560" viewBox="0 0 1080 1920" style="display: block; margin: 0 auto;">
+        <rect x="4" y="4" width="1072" height="1912" rx="40" fill="#eeefe9" stroke="#1e1f23" stroke-width="10"/>
+        <rect x="8" y="8" width="1064" height="242" fill="#f54e00" opacity="0.18"/>
+        <rect x="8" y="1580" width="1064" height="332" fill="#f54e00" opacity="0.18"/>
+        <rect x="80" y="250" width="920" height="1330" fill="none" stroke="#08693a" stroke-width="8" stroke-dasharray="26 18"/>
+        <g font-family="JetBrains Mono" font-weight="700" font-size="54" fill="#1e1f23" text-anchor="middle">
+          <text x="540" y="150">top 250: IG UI</text>
+          <text x="540" y="930">safe 920x1330</text>
+          <text x="540" y="1770">bottom 340: reply bar</text>
+        </g>
+      </svg>
+      <p class="cap">1080x1920, rendered at 3x</p>
+    </div>
+  </div>
+</body>
+</html>

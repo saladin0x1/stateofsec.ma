@@ -1,0 +1,63 @@
+@font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("../fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 500; src: url("../fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("../fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; src: url("../fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  --bg: #eeefe9;
+  --ink: #1e1f23;
+  --olive: #4d4f46;
+  --sage: #bfc1b7;
+  --green: #3ddc84;
+  --green-dk: #08693a;
+  --amber: #f5b041;
+  --orange: #f54e00;
+  --paper: #fffdf6;
+  --note: #fff1a8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body {
+  position: relative; color: var(--ink); font-family: "JetBrains Mono", monospace;
+  background: var(--bg) radial-gradient(var(--sage) 1.8px, transparent 2px) 0 0 / 38px 38px;
+}
+
+/* Instagram safe zone: 250px top, 340px bottom */
+.safe {
+  position: absolute; inset: 0; padding: 250px 80px 340px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.safe > * { flex-shrink: 0; }
+
+.h1 { font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.0; letter-spacing: -3px; color: var(--ink); }
+.mark { background: linear-gradient(transparent 58%, var(--green) 58%, var(--green) 92%, transparent 92%); padding: 0 6px; }
+.mark-amber { background: linear-gradient(transparent 58%, var(--amber) 58%, var(--amber) 92%, transparent 92%); padding: 0 6px; }
+.sub { font-size: 31px; line-height: 1.5; color: var(--olive); max-width: 880px; }
+
+.win { width: 900px; text-align: left; background: var(--paper); border: 5px solid var(--ink); border-radius: 20px; box-shadow: 12px 12px 0 var(--ink); overflow: hidden; }
+.win .tb { display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-bottom: 5px solid var(--ink); font-weight: 700; font-size: 25px; }
+.win .tb i { width: 20px; height: 20px; border-radius: 50%; border: 3.5px solid var(--ink); background: var(--paper); flex: none; }
+.win .tb span { margin-left: 10px; }
+.win .bd { padding: 26px 30px 30px; font-size: 31px; line-height: 1.55; }
+.prompt { color: var(--green-dk); font-weight: 700; }
+
+.sticker {
+  display: inline-block; padding: 12px 24px; border: 5px solid var(--ink); border-radius: 14px;
+  font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 32px;
+  box-shadow: 7px 7px 0 var(--ink);
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 22px; padding: 30px 58px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); border: 5px solid var(--ink);
+  font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 50px;
+  box-shadow: 10px 10px 0 var(--green);
+}
+.handle { font-size: 28px; font-weight: 700; letter-spacing: 3px; color: var(--olive); }
+
+.tape {
+  position: absolute; left: -60px; right: -60px; height: 74px; border-top: 5px solid var(--ink); border-bottom: 5px solid var(--ink);
+  background: repeating-linear-gradient(45deg, var(--amber) 0 42px, var(--ink) 42px 84px);
+  display: flex; align-items: center; justify-content: center;
+}
+.tape b { background: var(--amber); border: 4px solid var(--ink); padding: 6px 20px; font-size: 26px; letter-spacing: 3px; }
