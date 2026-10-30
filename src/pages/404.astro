@@ -1,0 +1,89 @@
+---
+import Layout from "@/components/layout.astro";
+
+export const prerender = true;
+---
+
+<Layout title="Page not found" noindex>
+  <section class="max-w-2xl mx-auto px-4 py-16 md:py-24 text-center">
+    <!-- Lost Rootie, built from the parts in brand/rootie (rootie/design-sheet.html):
+         worried face, warning LED, magnifying glass, sweat, and a trail that walks in circles -->
+    <svg
+      class="mx-auto w-72 md:w-96 h-auto"
+      viewBox="-130 -40 500 390"
+      role="img"
+      aria-label="Rootie, the stateofsec.ma mascot, lost and searching with a magnifying glass"
+    >
+      <defs>
+        <!-- Light sticker edge so his ink outlines stay visible on the dark theme -->
+        <filter id="rootie-sticker" x="-10%" y="-10%" width="120%" height="120%">
+          <feMorphology in="SourceAlpha" operator="dilate" radius="7" result="grow" />
+          <feFlood flood-color="#eeefe9" />
+          <feComposite in2="grow" operator="in" result="edge" />
+          <feMerge><feMergeNode in="edge" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      <path
+        class="text-muted-foreground"
+        d="M -120 334 C -90 334, -70 296, -46 304 C -20 312, -26 348, -52 344 C -78 340, -70 300, -30 318 C 0 332, 30 336, 70 330"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-dasharray="7 11"
+      />
+
+      <g font-family="Space Grotesk, sans-serif" font-weight="700">
+        <text x="150" y="38" font-size="64" text-anchor="middle" class="fill-primary">?</text>
+        <text x="40" y="44" font-size="40" text-anchor="middle" class="fill-secondary" transform="rotate(-14 40 44)">?</text>
+        <text x="262" y="50" font-size="46" text-anchor="middle" class="fill-primary" transform="rotate(12 262 50)">?</text>
+      </g>
+
+      <g filter="url(#rootie-sticker)">
+        <!-- arm-l-down -->
+        <path d="M47 175 C 20 190, 15 220, 28 240" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round" />
+        <circle cx="30" cy="246" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7" />
+        <!-- legs, feet-sneakers -->
+        <g fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round"><path d="M125 274 L120 308" /><path d="M175 274 L180 308" /></g>
+        <ellipse cx="110" cy="318" rx="27" ry="12" fill="#1e1f23" />
+        <ellipse cx="190" cy="318" rx="27" ry="12" fill="#1e1f23" />
+        <!-- body -->
+        <path d="M115 250 L185 250 L200 276 L100 276 Z" fill="#e8dfc6" stroke="#1e1f23" stroke-width="7" stroke-linejoin="round" />
+        <rect x="45" y="70" width="210" height="182" rx="30" fill="#f7f0dc" stroke="#1e1f23" stroke-width="7" />
+        <rect x="72" y="96" width="156" height="118" rx="18" fill="#1e1f23" />
+        <ellipse cx="62" cy="232" rx="10" ry="6" fill="#f5b041" opacity="0.8" />
+        <!-- face-worried -->
+        <g fill="none" stroke="#3ddc84" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><circle cx="114" cy="146" r="11" /><circle cx="186" cy="146" r="11" /><path d="M116 186 q8 -9 17 0 t17 0 t17 0 t17 0" /></g>
+        <!-- led-warn -->
+        <circle cx="230" cy="234" r="7" fill="#f54e00" stroke="#1e1f23" stroke-width="3" />
+        <!-- sweat, mirrored to the left so the lens does not cover it -->
+        <path transform="translate(300 0) scale(-1 1)" d="M268 100 q15 24 0 33 q-15 -9 0 -33 Z" fill="#4fc3f7" stroke="#1e1f23" stroke-width="4" stroke-linejoin="round" />
+        <!-- arm-r-lens -->
+        <path d="M253 178 C 282 180, 292 198, 284 214" fill="none" stroke="#1e1f23" stroke-width="7" stroke-linecap="round" />
+        <path d="M286 212 L298 178" stroke="#1e1f23" stroke-width="11" stroke-linecap="round" />
+        <circle cx="306" cy="148" r="30" fill="#cdeffd" stroke="#1e1f23" stroke-width="7" />
+        <path d="M292 136 Q298 126 310 126" fill="none" stroke="#fffdf6" stroke-width="5" stroke-linecap="round" />
+        <circle cx="284" cy="218" r="16" fill="#fffdf6" stroke="#1e1f23" stroke-width="7" />
+      </g>
+    </svg>
+
+    <p class="mt-8 font-mono text-sm text-primary">error 404</p>
+    <h1 class="mt-2 text-3xl md:text-4xl font-sans font-bold">Rootie is lost.</h1>
+    <p class="mt-4 text-muted-foreground max-w-lg mx-auto">
+      He searched everywhere for this page, magnifying glass and all.
+      Ma kaynach: it doesn't exist, or it moved.
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/"
+        class="inline-flex h-12 items-center justify-center bg-primary px-6 font-medium tracking-wide text-primary-foreground border-2 border-primary transition duration-200 hover:opacity-90"
+      >Take him home</a>
+      <a
+        href="/faq"
+        class="inline-flex h-12 items-center justify-center px-6 font-medium tracking-wide border-2 border-border transition duration-200 hover:border-primary hover:text-primary"
+      >Read the FAQ</a>
+    </div>
+  </section>
+</Layout>

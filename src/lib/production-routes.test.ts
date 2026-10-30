@@ -8,6 +8,7 @@ const pagesDir = path.join(repoRoot, "src/pages");
 
 describe("production routes integrity", () => {
   const allowedProductionPages = new Set([
+    "404.astro",
     "before-start.astro",
     "faq.astro",
     "index.astro",

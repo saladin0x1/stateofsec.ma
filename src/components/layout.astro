@@ -21,9 +21,10 @@ interface Props {
   title?: string;
   year?: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title: titleProp, year, description: descriptionProp } = Astro.props;
+const { title: titleProp, year, description: descriptionProp, noindex = false } = Astro.props;
 const title = year
   ? `${website.name} ${year} Report`
   : titleProp
@@ -104,6 +105,7 @@ const structuredData = Astro.url.pathname === "/"
       title={title}
       description={description}
       canonical={canonical}
+      noindex={noindex}
       openGraph={{
         type: "website",
         locale: "en_US",
