@@ -59,7 +59,7 @@ const structuredData = Astro.url.pathname === "/"
           "url": home,
           "name": website.name,
           "logo": `${website.url}/icon-512.png`,
-          "sameAs": [website.instagram, website.repoGithub]
+          "sameAs": [website.instagram, website.linkedin, website.x, website.repoGithub]
         }
       ]
     }).replace(/</g, "\\u003c")
@@ -115,7 +115,7 @@ const structuredData = Astro.url.pathname === "/"
         images: [{ url: coverImage, width: 1200, height: 630, alt: website.name }],
         site_name: website.name
       }}
-      twitter={{ cardType: "summary_large_image" }}
+      twitter={{ cardType: "summary_large_image", site: `@${website.xHandle}` }}
     />
     {structuredData && <script is:inline type="application/ld+json" set:html={structuredData} />}
 

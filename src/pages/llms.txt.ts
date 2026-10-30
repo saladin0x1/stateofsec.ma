@@ -44,6 +44,8 @@ export const GET: APIRoute = () => {
     "## Optional",
     "",
     `- [Instagram](${website.instagram}): announcements`,
+    `- [LinkedIn](${website.linkedin}): announcements`,
+    `- [X](${website.x}): announcements`,
     ""
   ].join("\n");
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });

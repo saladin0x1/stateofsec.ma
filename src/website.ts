@@ -6,6 +6,9 @@ export const website = {
   editionYear: 2026,
   repoGithub: "https://github.com/saladin0x1/stateofsec.ma",
   instagram: "https://www.instagram.com/stateofsec/",
+  linkedin: "https://www.linkedin.com/company/stateofsec/",
+  x: "https://x.com/StateOfSec",
+  xHandle: "StateOfSec",
   authors: [
     { handle: "saladin0x1", url: "https://github.com/saladin0x1" },
     { handle: "mchklt", url: "https://github.com/mchklt" }

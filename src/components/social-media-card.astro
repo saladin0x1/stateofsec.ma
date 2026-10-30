@@ -10,7 +10,7 @@ const contentEncoded = encodeURIComponent(content);
 const url = encodeURIComponent(website.url);
 
 const shareLinks = {
-  twitter: `https://twitter.com/intent/tweet?text=${contentEncoded}&url=${url}`,
+  twitter: `https://twitter.com/intent/tweet?text=${contentEncoded}&url=${url}&via=${website.xHandle}`,
   linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${encodeURIComponent(website.name)}&summary=${contentEncoded}&source=${url}`,
   facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${contentEncoded}`
 };
