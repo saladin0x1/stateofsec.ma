@@ -1,0 +1,29 @@
+# root@stateofsec.ma:~# cat robots.txt
+#
+#     .------------.
+#     | .--------. |
+#     | |  ^  ^  | |   salam, robot.
+#     | |  \__/  | |   i'm Rootie. please scrape.
+#     | '--------' |
+#     '------------'
+#        _|    |_
+#
+# yes, really. this is a survey about Morocco's security people,
+# the whole point is to be read. start with /llms.txt, it's the cheat sheet.
+#
+# pentesters reading this for hidden paths: the Disallow lines below
+# are not a treasure map. /survey wants a session, /_actions/ wants a captcha.
+# there is no /admin. we checked. twice.
+#
+# found a real bug? responsible disclosure beats drama.
+# DM @stateofsec on Instagram. no bounty, just Rootie's eternal respect.
+#
+# anything else: https://saladin.su
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Disallow: /survey
+Disallow: /thanks
+Disallow: /_actions/
+
+Sitemap: https://stateofsec.ma/sitemap.xml

@@ -19,6 +19,9 @@ const redirects = !SURVEY_OPEN
 export default defineConfig({
   integrations: [tailwind(), mdx(), react()],
   trailingSlash: "never",
+  // faq.html, not faq/index.html: Cloudflare then serves /faq directly instead of
+  // redirecting it to /faq/, so the canonical URLs and internal links skip a redirect
+  build: { format: "file" },
   output: "server",
   // sharp cannot run on Workers; optimize images at build time instead
   adapter: cloudflare({ imageService: "compile" }),

@@ -33,8 +33,36 @@ const description = descriptionProp
   || (year
     ? `Results of the ${website.name} ${year} survey: how Morocco's cybersecurity community works, learns and what it needs.`
     : website.description);
-const canonical = new URL(Astro.url.pathname, website.url).href;
+// Prerendered pages see their output file (/faq.html, build.format "file"); the public URL is /faq
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ""), website.url).href;
 const coverImage = `${website.url}/images/cover.png`;
+
+// Home page only: tells search engines the site name and its official profiles
+const home = `${website.url}/`;
+const structuredData = Astro.url.pathname === "/"
+  ? JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${home}#website`,
+          "url": home,
+          "name": website.name,
+          "description": website.description,
+          "inLanguage": "en",
+          "publisher": { "@id": `${home}#organization` }
+        },
+        {
+          "@type": "Organization",
+          "@id": `${home}#organization`,
+          "url": home,
+          "name": website.name,
+          "logo": `${website.url}/icon-512.png`,
+          "sameAs": [website.instagram, website.repoGithub]
+        }
+      ]
+    }).replace(/</g, "\\u003c")
+  : undefined;
 ---
 
 <!doctype html>
@@ -42,7 +70,6 @@ const coverImage = `${website.url}/images/cover.png`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
 
     <!-- Theme Script - Must run before page renders to prevent FOUC -->
     <script is:inline>
@@ -78,6 +105,8 @@ const coverImage = `${website.url}/images/cover.png`;
       description={description}
       canonical={canonical}
       openGraph={{
+        type: "website",
+        locale: "en_US",
         url: canonical,
         title,
         description,
@@ -86,6 +115,7 @@ const coverImage = `${website.url}/images/cover.png`;
       }}
       twitter={{ cardType: "summary_large_image" }}
     />
+    {structuredData && <script is:inline type="application/ld+json" set:html={structuredData} />}
 
     <!-- icons -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
