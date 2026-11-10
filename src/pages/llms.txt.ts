@@ -46,7 +46,7 @@ export const GET: APIRoute = () => {
     `- Published: ${report.publishedAt}`,
     "- Topics: cybersecurity careers and roles, employment, Morocco's 12 regions and diaspora, certifications, bug-bounty earnings, mobility intentions, representation, responsible disclosure and perceptions of legal protection.",
     "- Scope: this is an archive of early respondent snapshots, not the final survey report and not a nationally representative estimate of Morocco's cybersecurity workforce.",
-    "- Snapshot note: the latest dossier in the archive uses 263 engaged participants as of 7 November 2026. Engagement must not be conflated with completed submissions, and later chapter totals supersede earlier snapshots.",
+    "- Snapshot note: the latest dossier in the archive counts 260+ engaged participants as of 7 November 2026. Engagement must not be conflated with completed submissions, and later chapter totals supersede earlier snapshots.",
     `- Suggested citation: El Ouali, Salah-Eddine. “${report.title}.” ${website.name}, 7 November 2026. ${reportPdfUrl}`,
     "",
     "## FAQ",
