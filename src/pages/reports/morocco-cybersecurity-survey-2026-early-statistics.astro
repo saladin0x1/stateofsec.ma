@@ -1,0 +1,207 @@
+---
+import Layout from "@/components/layout.astro";
+import { website } from "@/website";
+
+export const prerender = true;
+
+const report = website.reports.earlyStatistics;
+const author = report.author;
+const pageUrl = new URL(report.path, website.url).href;
+const pdfUrl = new URL(report.pdfPath, website.url).href;
+const contributor = website.authors.find(person => person.handle === "mchklt");
+const citation = `El Ouali, Salah-Eddine. “${report.title}.” State of Sec Morocco, 7 November 2026. ${pdfUrl}`;
+const topics = [
+  ["Workforce and careers", "Employment, students, freelancers, SOC and blue teams, offensive security, GRC, CISOs and management."],
+  ["Certifications and learning", "OSCP, CompTIA, INE and HTB, network-vendor paths, CISSP, CISM, CISA, ISO 27001 and entry-level options."],
+  ["Pay and bug bounty", "Compensation questions and bug-bounty earnings reported in USD for the preceding 12 months."],
+  ["Geography and mobility", "Morocco’s 12 official regions, the diaspora and intentions to work abroad within two years."],
+  ["Representation", "Women in cybersecurity and professional profiles underrepresented in the respondent sample."],
+  ["Disclosure and trust", "Security flaws noticed, responsible disclosure and perceptions of legal protection in Morocco."]
+];
+const keywords = [
+  "Morocco cybersecurity survey 2026",
+  "Morocco cybersecurity statistics",
+  "cybersecurity workforce Morocco",
+  "cybersecurity careers Morocco",
+  "cybersecurity certifications Morocco",
+  "bug bounty Morocco",
+  "women in cybersecurity Morocco",
+  "responsible disclosure Morocco"
+];
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Report",
+  "@id": `${pageUrl}#report`,
+  "url": pageUrl,
+  "name": report.title,
+  "headline": "Morocco Cybersecurity Survey 2026: Early Statistics",
+  "description": report.description,
+  "datePublished": report.publishedAt,
+  "dateModified": report.publishedAt,
+  "isAccessibleForFree": true,
+  "inLanguage": ["en-MA", "fr-MA", "ar-MA"],
+  "keywords": keywords,
+  "author": {
+    "@type": "Person",
+    "name": author.name,
+    "alternateName": author.handle,
+    "url": author.url
+  },
+  ...(contributor
+    ? {
+        contributor: {
+          "@type": "Person",
+          "name": contributor.handle,
+          "url": contributor.url
+        }
+      }
+    : {}),
+  "publisher": {
+    "@type": "Organization",
+    "name": website.name,
+    "url": website.url,
+    "logo": `${website.url}/icon-512.png`
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": pageUrl
+  },
+  "encoding": {
+    "@type": "MediaObject",
+    "name": report.title,
+    "contentUrl": pdfUrl,
+    "encodingFormat": "application/pdf",
+    "contentSize": report.pdfSize,
+    "inLanguage": ["en-MA", "fr-MA", "ar-MA"]
+  },
+  "about": topics.map(([name]) => ({ "@type": "Thing", name }))
+}).replace(/</g, "\\u003c");
+---
+
+<Layout
+  title="Morocco Cybersecurity Survey 2026: Early Statistics"
+  description={report.description}
+>
+  <Fragment slot="head">
+    <meta name="citation_title" content={report.title} />
+    <meta name="citation_author" content={author.name} />
+    <meta name="citation_publication_date" content={report.publishedAt} />
+    <meta name="citation_publisher" content={website.name} />
+    <meta name="citation_pdf_url" content={pdfUrl} />
+    <meta name="citation_public_url" content={pageUrl} />
+    <link rel="author" href={author.url} />
+    <link rel="alternate" type="application/pdf" href={pdfUrl} title={report.title} />
+    <script is:inline type="application/ld+json" set:html={structuredData} />
+  </Fragment>
+
+  <article>
+    <header class="relative overflow-hidden border-b border-border bg-background">
+      <div class="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [background-size:40px_40px]"></div>
+      <div class="relative mx-auto grid max-w-screen-xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_22rem] lg:py-28 xl:px-8">
+        <div>
+          <p class="mb-6 font-mono text-sm font-bold uppercase tracking-[0.22em] text-primary">
+            Research archive · 31 October–7 November 2026
+          </p>
+          <h1 class="max-w-4xl text-4xl font-bold leading-[0.98] tracking-tight text-foreground">
+            Morocco cybersecurity survey:
+            <span class="text-primary">early statistics.</span>
+          </h1>
+          <p class="mt-8 max-w-3xl text-xl leading-relaxed text-muted-foreground sm:text-2xl">
+            Four campaign dispatches tracing how the State of Sec Morocco survey moved from open questions to early evidence about careers, learning, opportunity and missing perspectives.
+          </p>
+          <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={report.pdfPath}
+              class="inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-6 py-3 font-mono font-bold text-primary-foreground transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            >
+              Open searchable PDF
+            </a>
+            <a
+              href={report.pdfPath}
+              download
+              class="inline-flex min-h-12 items-center justify-center rounded-md border border-border bg-card px-6 py-3 font-mono font-bold text-foreground transition hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            >
+              Download · {report.pdfSize}
+            </a>
+          </div>
+        </div>
+
+        <aside class="relative self-end border border-border bg-card p-6 shadow-2xl shadow-black/20" aria-label="Document details">
+          <div class="absolute -top-px left-0 h-1 w-24 bg-primary"></div>
+          <p class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-primary">Document file</p>
+          <dl class="mt-6 divide-y divide-border">
+            <div class="flex items-baseline justify-between gap-4 py-4">
+              <dt class="text-muted-foreground">Format</dt><dd class="font-mono font-bold text-foreground">PDF</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 py-4">
+              <dt class="text-muted-foreground">Length</dt><dd class="font-mono font-bold text-foreground">37 pages</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 py-4">
+              <dt class="text-muted-foreground">Dispatches</dt><dd class="font-mono font-bold text-foreground">4</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 py-4">
+              <dt class="text-muted-foreground">Published</dt><dd class="font-mono font-bold text-foreground">7 Nov 2026</dd>
+            </div>
+          </dl>
+          <p class="mt-5 text-sm leading-relaxed text-muted-foreground">Searchable text, document bookmarks and English, French and Arabic metadata.</p>
+        </aside>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:py-24 xl:px-8">
+      <section class="border-l-4 border-secondary bg-secondary/10 p-6 sm:p-8" aria-labelledby="scope-title">
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-secondary">Read this first</p>
+        <h2 id="scope-title" class="mt-3 text-2xl font-bold text-foreground">An early respondent archive—not a national workforce estimate.</h2>
+        <p class="mt-3 max-w-4xl text-lg leading-relaxed text-muted-foreground">
+          The survey remained open while these materials were published. Every chapter preserves its original snapshot, so later totals supersede earlier ones. Regional coverage does not make the respondent sample representative of Morocco’s cybersecurity workforce.
+        </p>
+      </section>
+
+      <section class="py-20" aria-labelledby="topics-title">
+        <div class="max-w-3xl">
+          <p class="font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">Research index</p>
+          <h2 id="topics-title" class="mt-4 text-4xl font-bold tracking-tight text-foreground">What the archive covers</h2>
+        </div>
+        <div class="mt-10 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+          {topics.map(([title, description], index) => (
+            <section class="bg-background p-7">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="text-xl font-bold text-foreground">{title}</h3>
+                <span class="shrink-0 font-mono text-2xl font-extrabold text-primary/30">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <p class="mt-4 leading-relaxed text-muted-foreground">{description}</p>
+            </section>
+          ))}
+        </div>
+      </section>
+
+      <section class="grid gap-8 border-y border-border py-16 lg:grid-cols-[1fr_1.25fr]" aria-labelledby="author-title">
+        <div>
+          <p class="font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">Report author</p>
+          <h2 id="author-title" class="mt-4 text-3xl font-bold text-foreground">{author.name}</h2>
+          <p class="mt-2 font-mono text-muted-foreground">@{author.handle}</p>
+          <a class="mt-5 inline-block font-mono font-bold text-primary hover:underline" href={author.url} rel="author">
+            {author.url.replace("https://", "")}
+          </a>
+        </div>
+        <div>
+          <p class="font-mono text-sm font-bold uppercase tracking-[0.2em] text-primary">Suggested citation</p>
+          <blockquote class="mt-4 border-l border-border pl-6 text-lg leading-relaxed text-muted-foreground">
+            <cite class="not-italic">{citation}</cite>
+          </blockquote>
+          <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+            State of Sec Morocco is a not-for-profit community project by @saladin0x1 and @mchklt, built on stateofdev.ma by GeeksBlaBla and its contributors.
+          </p>
+        </div>
+      </section>
+
+      <section class="py-16 text-center">
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">The case remains open</p>
+        <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold text-foreground sm:text-4xl">More responses help separate workforce gaps from survey-reach gaps.</h2>
+        <a class="mt-8 inline-flex min-h-12 items-center justify-center rounded-md border border-primary px-6 py-3 font-mono font-bold text-primary transition hover:bg-primary hover:text-primary-foreground" href="/">
+          Visit State of Sec Morocco
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>

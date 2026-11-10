@@ -38,6 +38,14 @@ describe("withSecurityHeaders", () => {
     for (const [name, value] of Object.entries(SECURITY_HEADERS))
       expect(file).toContain(`  ${name}: ${value}\n`);
   });
+
+  it("serves the public research PDF inline and indexable", () => {
+    const file = fs.readFileSync(path.resolve(__dirname, "../../public/_headers"), "utf8");
+    expect(file).toContain("/reports/morocco-cybersecurity-survey-2026-early-statistics.pdf");
+    expect(file).toContain("  X-Robots-Tag: index, follow\n");
+    expect(file).toContain("  Content-Disposition: inline;");
+    expect(file).toContain("rel=\"canonical\"");
+  });
 });
 
 describe("rejectBadActionBody", () => {

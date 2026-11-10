@@ -22,6 +22,9 @@
 
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# Public research reports and PDFs are intentionally indexable.
+Allow: /reports/
 Disallow: /survey
 Disallow: /thanks
 Disallow: /_actions/

@@ -7,3 +7,10 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Searchable early-statistics archive. The one-day cache allows corrected snapshots to replace it.
+/reports/morocco-cybersecurity-survey-2026-early-statistics.pdf
+  X-Robots-Tag: index, follow
+  Content-Disposition: inline; filename="morocco-cybersecurity-survey-2026-early-statistics.pdf"
+  Cache-Control: public, max-age=86400
+  Link: <https://stateofsec.ma/reports/morocco-cybersecurity-survey-2026-early-statistics.pdf>; rel="canonical"
