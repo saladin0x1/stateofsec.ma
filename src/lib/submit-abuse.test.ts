@@ -84,8 +84,11 @@ const rejected: Array<[string, string, Exclude<Outcome, "stored" | "crash">]> = 
   ["201 characters of other text", answers(`"profile-q-2":15,"profile-q-2-others":"${"a".repeat(201)}"`), "zod"],
   ["half an emoji at characters 199-200", answers(`"profile-q-2":15,"profile-q-2-others":"${SPLIT_EMOJI}"`), "invalid"],
   ["a lone low surrogate", answers(`"profile-q-2":15,"profile-q-2-others":"a\\ude00b"`), "invalid"],
-  ["100 000 picks of one choice", answers(`"learning-q-2":[${Array.from({ length: 100_000 }, () => 0).join(",")}]`), "invalid"],
-  ["100 000 distinct picks", answers(`"learning-q-2":[${Array.from({ length: 100_000 }, (_, i) => i).join(",")}]`), "invalid"],
+  // The schema caps picks (64) and fields (256) far above the survey, before any validation
+  ["100 000 picks of one choice", answers(`"learning-q-2":[${Array.from({ length: 100_000 }, () => 0).join(",")}]`), "zod"],
+  ["100 000 distinct picks", answers(`"learning-q-2":[${Array.from({ length: 100_000 }, (_, i) => i).join(",")}]`), "zod"],
+  ["65 picks", answers(`"learning-q-2":[${Array.from({ length: 65 }, () => 0).join(",")}]`), "zod"],
+  ["10 000 unknown keys", answers(`"profile-q-0":0,${Array.from({ length: 10_000 }, (_, i) => `"junk-q-${i}":0`).join(",")}`), "zod"],
   ["boolean answer", answers(`"profile-q-0":true`), "zod"],
   ["object answer", answers(`"profile-q-0":{"a":1}`), "zod"],
   ["nested array answer", answers(`"learning-q-2":[[0]]`), "zod"],
@@ -102,7 +105,8 @@ const ignored: Array<[string, string, string]> = [
   ["key constructor", answers(`"profile-q-0":0,"constructor":0`), "constructor"],
   ["other text on a question without Other", answers(`"profile-q-0":0,"profile-q-0-others":"x"`), "profile-q-0-others"],
   ["other text of other text", answers(`"profile-q-0":0,"profile-q-2-others-others":"x"`), "profile-q-2-others-others"],
-  ["10 000 unknown keys", answers(`"profile-q-0":0,${Array.from({ length: 10_000 }, (_, i) => `"junk-q-${i}":0`).join(",")}`), "junk-q-9999"]
+  // A client on another deploy sends a few unknown fields at most, well under the 256 cap
+  ["200 unknown keys", answers(`"profile-q-0":0,${Array.from({ length: 200 }, (_, i) => `"junk-q-${i}":0`).join(",")}`), "junk-q-199"]
 ];
 
 describe("submitAnswers endpoint abuse table", () => {
@@ -191,4 +195,20 @@ describe("submitAnswers endpoint abuse table", () => {
       { seed: SEED, numRuns: 1500 }
     );
   }, 300_000);
+});
+
+// A body just under the 64 KB cap, every value of the wrong type: the old record-of-unions
+// schema took hundreds of milliseconds and answered with megabytes of issues
+describe("submitAnswers input cost", () => {
+  for (const [name, count, value] of [["5500 wrong values", 5500, "true"], ["250 wrong values", 250, "{}"]] as const) {
+    it(`answers ${name} with one short error`, async () => {
+      const body = `{"answers":{${Array.from({ length: count }, (_, i) => `"${i}":${value}`).join(",")}}}`;
+      expect(body.length).toBeLessThan(64 * 1024);
+      const started = performance.now();
+      const { outcome, error } = await send(body);
+      expect(outcome).toBe("zod");
+      expect(JSON.stringify((error as { issues: unknown[] }).issues).length).toBeLessThan(500);
+      expect(performance.now() - started).toBeLessThan(50);
+    });
+  }
 });

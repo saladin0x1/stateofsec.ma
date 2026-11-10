@@ -23,6 +23,9 @@ export default defineConfig({
   // redirecting it to /faq/, so the canonical URLs and internal links skip a redirect
   build: { format: "file" },
   output: "server",
+  // Astro stops reading an action body past this size, whatever URL reached the action.
+  // Same value as MAX_ACTION_BODY_BYTES in src/lib/security-headers.ts
+  security: { actionBodySizeLimit: 64 * 1024 },
   // sharp cannot run on Workers; optimize images at build time instead
   adapter: cloudflare({ imageService: "compile" }),
   // Optional so a missing secret only breaks the survey flow (requireSecret throws there),

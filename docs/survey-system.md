@@ -8,7 +8,7 @@ End-to-end survey flow, session management, and answer data structures.
 
 - The visitor reads the rules and completes the Cloudflare Turnstile captcha
 - The browser signs in anonymously with Firebase and gets an ID token
-- `initSession` verifies the captcha (required in production, hostname checked) and the ID token, then sets a signed `session` cookie
+- `initSession` verifies the ID token, then the captcha (required in production, hostname checked, each token accepted once), then sets a signed session cookie (`__Host-session` in production, `session` in dev)
 - Redirect to `/survey`
 
 ### 2. Survey Submission (`/survey`)

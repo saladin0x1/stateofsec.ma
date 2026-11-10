@@ -23,16 +23,17 @@ Exported survey results and metadata (none published yet).
 ### `/src/actions/`
 Astro server actions.
 
-- `init-session.ts` - Checks the Turnstile captcha and the Firebase ID token, then sets the signed session cookie
+- `init-session.ts` - Checks the Firebase ID token, then the Turnstile captcha (each token accepted once), then sets the signed session cookie
 - `submit-answers.ts` - Checks the session, validates answers against the survey (`src/lib/answers.ts`) and saves them
-- Both reject requests when `SURVEY_OPEN` is false (`src/site-config.mjs`)
+- Both reject requests when `SURVEY_OPEN` is false (`src/site-config.mjs`), and return a generic message for unexpected errors (`src/lib/action-errors.ts`)
+- `src/middleware.ts` with `src/lib/action-guard.ts` only lets JSON POSTs of at most 64 KB through to the exact paths `/_actions/initSession` and `/_actions/submitAnswers`; no other route accepts a request body
 
 ### `/src/lib/`
 - `firebase/client.ts` - Browser Firebase SDK (anonymous sign-in)
 - `firebase/server.ts` - ID token verification and Google access tokens with `jose` (Workers-compatible)
 - `firebase/database.ts` - Firestore REST writes (merge via update mask; masked fields absent from the body are deleted)
-- `session.ts` - HS256-signed session cookie (`httpOnly`, `secure` in production, `sameSite=lax`, 5 days)
-- `captcha.ts` - Turnstile siteverify, required in production
+- `session.ts` - HS256-signed session cookie (`__Host-session` in production, `httpOnly`, `secure` in production, `sameSite=lax`, 5 days). Tokens carry an audience (`SESSION_AUDIENCE`); changing it ends every session at once
+- `captcha.ts` - Turnstile siteverify (5 s timeout), required in production; each solved token is recorded once in Firestore (`captcha_tokens`, sha256 of the token)
 - `answers.ts` - Server-side answer validation and hidden-question cleanup
 - `conditions.ts` - `showIf` evaluation shared by client and server
 - `secrets.ts` - Request-time secret access (`getSecret`)

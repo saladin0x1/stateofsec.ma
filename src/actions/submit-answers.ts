@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
+import type { Answers } from "@/lib/conditions";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
+import { withGenericErrors } from "@/lib/action-errors";
+import { isAnswersShape } from "@/lib/answer-shape";
 import { InvalidAnswersError, reachedSectionIndex, sanitizeAnswers } from "@/lib/answers";
 import { saveAnswers } from "@/lib/firebase/database";
 import { getSessionUserId } from "@/lib/session";
@@ -9,15 +12,14 @@ import { SURVEY_OPEN } from "@/site-config.mjs";
 export const submitAnswers = defineAction({
   accept: "json",
   input: z.object({
-    answers: z.record(
-      z.string(),
-      z.union([z.number(), z.string().max(200), z.array(z.number()), z.null()])
-    ),
+    // One cheap pass with a single short error: Astro validates the input before the
+    // handler, so this runs for anyone, with or without a session
+    answers: z.custom<Answers>(isAnswersShape, "Invalid answers"),
     // Label of the section being submitted: stored fields of later sections are kept
     // (missing or unknown, e.g. a client from an older deploy: nothing is deleted)
     section: z.string().max(64).optional()
   }),
-  handler: async ({ answers, section }, { cookies }) => {
+  handler: async ({ answers, section }, { cookies }) => withGenericErrors("submitAnswers", async () => {
     if (!SURVEY_OPEN) {
       throw new ActionError({
         code: "FORBIDDEN",
@@ -58,5 +60,5 @@ export const submitAnswers = defineAction({
         message: "Error saving answers"
       });
     }
-  }
+  })
 });
