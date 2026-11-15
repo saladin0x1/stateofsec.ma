@@ -15,9 +15,9 @@ export const faqs = [
     answer: `${website.name} is an independent, open source project by ${authors}. It is built on ${link(website.basedOn.url, website.basedOn.name)}, the developer survey run by the ${link(website.basedOn.byUrl, website.basedOn.by)} community. Their open source code and survey format made this project possible.`
   },
   {
-    question: "Who should take part?",
+    question: "Who was the survey for?",
     answer:
-      "Anyone working or studying in cybersecurity in Morocco, and Moroccans doing security work abroad: pentesters, SOC and incident response, GRC and compliance, AppSec, cloud and infrastructure security, researchers and students. Developers and sysadmins who carry security duties are welcome too."
+      "The 2026 survey invited anyone working or studying in cybersecurity in Morocco, and Moroccans doing security work abroad: pentesters, SOC and incident response, GRC and compliance, AppSec, cloud and infrastructure security, researchers and students. Response collection is now closed."
   },
   {
     question: "Is it anonymous?",
@@ -31,10 +31,10 @@ export const faqs = [
   },
   {
     question: "When will the results be released?",
-    answer: `After the survey closes and the data has been checked. ${link(website.repoGithub, "Watch the GitHub repository")} to get notified.`
+    answer: `The survey closed on 15 November 2026. The data is being checked and the white paper is being finalized for publication on 16 or 17 November 2026. ${link(website.linkedin, "Follow State of Sec Morocco on LinkedIn")} or ${link(website.repoGithub, "watch the GitHub repository")} for publication updates.`
   },
   {
     question: "How can I contribute?",
-    answer: `The project is open source. Suggest questions, report problems or send improvements through ${link(website.repoGithub, "GitHub")}, and share the survey with your colleagues, your team and your CTF crew.`
+    answer: `The project is open source. Report problems or send improvements through ${link(website.repoGithub, "GitHub")}, and share the published research with your colleagues, your team and your CTF crew.`
   }
 ];
