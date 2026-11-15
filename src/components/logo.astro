@@ -8,7 +8,7 @@ interface Props {
 const { class: className = "" } = Astro.props;
 
 // A root shell prompt. One string so template formatting cannot add visible spaces inside it
-const wordmark = `<span class="text-primary">root@stateofsec.ma</span>:<span class="text-accent">~</span># <span class="text-primary cursor-blink">_</span>`;
+const wordmark = `<span class="text-primary">root@stateofsec.ma</span>:<span class="text-accent">~</span>#`;
 ---
 
 <span class={`font-mono font-bold tracking-tight whitespace-nowrap ${className}`}>

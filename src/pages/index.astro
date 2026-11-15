@@ -1,11 +1,17 @@
 ---
+import { SURVEY_OPEN } from "@/site-config.mjs";
 import * as HomePage from "../components/home/index.astro";
+import SurveyClosed from "../components/home/survey-closed.astro";
 import Layout from "../components/layout.astro";
 import { website } from "../website";
 
 export const prerender = true;
 ---
 
-<Layout title={`Morocco Cybersecurity Survey ${website.editionYear}`}>
-  <HomePage.default />
+<Layout
+  title={`Morocco Cybersecurity Survey ${website.editionYear}`}
+  showAnalyticsConsent={SURVEY_OPEN}
+  showFooter={SURVEY_OPEN}
+>
+  {SURVEY_OPEN ? <HomePage.default /> : <SurveyClosed />}
 </Layout>

@@ -1,0 +1,82 @@
+<main class="relative isolate overflow-hidden border-b border-border bg-background">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [background-size:40px_40px]"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-screen-xl flex-col justify-center px-4 py-16 sm:px-6 lg:min-h-[calc(100svh-6.5rem)] lg:px-8 lg:py-20">
+    <p class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-sm font-bold uppercase tracking-[0.22em] text-primary">
+      <span>Fieldwork complete</span>
+      <span class="hidden sm:inline" aria-hidden="true">·</span>
+      <span>15 November 2026</span>
+    </p>
+
+    <h1 class="closed-title mt-6 max-w-5xl font-extrabold tracking-[-0.05em] text-foreground">
+      Survey<br />
+      <span class="text-primary">closed.</span>
+    </h1>
+
+    <div class="mt-10 grid gap-8 border-t border-border pt-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+      <p class="closed-statement max-w-2xl font-medium text-foreground">
+        380+ people shared how cybersecurity works in Morocco.
+      </p>
+      <div class="max-w-2xl">
+        <p class="closed-copy text-muted-foreground">
+          We are aggregating and verifying the final results. The State of Sec
+          Morocco 2026 white paper is now being finalized and will be published
+          soon.
+        </p>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-sm font-bold">
+          <a
+            href="/reports/morocco-cybersecurity-survey-2026-early-statistics"
+            class="text-primary hover:underline"
+          >
+            Read the early statistics →
+          </a>
+          <a
+            href="https://www.linkedin.com/company/stateofsec/"
+            target="_blank"
+            rel="noreferrer"
+            class="text-muted-foreground hover:text-primary hover:underline"
+          >
+            Follow us on LinkedIn →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-12 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+      <span>12 regions + diaspora</span>
+      <span class="hidden sm:inline" aria-hidden="true">·</span>
+      <span>Final figures will follow validation</span>
+    </p>
+  </div>
+</main>
+
+<style>
+  .closed-title {
+    font-size: clamp(4.25rem, 10vw, 8.5rem);
+    line-height: 0.9;
+  }
+
+  .closed-statement {
+    font-size: clamp(1.5rem, 2.25vw, 2rem);
+    line-height: 1.35;
+  }
+
+  .closed-copy {
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 639px) {
+    .closed-title {
+      font-size: clamp(4rem, 20vw, 4.75rem);
+    }
+
+    .closed-copy {
+      font-size: 1rem;
+    }
+  }
+</style>
+

@@ -14,6 +14,7 @@ import { createFakeFirestore } from "@/lib/fake-firestore";
 import { surveySections } from "@/lib/survey";
 import { answerFieldNames, storedDocumentViolations } from "@/lib/survey-test-model";
 
+vi.mock("@/site-config.mjs", () => ({ SURVEY_OPEN: true }));
 vi.mock("@/lib/session", () => ({ getSessionUserId: async () => "respondent-1" }));
 vi.mock("@/lib/firebase/server", () => ({
   getAccessToken: async () => "test-token",

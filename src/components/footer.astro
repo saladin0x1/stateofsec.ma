@@ -2,6 +2,12 @@
 import { website } from "@/website";
 import Logo from "./logo.astro";
 
+interface Props {
+  showConsentSettings?: boolean;
+}
+
+const { showConsentSettings = true } = Astro.props;
+
 const projectLinks = [
   { label: "GitHub repository", href: website.repoGithub },
   { label: "Instagram", href: website.instagram },
@@ -126,13 +132,15 @@ const authorLinks = website.authors
           set:html={authorLinks}
                                                      />
       </p>
-      <button
-        type="button"
-        data-consent-settings
-        class="hover:text-foreground"
-      >
-        [Cookie settings]
-      </button>
+      {showConsentSettings && (
+        <button
+          type="button"
+          data-consent-settings
+          class="hover:text-foreground"
+        >
+          [Cookie settings]
+        </button>
+      )}
     </div>
   </div>
 </footer>

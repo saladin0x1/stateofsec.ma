@@ -1,6 +1,11 @@
 ---
 import BaseLayout from "@/components/layout.astro";
 import { surveySections } from "@/lib/survey";
+import { SURVEY_OPEN } from "@/site-config.mjs";
+
+if (!SURVEY_OPEN) {
+  return Astro.redirect("/");
+}
 
 const parts = surveySections.map(section => section.title).join(", ");
 

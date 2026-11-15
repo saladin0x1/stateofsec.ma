@@ -14,6 +14,7 @@ const harness = vi.hoisted(() => ({
   submit: async (_input: unknown): Promise<unknown> => Promise.reject(new Error("no network"))
 }));
 
+vi.mock("@/site-config.mjs", () => ({ SURVEY_OPEN: true }));
 vi.mock("./utils", () => ({
   goToThanksPage: () => {},
   submitAnswers: async (input: unknown) => harness.submit(input)

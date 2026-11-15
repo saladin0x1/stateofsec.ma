@@ -22,9 +22,18 @@ interface Props {
   year?: string;
   description?: string;
   noindex?: boolean;
+  showAnalyticsConsent?: boolean;
+  showFooter?: boolean;
 }
 
-const { title: titleProp, year, description: descriptionProp, noindex = false } = Astro.props;
+const {
+  title: titleProp,
+  year,
+  description: descriptionProp,
+  noindex = false,
+  showAnalyticsConsent = true,
+  showFooter = true
+} = Astro.props;
 const title = year
   ? `${website.name} ${year} Report`
   : titleProp
@@ -133,7 +142,7 @@ const structuredData = Astro.url.pathname === "/"
     <main>
       <slot />
     </main>
-    <Footer />
-    <AnalyticsConsent />
+    {showFooter && <Footer showConsentSettings={showAnalyticsConsent} />}
+    {showAnalyticsConsent && <AnalyticsConsent />}
   </body>
 </html>

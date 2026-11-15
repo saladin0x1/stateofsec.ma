@@ -23,6 +23,7 @@ const harness = vi.hoisted(() => ({
   userId: "respondent-1"
 }));
 
+vi.mock("@/site-config.mjs", () => ({ SURVEY_OPEN: true }));
 vi.mock("./utils", () => ({
   goToThanksPage: () => {},
   submitAnswers: async (input: unknown) => harness.submit(input)
