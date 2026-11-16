@@ -73,7 +73,7 @@ pnpm generate-questions --output=results/<year>/data  # questions.json from the 
 pnpm query-results                                    # query results from the CLI, see docs/query-results.md
 ```
 
-Run `generate-questions` before editing the survey for the next edition, or the questions will no longer match that year's answers. The private export is a raw dump of Firestore documents, including their anonymous ids, timestamps and free text: it is for the owners only. This year only aggregates and charts are published, no row-level file; see `docs/privacy.md` for the release gate and what a row-level release needs.
+Run `generate-questions` before editing the survey for the next edition, or the questions will no longer match that year's answers. The private export is a raw dump of Firestore documents, including their anonymous ids, timestamps and free text: it is for the owners only. This year only aggregates and charts are published, no row-level file; see `docs/privacy.md` for the release gate and what a row-level release needs. The 2026 aggregates are in [`results/2026`](./results/2026).
 
 ## Scripts
 

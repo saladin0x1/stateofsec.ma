@@ -1,0 +1,2525 @@
+{
+  "title": "State of Sec Morocco 2026: aggregated results",
+  "description": "The shares printed in the State of Sec Morocco 2026 White Paper (edition 1), in a machine-readable form. Aggregates only: no row-level data, no free text.",
+  "website": "https://stateofsec.ma",
+  "doi": "10.5281/zenodo.24337485",
+  "white_paper_doi": "10.5281/zenodo.23947850",
+  "license": "ODbL-1.0",
+  "attribution": "State of Sec Morocco 2026, by Salah-Eddine El Ouali and Abdelkarim Mouchquelita (stateofsec.ma, doi.org/10.5281/zenodo.24337485). Inspired by stateofdev.ma and the GeeksBlaBla community.",
+  "fieldwork": {
+    "from": "2026-10-31",
+    "to": "2026-11-15",
+    "days": 16
+  },
+  "sample": {
+    "kind": "Open, anonymous community survey. Self-selected sample, not weighted: the shares describe the people who answered, not all of Morocco's security workforce.",
+    "participants": "380+",
+    "women": "40+",
+    "regions_of_morocco_covered": 12,
+    "automated_submissions_excluded": 17
+  },
+  "reading_notes": [
+    "Shares are percentages with at most one decimal, as printed in the White Paper. Each share is computed among the people described in the question's base.",
+    "Questions with \"multiple\": true allowed several answers: their shares do not add up to 100.",
+    "An option marked \"routed\": true was shown to some respondents only (see optionShowIf in questions.json): its share is computed among those who saw it.",
+    "\"small_base\": true means few people were asked: read the shares as directions.",
+    "When options_published is lower than options_in_survey, the White Paper does not print the remaining options (\"Other\", the least chosen ones, or options shown to fewer than 10 people; for gender, it prints the share of women only). Free text is never published.",
+    "\"combined\" gives shares the White Paper quotes for several options together. They are computed before rounding, so they can differ by 0.1 from the sum of the parts.",
+    "Counts are not published, except the few small-group figures the White Paper itself prints (in \"breakdowns\")."
+  ],
+  "questions": {
+    "profile-q-0": {
+      "question": "What is your gender?",
+      "section": "profile",
+      "multiple": false,
+      "base": "all respondents",
+      "white_paper": {
+        "page": 6
+      },
+      "options_in_survey": 2,
+      "options_published": 1,
+      "shares": [
+        {
+          "option": "Female",
+          "share": 11.2
+        }
+      ]
+    },
+    "profile-q-1": {
+      "question": "What is your age?",
+      "section": "profile",
+      "multiple": false,
+      "base": "all respondents",
+      "white_paper": {
+        "page": 14,
+        "figure": "G.02"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Younger than 18 years",
+          "share": 1.3
+        },
+        {
+          "option": "18 to 24 years",
+          "share": 58.6
+        },
+        {
+          "option": "25 to 34 years",
+          "share": 34.4
+        },
+        {
+          "option": "35 to 44 years",
+          "share": 4.7
+        },
+        {
+          "option": "45 or older",
+          "share": 1
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Younger than 18 years",
+            "18 to 24 years",
+            "25 to 34 years"
+          ],
+          "share": 94.3,
+          "decimals": 1
+        }
+      ]
+    },
+    "profile-q-2": {
+      "question": "Where are you currently located?",
+      "section": "profile",
+      "multiple": false,
+      "base": "all respondents",
+      "white_paper": {
+        "page": 13,
+        "figure": "G.01"
+      },
+      "options_in_survey": 16,
+      "options_published": 16,
+      "shares": [
+        {
+          "option": "Casablanca-Settat",
+          "share": 26.3
+        },
+        {
+          "option": "Rabat-Salé-Kénitra",
+          "share": 21.9
+        },
+        {
+          "option": "Marrakech-Safi",
+          "share": 10.4
+        },
+        {
+          "option": "Souss-Massa",
+          "share": 8.6
+        },
+        {
+          "option": "Tanger-Tétouan-Al Hoceïma",
+          "share": 5.7
+        },
+        {
+          "option": "Fès-Meknès",
+          "share": 5.7
+        },
+        {
+          "option": "L'Oriental",
+          "share": 5.5
+        },
+        {
+          "option": "Béni Mellal-Khénifra",
+          "share": 3.6
+        },
+        {
+          "option": "Laâyoune-Sakia El Hamra",
+          "share": 1.6
+        },
+        {
+          "option": "Drâa-Tafilalet",
+          "share": 1
+        },
+        {
+          "option": "Guelmim-Oued Noun",
+          "share": 0.5
+        },
+        {
+          "option": "Dakhla-Oued Ed Dahab",
+          "share": 0.5
+        },
+        {
+          "option": "Europe",
+          "share": 6.3
+        },
+        {
+          "option": "Others",
+          "share": 1
+        },
+        {
+          "option": "Middle East",
+          "share": 0.8
+        },
+        {
+          "option": "US & Canada",
+          "share": 0.5
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Europe",
+            "Others",
+            "Middle East",
+            "US & Canada"
+          ],
+          "share": 8.6,
+          "decimals": 1
+        },
+        {
+          "options": [
+            "Casablanca-Settat",
+            "Rabat-Salé-Kénitra"
+          ],
+          "share": 48,
+          "decimals": 0
+        }
+      ]
+    },
+    "profile-q-3": {
+      "question": "Which country?",
+      "section": "profile",
+      "multiple": false,
+      "base": "respondents abroad",
+      "small_base": true,
+      "white_paper": {
+        "page": 48,
+        "figure": "G.48"
+      },
+      "options_in_survey": 15,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "France",
+          "share": 51.5
+        },
+        {
+          "option": "Germany, Switzerland or Austria",
+          "share": 12.1
+        },
+        {
+          "option": "Belgium, Netherlands or Luxembourg",
+          "share": 6.1
+        },
+        {
+          "option": "United States",
+          "share": 6.1
+        },
+        {
+          "option": "Africa (outside Morocco)",
+          "share": 6.1
+        },
+        {
+          "option": "Other European country",
+          "share": 3
+        }
+      ]
+    },
+    "profile-q-4": {
+      "question": "What is your IT or security education? (completed or in progress)",
+      "section": "profile",
+      "multiple": false,
+      "base": "respondents 18 and over",
+      "white_paper": {
+        "page": 15,
+        "figure": "G.06"
+      },
+      "options_in_survey": 10,
+      "options_published": 9,
+      "shares": [
+        {
+          "option": "University/Public school - Bac +5 (Master's)",
+          "share": 41.7
+        },
+        {
+          "option": "University/Public school - Bac +2/+3 (Bachelor's)",
+          "share": 19
+        },
+        {
+          "option": "Self-taught (no formal IT or security education)",
+          "share": 14.5
+        },
+        {
+          "option": "Private engineering/tech school",
+          "share": 6.1
+        },
+        {
+          "option": "Coding school (1337, YouCode, Solicode, etc.)",
+          "share": 6.1
+        },
+        {
+          "option": "Vocational/Technical training (OFPPT, etc.)",
+          "share": 5.8
+        },
+        {
+          "option": "Other field's diploma (career transition)",
+          "share": 1.3
+        },
+        {
+          "option": "Still at lycée / preparing the Bac (incl. repeating or candidat libre)",
+          "share": 0.8
+        },
+        {
+          "option": "University/Public school - Bac +8 (Doctoral)",
+          "share": 0.8
+        }
+      ]
+    },
+    "profile-q-5": {
+      "question": "How many years have you worked in security? (jobs, freelance, internships; bug bounty only as main income)",
+      "section": "profile",
+      "multiple": false,
+      "base": "respondents 18 and over",
+      "white_paper": {
+        "page": 14,
+        "figure": "G.03"
+      },
+      "options_in_survey": 8,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "None yet (security has not been part of my job)",
+          "share": 29
+        },
+        {
+          "option": "Less than a year (incl. a current internship)",
+          "share": 23.1
+        },
+        {
+          "option": "1-2 years",
+          "share": 21.8
+        },
+        {
+          "option": "3-4 years",
+          "share": 11.2
+        },
+        {
+          "option": "5-6 years",
+          "share": 9.8
+        },
+        {
+          "option": "7-10 years",
+          "share": 4
+        },
+        {
+          "option": "11-16 years",
+          "share": 0.8
+        },
+        {
+          "option": "16+ years",
+          "share": 0.3
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "None yet (security has not been part of my job)",
+            "Less than a year (incl. a current internship)",
+            "1-2 years"
+          ],
+          "share": 73.9,
+          "decimals": 1
+        },
+        {
+          "options": [
+            "7-10 years",
+            "11-16 years",
+            "16+ years"
+          ],
+          "share": 5.1,
+          "decimals": 1
+        }
+      ]
+    },
+    "profile-q-6": {
+      "question": "What is your current employment situation?",
+      "section": "profile",
+      "multiple": false,
+      "base": "respondents 18 and over",
+      "note": "Working students picked their job.",
+      "white_paper": {
+        "page": 15,
+        "figure": "G.05"
+      },
+      "options_in_survey": 8,
+      "options_published": 7,
+      "shares": [
+        {
+          "option": "Employee of an organization in Morocco (public or private, incl. nearshore)",
+          "share": 26.6
+        },
+        {
+          "option": "Student (school, university, 1337, OFPPT; if you also work, pick your job)",
+          "share": 26.1
+        },
+        {
+          "option": "Looking for work",
+          "share": 15.7
+        },
+        {
+          "option": "Freelancer / independent (incl. full-time bug bounty, foreign clients)",
+          "share": 12.2
+        },
+        {
+          "option": "Employee of a foreign organization (abroad or remote, incl. employer-of-record)",
+          "share": 10.4
+        },
+        {
+          "option": "Founder or running my own company",
+          "share": 4
+        },
+        {
+          "option": "Internship or apprenticeship (incl. PFE, ANAPEC / Idmaj contract)",
+          "share": 3.2
+        }
+      ]
+    },
+    "roles-q-0": {
+      "question": "Which security domain best describes your current work? (no security work yet: the area you focus on)",
+      "section": "roles",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 18,
+        "figure": "G.09"
+      },
+      "options_in_survey": 12,
+      "options_published": 11,
+      "shares": [
+        {
+          "option": "Offensive security (pentest, red team, bug bounty)",
+          "share": 43
+        },
+        {
+          "option": "Security operations (SOC) / blue team",
+          "share": 13.1
+        },
+        {
+          "option": "Network, infrastructure & IT security (incl. sysadmins handling security)",
+          "share": 12.8
+        },
+        {
+          "option": "Still exploring / no specific area yet",
+          "share": 9.9
+        },
+        {
+          "option": "Security engineering / DevSecOps",
+          "share": 4.4
+        },
+        {
+          "option": "Threat intelligence / malware analysis / reverse engineering",
+          "share": 2.9
+        },
+        {
+          "option": "Application security (AppSec)",
+          "share": 2.3
+        },
+        {
+          "option": "Cloud security",
+          "share": 2.3
+        },
+        {
+          "option": "Incident response / DFIR",
+          "share": 2
+        },
+        {
+          "option": "Governance, risk & compliance (GRC)",
+          "share": 2
+        },
+        {
+          "option": "Management / Head of security (CISO)",
+          "share": 0.6
+        }
+      ]
+    },
+    "roles-q-1": {
+      "question": "What is your seniority level in your current security role?",
+      "section": "roles",
+      "multiple": false,
+      "base": "employees with security experience",
+      "white_paper": {
+        "page": 14,
+        "figure": "G.04"
+      },
+      "options_in_survey": 6,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "Junior / entry-level",
+          "share": 26.9
+        },
+        {
+          "option": "Mid-level",
+          "share": 33.3
+        },
+        {
+          "option": "Senior",
+          "share": 23.1
+        },
+        {
+          "option": "Lead / Principal (no direct reports)",
+          "share": 8.3
+        },
+        {
+          "option": "Manager (leads a team)",
+          "share": 6.5
+        },
+        {
+          "option": "Head of security / CISO",
+          "share": 1.9
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Senior",
+            "Lead / Principal (no direct reports)",
+            "Manager (leads a team)",
+            "Head of security / CISO"
+          ],
+          "share": 40,
+          "decimals": 0
+        }
+      ]
+    },
+    "roles-q-2": {
+      "question": "Do you take part in bug bounty or VDP programs (organizations invite you to test, e.g. HackerOne, YesWeHack, Bugcrowd)?",
+      "section": "roles",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 24,
+        "figure": "G.17"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Yes, regularly",
+          "share": 18
+        },
+        {
+          "option": "Yes, now and then",
+          "share": 10.2
+        },
+        {
+          "option": "Tried it, no longer active",
+          "share": 19.8
+        },
+        {
+          "option": "Not yet, learning or planning to",
+          "share": 29.4
+        },
+        {
+          "option": "No",
+          "share": 22.7
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Yes, regularly",
+            "Yes, now and then"
+          ],
+          "share": 28.2,
+          "decimals": 1
+        }
+      ]
+    },
+    "learning-q-0": {
+      "question": "Which security certifications do you hold?",
+      "section": "learning",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 21,
+        "figure": "G.12"
+      },
+      "options_in_survey": 13,
+      "options_published": 12,
+      "shares": [
+        {
+          "option": "None yet",
+          "share": 45.5
+        },
+        {
+          "option": "Entry-level / free (ISC2 CC, Google, Cisco NetAcad, Fortinet FCF)",
+          "share": 20.3
+        },
+        {
+          "option": "INE / Hack The Box (eJPT, eCPPT, CPTS)",
+          "share": 8.9
+        },
+        {
+          "option": "OSCP",
+          "share": 8
+        },
+        {
+          "option": "Hands-on offensive (CRTP, CRTO, PNPT, BSCP)",
+          "share": 8
+        },
+        {
+          "option": "CompTIA (Security+, CySA+, PenTest+)",
+          "share": 7.1
+        },
+        {
+          "option": "Other OffSec (OSEP, OSWE, OSED, etc.)",
+          "share": 6.8
+        },
+        {
+          "option": "Network vendor certs (Fortinet NSE 4+, Palo Alto, Cisco, Check Point, Huawei)",
+          "share": 5.2
+        },
+        {
+          "option": "Microsoft / cloud (SC-200, AZ-500, AWS, GCP)",
+          "share": 5.2
+        },
+        {
+          "option": "CEH (Certified Ethical Hacker)",
+          "share": 4.9
+        },
+        {
+          "option": "ISO 27001 / 27005 / EBIOS RM",
+          "share": 2.8,
+          "routed": true
+        },
+        {
+          "option": "CISSP / CISM / CISA",
+          "share": 1.3,
+          "routed": true
+        }
+      ]
+    },
+    "learning-q-1": {
+      "question": "How did you learn cybersecurity? (select all that helped)",
+      "section": "learning",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 22,
+        "figure": "G.13"
+      },
+      "options_in_survey": 14,
+      "options_published": 10,
+      "shares": [
+        {
+          "option": "Self-study / passion projects (books, blogs, docs, home lab)",
+          "share": 63.7
+        },
+        {
+          "option": "University, engineering school or CPGE",
+          "share": 54,
+          "routed": true
+        },
+        {
+          "option": "Hands-on labs (HTB, TryHackMe, PortSwigger Academy)",
+          "share": 48
+        },
+        {
+          "option": "Courses & training (online or in person)",
+          "share": 37.5
+        },
+        {
+          "option": "YouTube",
+          "share": 36.6
+        },
+        {
+          "option": "CTFs / competitions",
+          "share": 31.4
+        },
+        {
+          "option": "OFPPT or vocational training",
+          "share": 28.7,
+          "routed": true
+        },
+        {
+          "option": "Bug bounty",
+          "share": 16
+        },
+        {
+          "option": "On-the-job",
+          "share": 12.4,
+          "routed": true
+        },
+        {
+          "option": "Clubs / online communities",
+          "share": 12
+        }
+      ]
+    },
+    "learning-q-2": {
+      "question": "What languages can you read/write?",
+      "section": "learning",
+      "multiple": true,
+      "base": "all respondents",
+      "note": "English-only survey.",
+      "white_paper": {
+        "page": 16,
+        "figure": "G.07"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Arabic",
+          "share": 95.7
+        },
+        {
+          "option": "English",
+          "share": 94.2
+        },
+        {
+          "option": "French",
+          "share": 80.6
+        },
+        {
+          "option": "Amazigh",
+          "share": 22.5
+        },
+        {
+          "option": "Others",
+          "share": 9.2
+        }
+      ]
+    },
+    "learning-q-3": {
+      "question": "What are your biggest challenges in learning security?",
+      "section": "learning",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 22,
+        "figure": "G.14"
+      },
+      "options_in_survey": 9,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Lack of time",
+          "share": 36.9
+        },
+        {
+          "option": "Cost of resources (labs, courses, certifications)",
+          "share": 35.7
+        },
+        {
+          "option": "Information overload",
+          "share": 28.3
+        },
+        {
+          "option": "Keeping up with rapid changes",
+          "share": 24
+        },
+        {
+          "option": "No mentorship/guidance",
+          "share": 19.4
+        },
+        {
+          "option": "Lack of practical projects or labs",
+          "share": 18.2
+        },
+        {
+          "option": "No particular challenge",
+          "share": 11.4
+        },
+        {
+          "option": "Language barriers (English/French proficiency)",
+          "share": 6.8
+        }
+      ]
+    },
+    "work-q-0": {
+      "question": "Net monthly income in MAD (employees: main job pay slip, fixed allowances included; 13th month, bonuses and side jobs excluded; interns: stipend; founders: take-home after tax and charges; convert other currencies)",
+      "section": "work",
+      "multiple": false,
+      "base": "employees of Moroccan organizations, founders and interns with security experience",
+      "white_paper": {
+        "page": 23,
+        "figure": "G.15"
+      },
+      "options_in_survey": 16,
+      "options_published": 11,
+      "shares": [
+        {
+          "option": "No income / unpaid",
+          "share": 8.2
+        },
+        {
+          "option": "4 000 - 6 000",
+          "share": 5.5
+        },
+        {
+          "option": "6 000 - 8 000",
+          "share": 6.8
+        },
+        {
+          "option": "8 000 - 12 000",
+          "share": 21.9
+        },
+        {
+          "option": "12 000 - 16 000",
+          "share": 20.5
+        },
+        {
+          "option": "16 000 - 20 000",
+          "share": 6.8
+        },
+        {
+          "option": "20 000 - 25 000",
+          "share": 6.8
+        },
+        {
+          "option": "25 000 - 30 000",
+          "share": 5.5
+        },
+        {
+          "option": "30 000 - 60 000",
+          "share": 1.4
+        },
+        {
+          "option": "> 60 000",
+          "share": 2.7
+        },
+        {
+          "option": "Prefer not to say",
+          "share": 13.7
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "8 000 - 12 000",
+            "12 000 - 16 000"
+          ],
+          "share": 42.5,
+          "decimals": 1
+        }
+      ]
+    },
+    "work-q-1": {
+      "question": "Usual daily rate (TJM) in MAD, before tax (convert other currencies; excl. bug bounty)",
+      "section": "work",
+      "multiple": false,
+      "base": "freelancers in Morocco",
+      "small_base": true,
+      "white_paper": {
+        "page": 48,
+        "figure": "G.51"
+      },
+      "options_in_survey": 7,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Prefer not to say",
+          "share": 33.3
+        },
+        {
+          "option": "I don't bill by the day (e.g. full-time bug bounty)",
+          "share": 27.8
+        },
+        {
+          "option": "< 1 000",
+          "share": 22.2
+        },
+        {
+          "option": "3 000 - 5 000",
+          "share": 11.1
+        },
+        {
+          "option": "2 000 - 3 000",
+          "share": 5.6
+        }
+      ]
+    },
+    "work-q-2": {
+      "question": "Gross yearly salary in USD, before tax (convert other currencies; excl. bug bounty)",
+      "section": "work",
+      "multiple": false,
+      "base": "employees of foreign organizations with security experience",
+      "small_base": true,
+      "white_paper": {
+        "page": 23,
+        "figure": "G.16"
+      },
+      "options_in_survey": 7,
+      "options_published": 7,
+      "shares": [
+        {
+          "option": "< 20 000",
+          "share": 6.7
+        },
+        {
+          "option": "20 000 - 30 000",
+          "share": 16.7
+        },
+        {
+          "option": "30 000 - 50 000",
+          "share": 10
+        },
+        {
+          "option": "50 000 - 80 000",
+          "share": 23.3
+        },
+        {
+          "option": "80 000 - 120 000",
+          "share": 13.3
+        },
+        {
+          "option": "> 120 000",
+          "share": 10
+        },
+        {
+          "option": "Prefer not to say",
+          "share": 20
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "50 000 - 80 000",
+            "80 000 - 120 000",
+            "> 120 000"
+          ],
+          "share": 47,
+          "decimals": 0
+        }
+      ]
+    },
+    "work-q-3": {
+      "question": "Usual daily rate in USD, before tax (convert other currencies; excl. bug bounty)",
+      "section": "work",
+      "multiple": false,
+      "withheld": "too few answers"
+    },
+    "work-q-4": {
+      "question": "What type of organization do you work for (or run)?",
+      "section": "work",
+      "multiple": false,
+      "base": "employees, founders and interns with security experience",
+      "white_paper": {
+        "page": 16,
+        "figure": "G.08"
+      },
+      "options_in_survey": 11,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Security firm (MSSP / SOC, pentest or consulting firm, integrator, vendor)",
+          "share": 30.6
+        },
+        {
+          "option": "IT services / ESN / nearshore (incl. regie placements)",
+          "share": 13.3
+        },
+        {
+          "option": "Public administration",
+          "share": 12.2
+        },
+        {
+          "option": "Tech / software company (startup to big tech, e-commerce)",
+          "share": 9.2
+        },
+        {
+          "option": "Bank / insurance / fintech",
+          "share": 7.1
+        },
+        {
+          "option": "Other company (in-house team)",
+          "share": 6.1
+        },
+        {
+          "option": "Big Four / audit & advisory",
+          "share": 4.1
+        },
+        {
+          "option": "Industry / energy / OT",
+          "share": 3.1
+        }
+      ]
+    },
+    "work-q-5": {
+      "question": "Where are most of your clients?",
+      "section": "work",
+      "multiple": false,
+      "base": "freelancers and founders",
+      "small_base": true,
+      "white_paper": {
+        "page": 48,
+        "figure": "G.50"
+      },
+      "options_in_survey": 9,
+      "options_published": 7,
+      "shares": [
+        {
+          "option": "Morocco",
+          "share": 33.3
+        },
+        {
+          "option": "Mostly bug bounty platforms",
+          "share": 33.3
+        },
+        {
+          "option": "Mixed",
+          "share": 11.1
+        },
+        {
+          "option": "Other Europe",
+          "share": 7.4
+        },
+        {
+          "option": "No clients yet",
+          "share": 7.4
+        },
+        {
+          "option": "France",
+          "share": 3.7
+        },
+        {
+          "option": "North America",
+          "share": 3.7
+        }
+      ]
+    },
+    "work-q-6": {
+      "question": "What remote work arrangement does your current employer offer?",
+      "section": "work",
+      "multiple": false,
+      "base": "employees and interns who answered",
+      "white_paper": {
+        "page": 37,
+        "figure": "G.41"
+      },
+      "options_in_survey": 3,
+      "options_published": 3,
+      "shares": [
+        {
+          "option": "Hybrid",
+          "share": 47.5
+        },
+        {
+          "option": "Back to office",
+          "share": 35.6
+        },
+        {
+          "option": "Full remote",
+          "share": 16.8
+        }
+      ]
+    },
+    "work-q-7": {
+      "question": "How often do you work beyond normal hours?",
+      "section": "work",
+      "multiple": false,
+      "base": "respondents with a job who answered",
+      "white_paper": {
+        "page": 30,
+        "figure": "G.28"
+      },
+      "options_in_survey": 4,
+      "options_published": 4,
+      "shares": [
+        {
+          "option": "Often: weekly or more",
+          "share": 24.6
+        },
+        {
+          "option": "Sometimes: a few days a month",
+          "share": 31.3
+        },
+        {
+          "option": "Rarely: a few days a year or less",
+          "share": 28.4
+        },
+        {
+          "option": "Never",
+          "share": 15.7
+        }
+      ]
+    },
+    "work-q-8": {
+      "question": "How do you feel about your job?",
+      "section": "work",
+      "multiple": false,
+      "base": "respondents with a job who answered",
+      "white_paper": {
+        "page": 30,
+        "figure": "G.27"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Very satisfied",
+          "share": 29.3
+        },
+        {
+          "option": "Slightly satisfied",
+          "share": 19.3
+        },
+        {
+          "option": "Neither satisfied nor unsatisfied",
+          "share": 29.3
+        },
+        {
+          "option": "Slightly unsatisfied",
+          "share": 12.9
+        },
+        {
+          "option": "Very unsatisfied",
+          "share": 9.3
+        }
+      ]
+    },
+    "work-q-9": {
+      "question": "Bug bounty earnings in the last 12 months? (USD before tax; convert EUR)",
+      "section": "work",
+      "multiple": false,
+      "base": "current and former participants",
+      "white_paper": {
+        "page": 24,
+        "figure": "G.18"
+      },
+      "options_in_survey": 10,
+      "options_published": 9,
+      "shares": [
+        {
+          "option": "Nothing",
+          "share": 46.7
+        },
+        {
+          "option": "No cash, only swag / points / Hall of Fame",
+          "share": 10.7
+        },
+        {
+          "option": "Less than $500",
+          "share": 8.2
+        },
+        {
+          "option": "$500 - $1,999",
+          "share": 4.9
+        },
+        {
+          "option": "$2,000 - $4,999",
+          "share": 6.6
+        },
+        {
+          "option": "$5,000 - $19,999",
+          "share": 5.7
+        },
+        {
+          "option": "$20,000 - $49,999",
+          "share": 3.3
+        },
+        {
+          "option": "$50,000 or more",
+          "share": 4.1
+        },
+        {
+          "option": "Prefer not to say",
+          "share": 9.8
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "$5,000 - $19,999",
+            "$20,000 - $49,999",
+            "$50,000 or more"
+          ],
+          "share": 13.1,
+          "decimals": 1
+        }
+      ]
+    },
+    "work-q-10": {
+      "question": "What made bug bounty harder, made you stop, or kept you from starting?",
+      "section": "work",
+      "multiple": true,
+      "base": "participants, former participants and the interested",
+      "white_paper": {
+        "page": 25,
+        "figure": "G.19"
+      },
+      "options_in_survey": 15,
+      "options_published": 10,
+      "shares": [
+        {
+          "option": "Don't feel ready yet / don't know where to start",
+          "share": 41.7,
+          "routed": true
+        },
+        {
+          "option": "No time alongside work or studies",
+          "share": 29.6
+        },
+        {
+          "option": "Found no valid bugs, duplicates or low payouts",
+          "share": 26,
+          "routed": true
+        },
+        {
+          "option": "Nothing in particular",
+          "share": 18.7
+        },
+        {
+          "option": "Few or no Moroccan programs",
+          "share": 12.3
+        },
+        {
+          "option": "Worried about legal trouble / unsure what is allowed to test",
+          "share": 11.3
+        },
+        {
+          "option": "Family or school against it",
+          "share": 6.1,
+          "routed": true
+        },
+        {
+          "option": "Bank blocked, delayed or questioned a transfer",
+          "share": 4.5,
+          "routed": true
+        },
+        {
+          "option": "Fees and exchange-rate losses",
+          "share": 4.1,
+          "routed": true
+        },
+        {
+          "option": "ID (KYC) or tax-form checks",
+          "share": 3.9
+        }
+      ]
+    },
+    "work-q-11": {
+      "question": "How long have you been unemployed after graduation?",
+      "section": "work",
+      "multiple": false,
+      "base": "recent entrants with a formal education, students excluded",
+      "white_paper": {
+        "page": 36,
+        "figure": "G.39"
+      },
+      "options_in_survey": 6,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "None, I worked straight after my graduation",
+          "share": 30.6
+        },
+        {
+          "option": "Up to 3 months",
+          "share": 25
+        },
+        {
+          "option": "Up to 6 months",
+          "share": 13.9
+        },
+        {
+          "option": "Up to 1 year",
+          "share": 12
+        },
+        {
+          "option": "More than 1 year",
+          "share": 9.3
+        },
+        {
+          "option": "Not graduated yet",
+          "share": 9.3
+        }
+      ]
+    },
+    "work-q-12": {
+      "question": "What makes it hard to get your first (or next) security job?",
+      "section": "work",
+      "multiple": true,
+      "base": "newcomers, interns, students and job seekers",
+      "white_paper": {
+        "page": 36,
+        "figure": "G.38"
+      },
+      "options_in_survey": 14,
+      "options_published": 10,
+      "shares": [
+        {
+          "option": "Need experience to get experience",
+          "share": 59,
+          "routed": true
+        },
+        {
+          "option": "No entry-level roles",
+          "share": 45.8,
+          "routed": true
+        },
+        {
+          "option": "Hard to find a security internship / PFE",
+          "share": 40.6,
+          "routed": true
+        },
+        {
+          "option": "Few local opportunities in Morocco",
+          "share": 37.7
+        },
+        {
+          "option": "Certifications too expensive",
+          "share": 31.8
+        },
+        {
+          "option": "Still studying, not looking yet",
+          "share": 24.4,
+          "routed": true
+        },
+        {
+          "option": "Not enough practical skills yet",
+          "share": 22.5
+        },
+        {
+          "option": "Jobs go through referrals / personal network",
+          "share": 19.9
+        },
+        {
+          "option": "Don't know where to look",
+          "share": 11.9
+        },
+        {
+          "option": "Recruiters filter on diploma or age",
+          "share": 9.3
+        }
+      ]
+    },
+    "work-q-13": {
+      "question": "What are the biggest challenges in the Moroccan security job market?",
+      "section": "work",
+      "multiple": true,
+      "base": "working practitioners",
+      "note": "Up to three answers.",
+      "white_paper": {
+        "page": 35,
+        "figure": "G.37"
+      },
+      "options_in_survey": 12,
+      "options_published": 9,
+      "shares": [
+        {
+          "option": "Low salaries / talent leaving for abroad",
+          "share": 54.9
+        },
+        {
+          "option": "Companies don't value security (no budget, left to IT staff)",
+          "share": 44.3
+        },
+        {
+          "option": "Few entry-level roles",
+          "share": 23.8
+        },
+        {
+          "option": "Skills / experience gap",
+          "share": 17.2
+        },
+        {
+          "option": "Recruiters filter on diploma (Bac+5) or age",
+          "share": 15.6
+        },
+        {
+          "option": "Costly certifications",
+          "share": 9
+        },
+        {
+          "option": "Jobs concentrated in Casablanca / Rabat",
+          "share": 9
+        },
+        {
+          "option": "Staffing / regie contracts instead of direct hiring",
+          "share": 8.2
+        },
+        {
+          "option": "Few senior roles",
+          "share": 7.4
+        }
+      ]
+    },
+    "work-q-14": {
+      "question": "What would most influence your choice between job offers?",
+      "section": "work",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 37,
+        "figure": "G.40"
+      },
+      "options_in_survey": 8,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Salary",
+          "share": 69.1
+        },
+        {
+          "option": "Work-life balance and flexible schedule",
+          "share": 49.8
+        },
+        {
+          "option": "Remote work options",
+          "share": 47.5
+        },
+        {
+          "option": "Professional development and paid certifications",
+          "share": 42.6
+        },
+        {
+          "option": "Technologies and tools I'd be working with",
+          "share": 34.7
+        },
+        {
+          "option": "Office environment or company culture",
+          "share": 31.3
+        },
+        {
+          "option": "How impactful the work would be",
+          "share": 20.8
+        },
+        {
+          "option": "Visa / relocation support",
+          "share": 15.8
+        }
+      ]
+    },
+    "work-q-15": {
+      "question": "What is your preferred mode of work?",
+      "section": "work",
+      "multiple": false,
+      "base": "freelancers, founders, students and job seekers who answered",
+      "white_paper": {
+        "page": 37,
+        "figure": "G.41"
+      },
+      "options_in_survey": 3,
+      "options_published": 3,
+      "shares": [
+        {
+          "option": "Part-time remote / Hybrid",
+          "share": 64.6
+        },
+        {
+          "option": "Full remote",
+          "share": 22.6
+        },
+        {
+          "option": "From the office",
+          "share": 12.8
+        }
+      ]
+    },
+    "work-q-16": {
+      "question": "Do you have any plans to work outside Morocco?",
+      "section": "work",
+      "multiple": false,
+      "base": "respondents living in Morocco",
+      "white_paper": {
+        "page": 29,
+        "figure": "G.25"
+      },
+      "options_in_survey": 4,
+      "options_published": 4,
+      "shares": [
+        {
+          "option": "Yes, in the next 12 months",
+          "share": 18.8
+        },
+        {
+          "option": "Yes, in the next 24 months",
+          "share": 24.2
+        },
+        {
+          "option": "Still hesitating",
+          "share": 38.5
+        },
+        {
+          "option": "No",
+          "share": 18.5
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Yes, in the next 12 months",
+            "Yes, in the next 24 months"
+          ],
+          "share": 43.1,
+          "decimals": 1
+        }
+      ]
+    },
+    "work-q-17": {
+      "question": "Do you plan to come back to live in Morocco?",
+      "section": "work",
+      "multiple": false,
+      "base": "respondents living abroad who answered",
+      "small_base": true,
+      "white_paper": {
+        "page": 48,
+        "figure": "G.49"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Yes, but not in the near future",
+          "share": 48.1
+        },
+        {
+          "option": "No, I plan to stay abroad",
+          "share": 33.3
+        },
+        {
+          "option": "Still hesitating",
+          "share": 11.1
+        },
+        {
+          "option": "Yes, within the next 12 months",
+          "share": 3.7
+        },
+        {
+          "option": "Yes, within the next 24 months",
+          "share": 3.7
+        }
+      ]
+    },
+    "work-q-18": {
+      "question": "After your studies, where would you like to work?",
+      "section": "work",
+      "multiple": false,
+      "withheld": "too few answers"
+    },
+    "tech-q-0": {
+      "question": "Which offensive tools do you use at work or in labs / CTFs?",
+      "section": "tech",
+      "multiple": true,
+      "base": "offensive, network, AppSec and DevSecOps roles, and those exploring",
+      "white_paper": {
+        "page": 26,
+        "figure": "G.20"
+      },
+      "options_in_survey": 8,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "Web & API testing (Burp Suite, Caido, ZAP, sqlmap, ffuf, Nuclei)",
+          "share": 72.5
+        },
+        {
+          "option": "Recon & network (Nmap, subfinder, httpx, Shodan)",
+          "share": 71.6
+        },
+        {
+          "option": "Exploitation & AD attacks (Metasploit, Cobalt Strike, Sliver, BloodHound, Impacket, NetExec)",
+          "share": 55.9,
+          "routed": true
+        },
+        {
+          "option": "Cracking & reversing (Hashcat, John the Ripper, Ghidra, IDA Pro)",
+          "share": 47.5
+        },
+        {
+          "option": "Vulnerability scanning (Nessus, OpenVAS, Qualys)",
+          "share": 41,
+          "routed": true
+        },
+        {
+          "option": "Mobile testing (Frida, MobSF, objection)",
+          "share": 21.8,
+          "routed": true
+        }
+      ]
+    },
+    "tech-q-1": {
+      "question": "Which defensive, engineering or GRC tools do you use (you or your team) at work or in labs?",
+      "section": "tech",
+      "multiple": true,
+      "base": "all roles except offensive security",
+      "white_paper": {
+        "page": 26,
+        "figure": "G.21"
+      },
+      "options_in_survey": 9,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "SIEM & log analysis (Splunk, Microsoft Sentinel, Elastic / ELK, Wazuh, QRadar)",
+          "share": 63,
+          "routed": true
+        },
+        {
+          "option": "Network & firewalls (Fortinet, Palo Alto, Cisco, Check Point, Wireshark, Suricata, Zeek)",
+          "share": 56.7,
+          "routed": true
+        },
+        {
+          "option": "Endpoint & identity (CrowdStrike, Defender XDR, SentinelOne, Entra ID, CyberArk)",
+          "share": 36.1,
+          "routed": true
+        },
+        {
+          "option": "Malware analysis & reverse engineering (Ghidra, IDA Pro, x64dbg, YARA)",
+          "share": 32.7,
+          "routed": true
+        },
+        {
+          "option": "DFIR & threat intel (Velociraptor, Volatility, EnCase, TheHive, MISP, OpenCTI)",
+          "share": 32,
+          "routed": true
+        },
+        {
+          "option": "Vulnerability scanning, code & cloud (Nessus, OpenVAS, Qualys, SonarQube, Snyk, Semgrep, Wiz, Prowler)",
+          "share": 30.4
+        }
+      ]
+    },
+    "tech-q-2": {
+      "question": "How often do you use AI tools for security work or study? (ChatGPT, Claude, Copilot...)",
+      "section": "tech",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 27,
+        "figure": "G.22"
+      },
+      "options_in_survey": 4,
+      "options_published": 4,
+      "shares": [
+        {
+          "option": "Daily",
+          "share": 62.8
+        },
+        {
+          "option": "Occasionally",
+          "share": 27
+        },
+        {
+          "option": "Tried them but not interested",
+          "share": 6
+        },
+        {
+          "option": "Never",
+          "share": 4.3
+        }
+      ]
+    },
+    "tech-q-3": {
+      "question": "How do you use AI tools for security work or study?",
+      "section": "tech",
+      "multiple": true,
+      "base": "respondents who use AI tools",
+      "white_paper": {
+        "page": 27,
+        "figure": "G.23"
+      },
+      "options_in_survey": 6,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Research & learning",
+          "share": 89.7
+        },
+        {
+          "option": "Writing or reviewing code / scripts",
+          "share": 60.1
+        },
+        {
+          "option": "Report writing",
+          "share": 47
+        },
+        {
+          "option": "Log / alert triage",
+          "share": 17.4
+        },
+        {
+          "option": "Only where allowed (some work, clients or school forbid it)",
+          "share": 13.8
+        }
+      ]
+    },
+    "tech-q-4": {
+      "question": "Do you think AI will replace security jobs in the future?",
+      "section": "tech",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 27,
+        "figure": "G.24"
+      },
+      "options_in_survey": 6,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "Not very much (less than 10%)",
+          "share": 19.9
+        },
+        {
+          "option": "Somewhat (10% - 30%)",
+          "share": 27.7
+        },
+        {
+          "option": "To some extent (30% - 50%)",
+          "share": 26.6
+        },
+        {
+          "option": "The majority (50% - 80%)",
+          "share": 12.4
+        },
+        {
+          "option": "Completely (more than 80%)",
+          "share": 6
+        },
+        {
+          "option": "Not sure",
+          "share": 7.4
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Somewhat (10% - 30%)",
+            "To some extent (30% - 50%)"
+          ],
+          "share": 54.3,
+          "decimals": 1
+        },
+        {
+          "options": [
+            "The majority (50% - 80%)",
+            "Completely (more than 80%)"
+          ],
+          "share": 18.4,
+          "decimals": 1
+        }
+      ]
+    },
+    "community-q-0": {
+      "question": "How mature is Morocco's cybersecurity overall?",
+      "section": "community",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 34,
+        "figure": "G.35"
+      },
+      "options_in_survey": 6,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "Very weak",
+          "share": 23.1
+        },
+        {
+          "option": "Weak",
+          "share": 43.5
+        },
+        {
+          "option": "Average",
+          "share": 21.9
+        },
+        {
+          "option": "Strong",
+          "share": 5.4
+        },
+        {
+          "option": "Very strong",
+          "share": 0.4
+        },
+        {
+          "option": "Not sure",
+          "share": 5.8
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Very weak",
+            "Weak"
+          ],
+          "share": 67,
+          "decimals": 0
+        },
+        {
+          "options": [
+            "Strong",
+            "Very strong"
+          ],
+          "share": 5.8,
+          "decimals": 1
+        }
+      ]
+    },
+    "community-q-1": {
+      "question": "Which of these rules or bodies have you dealt with at work (current or past)?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents with work experience, and founders",
+      "white_paper": {
+        "page": 34,
+        "figure": "G.36"
+      },
+      "options_in_survey": 9,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Law 05-20 on cybersecurity / DGSSI directives (DNSSI)",
+          "share": 38.1
+        },
+        {
+          "option": "Law 09-08 / CNDP (personal data)",
+          "share": 32.5
+        },
+        {
+          "option": "None of these",
+          "share": 31.9
+        },
+        {
+          "option": "EU rules (GDPR, NIS2, DORA), directly or through clients",
+          "share": 25
+        },
+        {
+          "option": "maCERT (national CERT)",
+          "share": 23.1
+        },
+        {
+          "option": "Payment / banking standards (PCI DSS, SWIFT CSP)",
+          "share": 18.1
+        },
+        {
+          "option": "Sector regulator directives (Bank Al-Maghrib, ACAPS, AMMC, ANRT)",
+          "share": 9.4
+        },
+        {
+          "option": "Police cybercrime units (DGSN, Gendarmerie)",
+          "share": 7.5
+        }
+      ]
+    },
+    "community-q-2": {
+      "question": "How well does Moroccan law protect people who report flaws in good faith?",
+      "section": "community",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 31,
+        "figure": "G.29"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Not at all",
+          "share": 21.6
+        },
+        {
+          "option": "Poorly",
+          "share": 30.9
+        },
+        {
+          "option": "Adequately",
+          "share": 12.3
+        },
+        {
+          "option": "Well",
+          "share": 3.8
+        },
+        {
+          "option": "Don't know",
+          "share": 31.4
+        }
+      ],
+      "combined": [
+        {
+          "options": [
+            "Not at all",
+            "Poorly"
+          ],
+          "share": 52.5,
+          "decimals": 1
+        },
+        {
+          "options": [
+            "Adequately",
+            "Well"
+          ],
+          "share": 16.1,
+          "decimals": 1
+        }
+      ]
+    },
+    "community-q-3": {
+      "question": "Outside bug bounty or paid work, have you noticed security flaws in a Moroccan organization's site, app or service while using it (as a customer, student or user)?",
+      "section": "community",
+      "multiple": false,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 32,
+        "figure": "G.30"
+      },
+      "options_in_survey": 3,
+      "options_published": 3,
+      "shares": [
+        {
+          "option": "Yes",
+          "share": 49.8
+        },
+        {
+          "option": "No",
+          "share": 24.5
+        },
+        {
+          "option": "Prefer not to say",
+          "share": 25.8
+        }
+      ]
+    },
+    "community-q-4": {
+      "question": "Did you report what you noticed?",
+      "section": "community",
+      "multiple": false,
+      "base": "respondents who noticed a flaw",
+      "white_paper": {
+        "page": 32,
+        "figure": "G.31"
+      },
+      "options_in_survey": 4,
+      "options_published": 4,
+      "shares": [
+        {
+          "option": "Yes",
+          "share": 17.5
+        },
+        {
+          "option": "Some, not all",
+          "share": 14.9
+        },
+        {
+          "option": "No",
+          "share": 53.5
+        },
+        {
+          "option": "Prefer not to say",
+          "share": 14
+        }
+      ]
+    },
+    "community-q-5": {
+      "question": "Why did you not report it (or some of them)?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who noticed a flaw and did not report all of it",
+      "small_base": true,
+      "white_paper": {
+        "page": 33,
+        "figure": "G.33"
+      },
+      "options_in_survey": 10,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "Feared legal trouble",
+          "share": 50.7
+        },
+        {
+          "option": "The organization had no reporting contact",
+          "share": 40
+        },
+        {
+          "option": "Didn't know how or where to report",
+          "share": 32
+        },
+        {
+          "option": "Not worth the effort",
+          "share": 30.7
+        },
+        {
+          "option": "They wouldn't have fixed it anyway",
+          "share": 28
+        },
+        {
+          "option": "Wasn't sure it was a real flaw",
+          "share": 18.7
+        }
+      ]
+    },
+    "community-q-6": {
+      "question": "When you reported, what did you get back?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who reported",
+      "small_base": true,
+      "white_paper": {
+        "page": 33,
+        "figure": "G.34"
+      },
+      "options_in_survey": 9,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Thanked or credited",
+          "share": 33.3
+        },
+        {
+          "option": "No response (yet)",
+          "share": 33.3
+        },
+        {
+          "option": "Fixed silently, no credit",
+          "share": 22.2
+        },
+        {
+          "option": "Acknowledged, but not fixed",
+          "share": 13.9
+        },
+        {
+          "option": "Rewarded (bounty, gift, job offer)",
+          "share": 8.3
+        },
+        {
+          "option": "A threat or legal warning",
+          "share": 8.3
+        },
+        {
+          "option": "Told to stay quiet",
+          "share": 2.8
+        },
+        {
+          "option": "Relayed or handled by maCERT",
+          "share": 2.8
+        }
+      ]
+    },
+    "community-q-7": {
+      "question": "In the last 3 years, has an employer or client asked you to hide or play down an incident, or to remove or downgrade an audit or pentest finding for non-technical reasons? (normal bug bounty disclosure rules don't count)",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents with work experience or a job",
+      "white_paper": {
+        "page": 32,
+        "figure": "G.32"
+      },
+      "options_in_survey": 5,
+      "options_published": 5,
+      "shares": [
+        {
+          "option": "Yes, to hide or play down an incident",
+          "share": 8.9
+        },
+        {
+          "option": "Yes, to remove or downgrade a finding",
+          "share": 8.2
+        },
+        {
+          "option": "I have seen it asked of someone else",
+          "share": 5.5
+        },
+        {
+          "option": "No, none of these",
+          "share": 57.5
+        },
+        {
+          "option": "Prefer not to say",
+          "share": 21.2
+        }
+      ]
+    },
+    "community-q-8": {
+      "question": "What stops you from taking part more in the Moroccan security community?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 38,
+        "figure": "G.42"
+      },
+      "options_in_survey": 9,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Don't know where to find communities/events",
+          "share": 43.1
+        },
+        {
+          "option": "Lack of time due to work or studies",
+          "share": 35.8
+        },
+        {
+          "option": "Events are too far from my location",
+          "share": 21.9
+        },
+        {
+          "option": "Content level doesn't match my experience (too basic/too advanced)",
+          "share": 16.9
+        },
+        {
+          "option": "Financial constraints (event costs, travel)",
+          "share": 14.6
+        },
+        {
+          "option": "I'm already active in the community",
+          "share": 14.2
+        },
+        {
+          "option": "Nothing in particular",
+          "share": 9.2
+        },
+        {
+          "option": "Language barriers (prefer Arabic/Darija content)",
+          "share": 8.5
+        }
+      ]
+    },
+    "community-q-9": {
+      "question": "What would make you attend security events in Morocco? (meetups, conferences, CTFs)",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 38,
+        "figure": "G.43"
+      },
+      "options_in_survey": 8,
+      "options_published": 7,
+      "shares": [
+        {
+          "option": "Better networking opportunities",
+          "share": 52.7
+        },
+        {
+          "option": "More events in my city/region",
+          "share": 49.2
+        },
+        {
+          "option": "Workshops and CTFs with hands-on practice",
+          "share": 49.2
+        },
+        {
+          "option": "Better quality speakers/content",
+          "share": 48.5
+        },
+        {
+          "option": "Better timing (weekends, evenings)",
+          "share": 40.8
+        },
+        {
+          "option": "Lower or no cost",
+          "share": 17.7
+        },
+        {
+          "option": "Nothing, I don't plan to attend",
+          "share": 10.4
+        }
+      ]
+    },
+    "community-q-10": {
+      "question": "Has the Moroccan security community helped your career? If so, how?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 39,
+        "figure": "G.44"
+      },
+      "options_in_survey": 7,
+      "options_published": 6,
+      "shares": [
+        {
+          "option": "It hasn't helped my career yet",
+          "share": 54.2
+        },
+        {
+          "option": "Learned skills that advanced my career",
+          "share": 21.2
+        },
+        {
+          "option": "Built professional network",
+          "share": 18.5
+        },
+        {
+          "option": "Got mentorship from community members",
+          "share": 11.5
+        },
+        {
+          "option": "Gained confidence through speaking/contributing",
+          "share": 10.4
+        },
+        {
+          "option": "Discovered new opportunities (jobs, projects, partnerships)",
+          "share": 8.5
+        }
+      ]
+    },
+    "community-q-11": {
+      "question": "What do you most need from the Moroccan security community now?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 39,
+        "figure": "G.45"
+      },
+      "options_in_survey": 8,
+      "options_published": 7,
+      "shares": [
+        {
+          "option": "Job opportunities and career guidance",
+          "share": 48.5
+        },
+        {
+          "option": "Networking with other security people",
+          "share": 46.9
+        },
+        {
+          "option": "Mentorship from experienced security people",
+          "share": 40
+        },
+        {
+          "option": "Collaboration on projects, research or CTF teams",
+          "share": 31.5
+        },
+        {
+          "option": "Access to advanced technical content",
+          "share": 28.8
+        },
+        {
+          "option": "Learning resources in Arabic/Darija",
+          "share": 18.5
+        },
+        {
+          "option": "Nothing right now",
+          "share": 6.2
+        }
+      ]
+    },
+    "community-q-12": {
+      "question": "Which community content is most valuable to you?",
+      "section": "community",
+      "multiple": true,
+      "base": "respondents who answered",
+      "white_paper": {
+        "page": 40,
+        "figure": "G.46"
+      },
+      "options_in_survey": 10,
+      "options_published": 8,
+      "shares": [
+        {
+          "option": "Hands-on workshops and labs",
+          "share": 48.1
+        },
+        {
+          "option": "CTFs and competitions",
+          "share": 41.2
+        },
+        {
+          "option": "Case studies and incident write-ups from Moroccan organizations",
+          "share": 39.2
+        },
+        {
+          "option": "Career development sessions (interviews, negotiations, CV)",
+          "share": 30.4
+        },
+        {
+          "option": "Freelancing, bug bounty and entrepreneurship guidance",
+          "share": 23.5
+        },
+        {
+          "option": "Open source security tools and contribution guides",
+          "share": 17.7
+        },
+        {
+          "option": "Defense and architecture discussions",
+          "share": 12.3
+        },
+        {
+          "option": "Soft skills (communication, leadership, teamwork)",
+          "share": 10.8
+        }
+      ]
+    },
+    "community-q-13": {
+      "question": "When it comes to security, what is your primary social network?",
+      "section": "community",
+      "multiple": false,
+      "base": "all respondents",
+      "note": "The link was shared on these networks.",
+      "white_paper": {
+        "page": 40,
+        "figure": "G.47"
+      },
+      "options_in_survey": 11,
+      "options_published": 9,
+      "shares": [
+        {
+          "option": "LinkedIn",
+          "share": 26.2
+        },
+        {
+          "option": "X (Twitter)",
+          "share": 20.4
+        },
+        {
+          "option": "Discord",
+          "share": 13.8
+        },
+        {
+          "option": "Telegram",
+          "share": 9.6
+        },
+        {
+          "option": "Reddit",
+          "share": 8.5
+        },
+        {
+          "option": "None",
+          "share": 6.9
+        },
+        {
+          "option": "YouTube",
+          "share": 4.6
+        },
+        {
+          "option": "Facebook",
+          "share": 4.6
+        },
+        {
+          "option": "Instagram",
+          "share": 2.3
+        }
+      ]
+    }
+  },
+  "breakdowns": {
+    "women_by_domain": {
+      "description": "Security domain of women, next to all respondents (question roles-q-0)",
+      "base": "the 41 women who described their domain, compared with all respondents who answered. Small base.",
+      "white_paper": {
+        "page": 19,
+        "figure": "G.10"
+      },
+      "rows": [
+        {
+          "option": "Offensive security (pentest, red team, bug bounty)",
+          "women": 24.4,
+          "all_respondents": 43
+        },
+        {
+          "option": "Still exploring / no specific area yet",
+          "women": 22,
+          "all_respondents": 9.9
+        },
+        {
+          "option": "Security operations (SOC) / blue team",
+          "women": 19.5,
+          "all_respondents": 13.1
+        },
+        {
+          "option": "Network, infrastructure & IT security (incl. sysadmins handling security)",
+          "women": 9.8,
+          "all_respondents": 12.8
+        },
+        {
+          "option": "Governance, risk & compliance (GRC)",
+          "women": 9.8,
+          "all_respondents": 2
+        },
+        {
+          "option": "Incident response / DFIR",
+          "women": 4.9,
+          "all_respondents": 2
+        }
+      ]
+    },
+    "employed_by_education": {
+      "description": "Share employed or freelancing, by education type (questions profile-q-4 and profile-q-6)",
+      "base": "respondents who answered both questions, by education type. Employed = employee of a Moroccan or foreign organization, freelancer or founder.",
+      "white_paper": {
+        "page": 20,
+        "figure": "G.11"
+      },
+      "rows": [
+        {
+          "group": "Self-taught",
+          "share": 74.5
+        },
+        {
+          "group": "University / public school",
+          "share": 51.9
+        },
+        {
+          "group": "Private engineering / tech school",
+          "share": 43.5
+        },
+        {
+          "group": "Coding school (1337, YouCode...)",
+          "share": 43.5
+        },
+        {
+          "group": "Vocational (OFPPT...)",
+          "share": 36.4
+        }
+      ]
+    },
+    "plans_to_work_abroad_by_situation": {
+      "description": "Plans to work outside Morocco, by current situation (questions work-q-16 and profile-q-6), whole percentages",
+      "base": "respondents living in Morocco. Small groups left out.",
+      "white_paper": {
+        "page": 29,
+        "figure": "G.26"
+      },
+      "rows": [
+        {
+          "group": "Job seekers",
+          "leaving_within_24_months": 49,
+          "still_hesitating": 33,
+          "staying": 18
+        },
+        {
+          "group": "Foreign-org employees",
+          "leaving_within_24_months": 47,
+          "still_hesitating": 41,
+          "staying": 12
+        },
+        {
+          "group": "Freelancers",
+          "leaving_within_24_months": 45,
+          "still_hesitating": 34,
+          "staying": 21
+        },
+        {
+          "group": "Students",
+          "leaving_within_24_months": 44,
+          "still_hesitating": 40,
+          "staying": 15
+        },
+        {
+          "group": "Employees in Morocco",
+          "leaving_within_24_months": 38,
+          "still_hesitating": 43,
+          "staying": 19
+        }
+      ]
+    },
+    "students_with_a_certificate": {
+      "statement": "Among students, 37% already hold at least one certificate.",
+      "share": 37,
+      "white_paper": {
+        "page": 21
+      }
+    },
+    "three_years_or_more_in_security": {
+      "statement": "56% of employees of foreign organizations have three years or more in security, against 33% of employees of Moroccan organizations. In the two pay charts: 57% of the USD salary group (a small group of 30), against 42% of the MAD income group.",
+      "employees_of_foreign_organizations": 56,
+      "employees_of_moroccan_organizations": 33,
+      "usd_salary_group": 57,
+      "usd_salary_group_size": 30,
+      "mad_income_group": 42,
+      "white_paper": {
+        "page": 23
+      }
+    },
+    "active_bug_bounty_hunters_who_earned_nothing": {
+      "statement": "Among active hunters only (those who take part regularly or now and then), 24 of 73 earned nothing in the last 12 months.",
+      "count": 24,
+      "of": 73,
+      "white_paper": {
+        "page": 24
+      }
+    },
+    "plans_to_work_abroad_by_job_satisfaction": {
+      "statement": "Among respondents with a job who are satisfied with it, 18 of 55 plan to work outside Morocco within 24 months; among the unsatisfied, 15 of 28. Small bases.",
+      "satisfied": {
+        "count": 18,
+        "of": 55
+      },
+      "unsatisfied": {
+        "count": 15,
+        "of": 28
+      },
+      "white_paper": {
+        "page": 30
+      }
+    },
+    "amazigh_in_souss_massa": {
+      "statement": "14 of the 30 respondents in Souss-Massa who answered read or write Amazigh.",
+      "count": 14,
+      "of": 30,
+      "white_paper": {
+        "page": 16
+      }
+    },
+    "eu_rules_among_those_based_in_morocco": {
+      "statement": "Among those asked question community-q-1 who are based in Morocco, 20% have worked under GDPR, NIS2 or DORA, directly or through clients.",
+      "share": 20,
+      "white_paper": {
+        "page": 34
+      }
+    },
+    "time_to_first_job_of_graduates": {
+      "statement": "Leaving out those who have not graduated yet, 33.7% started working straight away and 27.6% within three months. 10.2% waited more than a year.",
+      "started_straight_away": 33.7,
+      "within_three_months": 27.6,
+      "more_than_a_year": 10.2,
+      "white_paper": {
+        "page": 36
+      }
+    }
+  },
+  "sentiment_index": {
+    "name": "Moroccan Cyber Sentiment Index",
+    "value": 43.6,
+    "scale": "0 to 100; 50 is the scale midpoint",
+    "method": "Three questions, three pillars, equal weights. Each answer gets a score between 0 and 1; a pillar is the average score times 100; the index is the average of the pillars.",
+    "pillars": [
+      {
+        "pillar": "Retention",
+        "measures": "intent to stay in Morocco",
+        "question": "work-q-16",
+        "score": 37.7,
+        "scoring": "yes in 12 months = 0, yes in 24 months = 0, still hesitating = 0.5, no = 1"
+      },
+      {
+        "pillar": "Morale",
+        "measures": "job satisfaction",
+        "question": "work-q-8",
+        "score": 61.6,
+        "scoring": "very unsatisfied = 0 ... very satisfied = 1, in steps of 0.25"
+      },
+      {
+        "pillar": "Legal trust",
+        "measures": "protection for good-faith reporters",
+        "question": "community-q-2",
+        "score": 31.5,
+        "scoring": "not at all = 0, poorly = 0.25, adequately = 0.6, well = 1, don't know = 0.4"
+      }
+    ],
+    "sensitivity": {
+      "index_if_retention_weight_doubled": 42.1,
+      "index_if_morale_weight_doubled": 48.1,
+      "index_if_legal_trust_weight_doubled": 40.6,
+      "legal_trust_score_if_dont_know_scored_half": 34.6,
+      "legal_trust_score_if_dont_know_left_out": 27.6,
+      "scoring_and_weighting_variants_tested": 192,
+      "lowest_index_across_variants": 30.2,
+      "highest_index_across_variants": 53.3,
+      "variants_below_50": 168
+    },
+    "limits": "Each pillar has its own base: people in Morocco, people with a job, everyone. Scoring and weights are frozen for 2027. No margin of error.",
+    "white_paper": {
+      "page": 47
+    }
+  }
+}
